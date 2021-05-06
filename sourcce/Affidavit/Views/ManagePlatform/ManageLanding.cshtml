@@ -1,0 +1,170 @@
+﻿@model Affidavit.Models.ManagePlatform.ManageLandingNewVM
+@using Affidavit.Utils
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@Styles.Render("~/Content/cssadmin")
+@Scripts.Render("~/bundles/customjs")
+<script type="text/javascript" src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+
+<style type="text/css">
+    body {
+        padding-top: 0px !important;
+    }
+</style>
+
+
+@{
+    ViewBag.Title = @TranslatorHelper.TranslateTextByIdentifier("Old_ManageLandingAdmin");
+}
+<label id="NS_GridUrlActionGridCallBack" class="hidden">@Url.Action("ManageLandingListCallBack")</label>
+<label id="NS_GridUrlActionGetLandingText" class="hidden">@Url.Action("GetLandingText")</label>
+<label id="NS_GridUrlActionSaveLanding" class="hidden">@Url.Action("SaveLanding")</label>
+<label id="NS_DeleteRecordQuestion" class="hidden">@TranslatorHelper.TranslateTextByIdentifier("Old_DeleteItemQuestionAdmin")</label>
+<label id="NS_EditLandingModalTitleAdmin" class="hidden">@TranslatorHelper.TranslateTextByIdentifier("Old_EditLandingModalTitleAdmin")</label>
+<label id="NS_NewLandingModalTitleAdmin" class="hidden">@TranslatorHelper.TranslateTextByIdentifier("Old_NewLandingModalTitleAdmin")</label>
+<label id="NS_UseLandingAsTemplateModalTitleAdmin" class="hidden">@TranslatorHelper.TranslateTextByIdentifier("Old_UseLandingAsTemplateModalTitleAdmin")</label>
+<label id="NS_ReplyLandingToMultipleModalTitleAdmin" class="hidden">@TranslatorHelper.TranslateTextByIdentifier("Old_ReplyLandingToMultipleModalTitleAdmin")</label>
+<label id="NS_GridUrlActionCampaignsToReplaceLanding" class="hidden">@Url.Action("CampaignsToReplaceLanding")</label>
+<label id="NS_GridUrlActionReplaceLandingToMultipleCampaing" class="hidden">@Url.Action("ReplaceLandingToMultipleCampaing")</label>
+<label id="NS_AssignLandingToOthersSuccessfulMessage" class="hidden">@TranslatorHelper.TranslateTextByIdentifier("Old_AssignLandingToOthersSuccessfulMessage")</label>
+<label id="NS_SelectAtleastOneCampaignToAssignMessage" class="hidden">@TranslatorHelper.TranslateTextByIdentifier("Old_SelectAtleastOneCampaignToAssignMessage")</label>
+<label id="NS_CampaignFieldRequiredAdmin" class="hidden">@TranslatorHelper.TranslateTextByIdentifier("Old_CampaignFieldRequiredAdmin")</label>
+<label id="NS_CountryFieldRequiredAdmin" class="hidden">@TranslatorHelper.TranslateTextByIdentifier("Old_CountryFieldRequiredAdmin")</label>
+<label id="NS_CampaignAdmin" class="hidden">@TranslatorHelper.TranslateTextByIdentifier("Old_CampaignAdmin")</label>
+<label id="NS_GridUrlActionDeleteLanding" class="hidden">@Url.Action("DeleteLanding")</label>
+<label id="NS_CheckCampaignNameAction" class="hidden">@Url.Action("CheckCampaign")</label>
+
+
+
+
+<div class="pagina">
+    <div class="centro">
+        <div> &nbsp;</div>
+
+        <div class="set" style="position: relative;z-index: 100000;">
+            @Html.Partial("_MenuNavegacion")
+            <h2>@TranslatorHelper.TranslateTextByIdentifier("Old_ManageLandingAdmin")</h2>
+
+
+            <div class="row">
+                <div class="col-md-12 ">
+                    <button class="btn btn-primary btn-sm new-landing"><i class="fa fa-plus-circle fa-2x"></i></button>
+                </div>
+                <div class="col-md-12"> &nbsp;</div>
+                <div class="col-md-12">
+                    <div id="progressbargrid" class="progress hide">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                            <span class="sr-only">45% Complete</span>
+                        </div>
+                    </div>
+                    <div id="grid-div">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!---Modals-->
+<div id="addModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><span id="modalTitle"></span></h3>
+                </div>
+                <div class="modal-body">
+                    <p id="disagreeReasonErrorServer" class="text-danger hide"></p>
+                    <div class="row">
+                        <div class="col-md-12" style="width: 100% !important;">
+                            <div class="form-group" >
+                                <label id="campaignid" class="hidden"></label>
+                                <label for="campaign">@TranslatorHelper.TranslateTextByIdentifier("Old_CampaignAdmin")</label>
+                                <input type="text" class="form-control" id="campaign" placeholder="@TranslatorHelper.TranslateTextByIdentifier("Old_CampaignAdmin")">
+                            </div>
+                            <div class="form-group">
+                                <label for="campaign">@TranslatorHelper.TranslateTextByIdentifier("Old_CountryAdmin")</label>
+                                @Html.DropDownList("Countries", Model.Countries, @TranslatorHelper.TranslateTextByIdentifier("Old_SelectDropDownAdmin"), new { @class = "form-control" })
+                            </div>
+                            <div class="" style="margin-top: 150px;">
+                                <a class="" role="button" data-toggle="collapse" href="#landingFields" aria-expanded="false"
+                                   aria-controls="landingFields"><i class="fa fa-info-circle"></i>@TranslatorHelper.TranslateTextByIdentifier("Old_FIeldsHelperAdmin")</a>
+                                <div class="collapse" id="landingFields">
+                                    <div class="well">
+                                        <label>Tittle:</label> {{tittle}}<br />
+                                        <label>Contact Name:</label> {{contactName}}<br />
+                                        <label>Company Name:</label> {{companyName}}<br />
+                                        <label>Consultant Name:</label> {{consultantName}}<br />
+                                        <label>Consultant E-mail:</label> {{microsoftConsultantEmail}}<br />
+                                        <label>Consultant Phone Number:</label> {{consultantPhoneNumber}}<br />
+                                        <label>Current Date:</label> {{CurrentDate}}<br />
+                                        <label>Last Name:</label> {{LastName}}
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+
+                                <label for="Content">@TranslatorHelper.TranslateTextByIdentifier("Old_LetterTextAdmin")</label>
+
+                                <textarea id="Content" name="data"></textarea>
+
+                                @*<input type="submit" class="btn btn-default" value="Enviar" />*@
+
+
+
+                                @*<textarea id="disagreeReasonText" class="form-control" rows="5"></textarea>
+                                    <span id="disagreeReasonErrorLabel" class="help-block hide">@TranslatorHelper.TranslateTextByIdentifier("Old_FieldRequired")</span>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-dismiss="modal">@TranslatorHelper.TranslateTextByIdentifier("Old_Cancel")</button>
+                    <button type="button" class="btn btn-primary saveLanding" id="saveLanding">@TranslatorHelper.TranslateTextByIdentifier("Old_AcceptAdmin")</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="useMultipleModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><span id="">@TranslatorHelper.TranslateTextByIdentifier("Old_ReplyLandingToMultipleModalTitleAdmin")</span></h3>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="campaign">@TranslatorHelper.TranslateTextByIdentifier("Old_CountryAdmin")</label>
+                        @Html.DropDownList("CountriesMulti", Model.Countries, @TranslatorHelper.TranslateTextByIdentifier("Old_SelectDropDownAdmin"), new { @class = "form-control" })
+                    </div>
+                    <div id="CampaignsToAsing">
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-dismiss="modal">@TranslatorHelper.TranslateTextByIdentifier("Old_Cancel")</button>
+                    <button type="button" class="btn btn-primary " id="changeMultipleLanding">@TranslatorHelper.TranslateTextByIdentifier("Old_AcceptAdmin")</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts{
+    <script src="@Url.Content("~/Scripts/Custom/LandingCampaign.js")"></script>
+}

@@ -1,0 +1,37 @@
+﻿@model Affidavit.Models.ManagePlatform.ManageLandingNewVM
+@using Affidavit.Utils
+@{
+    ViewBag.Title = @TranslatorHelper.TranslateTextByIdentifier("Old_NewRecommendations");
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<script type="text/javascript" src="~/Scripts/Custom/bootbox.js"></script>
+@Styles.Render("~/Content/cssadmin")
+
+
+<style type="text/css">
+    body {
+        padding-top: 0px !important;
+    }
+</style>
+
+
+<div class="pagina">
+    <div class="centro">
+        <div> &nbsp;</div>
+
+        <div class="set">
+            @Html.Partial("_MenuNavegacion")
+            <h2>@TranslatorHelper.TranslateTextByIdentifier("Old_NewRecommendations")</h2>
+
+
+            <div class="row">
+                <div class="col-md-12" style="padding: 50px 50px 50px 15px;">
+                    @Html.ActionLink("Recommendations", "ManageRecommendation", "Recommendation", null ,new {@class= "btn btn-primary col-md-2 disabled" })
+                    @Html.ActionLink("Recommendation Categories", "ManageRecommendationCategory", "Recommendation", null, new { @class = "btn btn-primary col-md-2 col-md-offset-1 disabled" })
+                    @Html.ActionLink("Variables", "ManageVariables", "Recommendation", null, new { @class = "btn btn-primary col-md-2 col-md-offset-1" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

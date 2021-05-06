@@ -1,0 +1,1061 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AuthorizedChannelMessage" xml:space="preserve">
+    <value>Please complete the field for the name of authorized Microsoft partner </value>
+  </data>
+  <data name="CompanyNameField" xml:space="preserve">
+    <value>Please enter the company name in Company's basic information</value>
+  </data>
+  <data name="ComentariosAdicinales" xml:space="preserve">
+    <value>Additional Comments</value>
+  </data>
+  <data name="ConfirmationMessage" xml:space="preserve">
+    <value>Are you sure you want to finish?  Please note that once you confirm, you will not be allowed to make changes</value>
+  </data>
+  <data name="CreateNewQuestion" xml:space="preserve">
+    <value>Create New Question</value>
+  </data>
+  <data name="Edicion" xml:space="preserve">
+    <value>EDITION</value>
+  </data>
+  <data name="EmailAddressField" xml:space="preserve">
+    <value>Enter a valid e-mail address</value>
+  </data>
+  <data name="EncabezadoContratosVolumen" xml:space="preserve">
+    <value>If you have volume licenses (Open, Academic, Enterprise Agreement, Select Plus, etc.), please indicate the respective license agreements</value>
+    <comment>If you have volume licenses (Open, Academic, Enterprise Agreement, Select Plus, etc.), please indicate the respective license numbers</comment>
+  </data>
+  <data name="EncabezadoDatosBasicos" xml:space="preserve">
+    <value>Company's basic information</value>
+  </data>
+  <data name="EncabezadoDatosGeneralesEquipos" xml:space="preserve">
+    <value>General equipment information</value>
+  </data>
+  <data name="EncabezadoProcesoCompra" xml:space="preserve">
+    <value>Have you acquired Microsoft software under a different name?</value>
+    <comment>How do you carry out your software purchase and invoicing process?</comment>
+  </data>
+  <data name="EncabezadoTipoCliente" xml:space="preserve">
+    <value>Customer Type</value>
+  </data>
+  <data name="FechaRenovacion" xml:space="preserve">
+    <value>Renewal date</value>
+  </data>
+  <data name="FechaVencimiento" xml:space="preserve">
+    <value>Due date</value>
+  </data>
+  <data name="FieldRequired" xml:space="preserve">
+    <value>Required Field</value>
+  </data>
+  <data name="IdPartner" xml:space="preserve">
+    <value>Partner ID</value>
+  </data>
+  <data name="LabelAcademico" xml:space="preserve">
+    <value>Academic</value>
+  </data>
+  <data name="LabelAnterior" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="LabelBorrador" xml:space="preserve">
+    <value>Save draft</value>
+  </data>
+  <data name="LabelCanalAutorizado" xml:space="preserve">
+    <value>Name of Partner</value>
+    <comment>Authorized channel</comment>
+  </data>
+  <data name="LabelCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="LabelComercial" xml:space="preserve">
+    <value>Private Company</value>
+    <comment>Commercial</comment>
+  </data>
+  <data name="LabelCompetencia" xml:space="preserve">
+    <value>Capability</value>
+  </data>
+  <data name="LabelCorrectamenteLicenciado" xml:space="preserve">
+    <value>We are correctly licensed</value>
+  </data>
+  <data name="LabelEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="LabelEmpresaContacto" xml:space="preserve">
+    <value>Please provide the contact and company information</value>
+  </data>
+  <data name="LabelEncabezado" xml:space="preserve">
+    <value>General Information</value>
+  </data>
+  <data name="LabelEncontramosDiferencias" xml:space="preserve">
+    <value>We found some differences in our licensing and we will take appropriate actions to resolve them within the next 30 days</value>
+  </data>
+  <data name="LabelEstadoSoftAssurance" xml:space="preserve">
+    <value>Please provide details about the status, renewal date and contract number</value>
+  </data>
+  <data name="LabelExplique" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="LabelFecha" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="LabelFinalizar" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="LabelGobierno" xml:space="preserve">
+    <value>Government and Health</value>
+    <comment>Public Sector</comment>
+  </data>
+  <data name="LabelIdioma" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="LabelIndustria" xml:space="preserve">
+    <value>Industry</value>
+  </data>
+  <data name="LabelInformacionAdicional" xml:space="preserve">
+    <value>Finish and Submit</value>
+    <comment>Additional Information</comment>
+  </data>
+  <data name="LabelNivel" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="LabelNo" xml:space="preserve">
+    <value>NO</value>
+  </data>
+  <data name="LabelNombreComercial" xml:space="preserve">
+    <value>Trade Name</value>
+  </data>
+  <data name="LabelNombreContacto" xml:space="preserve">
+    <value>Contact Name</value>
+  </data>
+  <data name="LabelNombreEmpresa" xml:space="preserve">
+    <value>Company Name</value>
+  </data>
+  <data name="LabelNombreExactoFacturacion" xml:space="preserve">
+    <value>Please enter name(s) as it appears in the agreement</value>
+    <comment>Type the exact name as it appears in invoicing</comment>
+  </data>
+  <data name="LabelNumeroPCsEscritorio" xml:space="preserve">
+    <value>Desktops and laptops with Windows O.S</value>
+    <comment>Total Quantity of Desktops</comment>
+  </data>
+  <data name="LabelNumeroPCsOtrosSO" xml:space="preserve">
+    <value>Desktops and laptops with other O.S</value>
+    <comment>Total Quantity PC with other S.O.</comment>
+  </data>
+  <data name="LabelNumeroPortatiles" xml:space="preserve">
+    <value>Number of Laptops</value>
+    <comment>Total Quantity of Laptops</comment>
+  </data>
+  <data name="LabelNumeroServidoresFisicos" xml:space="preserve">
+    <value>Number of Physical Servers</value>
+    <comment>Total Quantity of Physical Servers</comment>
+  </data>
+  <data name="LabelNumeroServidoresVirtuales" xml:space="preserve">
+    <value>Number of Virtual Servers</value>
+    <comment>Total Quantity of Virtual Servers</comment>
+  </data>
+  <data name="LabelNumeroTotalEmpleados" xml:space="preserve">
+    <value>Number of Employees</value>
+    <comment>Total Quantity of Employees</comment>
+  </data>
+  <data name="LabelOrder" xml:space="preserve">
+    <value>Order</value>
+  </data>
+  <data name="LabelPartner" xml:space="preserve">
+    <value>Microsoft Partner</value>
+    <comment>Partner</comment>
+  </data>
+  <data name="LabelPartnerDesarrollador" xml:space="preserve">
+    <value>Microsoft Development Partner</value>
+    <comment>Development Partner</comment>
+  </data>
+  <data name="LabelPersonaNatural" xml:space="preserve">
+    <value>Individual</value>
+  </data>
+  <data name="LabelPlanesActualizacionLic" xml:space="preserve">
+    <value>Do you have plans to upgrade the licenses you currently own?</value>
+    <comment>Do you have plans to upgrade currenty owned licenses?</comment>
+  </data>
+  <data name="LabelPlanesNuevasLic" xml:space="preserve">
+    <value>Do you have plans to purchase new licenses?</value>
+  </data>
+  <data name="LabelProductFamily" xml:space="preserve">
+    <value>Product Family</value>
+  </data>
+  <data name="LabelProductName" xml:space="preserve">
+    <value>Product Name</value>
+  </data>
+  <data name="LabelProductosMS" xml:space="preserve">
+    <value>Microsoft Products</value>
+  </data>
+  <data name="LabelProductVersion" xml:space="preserve">
+    <value>Product Version</value>
+  </data>
+  <data name="LabelQuestionText" xml:space="preserve">
+    <value>Question Text</value>
+  </data>
+  <data name="LabelRazonSocial" xml:space="preserve">
+    <value>Registered Company Name</value>
+    <comment>Registered Name</comment>
+  </data>
+  <data name="LabelRelatedQuestion" xml:space="preserve">
+    <value>Related Question</value>
+  </data>
+  <data name="LabelResponseDataType" xml:space="preserve">
+    <value>Answer Type</value>
+  </data>
+  <data name="LabelSave" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="LabelSeleccionaOpcionAplique" xml:space="preserve">
+    <value>Please choose the appropriate option</value>
+  </data>
+  <data name="LabelSi" xml:space="preserve">
+    <value>YES</value>
+  </data>
+  <data name="LabelSiguiente" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="LabelSolicitoApoyo" xml:space="preserve">
+    <value>We require support to clarify our situation</value>
+  </data>
+  <data name="LabelTelefono" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="LabelTieneCanalAutorizado" xml:space="preserve">
+    <value>Do you have an authorized Microsoft Partner?</value>
+  </data>
+  <data name="LabelTieneSoftAssurance" xml:space="preserve">
+    <value>Do you have Software Assurance?</value>
+  </data>
+  <data name="LinkAyuda" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="LinkCerrarSesion" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="MensajeErrorNombreEmpresaLargo" xml:space="preserve">
+    <value>Must be less than 120 characters</value>
+  </data>
+  <data name="MensajeErrorNombreEmpresaRequerido" xml:space="preserve">
+    <value>Please enter the company name</value>
+  </data>
+  <data name="PartnerNetworkMessage" xml:space="preserve">
+    <value>If your organization is a member of the Microsoft Partner Network, please specify the status</value>
+  </data>
+  <data name="PhoneNumberField" xml:space="preserve">
+    <value>Not a valid Phone number</value>
+  </data>
+  <data name="ProductList" xml:space="preserve">
+    <value>Product List</value>
+  </data>
+  <data name="ProgramType" xml:space="preserve">
+    <value>Program Type</value>
+  </data>
+  <data name="QuestionsList" xml:space="preserve">
+    <value>Question List</value>
+  </data>
+  <data name="SoftwareAssuranceRadioButtonMessage" xml:space="preserve">
+    <value>Please select an option for Software Assurance</value>
+  </data>
+  <data name="TextoIdioma" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="TituloFormulario" xml:space="preserve">
+    <value>Microsoft Deployment Summary</value>
+  </data>
+  <data name="LabelPublicSector" xml:space="preserve">
+    <value>Government and Health</value>
+    <comment>Public Sector</comment>
+  </data>
+  <data name="AdditionalQuestionsMessage" xml:space="preserve">
+    <value>Please answer the following questions for each of the products previously selected</value>
+  </data>
+  <data name="EstLicenciamientoMessage" xml:space="preserve">
+    <value>Please select the option that better indicates your licensing status</value>
+  </data>
+  <data name="InvoicingNameMessage" xml:space="preserve">
+    <value>Please type the exact name as it appears in invoicing</value>
+  </data>
+  <data name="LabelAyuda" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="ProcesoCompraMessage" xml:space="preserve">
+    <value>Please select an option for invoicing information</value>
+  </data>
+  <data name="TipoClienteMessage" xml:space="preserve">
+    <value>Please select a customer type</value>
+  </data>
+  <data name="NumeroTotalEmpleadosPcsMessage" xml:space="preserve">
+    <value>Please enter the total quantity of employees and desktops</value>
+  </data>
+  <data name="NoMenorMessage" xml:space="preserve">
+    <value>You can not enter a lower number</value>
+  </data>
+  <data name="PrivacyAndCookies" xml:space="preserve">
+    <value>Privacy And Cookies</value>
+  </data>
+  <data name="TermsOfUse" xml:space="preserve">
+    <value>Terms of Use</value>
+  </data>
+  <data name="LabelPartial" xml:space="preserve">
+    <value>Partial</value>
+  </data>
+  <data name="LabelQuantity" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="LabelTeachers" xml:space="preserve">
+    <value>Teachers</value>
+  </data>
+  <data name="LabelTime" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="LabelAdmEmployees" xml:space="preserve">
+    <value>Admin Employees</value>
+  </data>
+  <data name="FPPMessage" xml:space="preserve">
+    <value>Licenses coming in a wrapped box containing a CD-ROM or a DVD and acquired in a store</value>
+  </data>
+  <data name="OEMMessage" xml:space="preserve">
+    <value>Licenses preinstalled in a device at the time of purchase</value>
+  </data>
+  <data name="SoftwareAssuranceMessage" xml:space="preserve">
+    <value>Microsoft maintenance program aimed at business users who use Microsoft Windows, Microsoft Office, and other server and desktop applications.</value>
+  </data>
+  <data name="VLSMessage" xml:space="preserve">
+    <value>Licenses purchased through a Microsoft volume contract</value>
+  </data>
+  <data name="BodyTextAffidavitCompletion" xml:space="preserve">
+    <value>&lt;p&gt;Mr. &lt;strong&gt;{ConsultantName}&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The Company &lt;strong&gt;{CompanyName}&lt;/strong&gt; has finished and submitted their Microsoft Deployment Summary{RequestSupport}.&lt;/p&gt;
+&lt;p&gt;Sincerely,&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;SOMSight Automatically Notication&lt;/p&gt;</value>
+  </data>
+  <data name="SubjectTextAffidavitCompletion" xml:space="preserve">
+    <value>Customer completes Microsoft Deployment Summary</value>
+  </data>
+  <data name="PrivacyAndCookiesMS" xml:space="preserve">
+    <value>https://privacy.microsoft.com/en-us/privacystatement</value>
+  </data>
+  <data name="TermsOfUseMS" xml:space="preserve">
+    <value>https://www.microsoft.com/en-us/legal/intellectualproperty/copyright</value>
+  </data>
+  <data name="ChannelContactName" xml:space="preserve">
+    <value>Please complete the field relating to contact name of authorized Microsoft partner</value>
+  </data>
+  <data name="ChannelEmail" xml:space="preserve">
+    <value>Please enter e-mail address for authorized Microsoft partner</value>
+  </data>
+  <data name="ChannelPhone" xml:space="preserve">
+    <value>Please enter phone number for authorized Microsoft partner</value>
+  </data>
+  <data name="CompanyContactNameField" xml:space="preserve">
+    <value>Please enter the contact name in Company's basic information</value>
+  </data>
+  <data name="CompanyDateField" xml:space="preserve">
+    <value>Please enter the date in Company's basic information</value>
+  </data>
+  <data name="CompanyEmailField" xml:space="preserve">
+    <value>Please enter the email in Company's basic information</value>
+  </data>
+  <data name="CompanyPhoneField" xml:space="preserve">
+    <value>Please enter the phone in Company's basic information</value>
+  </data>
+  <data name="LabelAuthorizedMSChannel" xml:space="preserve">
+    <value>Authorized Microsoft Partner</value>
+    <comment>Authorized Microsoft Channel</comment>
+  </data>
+  <data name="LabelCurrentSituation" xml:space="preserve">
+    <value>Current situation</value>
+  </data>
+  <data name="LabelInvoicing" xml:space="preserve">
+    <value>Licensing Information</value>
+    <comment>Invoicing</comment>
+  </data>
+  <data name="LabelMSPartnersNetwork" xml:space="preserve">
+    <value>Microsoft Partners Network</value>
+  </data>
+  <data name="LabelNewLicences" xml:space="preserve">
+    <value>New Licences</value>
+  </data>
+  <data name="LabelSoftwareAssurance" xml:space="preserve">
+    <value>Software Assurance</value>
+  </data>
+  <data name="LabelUpgrades" xml:space="preserve">
+    <value>Upgrades</value>
+  </data>
+  <data name="ContratodVolumenMessage" xml:space="preserve">
+    <value>You currently have volume contracts (VLS), please indicate the respective license numbers in Invoicing section of General Information</value>
+  </data>
+  <data name="LabelEnd" xml:space="preserve">
+    <value>SUBMIT</value>
+  </data>
+  <data name="LabelNext" xml:space="preserve">
+    <value>NEXT</value>
+  </data>
+  <data name="LabelPrev" xml:space="preserve">
+    <value>PREV</value>
+  </data>
+  <data name="AuthorizedRadioButtonMessage" xml:space="preserve">
+    <value>Please select an option for Authorized Microsoft Partner</value>
+  </data>
+  <data name="NewLicencesRadioButtonMessage" xml:space="preserve">
+    <value>Please select an option for New Licences</value>
+  </data>
+  <data name="UpgradesRadioButtonMessage" xml:space="preserve">
+    <value>Please select an option for Upgrades</value>
+  </data>
+  <data name="HostedFor" xml:space="preserve">
+    <value>This site is hosted for Microsoft by</value>
+  </data>
+  <data name="LabelHelp" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="CheckBoxMessage" xml:space="preserve">
+    <value>Please check the box for certify that the information supplied is accurate, and can be supported in accordance with Microsoft guidelines</value>
+  </data>
+  <data name="LetterInfoText1" xml:space="preserve">
+    <value>I certify that the information supplied is accurate, and can be supported in accordance with Microsoft guidelines</value>
+  </data>
+  <data name="LabelContactUs" xml:space="preserve">
+    <value>Contact Us</value>
+  </data>
+  <data name="LabelLogout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="ContactUsMessage" xml:space="preserve">
+    <value>Thank you for your decision to complete and provide your Microsoft Deployment Summary. If you are unable to complete this form in one session, you can save your information by clicking the "Draft" option at the bottom of every page.</value>
+  </data>
+  <data name="ConsultantInfoMessage" xml:space="preserve">
+    <value>In case you need assistance during this process, contact your license consultant &lt;span class="consultantInfo"&gt;{{ConsultantName}}&lt;/span&gt; at the following phone number &lt;span class="consultantInfo"&gt;{{ConsultantPhoneNumber}}&lt;/span&gt; or email address &lt;span class="consultantInfo"&gt;{{ConsultantEmailAddress}}&lt;/span&gt;</value>
+  </data>
+  <data name="LabelInstalledLicenses" xml:space="preserve">
+    <value>Installed/In Use Licenses</value>
+  </data>
+  <data name="LabelNotAvailable" xml:space="preserve">
+    <value>Not available</value>
+  </data>
+  <data name="LabelSearchCompany" xml:space="preserve">
+    <value>Search company</value>
+  </data>
+  <data name="LabelEnterCompanyName" xml:space="preserve">
+    <value>Introduce a company to search</value>
+  </data>
+  <data name="LabelNotCompanyFound" xml:space="preserve">
+    <value>The search did not throw results</value>
+  </data>
+  <data name="CoreHelp" xml:space="preserve">
+    <value>CORE: One of several processing units working in parallel in a Device</value>
+  </data>
+  <data name="CPUHelp" xml:space="preserve">
+    <value>Element that interprets instructions and processes data from programs on a device</value>
+  </data>
+  <data name="DeviceCALHelp" xml:space="preserve">
+    <value>License granting access to a device to certain Microsoft server software</value>
+  </data>
+  <data name="InComplianceHelp" xml:space="preserve">
+    <value>Being in accordance with the software guidelines, specifications and legal requirements</value>
+  </data>
+  <data name="OnlinePurchaseHelp" xml:space="preserve">
+    <value>Purchases through Microsoft store or authorized platforms</value>
+  </data>
+  <data name="RemoteDesktopServicesCALHelp" xml:space="preserve">
+    <value>License that allows a user to take control of a remote device or virtual machine over a network connection</value>
+  </data>
+  <data name="UserCALHelp" xml:space="preserve">
+    <value>License granting access to a user to certain Microsoft server software or</value>
+  </data>
+  <data name="CALHelp" xml:space="preserve">
+    <value>license granting access to certain Microsoft server software</value>
+  </data>
+  <data name="LabelRquired" xml:space="preserve">
+    <value>* Required fields</value>
+  </data>
+  <data name="LabelMessageMDSWelcome" xml:space="preserve">
+    <value>Welcome to the Microsoft Deployment Summary. The information provided in this document will help us identify your current licensing status, with the purpose of helping your company optimize license usage and follow good practices in the administration of software assets.</value>
+  </data>
+  <data name="Access" xml:space="preserve">
+    <value>Log in</value>
+  </data>
+  <data name="MicrosoftDevelopmentSummary" xml:space="preserve">
+    <value>Microsoft Deployment Summary</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>User Name</value>
+  </data>
+  <data name="WithoutLeadId" xml:space="preserve">
+    <value>Please copy the correct URL because there isn't a Lead ID</value>
+  </data>
+  <data name="WrongUserPassword" xml:space="preserve">
+    <value>Wrong User and/or Password, please verify</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Continue</value>
+  </data>
+  <data name="Disagree" xml:space="preserve">
+    <value>I am not interested</value>
+  </data>
+  <data name="Option1ForSurverQuestion1" xml:space="preserve">
+    <value>a. Our company has a proactive and consistent license management policy. We are correctly licensed and we believe we will not benefit by following this process.</value>
+  </data>
+  <data name="Option1ForSurverQuestion2" xml:space="preserve">
+    <value>a. Improve my financial efficiencies in relation to Software licensing.</value>
+  </data>
+  <data name="Option1ForSurverQuestion3" xml:space="preserve">
+    <value>a. Technology</value>
+  </data>
+  <data name="Option1ForSurverQuestion4" xml:space="preserve">
+    <value>The consultant was friendly</value>
+  </data>
+  <data name="Option2ForSurverQuestion1" xml:space="preserve">
+    <value>b. I am concerned about the privacy of my company information.</value>
+  </data>
+  <data name="Option2ForSurverQuestion2" xml:space="preserve">
+    <value>b. Reduce cyber security risks through the enhancement of my licensing and technology products.</value>
+  </data>
+  <data name="Option2ForSurverQuestion3" xml:space="preserve">
+    <value>b. Purchasing</value>
+  </data>
+  <data name="Option2ForSurverQuestion4" xml:space="preserve">
+    <value>My comments and concerns were addressed</value>
+  </data>
+  <data name="Option3ForSurverQuestion1" xml:space="preserve">
+    <value>c. I do not consider that is a suitable service for the current situation of my business.</value>
+  </data>
+  <data name="Option3ForSurverQuestion2" xml:space="preserve">
+    <value>c. Prevent potential penalties by audits, government raids or entities in charge of protecting intellectual property.</value>
+  </data>
+  <data name="Option3ForSurverQuestion3" xml:space="preserve">
+    <value>c. The user of the technology to be licensed</value>
+  </data>
+  <data name="Option3ForSurverQuestion4" xml:space="preserve">
+    <value>Responses to my questions were appropriate and clearly understood.</value>
+  </data>
+  <data name="Option4ForSurverQuestion1" xml:space="preserve">
+    <value>d. I have the impression that participating in this process will generate additional costs or expenses to my company.</value>
+  </data>
+  <data name="Option4ForSurverQuestion2" xml:space="preserve">
+    <value>d. Identify if my licenses are legitimate</value>
+  </data>
+  <data name="Option4ForSurverQuestion3" xml:space="preserve">
+    <value>d. Operations</value>
+  </data>
+  <data name="Option4ForSurverQuestion4" xml:space="preserve">
+    <value>I was informed about the scope, and expectations of this service, as well as the information required about my company in the process</value>
+  </data>
+  <data name="Option5ForSurverQuestion1" xml:space="preserve">
+    <value>e. I do not have the time or resources to dedicate to this process</value>
+  </data>
+  <data name="Option5ForSurverQuestion2" xml:space="preserve">
+    <value>e. Get a better understanding of the Software life cycle and the licensing clover.</value>
+  </data>
+  <data name="Option5ForSurverQuestion3" xml:space="preserve">
+    <value>e. Presidency/CEO</value>
+  </data>
+  <data name="Option6ForSurverQuestion1" xml:space="preserve">
+    <value>f. Other. Which One?</value>
+  </data>
+  <data name="Option6ForSurverQuestion2" xml:space="preserve">
+    <value>f. Understand the different licensing and intellectual property regulations and risks that exist in my local market or those markets where my company operates.</value>
+  </data>
+  <data name="Option6ForSurverQuestion3" xml:space="preserve">
+    <value>f. Licensing analyst</value>
+  </data>
+  <data name="Option7ForSurverQuestion2" xml:space="preserve">
+    <value>g. Achieve better and more rapid Software licensing negotiations.</value>
+  </data>
+  <data name="Option7ForSurverQuestion3" xml:space="preserve">
+    <value>g. Third party (License Advisor)</value>
+  </data>
+  <data name="Option8ForSurverQuestion2" xml:space="preserve">
+    <value>h. Other. Which one?</value>
+  </data>
+  <data name="Option8ForSurverQuestion3" xml:space="preserve">
+    <value>h. Software Manufacturer/Distributor</value>
+  </data>
+  <data name="Option9ForSurverQuestion3" xml:space="preserve">
+    <value>i. Other. Which one?</value>
+  </data>
+  <data name="SavePDF" xml:space="preserve">
+    <value>Save to PDF</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="SurveyIntro" xml:space="preserve">
+    <value>You are on this page because you selected the option "I am Not interested" in the previous screen. In case you did this by mistake, please press Cancel to go back to the previous screen. In case you have changed your mind about participating in this process, please help us by answering the following questions:</value>
+  </data>
+  <data name="SurveyQuestion1" xml:space="preserve">
+    <value>1. What is the main reason for deciding to not participate?</value>
+  </data>
+  <data name="SurveyQuestion1Empty" xml:space="preserve">
+    <value>Please select an answer for question 1</value>
+  </data>
+  <data name="SurveyQuestion1OptionOtherEmpty" xml:space="preserve">
+    <value>Please enter the answer for the selected option in question 1</value>
+  </data>
+  <data name="SurveyQuestion2" xml:space="preserve">
+    <value>2. What reasons caught your interest for receiving licensing and Compliance advice?</value>
+  </data>
+  <data name="SurveyQuestion2Empty" xml:space="preserve">
+    <value>Please select an answer for question 2</value>
+  </data>
+  <data name="SurveyQuestion2OptionOtherEmpty" xml:space="preserve">
+    <value>Please enter the answer for the selected option in question 2</value>
+  </data>
+  <data name="SurveyQuestion3" xml:space="preserve">
+    <value>3. According to your experience, who should be responsible for the software license management?</value>
+  </data>
+  <data name="SurveyQuestion3Empty" xml:space="preserve">
+    <value>Please select an answer for question 3</value>
+  </data>
+  <data name="SurveyQuestion3OptionOtherEmpty" xml:space="preserve">
+    <value>Please enter the answer for the selected option in question 3</value>
+  </data>
+  <data name="SurveyQuestion4" xml:space="preserve">
+    <value>4. How was your experience in your telephonic interaction with our license consultant? (Note that 1 is the lowest rating and 5 is the highest rating)</value>
+  </data>
+  <data name="SurveyQuestion4Empty" xml:space="preserve">
+    <value>Please rate all options for question 4</value>
+  </data>
+  <data name="SurveyQuestion5" xml:space="preserve">
+    <value>5. Do you have any additional comments about this experience or the purpose of this initiative?</value>
+  </data>
+  <data name="SurveyQuestionResponseMessage" xml:space="preserve">
+    <value>Your decision of not participating has already been communicated. If you decide participating in this campaign, please contact your license consultant &lt;span class="consultantInfo"&gt;{{ConsultantName}}&lt;/span&gt; to the following phone number &lt;span class="consultantInfo"&gt;{{ConsultantPhoneNumber}}&lt;/span&gt; or the following email address &lt;span class="consultantInfo"&gt;{{ConsultantEmailAddress}}&lt;/span&gt;</value>
+  </data>
+  <data name="TittleImageLetterPage" xml:space="preserve">
+    <value>Welcome</value>
+  </data>
+  <data name="TittleImageSurveyPage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AcceptAdmin" xml:space="preserve">
+    <value>Accept</value>
+  </data>
+  <data name="ActionsAdmin" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="AssignLandingToOthersSuccessfulMessage" xml:space="preserve">
+    <value>Records has been replaced successfully</value>
+  </data>
+  <data name="AssignToMultipleCampaignsAdmin" xml:space="preserve">
+    <value>Assign to campaigns</value>
+  </data>
+  <data name="CampaignAdmin" xml:space="preserve">
+    <value>Campaign</value>
+  </data>
+  <data name="CampaignFieldRequiredAdmin" xml:space="preserve">
+    <value>Campaign field required</value>
+  </data>
+  <data name="ClearFiltersAdmin" xml:space="preserve">
+    <value>Clear Filters</value>
+  </data>
+  <data name="CountryAdmin" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="CountryFieldRequiredAdmin" xml:space="preserve">
+    <value>Country field required</value>
+  </data>
+  <data name="CreatedByAdmin" xml:space="preserve">
+    <value>Created by</value>
+  </data>
+  <data name="CreatedDateAdmin" xml:space="preserve">
+    <value>Created</value>
+  </data>
+  <data name="DeleteAdmin" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteItemQuestionAdmin" xml:space="preserve">
+    <value>Are you sure you want to delete the record?</value>
+  </data>
+  <data name="EditAdmin" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="EditLandingModalTitleAdmin" xml:space="preserve">
+    <value>Edit letters by campaign</value>
+  </data>
+  <data name="FIeldsHelperAdmin" xml:space="preserve">
+    <value>Fields Helper</value>
+  </data>
+  <data name="LetterTextAdmin" xml:space="preserve">
+    <value>Letter Text</value>
+  </data>
+  <data name="ManageLandingAdmin" xml:space="preserve">
+    <value>Manage letters</value>
+  </data>
+  <data name="NewLandingModalTitleAdmin" xml:space="preserve">
+    <value>New letter by campaign</value>
+  </data>
+  <data name="ReplyLandingToMultipleModalTitleAdmin" xml:space="preserve">
+    <value>Assign the letter content to other letters</value>
+  </data>
+  <data name="SelectAtleastOneCampaignToAssignMessage" xml:space="preserve">
+    <value>Select at least one campaign to be assigned</value>
+  </data>
+  <data name="SelectDropDownAdmin" xml:space="preserve">
+    <value>-- Select --</value>
+  </data>
+  <data name="UseLandingAsTemplateModalTitleAdmin" xml:space="preserve">
+    <value>New letter by campaign from existing</value>
+  </data>
+  <data name="UseTemplateAdmin" xml:space="preserve">
+    <value>Use letter</value>
+  </data>
+  <data name="CampaignAlreadyExistsAdmin" xml:space="preserve">
+    <value>The campaign already exists for the country</value>
+  </data>
+  <data name="DeleteCampaignErrorAdmin" xml:space="preserve">
+    <value>There was an error deleting the campaign</value>
+  </data>
+  <data name="DeleteCampaignSuccessAdmin" xml:space="preserve">
+    <value>The campaign was deleted successfully</value>
+  </data>
+  <data name="RecordNotFoundAdmin" xml:space="preserve">
+    <value>Record not found</value>
+  </data>
+  <data name="SaveRecordSuccessAdmin" xml:space="preserve">
+    <value>Record has been saved successfully</value>
+  </data>
+  <data name="BodyTextForNonParticipation" xml:space="preserve">
+    <value>&lt;p&gt;Mr. &lt;strong&gt;{ConsultantName}&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The Company &lt;strong&gt;{CompanyName}&lt;/strong&gt; has confirmed they are not interested in participating in the Licencing campaign&lt;/p&gt;
+&lt;p&gt;Sincerely,&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;SOMSight Automatically Notication&lt;/p&gt;</value>
+  </data>
+  <data name="SaveSurveyQuestionResponseSuccessMessage" xml:space="preserve">
+    <value>Their responses were received correctly</value>
+  </data>
+  <data name="SubjectTextForNonParticipation" xml:space="preserve">
+    <value>Customer decides not to Participate in the Campaign</value>
+  </data>
+  <data name="LabelGoBack" xml:space="preserve">
+    <value>Go to MDS</value>
+  </data>
+  <data name="LabelSeeLetter" xml:space="preserve">
+    <value>See Letter</value>
+  </data>
+  <data name="LabelApplicationsType" xml:space="preserve">
+    <value>Additional Information for Developers Partners of Microsoft</value>
+  </data>
+  <data name="LabelBasic" xml:space="preserve">
+    <value>Basics</value>
+  </data>
+  <data name="LabelCustom" xml:space="preserve">
+    <value>Custom</value>
+  </data>
+  <data name="LabelCustomOrBasicsApplications" xml:space="preserve">
+    <value>Does your organization develops basic or custom applications?</value>
+  </data>
+  <data name="LabelDevelopersPartnersApplicationsType" xml:space="preserve">
+    <value>What type of applications do you develop?</value>
+  </data>
+  <data name="LabelDevelopersPartnersMicrosofTools" xml:space="preserve">
+    <value>What are the Microsoft tools used by your organization for development?</value>
+  </data>
+  <data name="LabelDevelopersPartnersProjectsTypes" xml:space="preserve">
+    <value>What are the most important types of projects that your organization develops for its customers?</value>
+  </data>
+  <data name="LabelLoginMessage" xml:space="preserve">
+    <value>This website is for Microsoft customers who are participating in a Microsoft Software Asset Management consulting program.  Through this program, customers will receive guidance and advise from a Microsoft software licensing expert on how to optimize their usage and licensing of Microsoft software.  Participating customers should have received unique login user name and password in order to access the site.&lt;br /&gt;&lt;br /&gt; If you have not received your login user name and password or should you have questions, please reach out to your Microsoft Software Asset Management consultant.</value>
+  </data>
+  <data name="WrongUserAccess" xml:space="preserve">
+    <value>You don't have a Microsoft Deployment Summary draft, please search in your e-mail address for the instructions to access this application.</value>
+  </data>
+  <data name="LabelForgetPass" xml:space="preserve">
+    <value>I forgot my password</value>
+  </data>
+  <data name="LabelExportToExcel" xml:space="preserve">
+    <value>Save to Excel</value>
+  </data>
+  <data name="ForgetPassBodyText" xml:space="preserve">
+    <value>&lt;p&gt;Dear. &lt;strong&gt;{User Name},&lt;/strong&gt;&lt;/p&gt;
+        &lt;p&gt;&amp;nbsp;&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;{Company Name}&lt;/strong&gt;&lt;/p&gt;
+
+
+        &lt;p&gt;You recently requested to recovery your password for your Microsoft Deployment Summary account. Please use the following credentials to log on in to the site:&lt;/p&gt;
+        &lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+        &lt;p&gt;URL: {Customer Link}&lt;/p&gt;
+        &lt;p&gt;Password: #{No. of Employees(Lead)}${Number of PCs(Lead)}*&lt;/p&gt;
+        &lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+        &lt;p&gt;If you have any question or encounter any problems logging in, please contact me at {Consultant Email}.&lt;/p&gt;
+
+        &lt;p&gt;Sincerely,&lt;/p&gt;
+        &lt;p&gt;{Licensing Consultant New(Lead)}&lt;/p&gt;
+        &lt;p&gt;{ Title(Licensing Consultant New(User))}&lt;/p&gt;
+        &lt;p&gt;E-mail: {Email 2(Licensing Consultant New (User))}&lt;/p&gt;
+        &lt;p&gt;Phone: {Other Phone(Licensing Consultant New (User))}&lt;/p&gt;
+        &lt;p&gt;{logo}&lt;/p&gt;
+        &lt;p&gt;&amp;nbsp;&lt;/p&gt;
+        &lt;p&gt; “All information supplied shall be handled by Microsoft in accordance with the security protocols required to avoid loss or deviation, and in compliance with international regulation of privacy and personal data.”&lt;/p&gt;</value>
+  </data>
+  <data name="ForgetPassMessage" xml:space="preserve">
+    <value>Type your Email below and click “Send”. You will receive a new email with your password.</value>
+  </data>
+  <data name="ForgetPassSubject" xml:space="preserve">
+    <value>Forget Password</value>
+  </data>
+  <data name="ForgetPassValidationMessage" xml:space="preserve">
+    <value>You don't have a Microsoft Deployment Summary created in this site for this user name. Please verify your email address or search your email to find out if you received instructions from Microsoft to access this application.</value>
+  </data>
+  <data name="LabelInformacionAcademica" xml:space="preserve">
+    <value>Academic Information</value>
+  </data>
+  <data name="BodyTextAffidavitParticipation" xml:space="preserve">
+    <value>&lt;p&gt;Dear &lt;strong&gt;{ConsultantName}&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The Company &lt;strong&gt;{CompanyName}&lt;/strong&gt; identified with the lead ID &lt;strong&gt;{LeadId}&lt;/strong&gt; has confirmed their interest in participating in the campaign &lt;strong&gt;{SourceCampaign}&lt;/strong&gt;. This confirmation was received at {Hora} on {Fecha}&lt;/p&gt;
+&lt;p&gt;Sincerely,&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;SOMSight Automatically Notication&lt;/p&gt;</value>
+  </data>
+  <data name="SubjectTextAffidavitParticipation" xml:space="preserve">
+    <value>{CompanyName} decide to participate in the campaign</value>
+  </data>
+  <data name="LabelNumeroPcsCRM" xml:space="preserve">
+    <value>Number of pcs CRM</value>
+  </data>
+  <data name="LabelNumeroTotalEmpleadosCRM" xml:space="preserve">
+    <value>Number of employees CRM</value>
+  </data>
+  <data name="RequestSupport" xml:space="preserve">
+    <value>&lt;b&gt; and request support&lt;/b&gt;</value>
+  </data>
+  <data name="LabelNumeroServidoresSQL" xml:space="preserve">
+    <value>Number of SQL servers</value>
+  </data>
+  <data name="ModifiedNumberServers_Delete" xml:space="preserve">
+    <value>Currently has more servers than the value entered and this operation will remove the last. Are you sure to continue?</value>
+  </data>
+  <data name="NewQuestionSQLProductId" xml:space="preserve">
+    <value>Which SQL Server edition is installed?</value>
+  </data>
+  <data name="NewQuestionWSProductId" xml:space="preserve">
+    <value>Which Server OS is installed?</value>
+  </data>
+  <data name="NewQuestionWSVirtual" xml:space="preserve">
+    <value>Which is the physical host?</value>
+  </data>
+  <data name="NewOtherProduct" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="NewSelectDropdown" xml:space="preserve">
+    <value>--Select--</value>
+  </data>
+  <data name="NewAzure2Question" xml:space="preserve">
+    <value>Which ones?</value>
+  </data>
+  <data name="NewAzure1Question" xml:space="preserve">
+    <value>Do you have Azure services?</value>
+  </data>
+  <data name="NewFiles" xml:space="preserve">
+    <value>Files</value>
+  </data>
+  <data name="NewUpload" xml:space="preserve">
+    <value>UPLOAD</value>
+  </data>
+  <data name="NewWarningGAP" xml:space="preserve">
+    <value>The sum between the VLS,  OEM, and FPP values can not be greater than the number of installed licenses.</value>
+  </data>
+  <data name="NewNoFiles" xml:space="preserve">
+    <value>You have not uploaded any files for this product!</value>
+  </data>
+  <data name="NewWarningShouldSelectFiles" xml:space="preserve">
+    <value>You must select at least one file to upload!</value>
+  </data>
+  <data name="NewConfirmDeleteFiles" xml:space="preserve">
+    <value>If you continue all files uploaded for this product will be lost</value>
+  </data>
+  <data name="NewExtensionFilesConstraint" xml:space="preserve">
+    <value>This file isn't a .png/.jpg/.pdf format. Please confirm the file extension.</value>
+  </data>
+  <data name="NewLargerFilesConstraint" xml:space="preserve">
+    <value>This file is longer than 5 mb. Please confirm the file size.</value>
+  </data>
+  <data name="NewFileSpecs" xml:space="preserve">
+    <value>Maximum file size 5 MB  .png .jpg .pdf</value>
+  </data>
+  <data name="NewLabelNoAzure" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="NewLabelSiAzure" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="NewLicenseTestTooltip" xml:space="preserve">
+    <value>Click to upload documents or pictures that demonstrate the origin of your licenses</value>
+  </data>
+  <data name="NewLicenseTooltip" xml:space="preserve">
+    <value>Click here if you want to detail the type of licenses your company is using</value>
+  </data>
+  <data name="NewManageRecommendationCategories" xml:space="preserve">
+    <value>Recommendation Categories Manager</value>
+  </data>
+  <data name="NewManageRecommendations" xml:space="preserve">
+    <value>Recommendations Manager</value>
+  </data>
+  <data name="NewManageVariables" xml:space="preserve">
+    <value>Variables Manager (Recommendations)</value>
+  </data>
+  <data name="NewRecommendations" xml:space="preserve">
+    <value>Recommendations</value>
+  </data>
+  <data name="NewInfoFPPTooltip" xml:space="preserve">
+    <value>Licenses acquired through a retail boxed product</value>
+  </data>
+  <data name="NewInfoOEMTooltip" xml:space="preserve">
+    <value>Preinstalled licenses acquired with the machine</value>
+  </data>
+  <data name="NewInfoVLSTooltip" xml:space="preserve">
+    <value>Licenses acquired through a volume licensing contract</value>
+  </data>
+  <data name="NewInfoTextAreaAzure" xml:space="preserve">
+    <value>Please, be as detailed as you can.</value>
+  </data>
+  <data name="NewFilesQtyConstraint" xml:space="preserve">
+    <value>You cannot upload more than 100 files at the same time. Please try again.</value>
+  </data>
+  <data name="NewWarningMAXServers" xml:space="preserve">
+    <value>The maximum number of servers of this type that you can register are 500.</value>
+  </data>
+  <data name="HostedForCompany" xml:space="preserve">
+    <value>SOMSight &lt;sup&gt;TM.&lt;/sup&gt;</value>
+  </data>
+  <data name="FinishAssessmentNotificationMessageBody" xml:space="preserve">
+    <value>Hi {0}, &lt;br/&gt; &lt;br/&gt; The company &lt;b&gt; {1} &lt;/b&gt; has submitted the &lt;b&gt; {2} &lt;/b&gt; Assessment. &lt;br/&gt;&lt;br/&gt; Regards, &lt;br/&gt;&lt;br/&gt; SOMSight Automatically send.</value>
+  </data>
+  <data name="FinishAssessmentNotificationMessageSubject" xml:space="preserve">
+    <value>{0} Assessment has been Finalized by {1}</value>
+  </data>
+  <data name="MeasureMyPlatformEmailMessage" xml:space="preserve">
+    <value>Hi {0}, &lt;br/&gt;&lt;br/&gt; The company &lt;b&gt;{1}&lt;/b&gt; wants to use the &lt;b&gt;Measure My Platform app &lt;/b&gt;, please contact the company and help the client to configure the system. &lt;br/&gt; &lt;br/&gt; Regards, &lt;br/&gt;&lt;br/&gt; SOMSight Automatically send.</value>
+  </data>
+  <data name="MeasureMyPlatformEmailSubject" xml:space="preserve">
+    <value>{0} wants to use Measure My Platform</value>
+  </data>
+</root>

@@ -1,0 +1,142 @@
+﻿@model Affidavit.Models.Home.LandingPageVM
+@using Affidavit.Utils
+@{
+    ViewBag.Title = "Landing";
+    Layout = "~/Views/Shared/_LayoutSomSight.cshtml";
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+    string date = "";
+    if (culture == "en-us")
+    {
+        date = DateTime.Now.ToString("MMMM dd, yyy");
+    } else
+    {
+        date = @DateTime.Now.ToString("dd MMMM, yyy");
+    }
+}
+
+<style type="text/css">
+    .textboxEmpty {
+        border-color: red;
+        box-shadow: -2px -2px 5px #888888;
+    }
+</style>
+<script>
+    $(document).on("click", "#NotInterestedCheck", function (e) {
+        loadingDiv.show();
+
+        $.ajax({
+            url: ("NotInterestedCheck"),
+            data: { pLeadID: '@Model.LeadId' },
+            type: 'POST',
+            //contentType: 'application/json; charset=utf-8'
+        })
+            .done(function (data) {
+                console.log(data.Request);
+                if (data.Request) {
+                    $('.mensaje_alerta p').text('@TranslatorHelper.TranslateTextByIdentifier("Old_SurveyQuestionResponseMessage")');
+                    $('.mensaje_alerta').show('slow');
+                } else {
+                    window.location.href = "NotInterested?pLeadID=" + '@Model.LeadId'
+                }
+                loadingDiv.hide();
+            })
+            .fail(function (err) {
+                //$('#progressbargrid').addClass('hide');
+                loadingDiv.hide();
+                console.log(err);
+
+            });
+    });
+</script>
+
+<!--================================= HEADER ======================================-->
+
+
+<!--================================= VALLA ======================================-->
+<div id="valla" style="background-image:url(../Content/images/valla_welcome.jpg)">
+    <h1>@TranslatorHelper.TranslateTextByIdentifier("Old_TittleImageLetterPage")</h1>
+</div>
+<!--================================= VALLA ======================================-->
+
+
+
+<!--================================= PAGINA ======================================-->
+@Html.HiddenFor(x => x.LeadId, new { id = "HiddenLeadID" })
+@Html.HiddenFor(x => x.LanguageID, new { id = "HiddenLanguageID" })
+<div id="pagina" class="gris">
+    <div class="seccion">
+        <div class="letter"> @*antes centro*@
+            <p>
+                @Html.Raw("<p>" +
+                    Model.LandingText
+                    .Replace("{{tittle}}", Model.Tittle)
+                    .Replace("{{contactName}}", Model.ContactName)
+                    .Replace("{{microsoftConsultantEmail}}", Model.MicrosoftConsultantEmail)
+                    .Replace("{{consultantPhoneNumber}}", Model.ConsultantPhoneNumber)
+                    .Replace("{{companyName}}", Model.CompanyName)
+                    .Replace("{{consultantName}}", Model.ConsultantName)
+                    .Replace("{{CurrentDate}}", date)
+                    .Replace("{{LastName}}", Model.LastName)
+                    + "</p>"
+                )
+            </p>
+        </div>
+
+    </div>
+    @if (Model.SurveyResponse)
+    {
+        <div class="centro">
+            <div class="mensaje_alerta" style="display:block">
+                <p>
+                    @Html.Raw(
+                @TranslatorHelper.TranslateTextByIdentifier("Old_SurveyQuestionResponseMessage")
+                .Replace("{{ConsultantName}}", Model.ConsultantName)
+                .Replace("{{ConsultantPhoneNumber}}", Model.ConsultantPhoneNumber)
+                .Replace("{{ConsultantEmailAddress}}", Model.MicrosoftConsultantEmail)
+                )
+                </p>
+            </div>
+        </div>
+    }
+
+    @*<div id="franja_valla_inferior">
+            <div class="centro">
+                <label> @TranslatorHelper.TranslateTextByIdentifier("Old_LetterInfoText2")</label>
+            </div>
+        </div>*@
+    <div class="controles">
+        <div class="centro">
+            @Html.ActionLink(@TranslatorHelper.TranslateTextByIdentifier("Old_SavePDF"), "SavePDF", "Home", new { pLeadID = Model.LeadId }, htmlAttributes: new { @class = "btn" })
+            @if (!Model.SurveyResponse) 
+            {
+                @*<a class="btn" href="#" id="NotInterestedCheck" target="_self"> @TranslatorHelper.TranslateTextByIdentifier("Old_Disagree") </a>*@
+                <ul class="bloques derecha">
+                    <li class="round">
+                        <a class="continue"
+                           href="#"
+                           onclick="﻿gAnalytics.throwRedirectEvent('Notified','MDS Form','@Url.Action("Index","ChooseAnAction", new { @pLandingID = Model.LandingId, @pAccept = true })')"
+                           target="_self"
+                           id="redirectToAffidavit">
+                            <span>
+                                @TranslatorHelper.TranslateTextByIdentifier("Old_Continue")
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            }
+        </div>
+    </div>
+
+</div>
+
+
+<!--================================= PAGINA ======================================-->
+
+
+@*<div id="footer">
+    @Html.Partial("_FooterInsidePartial")
+</div>*@
+
+
+<script src="~/Scripts/Custom/Landing.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js" type="text/javascript"></script>

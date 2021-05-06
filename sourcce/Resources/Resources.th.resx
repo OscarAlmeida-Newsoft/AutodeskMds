@@ -1,0 +1,808 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="SurveyQuestion1" xml:space="preserve">
+    <value>1. เหตุผลในการไม่ร่วมโครงการ</value>
+  </data>
+  <data name="SurveyQuestion2" xml:space="preserve">
+    <value>2. เหตุผลในการร่วมโครงการ</value>
+  </data>
+  <data name="SurveyQuestion3" xml:space="preserve">
+    <value>3. จากประสบการณ์ของท่าน ใครควรเป็นผู้รับผิดชอบเรื่องการจัดการสิทธิ์การใช้งานซอฟต์แวร์</value>
+  </data>
+  <data name="Option1ForSurverQuestion3" xml:space="preserve">
+    <value>a. เทคโนโลยี</value>
+  </data>
+  <data name="Option1ForSurverQuestion1" xml:space="preserve">
+    <value>a. บริษัทของเรามีการดูแลเรื่องสิทธิ์การใช้งานซอฟต์แวร์อย่างถูกต้อง โปรแกรมนี้จะไม่ให้ประโยชน์เพิ่มเติม</value>
+  </data>
+  <data name="Option1ForSurverQuestion2" xml:space="preserve">
+    <value>a. ปรับปรุงการวางแผนการลงทุนอย่างคุ้มค่า</value>
+  </data>
+  <data name="Option2ForSurverQuestion1" xml:space="preserve">
+    <value>b. มีความกังวลเรื่องความปลอดภัยของข้อมูลองค์กร</value>
+  </data>
+  <data name="Option2ForSurverQuestion2" xml:space="preserve">
+    <value>b. ลดความเสี่ยงเรื่องภัยไซเบอร์ด้วยการใช้เทคโนโลยีและลิทธิสิทธิ์ซอฟต์แวร์อย่างถูกต้อง</value>
+  </data>
+  <data name="Option3ForSurverQuestion1" xml:space="preserve">
+    <value>c. โครงการนี้ยังไม่เหมาะสมกับธุรกิจของเรา ณ ขณะนี้</value>
+  </data>
+  <data name="Option3ForSurverQuestion2" xml:space="preserve">
+    <value>c. ลดความเสี่ยงในเรื่อง audit, การละเมิดพ.ร.บ.ลิขสิทธิ์</value>
+  </data>
+  <data name="Option3ForSurverQuestion3" xml:space="preserve">
+    <value>c. สิทธิ์การใช้งานที่ถูกต้อง</value>
+  </data>
+  <data name="Option4ForSurverQuestion1" xml:space="preserve">
+    <value>d. โครงการนี้อาจทำให้องค์กรต้องมีค่าใช้จ่ายเพิ่มเติม</value>
+  </data>
+  <data name="Option4ForSurverQuestion2" xml:space="preserve">
+    <value>d. ช่วยตรวจสอบความถูกต้องของสิทธิ์การใช้งานซอฟต์แวร์</value>
+  </data>
+  <data name="Option5ForSurverQuestion1" xml:space="preserve">
+    <value>e. เราไม่มีเวลาและเจ้าหน้าที่ในการร่วมงานในโครงการนี้โดยเฉพาะ</value>
+  </data>
+  <data name="Option5ForSurverQuestion2" xml:space="preserve">
+    <value>e. ทำให้เข้าใจวงจรชีวิตของซอฟต์แวร์และสิทธิ์การใช้งานมากขึ้น</value>
+  </data>
+  <data name="Option5ForSurverQuestion3" xml:space="preserve">
+    <value>e. ประธาน/กรรมการบริษัท</value>
+  </data>
+  <data name="Option6ForSurverQuestion2" xml:space="preserve">
+    <value>f. เข้าใจประเภทของสิทธิ์การใช้งาน พ.ร.บ. ลิขสิทธิ์และความเสี่ยงที่อาจเกิดขึ้นกับองค์กร</value>
+  </data>
+  <data name="Option6ForSurverQuestion3" xml:space="preserve">
+    <value>f. เจ้าหน้าที่วิเคราะห์เรื่องสิทธิ์การใช้งาน</value>
+  </data>
+  <data name="Option6ForSurverQuestion1" xml:space="preserve">
+    <value>f. อื่นๆ กรุณาระบุ</value>
+  </data>
+  <data name="Option7ForSurverQuestion2" xml:space="preserve">
+    <value>g. เข้าใจเรื่องสิทธิ์การใช้งานดีขึ้น</value>
+  </data>
+  <data name="Option7ForSurverQuestion3" xml:space="preserve">
+    <value>g. หน่วยงานกลาง (แนะนำเรื่องสิทธิ์การใช้งาน)</value>
+  </data>
+  <data name="Option8ForSurverQuestion3" xml:space="preserve">
+    <value>h. บริษัทผู้ผลิต/ผู้จัดจำหน่าย</value>
+  </data>
+  <data name="Option8ForSurverQuestion2" xml:space="preserve">
+    <value>h.อื่นๆ กรุณาระบุ</value>
+  </data>
+  <data name="Option9ForSurverQuestion3" xml:space="preserve">
+    <value>i.อื่นๆ กรุณาระบุ</value>
+  </data>
+  <data name="PrivacyAndCookies" xml:space="preserve">
+    <value>Privacy And Cookies</value>
+  </data>
+  <data name="Access" xml:space="preserve">
+    <value>เข้าระบบ</value>
+  </data>
+  <data name="LabelNumeroPCsEscritorio" xml:space="preserve">
+    <value>เครื่องคอมพิวเตอร์พร้อมระบบปฏิบัติการ Windows</value>
+  </data>
+  <data name="LabelNumeroPCsOtrosSO" xml:space="preserve">
+    <value>เครื่องคอมพิวเตอร์พร้อมระบบปฏิบัติการอื่นๆ </value>
+  </data>
+  <data name="TermsOfUse" xml:space="preserve">
+    <value>เงื่อนไขการใช้งาน</value>
+  </data>
+  <data name="Option1ForSurverQuestion4" xml:space="preserve">
+    <value>เจ้าหน้าที่ปฏิบัติงานอย่างดีเยี่ยม</value>
+  </data>
+  <data name="InComplianceHelp" xml:space="preserve">
+    <value>เป็นไปตามหลักปฏิบัติของซอฟต์แวร์และกฎหมาย</value>
+  </data>
+  <data name="Option4ForSurverQuestion4" xml:space="preserve">
+    <value>เราได้รับทราบขอบเขต ขั้นตอนและผลลัพธ์ของโครงการ ก่อนเริ่มงาน</value>
+  </data>
+  <data name="LabelEncontramosDiferencias" xml:space="preserve">
+    <value>เราพบข้อมูลไม่ตรงกับระบบ จะทำการแก้ไขภายใน 30 วัน</value>
+  </data>
+  <data name="LabelCorrectamenteLicenciado" xml:space="preserve">
+    <value>เรามีสิทธิ์การใช้งานที่ถูกต้อง</value>
+  </data>
+  <data name="LabelSeleccionaOpcionAplique" xml:space="preserve">
+    <value>เลือกคำตอบที่ตรงมากที่สุด</value>
+  </data>
+  <data name="LabelTime" xml:space="preserve">
+    <value>เวลา</value>
+  </data>
+  <data name="LabelProductVersion" xml:space="preserve">
+    <value>เวอร์ชั่น</value>
+  </data>
+  <data name="SoftwareAssuranceMessage" xml:space="preserve">
+    <value>โครงการมุ่งเน้นกลุ่มลูกค้าที่มีการใช้งาน  Microsoft Windows, Microsoft Office และเซิร์ฟเวอร์อื่นๆ รวมทั้งแอพลิเคชั่น</value>
+  </data>
+  <data name="LabelDevelopersPartnersProjectsTypes" xml:space="preserve">
+    <value>โครงการสำคัญที่ท่านพัฒนาให้กับลูกค้า</value>
+  </data>
+  <data name="SaveSurveyQuestionResponseSuccessMessage" xml:space="preserve">
+    <value>ได้รับข้อมูลเรียบร้อย</value>
+  </data>
+  <data name="LabelGoBack" xml:space="preserve">
+    <value>ไปที่ MDS</value>
+  </data>
+  <data name="MensajeErrorNombreEmpresaLargo" xml:space="preserve">
+    <value>ไม่เกิน 120 ตัวอักษร</value>
+  </data>
+  <data name="LabelNotCompanyFound" xml:space="preserve">
+    <value>ไม่พบข้อมูล</value>
+  </data>
+  <data name="RecordNotFoundAdmin" xml:space="preserve">
+    <value>ไม่พบข้อมูล</value>
+  </data>
+  <data name="WrongUserAccess" xml:space="preserve">
+    <value>ไม่พบข้อมูลร่าง กรุณาค้นหาจากอีเมลแนะนำแอพลิเคชั่น</value>
+  </data>
+  <data name="ForgetPassValidationMessage" xml:space="preserve">
+    <value>ไม่พบข้อมูลร่างภายใต้ผู้ใช้งานนี้ กรุณาตรวจสอบอีเมลหรือค้นหาอีเมล์แนะนำการเรียกใช้แอพลิเคชั่นนี้</value>
+  </data>
+  <data name="Disagree" xml:space="preserve">
+    <value>ไม่สนใจ</value>
+  </data>
+  <data name="LabelNo" xml:space="preserve">
+    <value>ไม่สนใจ</value>
+  </data>
+  <data name="LabelNotAvailable" xml:space="preserve">
+    <value>ไม่สามารถเรียกใช้ได้</value>
+  </data>
+  <data name="NoMenorMessage" xml:space="preserve">
+    <value>ไม่สามารถกรอกข้อมูลน้อยกว่านี้</value>
+  </data>
+  <data name="LabelInformacionAdicional" xml:space="preserve">
+    <value>กรอกข้อมูลเสร็จสิ้นและส่งข้อมูล</value>
+  </data>
+  <data name="NumeroTotalEmpleadosPcsMessage" xml:space="preserve">
+    <value>กรอกจำนวนพนักงานและเครื่องคอมพิวเตอร์</value>
+  </data>
+  <data name="LabelNombreExactoFacturacion" xml:space="preserve">
+    <value>กรอกชื่อเดียวกับที่ปรากฏในสัญญา</value>
+  </data>
+  <data name="InvoicingNameMessage" xml:space="preserve">
+    <value>กรอกชื่อที่ปรากฏในใบเรียกเก็บเงิน (Invoice)</value>
+  </data>
+  <data name="ForgetPassMessage" xml:space="preserve">
+    <value>กรอกอีเมลและกด ส่ง" ท่านจะได้รับพาสเวิร์ดใหม่</value>
+  </data>
+  <data name="ProcesoCompraMessage" xml:space="preserve">
+    <value>กรุณาเลือกตัวเลือกสำหรับเอกสารการเก็บเงิน</value>
+  </data>
+  <data name="SoftwareAssuranceRadioButtonMessage" xml:space="preserve">
+    <value>กรุณาเลือกตัวเลือกสำหรับการรับประกันซอฟต์แวร์ (Software Assurance)</value>
+  </data>
+  <data name="NewLicencesRadioButtonMessage" xml:space="preserve">
+    <value>กรุณาเลือกตัวเลือกสำหรับสิทธิ์การใช้งานใหม่</value>
+  </data>
+  <data name="TipoClienteMessage" xml:space="preserve">
+    <value>กรุณาเลือกประเภทผู้ใช้งาน</value>
+  </data>
+  <data name="UpgradesRadioButtonMessage" xml:space="preserve">
+    <value>กรุณาเลือกหัวข้อการอัพเกรด</value>
+  </data>
+  <data name="SurveyQuestion4" xml:space="preserve">
+    <value>"กรุณาให้คะแนนเจ้าหน้าที่ 
+            หมายเหตุ 1 คือคะแนนต่ำสุด, 5 คือคะแนนสูงสุด</value>
+  </data>
+  <data name="SurveyQuestion4Empty" xml:space="preserve">
+    <value>กรุณาให้คะแนนทุกหัวข้อในคำถามที่ 4</value>
+  </data>
+  <data name="LabelEstadoSoftAssurance" xml:space="preserve">
+    <value>กรุณากรอกข้อมูลเกี่ยวกับสถาณการ์ปัจจุบัน การต่ออายุสัญญาและหมายเลขสัญญา</value>
+  </data>
+  <data name="WithoutLeadId" xml:space="preserve">
+    <value>กรุณาก๊อบปี้ URL เนื่องจากไม่มีหมายเลขของ Lead</value>
+  </data>
+  <data name="SurveyQuestion1Empty" xml:space="preserve">
+    <value>กรุณาตอบคำถามข้อ 1</value>
+  </data>
+  <data name="SurveyQuestion2Empty" xml:space="preserve">
+    <value>กรุณาตอบคำถามข้อ 2</value>
+  </data>
+  <data name="SurveyQuestion3Empty" xml:space="preserve">
+    <value>กรุณาตอบคำถามข้อ 3</value>
+  </data>
+  <data name="SurveyQuestion1OptionOtherEmpty" xml:space="preserve">
+    <value>กรุณาตอบคำถามที่เลือกไว้ก่อนหน้านี้แล้ว ในคำถามข้อ 1</value>
+  </data>
+  <data name="SurveyQuestion2OptionOtherEmpty" xml:space="preserve">
+    <value>กรุณาตอบคำถามที่เลือกไว้ก่อนหน้านี้แล้ว ในคำถามข้อ 2</value>
+  </data>
+  <data name="SurveyQuestion3OptionOtherEmpty" xml:space="preserve">
+    <value>กรุณาตอบคำถามที่เลือกไว้ก่อนหน้านี้แล้ว ในคำถามข้อ 3</value>
+  </data>
+  <data name="AdditionalQuestionsMessage" xml:space="preserve">
+    <value>กรุณาตอบคำถามที่ท่านได้เลือกไว้ก่อนหน้านี้แล้ว</value>
+  </data>
+  <data name="LabelProductFamily" xml:space="preserve">
+    <value>กลุ่มผลิตภัณฑ์</value>
+  </data>
+  <data name="VLSMessage" xml:space="preserve">
+    <value>การซื้อสิทธิ์การใช้งานผ่านสัญญาประเภท Volume</value>
+  </data>
+  <data name="LabelSoftwareAssurance" xml:space="preserve">
+    <value>การรับประกันซอฟต์แวร์</value>
+  </data>
+  <data name="LabelExplique" xml:space="preserve">
+    <value>ข้อเสนอแนะ</value>
+  </data>
+  <data name="Option2ForSurverQuestion4" xml:space="preserve">
+    <value>ข้อกังวลได้รับการแก้ไข</value>
+  </data>
+  <data name="SurveyQuestion5" xml:space="preserve">
+    <value>ข้อคิดเห็นเพิ่มเติมจากการร่วมโครงการหรือเกี่ยวกับโครงการนี้</value>
+  </data>
+  <data name="ContactUsMessage" xml:space="preserve">
+    <value>"ขอบคุณสำหรับข้อมูล หากท่านไม่สามารถกรอกข้อมูลสำเร็จในครั้งนี้ สามารถกด "Draft" เพื่อจัดเก็บข้อมูลที่ด้านล่างของแต่ละหน้า"</value>
+  </data>
+  <data name="ComentariosAdicinales" xml:space="preserve">
+    <value>ข้อมูลเพิ่มเติม</value>
+  </data>
+  <data name="LabelApplicationsType" xml:space="preserve">
+    <value>ข้อมูลเพิ่มเติมสำหรับนักพัฒนา</value>
+  </data>
+  <data name="FieldRequired" xml:space="preserve">
+    <value>ข้อมูลจำเป็น</value>
+  </data>
+  <data name="LabelEncabezado" xml:space="preserve">
+    <value>ข้อมูลทั่วไป</value>
+  </data>
+  <data name="EncabezadoDatosBasicos" xml:space="preserve">
+    <value>ข้อมูลบริษัท</value>
+  </data>
+  <data name="EncabezadoDatosGeneralesEquipos" xml:space="preserve">
+    <value>ข้อมูลฮาร์ดแวร์</value>
+  </data>
+  <data name="LabelEnterCompanyName" xml:space="preserve">
+    <value>ค้นหา</value>
+  </data>
+  <data name="LabelSearchCompany" xml:space="preserve">
+    <value>ค้นหา</value>
+  </data>
+  <data name="LabelCompetencia" xml:space="preserve">
+    <value>ความสามารถ</value>
+  </data>
+  <data name="LabelQuestionText" xml:space="preserve">
+    <value>คำถาม</value>
+  </data>
+  <data name="LabelRelatedQuestion" xml:space="preserve">
+    <value>คำถามที่เกี่ยวข้อง</value>
+  </data>
+  <data name="AuthorizedChannelMessage" xml:space="preserve">
+    <value>คู่ค้า</value>
+  </data>
+  <data name="LabelAuthorizedMSChannel" xml:space="preserve">
+    <value>คู่ค้า</value>
+  </data>
+  <data name="LabelCanalAutorizado" xml:space="preserve">
+    <value>คู่ค้า</value>
+  </data>
+  <data name="LabelPartner" xml:space="preserve">
+    <value>คู่ค้า</value>
+  </data>
+  <data name="AuthorizedRadioButtonMessage" xml:space="preserve">
+    <value>คู่ค้าอื่นๆ</value>
+  </data>
+  <data name="LabelSave" xml:space="preserve">
+    <value>จัดเก็บ</value>
+  </data>
+  <data name="LabelExportToExcel" xml:space="preserve">
+    <value>จัดเก็บในรูปแบบ Excel</value>
+  </data>
+  <data name="SavePDF" xml:space="preserve">
+    <value>จัดเก็บในรูปแบบ PDF</value>
+  </data>
+  <data name="LabelBorrador" xml:space="preserve">
+    <value>จัดเก็บข้อมูล</value>
+  </data>
+  <data name="Option2ForSurverQuestion3" xml:space="preserve">
+    <value>จัดซื้อ</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>จัดส่ง</value>
+  </data>
+  <data name="LabelRquired" xml:space="preserve">
+    <value>จำเป็นต้องกรอก</value>
+  </data>
+  <data name="LabelQuantity" xml:space="preserve">
+    <value>จำนวน</value>
+  </data>
+  <data name="LabelNumeroServidoresFisicos" xml:space="preserve">
+    <value>จำนวนเครื่องเซิร์ฟเวอร์</value>
+  </data>
+  <data name="LabelNumeroServidoresVirtuales" xml:space="preserve">
+    <value>จำนวนเครื่องเซิร์ฟเวอร์เสมือน</value>
+  </data>
+  <data name="LabelNumeroPortatiles" xml:space="preserve">
+    <value>จำนวนเครื่องคอมพิวเตอร์</value>
+  </data>
+  <data name="LabelNumeroTotalEmpleados" xml:space="preserve">
+    <value>จำนวนพนักงาน</value>
+  </data>
+  <data name="CompanyNameField" xml:space="preserve">
+    <value>ชื่อบริษัท</value>
+  </data>
+  <data name="LabelNombreEmpresa" xml:space="preserve">
+    <value>ชื่อบริษัท</value>
+  </data>
+  <data name="MensajeErrorNombreEmpresaRequerido" xml:space="preserve">
+    <value>ชื่อบริษัท</value>
+  </data>
+  <data name="LabelRazonSocial" xml:space="preserve">
+    <value>ชื่อบริษัทจดทะเบียน?</value>
+  </data>
+  <data name="LabelProductName" xml:space="preserve">
+    <value>ชื่อผลิตภัณฑ์</value>
+  </data>
+  <data name="WrongUserPassword" xml:space="preserve">
+    <value>ชื่อผู้ใช้ และพาสเวิร์ดไม่ถูกต้อง</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>ชื่อผู้ใช้งาน</value>
+  </data>
+  <data name="CompanyContactNameField" xml:space="preserve">
+    <value>ชื่อผู้ติดต่อ</value>
+  </data>
+  <data name="LabelEmpresaContacto" xml:space="preserve">
+    <value>ชื่อผู้ติดต่อ</value>
+  </data>
+  <data name="LabelNombreContacto" xml:space="preserve">
+    <value>ชื่อผู้ติดต่อ</value>
+  </data>
+  <data name="ChannelContactName" xml:space="preserve">
+    <value>ชื่อผู้ติดต่อของคู่ค้า</value>
+  </data>
+  <data name="LabelDevelopersPartnersMicrosofTools" xml:space="preserve">
+    <value>ซอฟต์แวร์ที่ท่านใช้ในการพัฒนาแอพลิเคชั่น</value>
+  </data>
+  <data name="OnlinePurchaseHelp" xml:space="preserve">
+    <value>ซื้อจาก Microsoft Store หรือ Authorized Platforms</value>
+  </data>
+  <data name="LabelSeeLetter" xml:space="preserve">
+    <value>ดูข้อมูลภายหลัง</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>ต่อ</value>
+  </data>
+  <data name="LabelNext" xml:space="preserve">
+    <value>ต่อไป</value>
+  </data>
+  <data name="LabelSiguiente" xml:space="preserve">
+    <value>ต่อไป</value>
+  </data>
+  <data name="LabelSolicitoApoyo" xml:space="preserve">
+    <value>ต้องการคำแนะนำ</value>
+  </data>
+  <data name="LabelContactUs" xml:space="preserve">
+    <value>ติดต่อเรา</value>
+  </data>
+  <data name="LabelInstalledLicenses" xml:space="preserve">
+    <value>ติดตั้ง/ใช้งาน</value>
+  </data>
+  <data name="LabelSi" xml:space="preserve">
+    <value>ถูกต้อง</value>
+  </data>
+  <data name="EncabezadoProcesoCompra" xml:space="preserve">
+    <value>ท่านเคยซื้อซอฟต์แวร์ภายใต้ชื่ออื่นหรือไม่</value>
+  </data>
+  <data name="ConfirmationMessage" xml:space="preserve">
+    <value>ท่านต้องการยืนยันข้อมูลนี้? หมายเหตุ ท่านจะไม่สามารถแก้ไขข้อมูลหลังจากที่ได้ยืนยันเรียบร้อย</value>
+  </data>
+  <data name="LabelPlanesNuevasLic" xml:space="preserve">
+    <value>ท่านมีแผนการสั่งซื้อสิทธิ์การใช้งานเพิ่มเติม</value>
+  </data>
+  <data name="LabelPlanesActualizacionLic" xml:space="preserve">
+    <value>ท่านมีแผนการอัพเกรดสิทธิ์การใช้งานในปัจจุปัน</value>
+  </data>
+  <data name="LabelCustomOrBasicsApplications" xml:space="preserve">
+    <value>ท่านมีการพัฒนาแอพลิเคชั่นใช้ภายในองค์กรหรือไม่</value>
+  </data>
+  <data name="LabelTieneSoftAssurance" xml:space="preserve">
+    <value>ท่านมีการรับประกันซอฟต์แวร์</value>
+  </data>
+  <data name="LabelTieneCanalAutorizado" xml:space="preserve">
+    <value>ท่านมีคู่ค้าอยู่แล้ว</value>
+  </data>
+  <data name="ContratodVolumenMessage" xml:space="preserve">
+    <value>ท่านมีสัญญา Volume Licenses, กรุณากรอกหมายเลขสิทธิ์ (License no.) ในส่วนของใบเรียกเก็บเงิน (Invoice)</value>
+  </data>
+  <data name="SurveyIntro" xml:space="preserve">
+    <value>"ท่านอยู่ในเพจนี้เนื่องจากท่านเลือก "ไม่สนใจ" ในเพจก่อนหน้านี้ ท่านสามารถเลือก "ยกเลิก" เพื่อกลับไปเพจก่อนหน้านี้ กรณีที่ท่านต้องการร่วมโครงการ กรุณาตอบคำถามดังต่อไปนี้"</value>
+  </data>
+  <data name="LabelComercial" xml:space="preserve">
+    <value>บริษัทเอกชน</value>
+  </data>
+  <data name="LabelPartial" xml:space="preserve">
+    <value>บางส่วน</value>
+  </data>
+  <data name="LabelNivel" xml:space="preserve">
+    <value>ประเภท</value>
+  </data>
+  <data name="LabelDevelopersPartnersApplicationsType" xml:space="preserve">
+    <value>ประเภทแอพลิเคชั่น</value>
+  </data>
+  <data name="ProgramType" xml:space="preserve">
+    <value>ประเภทโปรแกรม</value>
+  </data>
+  <data name="LabelResponseDataType" xml:space="preserve">
+    <value>ประเภทคำตอบ</value>
+  </data>
+  <data name="LabelIndustria" xml:space="preserve">
+    <value>ประเภทธุรกิจ?</value>
+  </data>
+  <data name="EncabezadoTipoCliente" xml:space="preserve">
+    <value>ประเภทลูกค้า</value>
+  </data>
+  <data name="EstLicenciamientoMessage" xml:space="preserve">
+    <value>ประเภทสิทธิ์การใช้งาน</value>
+  </data>
+  <data name="LabelCustom" xml:space="preserve">
+    <value>ปรับปรุง</value>
+  </data>
+  <data name="SurveyQuestionResponseMessage" xml:space="preserve">
+    <value>"ผลการไม่เข้าร่วมโครงการได้รับการบันทึก หากท่านต้องการเข้าร่วมโครงการ กรุณาติดต่อเจ้าหน้าที่ &lt;span class="consultantInfo"&gt;{{ConsultantName}}&lt;/span&gt; to the following phone number &lt;span class="consultantInfo"&gt;{{ConsultantPhoneNumber}}&lt;/span&gt; หรือที่อีเมล &lt;span class="consultantInfo"&gt;{{ConsultantEmailAddress}}&lt;/span&gt;"</value>
+  </data>
+  <data name="LabelProductosMS" xml:space="preserve">
+    <value>ผลิตภัณฑ์ไมโครซอฟท์</value>
+  </data>
+  <data name="LabelBasic" xml:space="preserve">
+    <value>พื้นฐาน</value>
+  </data>
+  <data name="LabelAcademico" xml:space="preserve">
+    <value>ภาคการศึกษา</value>
+  </data>
+  <data name="LabelGobierno" xml:space="preserve">
+    <value>ภาครัฐและภาคสาธารณสุข?</value>
+  </data>
+  <data name="LabelPublicSector" xml:space="preserve">
+    <value>ภาครัฐและภาคสาธารณสุข?</value>
+  </data>
+  <data name="LabelIdioma" xml:space="preserve">
+    <value>ภาษา</value>
+  </data>
+  <data name="TextoIdioma" xml:space="preserve">
+    <value>ภาษา</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>ยกเลิก</value>
+  </data>
+  <data name="LabelCancel" xml:space="preserve">
+    <value>ยกเลิก</value>
+  </data>
+  <data name="LabelAnterior" xml:space="preserve">
+    <value>ย้อนกลับ</value>
+  </data>
+  <data name="TittleImageLetterPage" xml:space="preserve">
+    <value>ยินดีต้อนรับ</value>
+  </data>
+  <data name="LabelMessageMDSWelcome" xml:space="preserve">
+    <value>ยินดีต้อนรับสู่รายงานการใช้งานของท่าน เราจะวิเคราะห์ข้อมูลการใช้งานนี้ที่เราได้รับ</value>
+  </data>
+  <data name="LetterInfoText1" xml:space="preserve">
+    <value>ยืนยันว่าข้อมูลถูกต้องและเป็นไปตามหลักเกณฑ์ของไมโครซอฟท์</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>รหัส</value>
+  </data>
+  <data name="PartnerNetworkMessage" xml:space="preserve">
+    <value>ระบุ สถานภาพหากองค์ของท่านเป็นสมาชิก Microsoft Partner Network</value>
+  </data>
+  <data name="LabelAyuda" xml:space="preserve">
+    <value>รับความช่วยเหลือ</value>
+  </data>
+  <data name="LabelHelp" xml:space="preserve">
+    <value>รับความช่วยเหลือ</value>
+  </data>
+  <data name="LinkAyuda" xml:space="preserve">
+    <value>รับความช่วยเหลือ</value>
+  </data>
+  <data name="QuestionsList" xml:space="preserve">
+    <value>รายการคำถาม</value>
+  </data>
+  <data name="ProductList" xml:space="preserve">
+    <value>รายการผลิตภัณฑ์</value>
+  </data>
+  <data name="MicrosoftDevelopmentSummary" xml:space="preserve">
+    <value>รายงานสรุปการติดตั้งซอฟต์แวร์</value>
+  </data>
+  <data name="TituloFormulario" xml:space="preserve">
+    <value>รายละเอียดการติดตั้ง</value>
+  </data>
+  <data name="LabelForgetPass" xml:space="preserve">
+    <value>ลืมรหัสผ่าน</value>
+  </data>
+  <data name="LabelLoginMessage" xml:space="preserve">
+    <value>               ลูกค้าสามารถเข้าร่วมการบริหารจัดการสิทธิ์การใช้งานซอฟต์แวร์ไมโครซอฟท์ตามความสมัครใจ
+                บริษัทของท่านจะได้รับคำปรึกษาและคำแนะนำเรื่องสิทธิ์การใช้งานโดยไม่มีค่าใช้จ่าย
+                หากท่านได้จัดเก็บข้อมูลไว้ก่อนหน้านี้ เลือก Log in
+              </value>
+  </data>
+  <data name="FechaRenovacion" xml:space="preserve">
+    <value>วันครบกำหนดต่อสัญญา</value>
+  </data>
+  <data name="CompanyDateField" xml:space="preserve">
+    <value>วันที่</value>
+  </data>
+  <data name="FechaVencimiento" xml:space="preserve">
+    <value>วันที่</value>
+  </data>
+  <data name="LabelFecha" xml:space="preserve">
+    <value>วันที่</value>
+  </data>
+  <data name="LabelEnd" xml:space="preserve">
+    <value>ส่งข้อมูล</value>
+  </data>
+  <data name="LabelFinalizar" xml:space="preserve">
+    <value>ส่งข้อมูล</value>
+  </data>
+  <data name="LabelCurrentSituation" xml:space="preserve">
+    <value>สถานการณ์ปัจจุบัน</value>
+  </data>
+  <data name="LabelPersonaNatural" xml:space="preserve">
+    <value>ส่วนบุคคล</value>
+  </data>
+  <data name="LabelOrder" xml:space="preserve">
+    <value>สั่งซื้อ</value>
+  </data>
+  <data name="Option3ForSurverQuestion4" xml:space="preserve">
+    <value>สามารถตอบคำถามได้อย่างครบถ้วนและชัดเจน</value>
+  </data>
+  <data name="LabelAdmEmployees" xml:space="preserve">
+    <value>สิทธิแอดมิน</value>
+  </data>
+  <data name="UserCALHelp" xml:space="preserve">
+    <value>สิทธิ์ในการเข้าถึงซอฟต์แวไมโครซอทฟ์</value>
+  </data>
+  <data name="DeviceCALHelp" xml:space="preserve">
+    <value>สิทธิ์ในการใช้งานเฉพาะเครื่องเซิร์ฟเวอร์</value>
+  </data>
+  <data name="CALHelp" xml:space="preserve">
+    <value>สิทธิ์ในการใช้ผลิตภัณฑ์เซิร์ฟเวอร์</value>
+  </data>
+  <data name="LabelInvoicing" xml:space="preserve">
+    <value>สิทธิ์การใช้งาน</value>
+  </data>
+  <data name="FPPMessage" xml:space="preserve">
+    <value>สิทธิ์การใช้งานในรูปแบบกล่องรวมซีดีรอม หรือดีวีดี</value>
+  </data>
+  <data name="LabelNewLicences" xml:space="preserve">
+    <value>สิทธิ์การใช้งานใหม่</value>
+  </data>
+  <data name="OEMMessage" xml:space="preserve">
+    <value>สิทธิ์การใช้งานที่ติดตั้งมาพร้อมเครืองใหม่</value>
+  </data>
+  <data name="RemoteDesktopServicesCALHelp" xml:space="preserve">
+    <value>สิทธิ์การอนุญาตในการควบคุมอุปกรณ์ระยะไกล หรือ เครื่องเสมือนในเน็ตเวิร์ตของท่าน</value>
+  </data>
+  <data name="ChannelPhone" xml:space="preserve">
+    <value>หมายเลขโทรศัพท์</value>
+  </data>
+  <data name="CompanyPhoneField" xml:space="preserve">
+    <value>หมายเลขโทรศัพท์</value>
+  </data>
+  <data name="LabelTelefono" xml:space="preserve">
+    <value>หมายเลขโทรศัพท์</value>
+  </data>
+  <data name="PhoneNumberField" xml:space="preserve">
+    <value>หมายเลขโทรศัพท์ไม่ถูกต้อง</value>
+  </data>
+  <data name="IdPartner" xml:space="preserve">
+    <value>หมายเลขคู่ค้า</value>
+  </data>
+  <data name="EncabezadoContratosVolumen" xml:space="preserve">
+    <value>หากท่านมีสัญญา Volume Licenses (Open, Academic, Enterprise Agreement, Select Plus อื่นๆ ) กรุณากรอกหมายเลขสัญญา</value>
+  </data>
+  <data name="LabelLogout" xml:space="preserve">
+    <value>ออกจากระบบ</value>
+  </data>
+  <data name="LinkCerrarSesion" xml:space="preserve">
+    <value>ออกจากระบบ</value>
+  </data>
+  <data name="LabelUpgrades" xml:space="preserve">
+    <value>อัพเกรด</value>
+  </data>
+  <data name="ChannelEmail" xml:space="preserve">
+    <value>อีเมล</value>
+  </data>
+  <data name="CompanyEmailField" xml:space="preserve">
+    <value>อีเมล</value>
+  </data>
+  <data name="EmailAddressField" xml:space="preserve">
+    <value>อีเมล</value>
+  </data>
+  <data name="ConsultantInfoMessage" xml:space="preserve">
+    <value>ในกรณีที่ต้องการความช่วยเหลือ กรุณาติดต่อเจ้าหน้าที่ หมายเลขโทรศัพท์  อีเมล</value>
+  </data>
+  <data name="CheckBoxMessage" xml:space="preserve">
+    <value>กรุณายืนยันเพื่อที่จะรับรองว่าข้อมูลดังกล่าวถูกต้องและได้รับการสนับสนุนตามคำแนะนำของไมโครซอฟท์</value>
+  </data>
+  <data name="CoreHelp" xml:space="preserve">
+    <value>CORE: ส่วนหนึ่งของหน่วยประมวลผลที่ทำงานพร้อมๆกันภายในอุปกรณ์หนึ่งตัว</value>
+  </data>
+  <data name="LabelMSPartnersNetwork" xml:space="preserve">
+    <value>Microsoft Partners Network</value>
+  </data>
+  <data name="LabelPartnerDesarrollador" xml:space="preserve">
+    <value>Microsoft Development Partner</value>
+  </data>
+  <data name="LabelPrev" xml:space="preserve">
+    <value>ก่อนหน้านี้</value>
+  </data>
+  <data name="LabelTeachers" xml:space="preserve">
+    <value>อาจารย์/ที่ปรึกษา</value>
+  </data>
+  <data name="Option4ForSurverQuestion3" xml:space="preserve">
+    <value>ฝ่ายปฏิบัติการ</value>
+  </data>
+  <data name="LabelNumeroServidoresSQL" xml:space="preserve">
+    <value>จำนวนของ SQL server</value>
+  </data>
+  <data name="NewAzure1Question" xml:space="preserve">
+    <value>ท่านใช้บริการของ Azure หรือไม่</value>
+  </data>
+  <data name="NewAzure2Question" xml:space="preserve">
+    <value>ตัวไหนที่ท่านใช้อยู่</value>
+  </data>
+  <data name="NewFiles" xml:space="preserve">
+    <value>ไฟล์</value>
+  </data>
+  <data name="NewFileSpecs" xml:space="preserve">
+    <value>ขนาดไฟล์ของ .png .jpg .pdf ไม่เกิน 5 เมกกะไบต์</value>
+  </data>
+  <data name="NewLabelNoAzure" xml:space="preserve">
+    <value>ไม่ใช่</value>
+  </data>
+  <data name="NewLabelSiAzure" xml:space="preserve">
+    <value>ใช่</value>
+  </data>
+  <data name="NewLicenseTestTooltip" xml:space="preserve">
+    <value>คลิกเพื่ออัปโหลดเอกสารหรือรูปภาพที่แสดงถึงที่มาของใบอนุญาตของท่าน</value>
+  </data>
+  <data name="NewLicenseTooltip" xml:space="preserve">
+    <value>คลิกที่นี่ ถ้าท่านต้องการแจ้งรายละเอียดชนิดของใบอนุญาตที่ทางบริษัทของท่านใช้อยู่</value>
+  </data>
+  <data name="NewUpload" xml:space="preserve">
+    <value>อัพโหลด</value>
+  </data>
+  <data name="NewWarningShouldSelectFiles" xml:space="preserve">
+    <value>ท่านจะต้องเลือกไฟล์อย่างน้อยหนึ่งไฟล์เพื่อที่จะอัพโหลด</value>
+  </data>
+  <data name="NewInfoFPPTooltip" xml:space="preserve">
+    <value>ใบอนุญาตได้รับผ่านผลิตภัณฑ์แบบกล่อง</value>
+  </data>
+  <data name="NewInfoOEMTooltip" xml:space="preserve">
+    <value>ใบอนุญาตที่ติดตั้งมาพร้อมกับเครื่อง</value>
+  </data>
+  <data name="NewInfoVLSTooltip" xml:space="preserve">
+    <value>ใบอนุญาตที่ได้รับผ่านทางสัญญาซึ่งอนุญาตสำหรับผู้ใช้องค์กร</value>
+  </data>
+  <data name="NewInfoTextAreaAzure" xml:space="preserve">
+    <value>กรุณา กรอกรายละเอียด</value>
+  </data>
+  <data name="NewExtensionFilesConstraint" xml:space="preserve">
+    <value>ไฟล์นี้ไม่ใช่ไฟล์ .png/.jpg/.pdf  กรุณายืนยันนามสกุลไฟล์</value>
+  </data>
+  <data name="NewFilesQtyConstraint" xml:space="preserve">
+    <value>คุณสามารถอัพโหลดมากกว่า100ไฟล์ ในเวลาเดียวกัน กรุณาพยายามอีกครั้ง</value>
+  </data>
+  <data name="NewLargerFilesConstraint" xml:space="preserve">
+    <value>ไฟล์นี้มีขนาดใหญ่กว่า5Mb. กรุณายืนยันขนาดของไฟล์</value>
+  </data>
+</root>

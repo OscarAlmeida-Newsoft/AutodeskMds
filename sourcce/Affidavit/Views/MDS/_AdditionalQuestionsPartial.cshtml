@@ -1,0 +1,527 @@
+﻿    @model Affidavit.Models.AdditionalQuestionCompleteViewModel
+@using Affidavit.Utils
+<div class="tabla_con_scroll_horizontal">
+    @{
+        var selectedProduct = new List<Tuple<bool,string, string>>();//Aqui se tienen todos los productos seleccionados
+        var selectedPhysic = new List<Tuple<string, string>>();
+        var physicServer = new List<Tuple<string, string>>(); //se tienen todos los servidores fisicos disponibles
+
+
+        bool flagIsNew = false;
+        if (Model.serverByQuestions != null && Model.serverByQuestions.Count() > 0)
+        {
+            flagIsNew = Model.serverByQuestions.First().IsNew;
+        }
+    }
+    <table border="0" cellspacing="0" cellpadding="0" class="especial_04">
+        <tr class="cabezote">
+            @if (Model.questions.Count > 0)
+            {
+                <td></td>
+            }
+
+            @if (Model.headerServerByQuestions.Count > 0)
+            {
+                for (int i = 0; i < Model.headerServerByQuestions.Count; i++)
+                {
+                    <td class="headerFinal" style="text-align:center;" data-companyid='@Model.headerServerByQuestions[i].companyId' data-productid='@Model.headerServerByQuestions[i].productId'
+                        data-campaignid='@Model.headerServerByQuestions[i].campaignId' data-tiposerver='@Model.headerServerByQuestions[i].licenseType'>
+                        <p>@Html.Label(Model.headerServerByQuestions[i].productName, new { @style = "width: 100px !important;" })</p>
+                        <p>@Html.Label(Model.headerServerByQuestions[i].familyComplete, new { @style = "font-size: 10px !important;" })</p>
+                        <p>@Html.Label(Model.headerServerByQuestions[i].licenseType, new { @style = "width: 100px !important; font-size:10px;" })</p>
+
+
+                        @if (!Model.IsFinal)
+                        {
+                            if (!flagIsNew)
+                            {
+                                <a href="@Url.Action("RemoveColumn", "MDS", new
+                                    {
+                                        pCompanyId = Model.headerServerByQuestions[i].companyId,
+                                        pCampaignId = Model.headerServerByQuestions[i].campaignId,
+                                        pProductId = Model.headerServerByQuestions[i].productId,
+                                        pLicenseType = Model.headerServerByQuestions[i].licenseType,
+                                        pLead = Model.LeadID,
+                                    })"
+                                   target="_self">
+                                    <img src="~/Content/Images/icono_papelera.png" width="30" height="30" alt="eliminar">
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("RemoveServer", "MDS", new
+                                    {
+                                        pCompanyId = Model.headerServerByQuestions[i].companyId,
+                                        pCampaignId = Model.headerServerByQuestions[i].campaignId,
+                                        pIsVirtual = Model.headerServerByQuestions[i].IsVirtual,
+                                        pLicenseId = Model.headerServerByQuestions[i].LicenseId,
+                                        pProductId = Model.headerServerByQuestions[i].productId,
+                                        pFamilyId = 3,
+                                        pLead = Model.LeadID,
+                                    })"
+                                   target="_self">
+                                    <img src="~/Content/Images/icono_papelera.png" width="30" height="30" alt="eliminar">
+                                </a>
+                            }
+                        }
+                        @if (flagIsNew)
+                        {
+                            if (!Model.headerServerByQuestions[i].IsVirtual)
+                            {
+                                physicServer.Add(new Tuple<string, string>(Model.headerServerByQuestions[i].LicenseId.ToString(), Model.headerServerByQuestions[i].productName));
+                            }
+                        }
+
+
+                    </td>
+                }
+            }
+
+
+            @for (int i = 0; i < Model.questions.Count; i++)
+            {
+                //if (Model.questions[i].IsActive != 0)
+                //{
+            <tr>
+                @if (@Model.questions[i].QuestionID == 99998)
+                {
+                    <td>@TranslatorHelper.TranslateTextByIdentifier("Old_NewQuestionWSProductId")</td>
+                }
+                else if (@Model.questions[i].QuestionID == 99999)
+                {
+                    <td>@TranslatorHelper.TranslateTextByIdentifier("Old_NewQuestionWSVirtual")</td>
+                }
+                else
+                {
+                   <td> @Model.questions[i].QuestionText </td>
+                }
+                @switch (Model.questions[i].ResDataType)
+                {
+                    case 1:
+                        int _aux = -1;
+                        int _prodId = 0;
+                        int _lastProdId = 0;
+
+                        for (int j = 0; j < Model.serverByQuestions.Count; j++)
+                        {
+                            _prodId = Model.serverByQuestions[j].productId;
+                            if ((_prodId != _lastProdId) && !flagIsNew)
+                            {
+                                _lastProdId = _prodId;
+                                _aux = -1;
+                            }
+
+                            <td style="text-align:center;">
+                                @if (Model.serverByQuestions[@j].detailQuestions != null)
+                                {
+                                    var _temp = Model.serverByQuestions[@j].detailQuestions.Where(x => x.questionId == Model.questions[i].QuestionID).FirstOrDefault();
+                                    if (_temp != null)
+                                    {
+                                        _aux = _temp.licenceId;
+
+                                        @Html.CheckBox("AnswerQuestions[" + @i + "].ServersWindows[" + @j + "].Answer", Convert.ToBoolean(_temp.answer), new { @class = "checkbox", @type = "checkbox" })
+                                    }
+
+                                }
+                                else
+                                {
+                                    @Html.CheckBox("AnswerQuestions[" + @i + "].ServersWindows[" + @j + "].Answer", false, new { @class = "checkbox", @type = "checkbox" })
+                                    _aux++;
+                                }
+
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].QuestionID" value='@Model.questions[i].QuestionID' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].CompanyID" value='@Model.serverByQuestions[j].companyId' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].CampaignID" value='@Model.serverByQuestions[j].campaignId' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].Posicion" value='@Model.serverByQuestions[j].LicenseId' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].ProductID" value='@Model.serverByQuestions[j].productId' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsVLS" value='@Convert.ToInt16(Model.serverByQuestions[j].productIsVLS)' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsOEM" value='@Convert.ToInt16(Model.serverByQuestions[j].productIsOEM)' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsWEB" value='@Convert.ToInt16(Model.serverByQuestions[j].productIsWeb)' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsFPP" value='@Convert.ToInt16(Model.serverByQuestions[j].productIsFPP)' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsInstalledLicenses" value='@Convert.ToInt16(Model.serverByQuestions[j].productInstalledLicenses)' />
+
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsVirtual" value='@Model.serverByQuestions[j].IsVirtual.ToString()' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsRealProductID" value='@Model.serverByQuestions[j].IsRealProductID.ToString()' />
+                            </td>
+                        }
+                        break;
+                    case 2:
+                        _aux = -1;
+                        _prodId = 0;
+                        _lastProdId = 0;
+                        for (int j = 0; j < Model.serverByQuestions.Count; j++)
+                        {
+                            _prodId = Model.serverByQuestions[j].productId;
+                            if ((_prodId != _lastProdId) && !flagIsNew)
+                            {
+                                _lastProdId = _prodId;
+                                _aux = -1;
+                            }
+
+                            <td>
+                                @if (Model.serverByQuestions[@j].detailQuestions != null)
+                                {
+                                    var _temp = Model.serverByQuestions[@j].detailQuestions.Where(x => x.questionId == Model.questions[i].QuestionID).FirstOrDefault();
+
+                                    if (_temp != null)
+                                    {
+                                        _aux = _temp.licenceId;
+                                        @Html.TextBox("AnswerQuestions[" + @i + "].ServersWindows[" + @j + "].Answer", _temp.answer, new { @class = "form-control integerOnly", @type = "number", @min = 0 })
+                                    }
+                                }
+                                else
+                                {
+                                    @Html.TextBox("AnswerQuestions[" + @i + "].ServersWindows[" + @j + "].Answer", "0", new { @class = "form-control integerOnly", @type = "number", @min = 0 })
+                                    _aux++;
+                                }
+
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].QuestionID" value='@Model.questions[i].QuestionID' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].CompanyID" value='@Model.serverByQuestions[j].companyId' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].CampaignID" value='@Model.serverByQuestions[j].campaignId' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].Posicion" value='@Model.serverByQuestions[j].LicenseId' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].ProductID" value='@Model.serverByQuestions[j].productId' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsVLS" value='@Convert.ToInt16(Model.serverByQuestions[j].productIsVLS)' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsOEM" value='@Convert.ToInt16(Model.serverByQuestions[j].productIsOEM)' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsWEB" value='@Convert.ToInt16(Model.serverByQuestions[j].productIsWeb)' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsFPP" value='@Convert.ToInt16(Model.serverByQuestions[j].productIsFPP)' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsInstalledLicenses" value='@Convert.ToInt16(Model.serverByQuestions[j].productInstalledLicenses)' />
+
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsVirtual" value='@Model.serverByQuestions[j].IsVirtual.ToString()' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsRealProductID" value='@Model.serverByQuestions[j].IsRealProductID.ToString()' />
+                            </td>
+                        }
+                        break;
+                    case 3:
+                        _aux = -1;
+                        _prodId = 0;
+                        _lastProdId = 0;
+
+                        for (int j = 0; j < Model.serverByQuestions.Count; j++)
+                        {
+                            _prodId = Model.serverByQuestions[j].productId;
+                            if ((_prodId != _lastProdId) && !flagIsNew)
+                            {
+                                _lastProdId = _prodId;
+                                _aux = -1;
+                            }
+
+                            <td>
+                                @if (Model.serverByQuestions[@j].detailQuestions != null)
+                                {
+                                    var _temp = Model.serverByQuestions[@j].detailQuestions.Where(x => x.questionId == Model.questions[i].QuestionID).FirstOrDefault();
+                                    if (_temp != null)
+                                    {
+                                        _aux = _temp.licenceId;
+                                        @Html.TextBox("AnswerQuestions[" + @i + "].ServersWindows[" + @j + "].Answer", _temp.answer, new { @class = "form-control integerOnly", @type = "number", @min = 0 })
+                                    }
+
+                                }
+                                else
+                                {
+                                    @Html.TextBox("AnswerQuestions[" + @i + "].ServersWindows[" + @j + "].Answer", "0", new { @class = "form-control integerOnly", @type = "number", @min = 0 })
+                                    _aux++;
+                                }
+
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].QuestionID" value='@Model.questions[i].QuestionID' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].CompanyID" value='@Model.serverByQuestions[j].companyId' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].CampaignID" value='@Model.serverByQuestions[j].campaignId' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].Posicion" value='@Model.serverByQuestions[j].LicenseId' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].ProductID" value='@Model.serverByQuestions[j].productId' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsVLS" value='@Convert.ToInt16(Model.serverByQuestions[j].productIsVLS)' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsOEM" value='@Convert.ToInt16(Model.serverByQuestions[j].productIsOEM)' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsWEB" value='@Convert.ToInt16(Model.serverByQuestions[j].productIsWeb)' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsFPP" value='@Convert.ToInt16(Model.serverByQuestions[j].productIsFPP)' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsInstalledLicenses" value='@Convert.ToInt16(Model.serverByQuestions[j].productInstalledLicenses)' />
+
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsVirtual" value='@Model.serverByQuestions[j].IsVirtual.ToString()' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsRealProductID" value='@Model.serverByQuestions[j].IsRealProductID.ToString()' />
+                            </td>
+                        }
+                        break;
+                    case 4:
+                        _aux = -1;
+                        _prodId = 0;
+                        _lastProdId = 0;
+
+                        for (int j = 0; j < Model.serverByQuestions.Count; j++)
+                        {
+                            _prodId = Model.serverByQuestions[j].productId;
+                            if ((_prodId != _lastProdId) && !flagIsNew)
+                            {
+                                _lastProdId = _prodId;
+                                _aux = -1;
+                            }
+
+                            <td>
+                                @if (Model.serverByQuestions[@j].detailQuestions != null)
+                                {
+                                    var _temp = Model.serverByQuestions[@j].detailQuestions.Where(x => x.questionId == Model.questions[i].QuestionID).FirstOrDefault();
+                                    if (_temp != null)
+                                    {
+                                        _aux = _temp.licenceId;
+                                        @Html.TextArea("AnswerQuestions[" + @i + "].ServersWindows[" + @j + "].Answer", _temp.answer, new { @class = "form-control", @rows = "3", @cols = "190" })
+                                    }
+
+                                }
+                                else
+                                {
+                                    @Html.TextArea("AnswerQuestions[" + @i + "].ServersWindows[" + @j + "].Answer", "", new { @class = "form-control", @rows = "3", @cols = "190" })
+                                    _aux++;
+                                }
+
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].QuestionID" value='@Model.questions[i].QuestionID' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].CompanyID" value='@Model.serverByQuestions[j].companyId' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].CampaignID" value='@Model.serverByQuestions[j].campaignId' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].Posicion" value='@Model.serverByQuestions[j].LicenseId' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].ProductID" value='@Model.serverByQuestions[j].productId' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsVLS" value='@Convert.ToInt16(Model.serverByQuestions[j].productIsVLS)' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsOEM" value='@Convert.ToInt16(Model.serverByQuestions[j].productIsOEM)' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsWEB" value='@Convert.ToInt16(Model.serverByQuestions[j].productIsWeb)' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsFPP" value='@Convert.ToInt16(Model.serverByQuestions[j].productIsFPP)' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsInstalledLicenses" value='@Convert.ToInt16(Model.serverByQuestions[j].productInstalledLicenses)' />
+                                
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsVirtual" value='@Model.serverByQuestions[j].IsVirtual.ToString()' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsRealProductID" value='@Model.serverByQuestions[j].IsRealProductID.ToString()' />
+                            </td>
+
+                        }
+                        break;
+                    //CASE DEL DORPDOWN PARA SELECCIONAR PRODUCTOS
+                    case 5:
+                        _aux = -1;
+                        _prodId = 0;
+                        _lastProdId = 0;
+
+
+                        for (int j = 0; j < Model.serverByQuestions.Count; j++)
+                        {
+                            _prodId = Model.serverByQuestions[j].productId;
+                            if ((_prodId != _lastProdId) && !flagIsNew)
+                            {
+                                _lastProdId = _prodId;
+                                _aux = -1;
+                            }
+
+                            <td style="text-align:center;">
+                                @if (Model.serverByQuestions[@j].detailQuestions != null)
+                                {
+                                    var _temp = Model.serverByQuestions[@j].detailQuestions.Where(x => x.questionId == Model.questions[i].QuestionID).FirstOrDefault();
+                                    if (_temp != null)
+                                    {
+                                        _aux = _temp.licenceId;
+                                        //Ya hay datos ingresados
+                                        @Html.DropDownList("AnswerQuestions[" + @i + "].ServersWindows[" + @j + "].Answer", new SelectList(string.Empty, "Value", "Text"), @TranslatorHelper.TranslateTextByIdentifier("Old_NewSelectDropdown"), new { @id = "productIdSelect" + @j, @class = "form-control wsproduct" })
+                                        //@Html.CheckBox("AnswerQuestions[" + @i + "].ServersWindows[" + @j + "].Answer", Convert.ToBoolean(_temp.answer), new { @class = "checkbox", @type = "checkbox" })
+                                        selectedProduct.Add(new Tuple<bool, string, string>(@Model.serverByQuestions[j].IsVirtual,_temp.licenceId.ToString(), _temp.answer));
+                                    }
+
+                                }
+                                else
+                                {
+                                    //No hay datos ingresados aun
+                                    @Html.DropDownList("AnswerQuestions[" + @i + "].ServersWindows[" + @j + "].Answer", new SelectList(string.Empty, "Value", "Text"), @TranslatorHelper.TranslateTextByIdentifier("Old_NewSelectDropdown"), new { @id = "productIdSelect" + @j, @class = "form-control wsproduct" })
+                                    //@Html.CheckBox("AnswerQuestions[" + @i + "].ServersWindows[" + @j + "].Answer", false, new { @class = "checkbox", @type = "checkbox" })
+                                    _aux++;
+
+                                }
+
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].QuestionID" value="@Model.questions[i].QuestionID" />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].CompanyID" value='@Model.serverByQuestions[j].companyId' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].CampaignID" value='@Model.serverByQuestions[j].campaignId' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].Posicion" value='@Model.serverByQuestions[j].LicenseId' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].ProductID" value='@Model.serverByQuestions[j].productId' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsVLS" value='@Convert.ToInt16(Model.serverByQuestions[j].productIsVLS)' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsOEM" value='@Convert.ToInt16(Model.serverByQuestions[j].productIsOEM)' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsWEB" value='@Convert.ToInt16(Model.serverByQuestions[j].productIsWeb)' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsFPP" value='@Convert.ToInt16(Model.serverByQuestions[j].productIsFPP)' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsInstalledLicenses" value='@Convert.ToInt16(Model.serverByQuestions[j].productInstalledLicenses)' />
+
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsVirtual" value='@Model.serverByQuestions[j].IsVirtual.ToString()' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsRealProductID" value='@Model.serverByQuestions[j].IsRealProductID.ToString()' />
+                            </td>
+                        }
+                        break;
+                    case 6:
+                        _aux = -1;
+                        _prodId = 0;
+                        _lastProdId = 0;
+
+
+                        for (int j = 0; j < Model.serverByQuestions.Count; j++)
+                        {
+                            _prodId = Model.serverByQuestions[j].productId;
+                            if ((_prodId != _lastProdId) && !flagIsNew)
+                            {
+                                _lastProdId = _prodId;
+                                _aux = -1;
+                            }
+                            <td style="text-align:center;">
+                            @if (Model.serverByQuestions[@j].IsVirtual)
+                            {  
+                                if (Model.serverByQuestions[@j].detailQuestions != null)
+                                {
+                                    var _temp = Model.serverByQuestions[@j].detailQuestions.Where(x => x.questionId == Model.questions[i].QuestionID).FirstOrDefault();
+                                    if (_temp != null)
+                                    {
+                                        _aux = _temp.licenceId;
+                                        //Ya hay datos ingresados
+                                        @Html.DropDownList("AnswerQuestions[" + @i + "].ServersWindows[" + @j + "].Answer", new SelectList(string.Empty, "Value", "Text"), "--Select--", new { @id = "virtual" + _aux, @class = "form-control wsproductvirtual" })
+                                        //@Html.CheckBox("AnswerQuestions[" + @i + "].ServersWindows[" + @j + "].Answer", Convert.ToBoolean(_temp.answer), new { @class = "checkbox", @type = "checkbox" })
+                                        selectedPhysic.Add(new Tuple<string, string>(_aux.ToString(), _temp.answer));
+                                    }
+                                }
+                                else
+                                {
+                                    //No hay datos ingresados aun
+                                    @Html.DropDownList("AnswerQuestions[" + @i + "].ServersWindows[" + @j + "].Answer", new SelectList(string.Empty, "Value", "Text"), "--Select--", new { @id = "virtual" + @j, @class = "form-control wsproductvirtual" })
+                                    //@Html.CheckBox("AnswerQuestions[" + @i + "].ServersWindows[" + @j + "].Answer", false, new { @class = "checkbox", @type = "checkbox" })
+                                    _aux++;
+
+                                }
+                            }
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].QuestionID" value="@Model.questions[i].QuestionID" />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].CompanyID" value='@Model.serverByQuestions[j].companyId' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].CampaignID" value='@Model.serverByQuestions[j].campaignId' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].Posicion" value='@Model.serverByQuestions[j].LicenseId' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].ProductID" value='@Model.serverByQuestions[j].productId' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsVLS" value='@Convert.ToInt16(Model.serverByQuestions[j].productIsVLS)' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsOEM" value='@Convert.ToInt16(Model.serverByQuestions[j].productIsOEM)' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsWEB" value='@Convert.ToInt16(Model.serverByQuestions[j].productIsWeb)' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsFPP" value='@Convert.ToInt16(Model.serverByQuestions[j].productIsFPP)' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsInstalledLicenses" value='@Convert.ToInt16(Model.serverByQuestions[j].productInstalledLicenses)' />
+
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsVirtual" value='@Model.serverByQuestions[j].IsVirtual.ToString()' />
+                                <input type="hidden" name="AnswerQuestions[@i].ServersWindows[@j].IsRealProductID" value='@Model.serverByQuestions[j].IsRealProductID.ToString()' />
+                            </td>
+                        }
+                        break;
+                }
+            </tr>
+            }
+        </table>
+    </div>
+
+
+
+
+    <script>
+        if (activeProducts != null && activeProducts != undefined && activeProducts.length > 0) {
+            activeProducts.forEach(function (element) {
+                var list = document.getElementsByClassName("wsproduct");
+
+                for (i = 0; i < list.length; i++)
+                {
+                    var option = document.createElement("option");
+                    option.text = element.productName;
+                    option.value = element.productId;
+
+                    list[i].insertBefore(option, list[i].childNodes[list[i].length]);
+                }
+            });
+        }
+
+        if (activeProducts.length == 0) {
+            $(".server-not-zero").each(function (i, e) {
+                if (e.getAttribute("data-productfamily") == 3) {
+                    var productoBlur = {
+                        productName: e.getAttribute("data-productname") + " " + e.getAttribute("data-version"),
+                        productId: e.getAttribute("data-productid"),
+                        qty: e.value
+                    };
+                    activeProducts.splice(activeProducts.length - 1, 0, productoBlur);
+
+                    var list = document.getElementsByClassName("wsproduct");
+
+                    for (i = 0; i < list.length; i++) {
+                        var option = document.createElement("option");
+                        option.text = productoBlur.productName;
+                        option.value = productoBlur.productId;
+
+                        list[i].insertBefore(option, list[i].childNodes[list[i].length]);
+                    }
+                }
+            });
+        }
+
+
+        if (!isOtherWS) {
+            var productoBlur = {
+                productName: $("#NewOtherProduct").text(),
+                productId: 486,
+                qty: 0
+            };
+
+            activeProducts.push(productoBlur);
+            var list = document.getElementsByClassName("wsproduct");
+
+
+
+            for (i = 0; i < list.length; i++) {
+                var option = document.createElement("option");
+
+                option.text = productoBlur.productName;
+                option.value = productoBlur.productId;
+
+                list[i].insertBefore(option, list[i].childNodes[list[i].length]);
+            }
+
+            isOtherWS = true;
+        }
+
+
+        @if (Model.serverByQuestions != null && Model.serverByQuestions.Count() > 0){
+            int physicCount = physicServer.Count();
+
+
+            foreach (Tuple<bool,string,string> tuple in selectedProduct)
+            {
+
+                <text>
+                    var IsVirtual = ("@tuple.Item1.ToString()" =="True");
+                    var id = @tuple.Item2;
+                    var value = @tuple.Item3;
+                    var suma = @physicCount;
+                    var stringId = "";
+
+                    if (IsVirtual) {
+                        stringId = (suma+ id ).toString();
+                    } else {
+
+                        stringId = (id).toString();
+                    }
+
+                    $("#productIdSelect" + stringId+" option").each(function() {
+                        if ($(this).attr('value') == value) {
+                            $(this).attr('selected', true);
+                        }
+                    });
+                </text>
+            }
+
+            foreach (Tuple<string,string> tuple in physicServer)
+            {
+                <text>
+                var value = @tuple.Item1;
+                var text = "@tuple.Item2";
+
+                    $(".wsproductvirtual").append('<option value="' + value + '">' + text + '</option>');
+                </text>
+            }
+
+            foreach (Tuple<string,string> tuple in selectedPhysic)
+            {
+                <text>
+                    var serverId = @tuple.Item1;
+                    var isInside = @tuple.Item2;
+                    var stringId = serverId.toString();
+                    $("#virtual" + stringId+" option").each(function() {
+                        if ($(this).attr('value') == isInside) {
+                            $(this).attr('selected', true);
+                        }
+                    });
+                </text>
+            }
+        }
+
+       @*$("select option[value='@_temp.answer']").attr("selected", "selected");*@
+    </script>

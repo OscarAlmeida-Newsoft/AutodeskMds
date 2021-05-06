@@ -1,0 +1,77 @@
+﻿@model Affidavit.Models.Home.LandingPageVM
+@using Affidavit.Utils
+@{
+    ViewBag.Title = "Letter Campaign";
+    Layout = "~/Views/Shared/_HeaderLetter.cshtml";
+}
+
+<style type="text/css">
+    a.linkGoBack {
+       float: right;
+	width: auto;
+	display: block;
+	/*background-image: url(../../Content/Images/icono_ayuda.png);*/
+	background-repeat: no-repeat;
+	background-position: 0 2px;
+	font-size: 14px;
+	color: #666;
+	margin: 18px 0px 0 0;
+	text-decoration: none;
+	min-height: 25px;
+	border-right: solid 1px #ccc;
+	padding: 5px 15px 0 22px;
+    }
+
+    a.linkGoBack:hover{
+        /*background-color: #CC0000;*/
+        /*color: #000000 !important;*/
+        text-decoration: underline;
+    }
+
+
+</style>
+
+<!--================================= VALLA ======================================-->
+<div id="valla" style="background-image:url(../Content/images/valla_welcome.jpg)">
+    <h1>@TranslatorHelper.TranslateTextByIdentifier("Old_TittleImageLetterPage")</h1>
+</div>
+@*<div id="franja_valla">
+    <div class="centro">
+        <h4>Microsoft / @DateTime.Now.ToString("MMMM dd, yyy")</h4>
+    </div>*@
+</div>
+    @*<a href="javascript:window.history.back();" class="linkGoBack">&laquo; @TranslatorHelper.TranslateTextByIdentifier("Old_LabelGoBack")</a>*@
+<!--================================= VALLA ======================================-->
+@Html.HiddenFor(m => m.LeadId)
+@Html.HiddenFor(m => m.LanguageID)
+
+<div id="pagina"  class="gris">
+    <div class="seccion">
+        <div class="letter">
+            <p>
+                @Html.Raw("<p>" +
+                    Model.LandingText
+                    .Replace("{{tittle}}", Model.Tittle)
+                    .Replace("{{contactName}}", Model.ContactName)
+                    .Replace("{{microsoftConsultantEmail}}", Model.MicrosoftConsultantEmail)
+                    .Replace("{{consultantPhoneNumber}}", Model.ConsultantPhoneNumber)
+                    .Replace("{{companyName}}", Model.CompanyName)
+                    .Replace("{{consultantName}}", Model.ConsultantName)
+                    .Replace("{{CurrentDate}}", DateTime.Now.ToString("MMMM dd, yyy"))
+                    .Replace("{{LastName}}", Model.LastName)
+                    + "</p>"
+                )
+            </p>
+        </div>
+
+    </div>
+        
+    <div class="controles">
+        <div class="centro">
+            @Html.ActionLink(@TranslatorHelper.TranslateTextByIdentifier("Old_SavePDF"), "SavePDF", "Home", new { pLeadID = Model.LeadId }, htmlAttributes: new { @class = "btn" })
+            
+        </div>
+    </div>
+
+</div>
+

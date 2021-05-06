@@ -1,0 +1,46 @@
+﻿@using SOMSight.Models
+@model LoginVM
+@{
+    ViewBag.Title = "Log in";
+}
+
+<!--================================= TITULO ======================================-->
+<div class="titulo rojo small">
+    <div class="centro">
+        <h1>Login</h1>
+    </div>
+</div>
+<!--================================= TITULO ======================================-->
+
+<div id="pagina" class="formulario registration">
+    <div class="seccion">
+        <div class="centro">
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "formulario" }))
+        {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary("", new { @class = "lista-texto-validacion" })
+
+                <h3 class="menos_margen">E-mail</h3>
+                <div class="reenter">
+                    @Html.TextBoxFor(m => m.Email, new { @id = "enter_email" })
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "texto-validacion" })
+                </div>
+
+                <h3 class="menos_margen">Password</h3>
+                <div class="reenter">
+                    @Html.PasswordFor(m => m.Password, new { @id = "enter_email" })
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "texto-validacion" })
+                </div>
+
+                <div class="fila centrada">
+                    <input name="boton" type="submit" class="boton" value="LOG IN">
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

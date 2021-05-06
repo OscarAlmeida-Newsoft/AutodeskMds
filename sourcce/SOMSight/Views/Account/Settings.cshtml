@@ -1,0 +1,48 @@
+﻿@model SOMSight.Models.Account.SettingsVM
+
+@{ 
+    ViewBag.Title = "Settings";
+}
+<div class="titulo rojo">
+    <div class="centro">
+        <h1>Account Settings</h1>
+    </div>
+</div>
+
+<div id="pagina" class="formulario">
+    <!--===============================================-->
+    <!--===============================================-->
+    <!--===============================================-->
+    <div class="seccion">
+
+        <div class="centro">
+
+            <div class="set">
+                <div class="col_6">
+                    <h1>Company Information</h1>
+                    <ul class="settings">
+                        <li><span class="izk">Company Name</span><span class="der">@Model.CompanyName</span></li>
+                        <li class="alt"><span class="izk">Contact</span><span class="der">@Model.Contact</span></li>
+                    </ul>
+
+                    <h1>Suscription Information</h1>
+                    <ul class="settings">
+                        <li><span class="izk">Suscription date</span><span class="der">@Model.SubscriptionDate.Value.ToString("MM/dd/yyyy")</span></li>
+                        <li class="alt"><span class="izk">Subscription type</span><span class="der">Free Trial <a onclick="showModal()" style="display: inline-block;" href="#" class="btn_upgrade" target="_self">Upgrade</a></span> </li>
+                        <li><span class="izk">Subscription Status</span><span class="der">Trial version</span></li>
+                    </ul>
+                </div>
+                <div class="col_6">
+                    <h1>Somsight Contact</h1>
+                    <ul class="settings">
+                        <li><span class="izk">Assigned consultant</span><span class="der">@Model.AssignedConsultant</span></li>
+                        <li class="alt"><span class="izk">Consultant e-mail</span><span class="der">@Model.ConsultantEmail</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--===============================================-->
+    <!--===============================================-->
+    <!--===============================================-->
+</div>

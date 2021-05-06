@@ -1,0 +1,334 @@
+﻿@model Affidavit.Models.SurveyQuestionResponseVM
+@using Affidavit.Utils
+
+@if (Model != null)
+{
+    <div class="pagina_secilla">
+
+        <div class="pagina_derecha_sencilla">
+            <div id="pagina" class="formulario">
+
+                <div class="seccion">
+
+                    @*<div class="centro">
+                            <p>@TranslatorHelper.TranslateTextByIdentifier("Old_SurveyIntro")</p>
+                        </div>*@
+
+                    <div class="gris">
+                        <div class="centro">
+                            <h1>@TranslatorHelper.TranslateTextByIdentifier("Old_SurveyQuestion1")</h1>
+                            <hr />
+                            <div class="set radios_horizontales">
+                                @switch (Model.SurveyQuestion1Response)
+                                {
+                                    case 1:
+                                        <div class="item_lista">
+                                            @Html.RadioButtonFor(m => m.SurveyQuestion1Response, "1", new { disabled = "disabled" })
+                                            <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option1ForSurverQuestion1")</label>
+                                        </div>
+                                        break;
+                                    case 2:
+                                        <div class="item_lista">
+                                            @Html.RadioButtonFor(m => m.SurveyQuestion1Response, "2", new { disabled = "disabled" })
+                                            <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option2ForSurverQuestion1")</label>
+                                        </div>
+                                        break;
+                                    case 3:
+                                        <div class="item_lista">
+                                            @Html.RadioButtonFor(m => m.SurveyQuestion1Response, "3", new { disabled = "disabled" })
+                                            <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option3ForSurverQuestion1")</label>
+                                        </div>
+                                        break;
+                                    case 4:
+                                        <div class="item_lista">
+                                            @Html.RadioButtonFor(m => m.SurveyQuestion1Response, "4", new { disabled = "disabled" })
+                                            <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option4ForSurverQuestion1")</label>
+                                        </div>
+                                        break;
+                                    case 5:
+                                        <div class="item_lista">
+                                            @Html.RadioButtonFor(m => m.SurveyQuestion1Response, "5", new { disabled = "disabled" })
+                                            <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option5ForSurverQuestion1")</label>
+                                        </div>
+                                        break;
+                                    case 6:
+                                        <div class="item_lista">
+                                            @Html.RadioButtonFor(m => m.SurveyQuestion1Response, "6", new { disabled = "disabled" })
+                                            <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option6ForSurverQuestion1")</label>
+                                        </div>
+                                        <div class="col_12">
+                                            @*<p>Which One?</p>*@
+                                            @Html.TextBoxFor(m => m.SurveyQuestion1OtherResponse, new { @class = "form-control input-sm", disabled = "disabled" })>
+                                        </div>
+                                        break;
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="centro">
+                        <h1>@TranslatorHelper.TranslateTextByIdentifier("Old_SurveyQuestion2")</h1>
+                        <hr />
+                        <div class="set radios_horizontales">
+                            @switch (Model.SurveyQuestion2Response)
+                            {
+                                case 1:
+                                    <div class="item_lista">
+                                        @Html.RadioButtonFor(m => m.SurveyQuestion2Response, "1", new { disabled = "disabled" })
+                                        <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option1ForSurverQuestion2")</label>
+                                    </div>
+                                    break;
+                                case 2:
+                                    <div class="item_lista">
+                                        @Html.RadioButtonFor(m => m.SurveyQuestion2Response, "2", new { disabled = "disabled" })
+                                        <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option2ForSurverQuestion2")</label>
+                                    </div>
+                                    break;
+                                case 3:
+                                    <div class="item_lista">
+                                        @Html.RadioButtonFor(m => m.SurveyQuestion2Response, "3", new { disabled = "disabled" })
+                                        <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option3ForSurverQuestion2")</label>
+                                    </div>
+                                    break;
+                                case 4:
+                                    <div class="item_lista">
+                                        @Html.RadioButtonFor(m => m.SurveyQuestion2Response, "4", new { disabled = "disabled" })
+                                        <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option4ForSurverQuestion2")</label>
+                                    </div>
+                                    break;
+                                case 5:
+                                    <div class="item_lista">
+                                        @Html.RadioButtonFor(m => m.SurveyQuestion2Response, "5", new { disabled = "disabled" })
+                                        <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option5ForSurverQuestion2")</label>
+                                    </div>
+                                    break;
+                                case 6:
+                                    <div class="item_lista">
+                                        @Html.RadioButtonFor(m => m.SurveyQuestion2Response, "6", new { disabled = "disabled" })
+                                        <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option6ForSurverQuestion2")</label>
+                                    </div>
+                                    break;
+                                case 7:
+                                    <div class="item_lista">
+                                        @Html.RadioButtonFor(m => m.SurveyQuestion2Response, "7", new { disabled = "disabled" })
+                                        <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option7ForSurverQuestion2")</label>
+                                    </div>
+                                    break;
+                                case 8:
+                                    <div class="item_lista">
+                                        @Html.RadioButtonFor(m => m.SurveyQuestion2Response, "8", new { disabled = "disabled" })
+                                        <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option8ForSurverQuestion2")</label>
+                                    </div>
+                                    <div class="col_12">
+                                        @*<p>Which One?</p>*@
+                                        @Html.TextBoxFor(m => m.SurveyQuestion2OtherResponse, new { @class = "form-control input-sm", disabled = "disabled" })
+                                    </div>
+                                    break;
+                            }
+                        </div>
+                    </div>
+
+                    <div class="gris">
+                        <div class="centro">
+                            <h1>@TranslatorHelper.TranslateTextByIdentifier("Old_SurveyQuestion3")</h1>
+                            <hr />
+                            @if (Model.SurveyQuestion3Response != 0 )
+                            {
+                                <div class="set radios_horizontales">
+                                    @switch (Model.SurveyQuestion3Response)
+                                    {
+                                        case 1:
+                                            <div class="item_lista">
+                                                @Html.RadioButtonFor(m => m.SurveyQuestion3Response, "1", new { disabled = "disabled" })
+                                                <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option1ForSurverQuestion3")</label>
+                                            </div>
+                                            break;
+                                        case 2:
+                                            <div class="item_lista">
+                                                @Html.RadioButtonFor(m => m.SurveyQuestion3Response, "2", new { disabled = "disabled" })
+                                                <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option2ForSurverQuestion3")</label>
+                                            </div>
+                                            break;
+                                        case 3:
+                                            <div class="item_lista">
+                                                @Html.RadioButtonFor(m => m.SurveyQuestion3Response, "3", new { disabled = "disabled" })
+                                                <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option3ForSurverQuestion3")</label>
+                                            </div>
+                                            break;
+                                        case 4:
+                                            <div class="item_lista">
+                                                @Html.RadioButtonFor(m => m.SurveyQuestion3Response, "4", new { disabled = "disabled" })
+                                                <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option4ForSurverQuestion3")</label>
+                                            </div>
+                                            break;
+                                        case 5:
+                                            <div class="item_lista">
+                                                @Html.RadioButtonFor(m => m.SurveyQuestion3Response, "5", new { disabled = "disabled" })
+                                                <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option5ForSurverQuestion3")</label>
+                                            </div>
+                                            break;
+                                        case 6:
+                                            <div class="item_lista">
+                                                @Html.RadioButtonFor(m => m.SurveyQuestion3Response, "6", new { disabled = "disabled" })
+                                                <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option6ForSurverQuestion3")</label>
+                                            </div>
+                                            break;
+                                        case 7:
+                                            <div class="item_lista">
+                                                @Html.RadioButtonFor(m => m.SurveyQuestion3Response, "7", new { disabled = "disabled" })
+                                                <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option7ForSurverQuestion3")</label>
+                                            </div>
+                                            break;
+                                        case 8:
+                                            <div class="item_lista">
+                                                @Html.RadioButtonFor(m => m.SurveyQuestion3Response, "8", new { disabled = "disabled" })
+                                                <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option8ForSurverQuestion3")</label>
+                                            </div>
+                                            break;
+                                        case 9:
+                                            <div class="item_lista">
+                                                @Html.RadioButtonFor(m => m.SurveyQuestion3Response, "9", new { disabled = "disabled" })
+                                                <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option9ForSurverQuestion3")</label>
+                                            </div>
+                                            <div class="col_12">
+                                                @*<p>Which One?</p>*@
+                                                @Html.TextBoxFor(m => m.SurveyQuestion3OtherResponse, new { @class = "form-control input-sm", disabled = "disabled" })
+                                            </div>
+                                            break;
+                                    }
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col_12">
+                                    <h2>Not answer</h2>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+
+                    <div class="centro">
+                        <h1>@TranslatorHelper.TranslateTextByIdentifier("Old_SurveyQuestion4")</h1>
+                        <div class="col_12">
+                            <table border="0" cellspacing="0" cellpadding="0" class="especial_01 encuesta">
+                                <tr class="cabezote">
+                                    <td>&nbsp;</td>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>3</td>
+                                    <td>4</td>
+                                    <td>5</td>
+                                </tr>
+                                <tr>
+                                    <td>@TranslatorHelper.TranslateTextByIdentifier("Old_Option1ForSurverQuestion4")</td>
+                                    <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option1Value, "1", new { disabled = "disabled" })</td>
+                                    <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option1Value, "2", new { disabled = "disabled" })</td>
+                                    <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option1Value, "3", new { disabled = "disabled" })</td>
+                                    <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option1Value, "4", new { disabled = "disabled" })</td>
+                                    <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option1Value, "5", new { disabled = "disabled" })</td>
+                                </tr>
+                                <tr>
+                                    <td>@TranslatorHelper.TranslateTextByIdentifier("Old_Option2ForSurverQuestion4")</td>
+                                    <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option2Value, "1", new { disabled = "disabled" })</td>
+                                    <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option2Value, "2", new { disabled = "disabled" })</td>
+                                    <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option2Value, "3", new { disabled = "disabled" })</td>
+                                    <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option2Value, "4", new { disabled = "disabled" })</td>
+                                    <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option2Value, "5", new { disabled = "disabled" })</td>
+                                </tr>
+                                <tr>
+                                    <td>@TranslatorHelper.TranslateTextByIdentifier("Old_Option3ForSurverQuestion4")</td>
+                                    <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option3Value, "1", new { disabled = "disabled" })</td>
+                                    <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option3Value, "2", new { disabled = "disabled" })</td>
+                                    <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option3Value, "3", new { disabled = "disabled" })</td>
+                                    <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option3Value, "4", new { disabled = "disabled" })</td>
+                                    <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option3Value, "5", new { disabled = "disabled" })</td>
+                                </tr>
+                                <tr>
+                                    <td>@TranslatorHelper.TranslateTextByIdentifier("Old_Option4ForSurverQuestion4")</td>
+                                    <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option4Value, "1", new { disabled = "disabled" })</td>
+                                    <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option4Value, "2", new { disabled = "disabled" })</td>
+                                    <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option4Value, "3", new { disabled = "disabled" })</td>
+                                    <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option4Value, "4", new { disabled = "disabled" })</td>
+                                    <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option4Value, "5", new { disabled = "disabled" })</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="gris sin_margen_abajo padding_ancho_abajo">
+                        <div class="centro">
+                            <h1>@TranslatorHelper.TranslateTextByIdentifier("Old_SurveyQuestion5")</h1>
+                            <hr />
+                            @if (Model.SurveyQuestion5Response != "" && Model.SurveyQuestion5Response != null)
+                            {
+                                <div class="col_12">
+                                    @Html.TextBoxFor(m => m.SurveyQuestion5Response, new { @class = "form-control input-sm", disabled = "disabled" })
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col_12">
+                                    <h2>Not answer</h2>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+
+                </div>
+
+                @*<div class="controles sin_margen_arriba">
+                        <div class="centro">
+                            <ul class="bloques derecha">
+                                <li class="gris"><a href="Letter?pLeadID={@Model.LeadId}" target="_self"><span>@TranslatorHelper.TranslateTextByIdentifier("Old_Cancel").ToUpper()</span></a></li>
+                                <li class="azul"><a href="#" target="_self" id="sendForm"><span>@TranslatorHelper.TranslateTextByIdentifier("Old_Send").ToUpper()</span></a></li>
+                                <li><button type="submit" class="btnAzul" style="font-size: 14px !important;">@TranslatorHelper.TranslateTextByIdentifier("Old_Send").ToUpper()</button></li>
+                            </ul>
+                        </div>
+                    </div>*@
+
+
+            </div>
+            <div> &nbsp;</div>
+        </div>
+        <div> &nbsp;</div>
+    @if (Session["postofficebox"].ToString() == "System Administrator" || Session["vTitle"].ToString() == "License Consultant" || Session["vTitle"].ToString() == "Operations Leader")
+    {
+        if (Model.IsNotInterested)
+        {
+            <div class="gris">
+                <div class="centro accept-participation">
+                    <div class="set">
+                        <div>                       
+                            <label><input type="checkbox" id="activarParaMDS" checked data-activarparamds="@Model.LeadId"> Blocked Not Interested </label>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--================================= CONTROLES ======================================-->
+            <div class="controles">
+                <div class="centro">
+                    <ul class="bloques centro">
+
+                        <li class="azul end">
+                            <a href="#" target="_self" class="botonActivarParaMDS">
+                                <span>
+                                    @TranslatorHelper.TranslateTextByIdentifier("Old_LabelSave")
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        }
+    }
+    </div>
+}
+else
+{
+    <label>This company doesn't report any survey question response</label>
+}
+
+

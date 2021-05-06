@@ -1,0 +1,251 @@
+﻿@model Affidavit.Models.Product.ManageProductViewModel
+@using Affidavit.Utils
+@using Affidavit.Helpers
+
+
+@*<div>
+    <div>*@
+<div class="table-scroll-div">
+    <div class="set table-responsive" >
+        <div> &nbsp;</div>
+        <table class="table table-hover table-bordered">
+            <thead class="thead-default table-header-tittle">
+                <tr>
+                    @*<th class="bg-success thSize" style="width: 8% !important;">
+                            Product ID
+                            @Html.Editor("IDEditor")
+                        </th>*@
+                    <th class="text-center text-uppercase" style="width: 26% !important;">
+                        @TranslatorHelper.TranslateTextByIdentifier("Old_LabelProductName")
+                        @*@Html.Editor("NameEditor", new { @width = "50" })*@
+                    </th>
+                    <th class="text-center text-uppercase" style="width: 16% !important;">
+                        @TranslatorHelper.TranslateTextByIdentifier("Old_LabelProductVersion")
+                        @*@Html.Editor("VersionEditor")*@
+                    </th>
+                    <th class="text-center text-uppercase" style="width: 14% !important;">@TranslatorHelper.TranslateTextByIdentifier("Old_LabelProductFamily")</th>
+                    <th class="text-center text-uppercase" style="width: 14% !important;">Product Version Group</th>
+                    <th class="text-center text-uppercase" style="width: 14% !important;">Status</th>
+                    <th class="text-center text-uppercase" style="width: 5% !important;">Is CAL</th>
+                    <th class="text-center text-uppercase" style="width: 5% !important;">Is COMMERCIAL</th>
+                    <th class="text-center text-uppercase" style="width: 5% !important;">Is CORPORATE</th>
+                    <th class="text-center text-uppercase" style="width: 5% !important;">Is SUPPORTED</th>
+                    <th class="text-center text-uppercase">Actions</th>
+                </tr>
+                <tr class="filter-table">
+                    @*<th>
+                            <div> &nbsp;</div>
+                            <div class="input-group">
+                                <input type="text" class="form-control input-sm filter-text" placeholder="" value="">
+                                <span class="input-group-btn" hidden>
+                                    <button class="btn btn-link btn-sm btn-filter" type="button" data-filtername="ProductFamily"></button>
+                                </span>
+                            </div>
+                        </th>*@
+                    <td style="width: 26% !important;">
+                        <br />
+                        <div class="input-group">
+                            <input type="text" class="form-control input-sm filter-text" placeholder="" value="@Model.filters.ProductName">
+                            <span class="input-group-btn">
+                                <button class="btn btn-link btn-sm btn-filter" type="button" data-filtername="ProductName"><i class="fa fa-filter"></i></button>
+                            </span>
+                        </div>
+                    </td>
+                    <td style="width: 16% !important;">
+                        <br />
+                        <div class="input-group">
+                            <input type="text" class="form-control input-sm filter-text" placeholder="" value="@Model.filters.ProductVersion">
+                            <span class="input-group-btn">
+                                <button class="btn btn-link btn-sm btn-filter" type="button" data-filtername="ProductVersion"><i class="fa fa-filter"></i> </button>
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <br />
+                        <div class="input-group">
+                            <input type="text" class="form-control input-sm filter-text" placeholder="" value="@Model.filters.ProductFamily">
+                            <span class="input-group-btn">
+                                <button class="btn btn-link btn-sm btn-filter" type="button" data-filtername="ProductFamily"><i class="fa fa-filter"></i></button>
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <br />
+                        <div class="input-group">
+                            <input type="text" class="form-control input-sm filter-text" placeholder="" value="@Model.filters.ProductVersionGroup">
+                            <span class="input-group-btn">
+                                <button class="btn btn-link btn-sm btn-filter" type="button" data-filtername="ProductVersionGroup"><i class="fa fa-filter"></i></button>
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <br />
+                        <div class="input-group">
+                            @*<input type="text" class="form-control input-sm filter-text" placeholder="" value="" hidden>*@
+                            <select name="status" class="form-control input-sm filter-text" placeholder="status">
+                                <option value="empetyfield"></option>
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
+                            <span class="input-group-btn" hidden>
+                                <button class="btn btn-link btn-sm btn-filter" type="button" data-filtername="Status"><i class="fa fa-filter"></i></button>
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <br />
+                        <div class="input-group">
+                            @*<input type="text" class="form-control input-sm filter-text" placeholder="" value="" hidden>*@
+                            <span class="input-group-btn" hidden>
+                                @*<button class="btn btn-link btn-sm btn-filter" type="button" data-filtername="ProductFamily"></button>*@
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <br />
+                        <div class="input-group">
+                            @*<input type="text" class="form-control input-sm filter-text" placeholder="" value="" hidden>*@
+                            <span class="input-group-btn" hidden>
+                                @*<button class="btn btn-link btn-sm btn-filter" type="button" data-filtername="ProductFamily"></button>*@
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <br />
+                        <div class="input-group">
+                            @*<input type="text" class="form-control input-sm filter-text" placeholder="" value="" hidden>*@
+                            <span class="input-group-btn" hidden>
+                                @*<button class="btn btn-link btn-sm btn-filter" type="button" data-filtername="ProductFamily"></button>*@
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <br />
+                        <div class="input-group">
+                            @*<input type="text" class="form-control input-sm filter-text" placeholder="" value="" hidden>*@
+                            <span class="input-group-btn" hidden>
+                                @*<button class="btn btn-link btn-sm btn-filter" type="button" data-filtername="ProductFamily"></button>*@
+                            </span>
+                        </div>
+                    </td>
+                    <td style="text-align:center;">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button class="btn btn-sm btn-clear-filters" type="button" data-filtername="CreatedDate"><i class="fa fa-repeat"></i> Clear Filter</button>
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <td colspan="10" style="text-align:center;">
+                        @Html.NSPagination(Model.pageSettings)
+                    </td>
+                </tr>
+            </tfoot>
+            <tbody>
+                @foreach (var item in Model.ProductList)
+                {
+                    <tr style="text-align:center;">
+                        @*<td class="thSize" style="width: 8% !important;">@Html.Label(item.ProductID.ToString())</td>*@
+                        <td class="text-center" style="width: 26% !important;">@Html.Label(item.ProductName, new { @required = "required" })</td>
+                        <td class="text-center" style="width: 12% !important;">@Html.Label(item.ProductVersion.ToString(), new { @required = "required" })</td>
+                        <td>
+                            @Html.Hidden(item.ProductFamilyID.ToString(), new { @required = "required" })
+                            @Html.Label(item.FamilyName, new { @required = "required" })
+                        </td>
+                        <td class="text-center">@Html.Label(item.ProductVersionGroup)</td>
+                        <td class="text-center">@Html.Label((item.IsActive == true) ? "Active" : "Inactive")</td>
+                        <td class="text-center">@Html.Label(item.IsCal.ToString())</td>
+                        <td class="text-center">@Html.Label(item.IsCommercial.ToString())</td>
+                        <td class="text-center">@Html.Label(item.IsCorporate.ToString())</td>
+                        <td class="text-center">@Html.Label(item.IsSupported.ToString())</td>
+
+                        <td class="text-center">
+                            @*<button type="button" class="btn btn-primary EditButton" data-idquestion=@item.QuestionID>Edit </button>*@
+                            <button class="btn btn-sm EditProductButton" data-idproduct=@item.ProductID data-productfamilyid="@item.ProductFamilyID" data-toggle="tooltip" data-placement="top" title="Edit">
+                                <i class="fa fa-edit"></i>
+                            </button>
+
+                            <button class="btn btn-sm DeleteProductButton" data-idproductdelete=@item.ProductID data-toggle="tooltip" data-placement="top" title="Delete">
+                                <i class="fa fa-remove"></i>
+                            </button>
+
+                            @*<button class="btn btn-sm AssiNewProduct" data-idquestion=@item.ProductID data-toggle="tooltip" data-placement="top" title="Assign to Family">
+                                    <i class="fa fa-list-ol"></i>
+                                </button>*@
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        
+</div>
+<!-- Modals -->
+@using (Html.BeginForm("CreateNewProduct", "Product", FormMethod.Post))
+{
+    <div id="addModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content" style="width: 600px; left: 20%;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3><span id="modalTitle">Create Product</span></h3>
+                    </div>
+                    <div class="modal-body">
+                        <p id="disagreeReasonErrorServer" class="text-danger hide"></p>
+                        <div class="row">
+                            <div class="col-md-12" style="width: 100% !important; height: 50% !important;">
+
+                                <div id="CreateProductPartial">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn" id="cancelCreateProduct" style="height:inherit !important;" data-dismiss="modal">@TranslatorHelper.TranslateTextByIdentifier("Old_LabelCancel")</button>
+                        <button type="submit" class="btn btn-primary" style="height:inherit !important;">@TranslatorHelper.TranslateTextByIdentifier("Old_LabelSave")</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@using (Html.BeginForm("UpdateProduct", "Product", FormMethod.Post))
+{
+    <div id="editModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content" style="width: 600px; left: 20%;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3><span id="modalTitle">Edit Product</span></h3>
+                    </div>
+                    <div class="modal-body">
+                        <p id="disagreeReasonErrorServer" class="text-danger hide"></p>
+                        <div class="row">
+                            <div class="col-md-12" style="width: 100% !important; height: 50% !important;">
+
+                                <div id="EditProductPartial">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn" id="cancelEditProduct" style="height:inherit !important;" data-dismiss="modal">@TranslatorHelper.TranslateTextByIdentifier("Old_LabelCancel")</button>
+                        <button type="submit" class="btn btn-primary" style="height:inherit !important;">@TranslatorHelper.TranslateTextByIdentifier("Old_LabelSave")</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+</div>
+   @* </div>*@
+
+

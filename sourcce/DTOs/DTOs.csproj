@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F8533077-4C35-41EF-9CB0-D49B2A380E6A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DTOs</RootNamespace>
+    <AssemblyName>DTOs</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AnswerCompanyDTO.cs" />
+    <Compile Include="Assessments\AssessmentQuestionAnswerDetailsDTO.cs" />
+    <Compile Include="Assessments\AssessmentQuestionDTO.cs" />
+    <Compile Include="Assessments\AssessmentQuestionOptionsDTO.cs" />
+    <Compile Include="Assessments\NS_TblAssessmentTypeDTO.cs" />
+    <Compile Include="Assessments\RecommendationDTO.cs" />
+    <Compile Include="Assessments\AssessmentRecommendationsDTO.cs" />
+    <Compile Include="Assessments\AssessmentSummaryDTO.cs" />
+    <Compile Include="Assessments\ScoringModelResultsXCapabilityDTO.cs" />
+    <Compile Include="CampaignDTO.cs" />
+    <Compile Include="ChooseAnAction\ChooseAnActionSummaryDTO.cs" />
+    <Compile Include="CompanyContactsDTO.cs" />
+    <Compile Include="CompanyDTO.cs" />
+    <Compile Include="CompanyInfoDTO.cs" />
+    <Compile Include="CountryDTO.cs" />
+    <Compile Include="CRMDataDTO.cs" />
+    <Compile Include="DisagreeReasonDTO.cs" />
+    <Compile Include="EmailQueueDTO\EmailQueueDTO.cs" />
+    <Compile Include="IndustryDTO.cs" />
+    <Compile Include="IndustryInsights\ActivityDTO.cs" />
+    <Compile Include="IndustryInsights\DigitalTransformationDTO.cs" />
+    <Compile Include="IndustryInsights\IndustryIndInsDTO.cs" />
+    <Compile Include="IndustryInsights\IndustryInsightsAdminDTO.cs" />
+    <Compile Include="IndustryInsights\ProblemDTO.cs" />
+    <Compile Include="IndustryInsights\ProcessDTO.cs" />
+    <Compile Include="IndustryInsights\RecommendationsDocumentDTO.cs" />
+    <Compile Include="Landing\LandingCampaignDTO.cs" />
+    <Compile Include="Landing\LandingCampaignFilterModel.cs" />
+    <Compile Include="Landing\ReplaceMultipleLandingDTO.cs" />
+    <Compile Include="LanguageDTO.cs" />
+    <Compile Include="LeadInformationDTO.cs" />
+    <Compile Include="MDSAccount\MDSAccountDTO.cs" />
+    <Compile Include="PartnerCapabilityCompanyDTO.cs" />
+    <Compile Include="PartnerCapabilityDTO.cs" />
+    <Compile Include="PartnerProgramCompanyDTO.cs" />
+    <Compile Include="PartnerProgramDTO.cs" />
+    <Compile Include="ProductCompanyFileDTO.cs" />
+    <Compile Include="ProductCompanyDTO.cs" />
+    <Compile Include="ProductDTO.cs" />
+    <Compile Include="ProductFamilyCompanyDTO.cs" />
+    <Compile Include="ProductFamilyDTO.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuestionDTO.cs" />
+    <Compile Include="QuestionxLanguageDTO.cs" />
+    <Compile Include="QuestionxProductFamilyDTO.cs" />
+    <Compile Include="Recommendations\CompoundVariableDTO.cs" />
+    <Compile Include="Recommendations\VariableDTO.cs" />
+    <Compile Include="Recommendations\VariableProductDTO.cs" />
+    <Compile Include="Recommendations\VariableProductFamilyDTO.cs" />
+    <Compile Include="ResponseDataTypeDTO.cs" />
+    <Compile Include="SurveyQuestionResponse\SurveyQuestionResponseDTO.cs" />
+    <Compile Include="Translator\ImplementedCulturesDTO.cs" />
+    <Compile Include="Translator\TranslatorFileModelDTO.cs" />
+    <Compile Include="Utils\ConstantsStringKeys.cs" />
+    <Compile Include="Utils\ITranslatorUtility.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{f86d3c10-c4c1-49e1-b329-003742f94c98}</Project>
+      <Name>Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Resources\Resources.csproj">
+      <Project>{da723f64-abf0-4546-933d-3ccf1a569820}</Project>
+      <Name>Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

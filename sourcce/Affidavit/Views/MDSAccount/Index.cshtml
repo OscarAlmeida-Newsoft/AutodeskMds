@@ -1,0 +1,126 @@
+﻿@model DTOs.MDSAccountDTO
+@using Affidavit.Utils
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<!--================================= TITULO ======================================-->
+<div class="titulo azul">
+    <div class="centro">
+        <h1>
+            @TranslatorHelper.TranslateTextByIdentifier("MDS_Configuracion_Cuenta")
+        </h1>
+    </div>
+</div>
+<!--================================= TITULO ======================================-->
+<!--================================= PAGINA ======================================-->
+<div id="pagina" class="formulario">
+
+
+
+
+
+
+    <!--===============================================-->
+    <!--===============================================-->
+    <!--===============================================-->
+    <div class="seccion">
+
+        <div class="centro">
+
+            <div class="set">
+                <div class="col_6">
+                    <h1>
+                        @TranslatorHelper.TranslateTextByIdentifier("MDS_Configuracion_Company_Info")
+                    </h1>
+                    <ul class="settings">
+                        <li>
+                            <span class="izk">
+                                @TranslatorHelper.TranslateTextByIdentifier("MDS_Configuracion_Company_Name")
+                            </span>
+                            <span class="der">@Model.CompanyName</span>
+                        </li>
+                        <li class="alt">
+                            <span class="izk">
+                                @TranslatorHelper.TranslateTextByIdentifier("MDS_Configuracion_Company_Contact")
+                            </span>
+                            <span class="der">@Model.CompanyContact</span>
+                        </li>
+                    </ul>
+
+                    <h1>
+                        @TranslatorHelper.TranslateTextByIdentifier("MDS_Configuracion_Suscripcion")
+                    </h1>
+                    <ul class="settings">
+                        <li>
+                            <span class="izk">
+                                @TranslatorHelper.TranslateTextByIdentifier("MDS_Configuracion_Suscripcion_Fecha")
+                            </span>
+                            <span class="der">@Model.SubscriptionDate.ToString("MM/dd/yyyy")</span>
+                        </li>
+                        <li class="alt">
+                            <span class="izk">
+                                @TranslatorHelper.TranslateTextByIdentifier("MDS_Configuracion_Suscripcion_Tipo")
+                            </span>
+                            <span class="der">
+                                @TranslatorHelper.TranslateTextByIdentifier("MDS_Configuracion_Suscripcion_Plan")
+                                <a style="pointer-events: none; display: inline-block;" href="#" class="btn_upgrade" target="_self">
+                                    @TranslatorHelper.TranslateTextByIdentifier("MDS_Configuracion_Suscripcion_Upgrade")
+                                </a>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="izk">
+                                @TranslatorHelper.TranslateTextByIdentifier("MDS_Configuracion_Suscripcion_Status")
+                            </span>
+                            <span class="der">
+                                @TranslatorHelper.TranslateTextByIdentifier("MDS_Configuracion_Suscripcion_Trial")
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col_6">
+                    <h1>
+                        @TranslatorHelper.TranslateTextByIdentifier("MDS_Configuracion_Microsoft_Contact")
+                    </h1>
+                    <ul class="settings">
+                        <li>
+                            <span class="izk">
+                                @TranslatorHelper.TranslateTextByIdentifier("MDS_Configuracion_Microsoft_Contact_Name")
+                            </span>
+                            <span class="der">@Model.ConsultantContact</span>
+                        </li>
+                        <li class="alt">
+                            <span class="izk">
+                                @TranslatorHelper.TranslateTextByIdentifier("MDS_Configuracion_Microsoft_Contact_Email")
+                            </span>
+                            <span class="der">@Model.ConsultantEmail</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+    <!--===============================================-->
+    <!--===============================================-->
+    <!--===============================================-->
+
+
+
+
+
+
+
+
+
+
+</div>
+<!--================================= PAGINA ======================================-->
+
+

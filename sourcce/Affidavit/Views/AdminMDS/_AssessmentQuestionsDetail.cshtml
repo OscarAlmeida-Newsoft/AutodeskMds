@@ -1,0 +1,47 @@
+﻿@using System
+@using Affidavit.Models
+@using Affidavit.Utils
+@model AssessmentQuestionsHeaderViewModel
+
+@{
+    int i = 0;
+    int mod = 0;
+}
+
+@foreach (AssessmentQuestionsViewModel question in Model.AssessmentQuestions)
+{
+    mod = (i + 1) % 2;
+
+
+    if (mod == 0)
+    {
+        ViewContext.Writer.Write("<div class='gris'>");
+    }
+    <div class="centro">
+        <h2 class="assestment-question">@TranslatorHelper.TranslateTextById(question.TranslatorAdministratorId, Model.LanguageId)</h2>
+        <hr />
+
+        @if (question.SelectedMaturityLevelId != null)
+        {
+            <label class="">
+                <b style="font-size: 15px;color: #333;text-align: left;">
+                    @question.SelectedMaturityLevelId: 
+                </b> 
+                @TranslatorHelper.TranslateTextById(question.Options.Where(x => x.MaturityLevelId == question.SelectedMaturityLevelId).FirstOrDefault().TranslatorAdministratorId, Model.LanguageId)
+            </label>
+        }
+        else
+        {
+            <label class="no-answer">No answer selected for this question</label>
+        }
+
+
+    </div>
+
+    if (mod == 0)
+    {
+        ViewContext.Writer.Write("</div>");
+    }
+    i++;
+}
+

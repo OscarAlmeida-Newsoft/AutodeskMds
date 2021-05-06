@@ -1,0 +1,816 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="SoftwareAssuranceMessage" xml:space="preserve">
+    <value>"Microsoft maintenance program" ditujukan untuk bisnis yang menggunakan Microsoft Windows, Microsoft Office, dan aplikasi server dan desktop lainnya.</value>
+  </data>
+  <data name="LabelRquired" xml:space="preserve">
+    <value>* Bidang yang harus diisi</value>
+  </data>
+  <data name="SurveyQuestion1" xml:space="preserve">
+    <value>1. Apa alasan utama untuk memutuskan untuk tidak berpartisipasi?</value>
+  </data>
+  <data name="SurveyQuestion2" xml:space="preserve">
+    <value>2. Alasan apa yang menarik minat Anda untuk menerima saran dari Licensing and Compliance?</value>
+  </data>
+  <data name="SurveyQuestion3" xml:space="preserve">
+    <value>3.  Menurut pengalaman Anda, siapa yang harus bertanggung jawab atas pengelolaan lisensi perangkat lunak?</value>
+  </data>
+  <data name="SurveyQuestion4" xml:space="preserve">
+    <value>4. Bagaimana pengalaman Anda dalam berkomunikasi melalui telepon dengan konsultan lisensi kami? (Perhatikan bahwa 1 adalah nilai terendah dan 5 adalah nilai tertinggi)</value>
+  </data>
+  <data name="SurveyQuestion5" xml:space="preserve">
+    <value>5. Apakah Anda memiliki komentar tambahan tentang pengalaman ini atau tujuan dari inisiatif ini?</value>
+  </data>
+  <data name="Option1ForSurverQuestion2" xml:space="preserve">
+    <value>a. Perbaiki efisiensi keuangan saya sehubungan dengan Software licensing.</value>
+  </data>
+  <data name="Option1ForSurverQuestion1" xml:space="preserve">
+    <value>a. Perusahaan kami memiliki kebijakan manajemen lisensi yang proaktif dan konsisten. Kami berlisensi dan kami yakin kami tidak akan mendapatkan keuntungan dengan mengikuti proses ini.</value>
+  </data>
+  <data name="Option2ForSurverQuestion1" xml:space="preserve">
+    <value>a. Saya khawatir dengan privasi informasi perusahaan saya.</value>
+  </data>
+  <data name="Option1ForSurverQuestion3" xml:space="preserve">
+    <value>a. Teknologi</value>
+  </data>
+  <data name="LabelAdmEmployees" xml:space="preserve">
+    <value>Admin Staff</value>
+  </data>
+  <data name="LabelAcademico" xml:space="preserve">
+    <value>Akademik</value>
+  </data>
+  <data name="SurveyIntro" xml:space="preserve">
+    <value>Anda berada di halaman ini karena Anda memilih opsi "Saya Tidak Tertarik" di halaman sebelumnya. Jika Anda melakukan ini karena kesalahan, tekan Cancel untuk kembali ke halaman sebelumnya. Jika Anda telah berpikir kembali untuk berpartisipasi dalam proses ini, Mohon membantu kami dengan menjawab pertanyaan berikut:</value>
+  </data>
+  <data name="NoMenorMessage" xml:space="preserve">
+    <value>Anda tidak bisa memasukkan nomor yang lebih rendah</value>
+  </data>
+  <data name="ForgetPassValidationMessage" xml:space="preserve">
+    <value>Anda tidak memiliki "Microsoft Deployment Summary" yang dibuat di situs ini untuk nama pengguna ini. Harap verifikasi alamat email Anda atau temukan email Anda untuk mengetahui apakah Anda menerima instruksi dari Microsoft untuk mengakses aplikasi ini.</value>
+  </data>
+  <data name="WrongUserAccess" xml:space="preserve">
+    <value>Anda tidak memiliki draf "Microsoft Deployment Summary", silahkan temukan di alamat e-mail Anda untuk mendapatkan petunjuk untuk mengakses aplikasi ini.</value>
+  </data>
+  <data name="LabelDevelopersPartnersMicrosofTools" xml:space="preserve">
+    <value>Apa alat Microsoft yang digunakan oleh organisasi Anda untuk development?</value>
+  </data>
+  <data name="LabelDevelopersPartnersApplicationsType" xml:space="preserve">
+    <value>Apa jenis aplikasi yang Anda kembangkan?</value>
+  </data>
+  <data name="LabelDevelopersPartnersProjectsTypes" xml:space="preserve">
+    <value>Apa jenis proyek terpenting yang dikembangkan oleh organisasi Anda bagi pelanggannya?</value>
+  </data>
+  <data name="LabelTieneCanalAutorizado" xml:space="preserve">
+    <value>Apakah Anda memiliki authorized Microsoft Partner?</value>
+  </data>
+  <data name="LabelPlanesNuevasLic" xml:space="preserve">
+    <value>Apakah Anda memiliki rencana untuk membeli lisensi baru?</value>
+  </data>
+  <data name="LabelPlanesActualizacionLic" xml:space="preserve">
+    <value>Apakah Anda memiliki rencana untuk meng-Upgrade lisensi yang Anda miliki sekarang?</value>
+  </data>
+  <data name="LabelTieneSoftAssurance" xml:space="preserve">
+    <value>Apakah Anda memiliki Software Assurance?</value>
+  </data>
+  <data name="ConfirmationMessage" xml:space="preserve">
+    <value>Apakah anda sudah yakin ingin menyelesaikannya? Harap dicatat bahwa setelah Anda mengonfirmasi, Anda tidak akan diizinkan melakukan perubahan</value>
+  </data>
+  <data name="LabelCustomOrBasicsApplications" xml:space="preserve">
+    <value>Apakah organisasi Anda mengembangkan aplikasi kustom dasar?</value>
+  </data>
+  <data name="LabelAuthorizedMSChannel" xml:space="preserve">
+    <value>Authorized Microsoft Partner</value>
+  </data>
+  <data name="Option2ForSurverQuestion2" xml:space="preserve">
+    <value>b. Mengurangi risiko cyber security melalui peningkatan produk lisensi dan teknologi saya.</value>
+  </data>
+  <data name="Option2ForSurverQuestion3" xml:space="preserve">
+    <value>b. Purchasing</value>
+  </data>
+  <data name="LabelIdioma" xml:space="preserve">
+    <value>Bahasa</value>
+  </data>
+  <data name="TextoIdioma" xml:space="preserve">
+    <value>Bahasa</value>
+  </data>
+  <data name="LabelAyuda" xml:space="preserve">
+    <value>Bantuan</value>
+  </data>
+  <data name="LabelHelp" xml:space="preserve">
+    <value>Bantuan</value>
+  </data>
+  <data name="LinkAyuda" xml:space="preserve">
+    <value>Bantuan</value>
+  </data>
+  <data name="FechaVencimiento" xml:space="preserve">
+    <value>Batas tanggal terakhir</value>
+  </data>
+  <data name="LabelNext" xml:space="preserve">
+    <value>BERIKUTNYA</value>
+  </data>
+  <data name="LabelSiguiente" xml:space="preserve">
+    <value>Berikutnya</value>
+  </data>
+  <data name="PhoneNumberField" xml:space="preserve">
+    <value>Bukan nomor telepon yang sah</value>
+  </data>
+  <data name="Option3ForSurverQuestion2" xml:space="preserve">
+    <value>c. Cegah potensi hukuman melalui audit, penggerebekan atau entitas pemerintah yang bertanggung jawab untuk melindungi kekayaan intelektual.</value>
+  </data>
+  <data name="Option3ForSurverQuestion1" xml:space="preserve">
+    <value>c. Saya tidak menganggap itu adalah layanan yang sesuai untuk situasi bisnis saya saat ini.</value>
+  </data>
+  <data name="LabelSearchCompany" xml:space="preserve">
+    <value>Cari perusahaan</value>
+  </data>
+  <data name="CoreHelp" xml:space="preserve">
+    <value>CORE: Salah satu dari beberapa unit pengolahan yang bekerja secara paralel di Device</value>
+  </data>
+  <data name="LabelCustom" xml:space="preserve">
+    <value>Custom</value>
+  </data>
+  <data name="Option4ForSurverQuestion2" xml:space="preserve">
+    <value>d. Identifikasi apakah lisensi saya sah</value>
+  </data>
+  <data name="Option4ForSurverQuestion3" xml:space="preserve">
+    <value>d. Operations</value>
+  </data>
+  <data name="Option4ForSurverQuestion1" xml:space="preserve">
+    <value>d. Saya beranggapan bahwa berpartisipasi dalam proses ini akan membutuhkan biaya tambahan atau biaya untuk perusahaan saya.</value>
+  </data>
+  <data name="QuestionsList" xml:space="preserve">
+    <value>Daftar pertanyaan</value>
+  </data>
+  <data name="ProductList" xml:space="preserve">
+    <value>Daftar Produk</value>
+  </data>
+  <data name="LabelBasic" xml:space="preserve">
+    <value>Dasar-dasar</value>
+  </data>
+  <data name="LabelNumeroPCsOtrosSO" xml:space="preserve">
+    <value>Desktop dan laptop dengan O.S lain</value>
+  </data>
+  <data name="LabelNumeroPCsEscritorio" xml:space="preserve">
+    <value>Desktop dan laptop dengan Windows O.S</value>
+  </data>
+  <data name="Option5ForSurverQuestion2" xml:space="preserve">
+    <value>e. Dapatkan pemahaman yang lebih baik tentang siklus hidup Perangkat Lunak dan licensing clover.</value>
+  </data>
+  <data name="Option5ForSurverQuestion3" xml:space="preserve">
+    <value>e. Presidency/CEO</value>
+  </data>
+  <data name="Option5ForSurverQuestion1" xml:space="preserve">
+    <value>e. Saya tidak punya waktu atau kesempatan untuk mendedikasikan diri pada proses ini</value>
+  </data>
+  <data name="Edicion" xml:space="preserve">
+    <value>EDISI</value>
+  </data>
+  <data name="CPUHelp" xml:space="preserve">
+    <value>Elemen yang menafsirkan instruksi dan memproses data dari program Device</value>
+  </data>
+  <data name="Option6ForSurverQuestion3" xml:space="preserve">
+    <value>F. Analis Lisensi</value>
+  </data>
+  <data name="Option6ForSurverQuestion2" xml:space="preserve">
+    <value>F. Pahami peraturan lisensi dan kekayaan intelektual dan risiko yang ada di pasar lokal atau pasar tempat perusahaan saya beroperasi.</value>
+  </data>
+  <data name="Option7ForSurverQuestion2" xml:space="preserve">
+    <value>G. Mencapai negosiasi lisensi Perangkat Lunak yang lebih baik dan lebih cepat.</value>
+  </data>
+  <data name="Option7ForSurverQuestion3" xml:space="preserve">
+    <value>G. Pihak ketiga (Penasihat Lisensi)</value>
+  </data>
+  <data name="LabelTeachers" xml:space="preserve">
+    <value>Guru</value>
+  </data>
+  <data name="Option6ForSurverQuestion1" xml:space="preserve">
+    <value>h. Adakah yang lain. Yang mana?</value>
+  </data>
+  <data name="Option8ForSurverQuestion2" xml:space="preserve">
+    <value>h. Adakah yang lain. Yang mana?</value>
+  </data>
+  <data name="Option9ForSurverQuestion3" xml:space="preserve">
+    <value>h. Adakah yang lain. Yang mana?</value>
+  </data>
+  <data name="Option8ForSurverQuestion3" xml:space="preserve">
+    <value>h. Produsen / Distributor Perangkat Lunak</value>
+  </data>
+  <data name="NumeroTotalEmpleadosPcsMessage" xml:space="preserve">
+    <value>Harap masukkan jumlah total karyawan dan desktop</value>
+  </data>
+  <data name="ProcesoCompraMessage" xml:space="preserve">
+    <value>Harap pilih opsi untuk informasi faktur</value>
+  </data>
+  <data name="WithoutLeadId" xml:space="preserve">
+    <value>Harap salin URL yang benar karena tidak ada petunjuk</value>
+  </data>
+  <data name="MensajeErrorNombreEmpresaLargo" xml:space="preserve">
+    <value>Harus kurang dari 120 karakter</value>
+  </data>
+  <data name="LabelContactUs" xml:space="preserve">
+    <value>Hubungi kami</value>
+  </data>
+  <data name="LabelPersonaNatural" xml:space="preserve">
+    <value>Individu</value>
+  </data>
+  <data name="LabelIndustria" xml:space="preserve">
+    <value>Industri</value>
+  </data>
+  <data name="EncabezadoDatosGeneralesEquipos" xml:space="preserve">
+    <value>Informasi peralatan umum</value>
+  </data>
+  <data name="LabelInvoicing" xml:space="preserve">
+    <value>Informasi Perizinan</value>
+  </data>
+  <data name="EncabezadoDatosBasicos" xml:space="preserve">
+    <value>Informasi Perusahaan</value>
+  </data>
+  <data name="LabelApplicationsType" xml:space="preserve">
+    <value>Informasi Tambahan untuk "Developers Partners of Microsoft"</value>
+  </data>
+  <data name="LabelEncabezado" xml:space="preserve">
+    <value>Informasi Umum</value>
+  </data>
+  <data name="LabelMSPartnersNetwork" xml:space="preserve">
+    <value>Jaringan Mitra Microsoft</value>
+  </data>
+  <data name="AdditionalQuestionsMessage" xml:space="preserve">
+    <value>Jawablah pertanyaan berikut untuk setiap produk yang telah dipilih sebelumnya</value>
+  </data>
+  <data name="LabelResponseDataType" xml:space="preserve">
+    <value>Jenis jawaban</value>
+  </data>
+  <data name="EncabezadoTipoCliente" xml:space="preserve">
+    <value>Jenis pelanggan</value>
+  </data>
+  <data name="ConsultantInfoMessage" xml:space="preserve">
+    <value>Jika Anda memerlukan bantuan selama proses ini, silahkan hubungi konsultan lisensi Anda &lt;span class = "consultantInfo"&gt; {{ConsultantName}} &lt;/span&gt; ke nomor telepon berikut &lt;span class = "consultantInfo"&gt; {{ConsultantPhoneNumber}} &lt;/span&gt; atau alamat email berikut &lt;span class = "consultantInfo"&gt; {{ConsultantEmailAddress}} &lt;/span&gt;</value>
+  </data>
+  <data name="EncabezadoContratosVolumen" xml:space="preserve">
+    <value>Jika Anda memiliki Volume License (Open, Academic, Enterprise Agreement, Select Plus, dll.), Silahkan masukkan nomor lisensi Anda</value>
+  </data>
+  <data name="PartnerNetworkMessage" xml:space="preserve">
+    <value>Jika organisasi Anda adalah anggota dari Jaringan Mitra Microsoft, harap tentukan statusnya</value>
+  </data>
+  <data name="LabelNumeroServidoresFisicos" xml:space="preserve">
+    <value>Jumlah Fisical Server </value>
+  </data>
+  <data name="LabelNumeroTotalEmpleados" xml:space="preserve">
+    <value>Jumlah Karyawan</value>
+  </data>
+  <data name="LabelNumeroPortatiles" xml:space="preserve">
+    <value>Jumlah Laptop</value>
+  </data>
+  <data name="LabelNumeroServidoresVirtuales" xml:space="preserve">
+    <value>Jumlah Virtual Server </value>
+  </data>
+  <data name="LabelSolicitoApoyo" xml:space="preserve">
+    <value>Kami membutuhkan dukungan untuk memperjelas situasi kami</value>
+  </data>
+  <data name="LabelCorrectamenteLicenciado" xml:space="preserve">
+    <value>Kami memiliki lisensi yang benar</value>
+  </data>
+  <data name="LabelEncontramosDiferencias" xml:space="preserve">
+    <value>Kami menemukan beberapa perbedaan dalam lisensi kami dan kami akan melakukan tindakan yang tepat untuk menyelesaikannya dalam 30 hari ke depan</value>
+  </data>
+  <data name="LabelNivel" xml:space="preserve">
+    <value>Kategori</value>
+  </data>
+  <data name="ManageLandingAdmin" xml:space="preserve">
+    <value>Kelola huruf</value>
+  </data>
+  <data name="LabelLogout" xml:space="preserve">
+    <value>Keluar</value>
+  </data>
+  <data name="LinkCerrarSesion" xml:space="preserve">
+    <value>Keluar</value>
+  </data>
+  <data name="LabelCompetencia" xml:space="preserve">
+    <value>Kemampuan</value>
+  </data>
+  <data name="LabelAnterior" xml:space="preserve">
+    <value>Kembali</value>
+  </data>
+  <data name="SurveyQuestionResponseMessage" xml:space="preserve">
+    <value>Keputusan Anda untuk tidak berpartisipasi telah dikomunikasikan. Jika Anda memutuskan untuk berpartisipasi dalam program ini, hubungi konsultan lisensi Anda &lt;span class = "consultantInfo"&gt;{{ConsultantName}} &lt;/span&gt; ke nomor telepon berikut &lt;span class = "consultantInfo"&gt; {{ConsultantPhoneNumber}} &lt;/span&gt; atau alamat email berikut &lt;span class = "consultantInfo"&gt; {{ConsultantEmailAddress}} &lt;/span&gt;</value>
+  </data>
+  <data name="ForgetPassMessage" xml:space="preserve">
+    <value>Ketik Email Anda di bawah ini dan klik "Kirim". Anda akan menerima email baru dengan kata sandi Anda.</value>
+  </data>
+  <data name="InvoicingNameMessage" xml:space="preserve">
+    <value>Ketik nama sesuai seperti yang ada di faktur pembelian</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Kirim</value>
+  </data>
+  <data name="FieldRequired" xml:space="preserve">
+    <value>Kolom yang harus diisi</value>
+  </data>
+  <data name="LabelExplique" xml:space="preserve">
+    <value>Komentar</value>
+  </data>
+  <data name="Option2ForSurverQuestion4" xml:space="preserve">
+    <value>Komentar dan perhatian saya dialamatkan</value>
+  </data>
+  <data name="ComentariosAdicinales" xml:space="preserve">
+    <value>komentar tambahan</value>
+  </data>
+  <data name="Option1ForSurverQuestion4" xml:space="preserve">
+    <value>Konsultannya ramah</value>
+  </data>
+  <data name="LabelQuantity" xml:space="preserve">
+    <value>Kuantitas</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Lanjutkan</value>
+  </data>
+  <data name="ChannelContactName" xml:space="preserve">
+    <value>Lengkapi nama kontak Authorized Microsoft Partner</value>
+  </data>
+  <data name="LabelSeeLetter" xml:space="preserve">
+    <value>Lihat surat</value>
+  </data>
+  <data name="LabelNewLicences" xml:space="preserve">
+    <value>Lisensi Baru</value>
+  </data>
+  <data name="VLSMessage" xml:space="preserve">
+    <value>Lisensi dibeli melalui kontrak Microsoft volume</value>
+  </data>
+  <data name="FPPMessage" xml:space="preserve">
+    <value>Lisensi didapatkan berupa kotak yang dibungkus berisi CD-ROM atau DVD dan diperoleh melalui Reseller</value>
+  </data>
+  <data name="DeviceCALHelp" xml:space="preserve">
+    <value>Lisensi memberikan akses dari suatu perangkat ke perangkat lunak Microsoft Server tertentu</value>
+  </data>
+  <data name="CALHelp" xml:space="preserve">
+    <value>Lisensi memberikan akses ke perangkat lunak Microsoft Server tertentu</value>
+  </data>
+  <data name="UserCALHelp" xml:space="preserve">
+    <value>Lisensi memberikan akses kepada pengguna untuk perangkat lunak Microsoft server tertentu </value>
+  </data>
+  <data name="OEMMessage" xml:space="preserve">
+    <value>Lisensi telah terinstal di perangkat pada saat pembelian</value>
+  </data>
+  <data name="LabelInstalledLicenses" xml:space="preserve">
+    <value>Lisensi yang diinstall/digunakan</value>
+  </data>
+  <data name="RemoteDesktopServicesCALHelp" xml:space="preserve">
+    <value>Lisensi yang memungkinkan pengguna mengendalikan perangkat dengan jarak jauh atau mesin virtual melalui koneksi jaringan</value>
+  </data>
+  <data name="Access" xml:space="preserve">
+    <value>Masuk</value>
+  </data>
+  <data name="EmailAddressField" xml:space="preserve">
+    <value>Masukkan alamat e-mail yang valid</value>
+  </data>
+  <data name="SurveyQuestion1OptionOtherEmpty" xml:space="preserve">
+    <value>Masukkan jawaban untuk pilihan yang dipilih pada pertanyaan 1</value>
+  </data>
+  <data name="SurveyQuestion2OptionOtherEmpty" xml:space="preserve">
+    <value>Masukkan jawaban untuk pilihan yang dipilih pada pertanyaan 2</value>
+  </data>
+  <data name="SurveyQuestion3OptionOtherEmpty" xml:space="preserve">
+    <value>Masukkan jawaban untuk pilihan yang dipilih pada pertanyaan 3</value>
+  </data>
+  <data name="LabelEnterCompanyName" xml:space="preserve">
+    <value>Masukkan nama perusahaan untuk mencari</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Membatalkan</value>
+  </data>
+  <data name="LabelCancel" xml:space="preserve">
+    <value>Membatalkan</value>
+  </data>
+  <data name="LabelOrder" xml:space="preserve">
+    <value>Memesan</value>
+  </data>
+  <data name="LabelEnd" xml:space="preserve">
+    <value>MENYERAHKAN</value>
+  </data>
+  <data name="LabelFinalizar" xml:space="preserve">
+    <value>Menyerahkan</value>
+  </data>
+  <data name="LabelBorrador" xml:space="preserve">
+    <value>Menyimpan data</value>
+  </data>
+  <data name="MicrosoftDevelopmentSummary" xml:space="preserve">
+    <value>Microsoft Deployment Summary</value>
+  </data>
+  <data name="TituloFormulario" xml:space="preserve">
+    <value>Microsoft Deployment Summary</value>
+  </data>
+  <data name="LabelPartnerDesarrollador" xml:space="preserve">
+    <value>Microsoft Development Partner</value>
+  </data>
+  <data name="LabelPartner" xml:space="preserve">
+    <value>Microsoft Partner</value>
+  </data>
+  <data name="LabelEstadoSoftAssurance" xml:space="preserve">
+    <value>Mohon dilengkapi rincian tentang status, tanggal perpanjangan dan nomor kontrak</value>
+  </data>
+  <data name="LabelNombreComercial" xml:space="preserve">
+    <value>Nama dagang</value>
+  </data>
+  <data name="LabelNombreContacto" xml:space="preserve">
+    <value>Nama Kontak</value>
+  </data>
+  <data name="LabelCanalAutorizado" xml:space="preserve">
+    <value>Nama Partner</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Nama pengguna</value>
+  </data>
+  <data name="LabelNombreEmpresa" xml:space="preserve">
+    <value>Nama Perusahaan</value>
+  </data>
+  <data name="LabelRazonSocial" xml:space="preserve">
+    <value>Nama Perusahaan Terdaftar</value>
+  </data>
+  <data name="LabelProductName" xml:space="preserve">
+    <value>nama Produk</value>
+  </data>
+  <data name="LabelPartial" xml:space="preserve">
+    <value>Parcial</value>
+  </data>
+  <data name="IdPartner" xml:space="preserve">
+    <value>Partner ID</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="OnlinePurchaseHelp" xml:space="preserve">
+    <value>Pembelian melalui Microsoft store atau platform resmi</value>
+  </data>
+  <data name="LabelGobierno" xml:space="preserve">
+    <value>Pemerintah dan Kesehatan</value>
+  </data>
+  <data name="LabelPublicSector" xml:space="preserve">
+    <value>Pemerintah dan Kesehatan</value>
+  </data>
+  <data name="LabelNotCompanyFound" xml:space="preserve">
+    <value>Pencarian itu tidak membuang hasilnya</value>
+  </data>
+  <data name="WrongUserPassword" xml:space="preserve">
+    <value>pengguna dan/atau kata Sandi salah, mohon verifikasi</value>
+  </data>
+  <data name="Option3ForSurverQuestion3" xml:space="preserve">
+    <value>Pengguna teknologi akan diberi lisensi</value>
+  </data>
+  <data name="LabelGoBack" xml:space="preserve">
+    <value>Pergi ke MDS</value>
+  </data>
+  <data name="LabelRelatedQuestion" xml:space="preserve">
+    <value>Pertanyaan yang berkaitan</value>
+  </data>
+  <data name="LabelComercial" xml:space="preserve">
+    <value>Perusahaan swasta</value>
+  </data>
+  <data name="LabelPrev" xml:space="preserve">
+    <value>PREV</value>
+  </data>
+  <data name="PrivacyAndCookies" xml:space="preserve">
+    <value>Privasi dan Cookie</value>
+  </data>
+  <data name="LabelProductFamily" xml:space="preserve">
+    <value>Product Family</value>
+  </data>
+  <data name="LabelProductosMS" xml:space="preserve">
+    <value>Produk Microsoft</value>
+  </data>
+  <data name="RecordNotFoundAdmin" xml:space="preserve">
+    <value>Record tidak ditemukan</value>
+  </data>
+  <data name="ContratodVolumenMessage" xml:space="preserve">
+    <value>Saat ini Anda memiliki kontrak volume (VLS), Silahkan masukkan nomor lisensi masing-masing </value>
+  </data>
+  <data name="Option4ForSurverQuestion4" xml:space="preserve">
+    <value>Saya diberi tahu tentang ruang lingkup, dan harapan layanan ini, serta informasi yang dibutuhkan tentang perusahaan saya dalam prosesnya</value>
+  </data>
+  <data name="LabelForgetPass" xml:space="preserve">
+    <value>Saya lupa kata sandi saya</value>
+  </data>
+  <data name="LetterInfoText1" xml:space="preserve">
+    <value>Saya menyatakan bahwa informasi yang diberikan akurat, dan dapat didukung sesuai dengan pedoman Microsoft</value>
+  </data>
+  <data name="Disagree" xml:space="preserve">
+    <value>saya tidak tertarik</value>
+  </data>
+  <data name="TittleImageLetterPage" xml:space="preserve">
+    <value>SELAMAT DATANG</value>
+  </data>
+  <data name="LabelMessageMDSWelcome" xml:space="preserve">
+    <value>Selamat datang di "Microsoft Deployment Summary". Informasi yang diberikan dalam dokumen ini akan membantu kami mengidentifikasi status lisensi Anda saat ini, dengan tujuan membantu perusahaan Anda mengoptimalkan penggunaan lisensi dan mengikuti praktik terbaik dalam pengelolaan aset perangkat lunak.</value>
+  </data>
+  <data name="LabelInformacionAdicional" xml:space="preserve">
+    <value>Selesai dan Kirim</value>
+  </data>
+  <data name="InComplianceHelp" xml:space="preserve">
+    <value>Sesuai dengan peraturan perangkat lunak, spesifikasi dan persyaratan hukum</value>
+  </data>
+  <data name="CompanyEmailField" xml:space="preserve">
+    <value>Silahkan  masukkan email di informasi Perusahaan</value>
+  </data>
+  <data name="CompanyContactNameField" xml:space="preserve">
+    <value>Silahkan  masukkan nama penanggung jawab di informasi Perusahaan</value>
+  </data>
+  <data name="CompanyDateField" xml:space="preserve">
+    <value>Silahkan  masukkan tangggal pembuatan informasi Perusahaan</value>
+  </data>
+  <data name="LabelEmpresaContacto" xml:space="preserve">
+    <value>Silahkan berikan informasi kontak dan perusahaan</value>
+  </data>
+  <data name="CheckBoxMessage" xml:space="preserve">
+    <value>Silahkan centang kotak untuk memastikan bahwa informasi yang diberikan akurat, dan dapat didukung sesuai dengan pedoman Microsoft</value>
+  </data>
+  <data name="AuthorizedChannelMessage" xml:space="preserve">
+    <value>Silahkan lengkapi  nama Authorized Microsoft Partner</value>
+  </data>
+  <data name="ChannelEmail" xml:space="preserve">
+    <value>Silahkan masukkan alamat e-mail untuk Authorized Microsoft Partner</value>
+  </data>
+  <data name="CompanyNameField" xml:space="preserve">
+    <value>Silahkan masukkan detail nama perusahaan dalam informasi Perusahaan</value>
+  </data>
+  <data name="CompanyPhoneField" xml:space="preserve">
+    <value>Silahkan masukkan informasi nomor telepon Perusahaan</value>
+  </data>
+  <data name="MensajeErrorNombreEmpresaRequerido" xml:space="preserve">
+    <value>Silahkan masukkan nama perusahaan</value>
+  </data>
+  <data name="LabelNombreExactoFacturacion" xml:space="preserve">
+    <value>Silahkan masukkan nama seperti yang muncul dalam agreement</value>
+  </data>
+  <data name="ChannelPhone" xml:space="preserve">
+    <value>Silahkan masukkan Nomor telepon untuk Authorized Microsoft Partner</value>
+  </data>
+  <data name="SurveyQuestion1Empty" xml:space="preserve">
+    <value>Silahkan pilih jawaban pada pertanyaan 1</value>
+  </data>
+  <data name="SurveyQuestion2Empty" xml:space="preserve">
+    <value>Silahkan pilih jawaban pada pertanyaan 2</value>
+  </data>
+  <data name="SurveyQuestion3Empty" xml:space="preserve">
+    <value>Silahkan pilih jawaban pada pertanyaan 3</value>
+  </data>
+  <data name="NewLicencesRadioButtonMessage" xml:space="preserve">
+    <value>Silahkan pilih opsi untuk Lisensi Baru</value>
+  </data>
+  <data name="SoftwareAssuranceRadioButtonMessage" xml:space="preserve">
+    <value>Silahkan pilih opsi untuk Software Assurance</value>
+  </data>
+  <data name="UpgradesRadioButtonMessage" xml:space="preserve">
+    <value>Silahkan pilih opsi untuk Upgrade</value>
+  </data>
+  <data name="LabelSeleccionaOpcionAplique" xml:space="preserve">
+    <value>Silahkan pilih opsi yang sesuai</value>
+  </data>
+  <data name="EstLicenciamientoMessage" xml:space="preserve">
+    <value>Silahkan pilih opsi yang sesuai untuk menunjukkan status lisensi Anda</value>
+  </data>
+  <data name="SurveyQuestion4Empty" xml:space="preserve">
+    <value>Silakan beri penilaian untuk semua opsi pada pertanyaan 4</value>
+  </data>
+  <data name="AuthorizedRadioButtonMessage" xml:space="preserve">
+    <value>Silakan pilih opsi untuk Authorized Microsoft Partner</value>
+  </data>
+  <data name="TipoClienteMessage" xml:space="preserve">
+    <value>Silakan pilih tipe pelanggan</value>
+  </data>
+  <data name="LabelSave" xml:space="preserve">
+    <value>Simpan</value>
+  </data>
+  <data name="LabelExportToExcel" xml:space="preserve">
+    <value>Simpan ke Excel</value>
+  </data>
+  <data name="SavePDF" xml:space="preserve">
+    <value>Simpan ke PDF</value>
+  </data>
+  <data name="LabelCurrentSituation" xml:space="preserve">
+    <value>Situasi saat ini</value>
+  </data>
+  <data name="LabelLoginMessage" xml:space="preserve">
+    <value>Situs web ini memungkinkan pelanggan Microsoft untuk bergabung dengan program konsultasi manajemen perangkat lunak Microsoft secara sukarela. Melalui program yang menguntungkan ini, perusahaan Anda akan menerima panduan dan saran gratis dari pakar perizinan perangkat lunak tentang cara mengoptimalkan penggunaan dan perizinan produk perangkat lunak Microsoft. &lt;br /&gt; &lt;br /&gt; Jika Anda belum menerima username dan kata sandi untuk login atau memiliki pertanyaan lebih lanjut, silahkan hubungi Konsultan Microsoft Software Asset Management Anda".</value>
+  </data>
+  <data name="LabelSoftwareAssurance" xml:space="preserve">
+    <value>Software Assurance</value>
+  </data>
+  <data name="EncabezadoProcesoCompra" xml:space="preserve">
+    <value>Sudahkah Anda mendapatkan perangkat lunak Microsoft dengan nama yang berbeda?</value>
+  </data>
+  <data name="TermsOfUse" xml:space="preserve">
+    <value>Syarat Penggunaan</value>
+  </data>
+  <data name="LabelFecha" xml:space="preserve">
+    <value>Tanggal</value>
+  </data>
+  <data name="FechaRenovacion" xml:space="preserve">
+    <value>Tanggal pembaruan/perpanjangan</value>
+  </data>
+  <data name="Option3ForSurverQuestion4" xml:space="preserve">
+    <value>Tanggapan atas pertanyaan saya sesuai dan dapat dipahami dengan jelas.</value>
+  </data>
+  <data name="SaveSurveyQuestionResponseSuccessMessage" xml:space="preserve">
+    <value>Tanggapan mereka diterima dengan benar</value>
+  </data>
+  <data name="LabelQuestionText" xml:space="preserve">
+    <value>Teks pertanyaan</value>
+  </data>
+  <data name="LabelTelefono" xml:space="preserve">
+    <value>Telepon</value>
+  </data>
+  <data name="ContactUsMessage" xml:space="preserve">
+    <value>Terima kasih atas kerjasama Anda dalam melengkapi dan memberikan data “Microsoft Deployment Summary” Anda. Jika Anda tidak dapat menyelesaikan formulir ini dalam satu sesi, Anda dapat menyimpan informasi dengan mengklik opsi "Draft" di bagian bawah setiap halaman.</value>
+  </data>
+  <data name="LabelNo" xml:space="preserve">
+    <value>TIDAK</value>
+  </data>
+  <data name="LabelNotAvailable" xml:space="preserve">
+    <value>Tidak tersedia</value>
+  </data>
+  <data name="ProgramType" xml:space="preserve">
+    <value>Tipe Program</value>
+  </data>
+  <data name="LabelUpgrades" xml:space="preserve">
+    <value>Upgrade</value>
+  </data>
+  <data name="LabelProductVersion" xml:space="preserve">
+    <value>Versi Produk</value>
+  </data>
+  <data name="LabelTime" xml:space="preserve">
+    <value>Waktu</value>
+  </data>
+  <data name="LabelSi" xml:space="preserve">
+    <value>Ya</value>
+  </data>
+  <data name="LabelNumeroServidoresSQL" xml:space="preserve">
+    <value>Jumlah SQL Server</value>
+  </data>
+  <data name="NewAzure1Question" xml:space="preserve">
+    <value>Apakah Anda memiliki layanan Azure?</value>
+  </data>
+  <data name="NewAzure2Question" xml:space="preserve">
+    <value>Layanan yang mana?</value>
+  </data>
+  <data name="NewFiles" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="NewFileSpecs" xml:space="preserve">
+    <value>Ukuran file maksimal 5 MB .png .jpg .pdf</value>
+  </data>
+  <data name="NewLabelNoAzure" xml:space="preserve">
+    <value>Tidak</value>
+  </data>
+  <data name="NewLabelSiAzure" xml:space="preserve">
+    <value>Iya</value>
+  </data>
+  <data name="NewLicenseTestTooltip" xml:space="preserve">
+    <value>Klik pada tombol untuk mengunggah dokumen atau gambar yang menunjukkan lisensi Anda</value>
+  </data>
+  <data name="NewLicenseTooltip" xml:space="preserve">
+    <value>Klik di sini jika Anda ingin detail jenis lisensi yang digunakan perusahaan Anda</value>
+  </data>
+  <data name="NewUpload" xml:space="preserve">
+    <value>UPLOAD</value>
+  </data>
+  <data name="NewWarningShouldSelectFiles" xml:space="preserve">
+    <value>Anda harus memilih sekurang-kurangnya satu file untuk di upload!</value>
+  </data>
+  <data name="NewInfoFPPTooltip" xml:space="preserve">
+    <value>Lisensi diperoleh melalui produk kotak retail</value>
+  </data>
+  <data name="NewInfoOEMTooltip" xml:space="preserve">
+    <value>Lisensi Preinstalled diperoleh bersamaan dengan mesin</value>
+  </data>
+  <data name="NewInfoVLSTooltip" xml:space="preserve">
+    <value>Lisensi diperoleh melalui kontrak Volume License</value>
+  </data>
+  <data name="NewInfoTextAreaAzure" xml:space="preserve">
+    <value>Harap, sedetail mungkin</value>
+  </data>
+  <data name="NewExtensionFilesConstraint" xml:space="preserve">
+    <value>File ini bukan format .png / .jpg / .pdf. Harap pastikan ekstensi file.</value>
+  </data>
+  <data name="NewFilesQtyConstraint" xml:space="preserve">
+    <value>Anda tidak dapat mengunggah lebih dari 100 file secara bersamaan. Silahkan coba lagi</value>
+  </data>
+  <data name="NewLargerFilesConstraint" xml:space="preserve">
+    <value>File ini lebih panjang dari 5 Mb. Harap pastikan ukuran file</value>
+  </data>
+</root>

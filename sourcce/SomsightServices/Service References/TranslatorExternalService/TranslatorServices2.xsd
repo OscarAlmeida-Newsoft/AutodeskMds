@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/SharedEntities" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SharedEntities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:12312/TranslatorServices.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfTranslatorFileModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TranslatorFileModel" nillable="true" type="tns:TranslatorFileModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTranslatorFileModel" nillable="true" type="tns:ArrayOfTranslatorFileModel" />
+  <xs:complexType name="TranslatorFileModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApplyLeadsTemplate" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IsForDeveloperUse" type="xs:boolean" />
+      <xs:element minOccurs="0" name="TextIdentifier" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TranslatedText" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TranslatorFileModel" nillable="true" type="tns:TranslatorFileModel" />
+  <xs:complexType name="NS_tblTranslatorLanguage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreatedById" type="ser:guid" />
+      <xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FlagPath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Status" type="xs:boolean" />
+      <xs:element minOccurs="0" name="UpdatedById" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="UpdatedDate" nillable="true" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NS_tblTranslatorLanguage" nillable="true" type="tns:NS_tblTranslatorLanguage" />
+  <xs:complexType name="ProcessResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MessageDetails" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProcessResults" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+  <xs:complexType name="ArrayOfNS_tblTranslatorLanguageDropDown">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="NS_tblTranslatorLanguageDropDown" nillable="true" type="tns:NS_tblTranslatorLanguageDropDown" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfNS_tblTranslatorLanguageDropDown" nillable="true" type="tns:ArrayOfNS_tblTranslatorLanguageDropDown" />
+  <xs:complexType name="NS_tblTranslatorLanguageDropDown">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FlagPath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NS_tblTranslatorLanguageDropDown" nillable="true" type="tns:NS_tblTranslatorLanguageDropDown" />
+  <xs:complexType name="NS_TblTranslatorAdministrator">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApplyLeadsTemplate" type="xs:boolean" />
+      <xs:element minOccurs="0" name="CreatedById" type="ser:guid" />
+      <xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DefaultTextValue" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IsForDeveloperUse" type="xs:boolean" />
+      <xs:element minOccurs="0" name="TextIdentifier" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UpdatedById" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="UpdatedDate" nillable="true" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NS_TblTranslatorAdministrator" nillable="true" type="tns:NS_TblTranslatorAdministrator" />
+  <xs:complexType name="ArrayOfNS_TblTranslatorAdministrator">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="NS_TblTranslatorAdministrator" nillable="true" type="tns:NS_TblTranslatorAdministrator" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfNS_TblTranslatorAdministrator" nillable="true" type="tns:ArrayOfNS_TblTranslatorAdministrator" />
+  <xs:complexType name="NS_TblTranslationXLanguage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreatedById" type="ser:guid" />
+      <xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="LanguageId" type="xs:int" />
+      <xs:element minOccurs="0" name="TranslationAdministrationId" type="xs:int" />
+      <xs:element minOccurs="0" name="TranslationText" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UpdatedById" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="UpdatedDate" nillable="true" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NS_TblTranslationXLanguage" nillable="true" type="tns:NS_TblTranslationXLanguage" />
+  <xs:complexType name="ArrayOfNS_TblTranslationXLanguage">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="NS_TblTranslationXLanguage" nillable="true" type="tns:NS_TblTranslationXLanguage" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfNS_TblTranslationXLanguage" nillable="true" type="tns:ArrayOfNS_TblTranslationXLanguage" />
+</xs:schema>

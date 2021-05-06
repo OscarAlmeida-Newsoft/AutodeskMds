@@ -1,0 +1,902 @@
+﻿@using Affidavit.Models
+@using Affidavit.Utils
+@model FamilyViewModel
+
+<script>
+    var maxFilesQty = 100;
+    var lastFilesQty;
+
+    var _lastLicenseValue;
+
+    var _lastCounterForUpdate;
+
+    $(document).ready(function () {
+        //$(".add-button").click(function () {
+        //    debugger;
+        //    var brothers = $(this).parent().siblings();
+        //    for (i = 0; i < brothers.length; i++) {
+        //        if (i != 0) {
+
+        //            if (brothers[i].firstElementChild.getAttribute("type") == "text") {
+        //                brothers[i].firstElementChild.setAttribute("type", "hidden");
+        //            } else {
+        //                brothers[i].firstElementChild.setAttribute("type", "text");
+        //            }
+        //        }
+        //    }
+        //});
+        $("#azureSi").click(function () {
+            $("#azureSi").closest("div .family-tabcontent").find("textarea").removeAttr('readonly');
+        });
+
+        $("#azureNo").click(function () {
+            $("#azureNo").closest("div .family-tabcontent").find("textarea").attr('readonly', 'readonly');
+            $("#azureSi").closest("div .family-tabcontent").find("textarea").text("");
+        });
+
+        $(".upload-button").click(function () {
+            debugger;
+            var texto = $(this).siblings().text();
+            var numeroArchivos = parseInt(texto.substring(1, texto.length - 1));
+            lastFilesQty = numeroArchivos;
+            
+            if (numeroArchivos >= maxFilesQty) {
+                $("#images-productid").attr('disabled', 'disabled');
+                $("#updload-files-btn").attr('disabled', 'disabled');
+            } else {
+                $("#images-productid").removeAttr('disabled');
+                $("#updload-files-btn").removeAttr('disabled');
+            }
+
+            _lastCounterForUpdate = $(this).siblings().first();
+
+            var productVersion = $(this).data('version');
+            var productoBlur = {
+                productName: $(this).data("productname") + " " + productVersion,
+                productId: $(this).data("productid")
+            };
+            var brothers = $(this).parent().siblings();
+
+            $('#modal').fadeIn('slow');
+            //$('#modal').show();
+            $("#opacidad").fadeIn('slow');
+            $("#modal").attr("data-productid", productoBlur.productId)
+            $("#modal").attr("data-qtyinstalled", $(this).parent().siblings().find(".NS-Installed").val())
+            $("#modal").attr("data-qtyvls", $(this).parent().siblings().find(".NS-VLS").val() == "" ? 0 : $(this).parent().siblings().find(".NS-VLS").val());
+            $("#modal").attr("data-qtyoem", $(this).parent().siblings().find(".NS-OEM").val() == "" ? 0 : $(this).parent().siblings().find(".NS-OEM").val());
+            $("#modal").attr("data-qtyfpp", $(this).parent().siblings().find(".NS-FPP").val() == "" ? 0 : $(this).parent().siblings().find(".NS-FPP").val());
+            $("#modal-product-name").text(productoBlur.productName)
+            //$('.popup-overlay').fadeIn('slow');
+            //$('.popup-overlay').height($(window).height());
+
+            //filesList
+            loadFilesFunction(productoBlur.productId);
+
+            return false;
+        });
+
+
+        //==================================================
+        $('.cerrar').click(function () {
+            $('#modal').fadeOut('slow');
+            $("#opacidad").fadeOut('slow');
+        });
+
+        $(".especial_03 td .specify").click(function () {
+            $(this).toggleClass("activo");
+            $(this).parent().parent().find("td:nth-child(3) input, td:nth-child(4) input, td:nth-child(5) input").toggleClass("inadvertido");
+            $(this).parent().parent().find("td:nth-child(3), td:nth-child(4), td:nth-child(5)").toggleClass("bordem");
+        });
+        //==================================================
+
+        $("#updload-files-btn").click(function (e) {
+            debugger;
+            e.preventDefault();
+            var inputFileImages = $('#images-productid')[0].files;
+
+            if (inputFileImages.length > 0) {
+
+                if ((lastFilesQty + inputFileImages.length) > maxFilesQty) {
+                    //bootbox.alert($("#NewFilesQtyConstraint").text().replace("{{filesqty}}", maxFilesQty));
+                    //$('.bootbox-body').css("font-size", "14px");
+
+                    semaphore.showError("", $("#NewFilesQtyConstraint").text().replace("{{filesqty}}", maxFilesQty));
+                    $('#images-productid').val("");
+                    return;
+                }
+
+                loadingDiv.show();
+
+                var images = new FormData();
+
+                for (var i = 0; i < inputFileImages.length; i++) {
+                    images.append("file[" + i + "]", inputFileImages[i])
+                }
+
+                images.append("pLeadID", $('#LeadID').text());
+                images.append("pCompanyID", $('#CompanyIDLabel').text());
+                images.append("pCampaignID", $('#CampaignIDLabel').text());
+                images.append("pProductID", $("#modal").attr("data-productid"));
+                images.append("pQtyInstalled", $("#modal").attr("data-qtyinstalled"));
+                images.append("pQtyVLS", $("#modal").attr("data-qtyvls"));
+                images.append("pQtyOEM", $("#modal").attr("data-qtyoem"));
+                images.append("pQtyFPP", $("#modal").attr("data-qtyfpp"));
+
+
+                $.ajax({
+                    url: $('#NS_UrlActionSubmitFile').text(),
+                    data: images,
+                    type: 'POST',
+                    processData: false,
+                    contentType: false,
+                }).done(function (data) {
+                    debugger;
+                    console.log(data);
+                    if (data.exito == 2) {
+                        //bootbox.alert($("#NewExtensionFilesConstraint").text().replace("{{filename}}", data.fileName));
+                        //$('.bootbox-body').css("font-size", "14px");
+                        semaphore.showError("", $("#NewExtensionFilesConstraint").text().replace("{{filename}}", data.fileName));
+                    }
+                    else if (data.exito == 3) {
+                        //bootbox.alert($("#NewLargerFilesConstraint").text().replace("{{filename}}", data.fileName));
+                        //$('.bootbox-body').css("font-size", "14px");
+
+                        semaphore.showError("", $("#NewLargerFilesConstraint").text().replace("{{filename}}", data.fileName));
+                    } else if (data.exito == 4) {
+                        //bootbox.alert($("#NewFilesQtyConstraint").text().replace("{{filesqty}}", maxFilesQty));
+                        //$('.bootbox-body').css("font-size", "14px");
+
+                        semaphore.showError("", $("#NewFilesQtyConstraint").text().replace("{{filesqty}}", maxFilesQty));
+                    }else {
+                        loadFilesFunction($("#modal").attr("data-productid"))
+                    }
+                    loadingDiv.hide();
+                    $('#images-productid').val("");
+
+                    //console.log(data);
+                }).fail(function (err) {
+                    debugger;
+                    loadingDiv.hide();
+                    console.log(err);
+                    $('#images-productid').val("");
+                });
+            }
+            else {
+                //bootbox.alert($("#NewWarningShouldSelectFiles").text());
+                //$('.bootbox-body').css("font-size", "14px");
+
+                semaphore.showError("", $("#NewWarningShouldSelectFiles").text());
+            }
+
+        });
+
+        $("#images-productid").change(function () {
+            var files = $("#images-productid")[0].files;
+            var extensions = ["png", "jpg", "jpeg", "pdf"];
+            var minSizeAllowed = 5242880;
+
+            if (files.length > 0) {
+                for (var i = 0; i < files.length; i++) {
+
+                    var fileExt = files[i].name.slice((files[i].name.lastIndexOf(".") - 1 >>> 0) + 2);
+                    var fileExt = fileExt.toLowerCase();
+
+                    if (!extensions.includes(fileExt)) {
+                        //bootbox.alert($("#NewExtensionFilesConstraint").text().replace("{{filename}}", files[i].name));
+                        //$('.bootbox-body').css("font-size", "14px");
+
+                        semaphore.showError("", $("#NewExtensionFilesConstraint").text().replace("{{filename}}", files[i].name));
+                        $('#images-productid').val("");
+                        return;
+                    }
+
+                    if (files[i].size > minSizeAllowed) { // Check the constraint
+                        //bootbox.alert($("#NewLargerFilesConstraint").text().replace("{{filename}}", files[i].name));
+                        //$('.bootbox-body').css("font-size", "14px");
+
+                        semaphore.showError("", $("#NewLargerFilesConstraint").text().replace("{{filename}}", files[i].name));
+                        $('#images-productid').val("");
+                        return;
+                    }
+                }
+            }
+        });
+
+    });
+
+    $(document).on("focusin", ".installedLicense", function (e) {
+        _lastLicenseValue = parseInt($(this).val());
+        //console.log(_currentValue);
+    });
+
+    $(document).on("focusout", ".installedLicense", function (e) {
+        debugger;
+        var _currentObject = $(this);
+        var _currentLicenseValue = parseInt($(this).val());
+
+        var gapObject = $(this).parent().siblings().find(".NS-GAP");
+        var gapValue = parseInt(gapObject.text());
+
+        //si el valor ingresado es distinto al que ya estaba
+        if (_lastLicenseValue != _currentLicenseValue) {
+            //Si se ingreso un valor distinto de 0
+            if (_currentLicenseValue != 0) {
+                var total = parseInt(gapObject.text()) + (_currentLicenseValue - _lastLicenseValue);
+                //Si es congruente la informaciónde los modelos con respecto a las licencias en uso (GAP)
+                //Si se ingreso un valor valido es decir un valor que cumple que _currentLicenseValue >= FPP + OEM + VLS
+                if (total >= 0) {
+                    gapObject.text(total);
+
+                    //Se hace visiple el boton para ampliar los modelos adicionales
+                    if ($(this).siblings().first().hasClass("inactivo")) {
+                        $(this).siblings().first().toggleClass("inactivo");
+                    }
+                    if ($(this).parent().parent().find("td p.cantidades").hasClass("invisible")) {
+                        $(this).parent().parent().find("td p.cantidades").toggleClass("invisible")
+                    }
+
+                    if ($(this).parent().parent().find("td img.upload-button").hasClass("inactivo")) {
+                        $(this).parent().parent().find("td img.upload-button").toggleClass("inactivo");
+                    }
+
+                }
+                    //Si es incongruente la informaciónde los modelos con respecto a las licencias en uso (GAP)
+                else {
+                    debugger;
+                    //bootbox.alert($("#NewWarningGAP").text());
+                    //$('.bootbox-body').css("font-size", "14px");
+
+                    semaphore.showError("", $("#NewWarningGAP").text());
+                    $(this).val(_lastLicenseValue);
+                }
+            }
+                //Si ingreso un valor igual a 0
+            else {
+
+                //Consulta si hay imagenes o no para ese producto
+                $.ajax({
+                    url: $('#NS_UrlActionFilesCountByProduct').text() + "?pCompanyID=" + $('#CompanyID').val() + "&pCampaignID=" + $('#CampaignID').val() + "&pProductID=" + _currentObject.data("productid"),
+                    type: 'POST'
+                }).done(function (data) {
+
+                    debugger;
+                    //Si la cantidad de archivos para ese producto es mayor de 0 se borran las imagenes y registros de base de datos de dichas imagenes
+                    if (data.filesAmount > 0) {
+                        //Se lanza alerta advirtiendo al usuario que hay archivos que pueden ser borrados
+                        //bootbox.confirm($('#NewConfirmDeleteFiles').text() + " " + "(" + _currentObject.data("productname") + " " + _currentObject.data("version") + ")", function (eleccion) {
+                        //    $('.bootbox-body').css("font-size", "14px");
+                        //    //Si el usuario decide hacer 0 las licencias se borran todas las imagenes
+                        //    if (eleccion == true) {
+                        //        loadingDiv.show();
+                        //        $.ajax({
+                        //            url: $('#NS_UrlActionDeleteAllFilesByProduct').text() + "?pLeadID=" + $('#LeadID').text() + "&pCompanyID=" + $('#CompanyID').val() + "&pCampaignID=" + $('#CampaignID').val() + "&pProductID=" + _currentObject.data("productid"),
+                        //            type: 'POST'
+                        //        }).done(function () {
+                        //            debugger;
+                        //            //Se limpia la info registrada para ese  producto
+                        //            loadingDiv.hide();
+                        //            clearProductInfo(gapObject, _currentObject)
+                        //        }).fail(function (err) {
+                        //            debugger;
+                        //            loadingDiv.hide();
+                        //            _currentObject.val(_lastLicenseValue);
+                        //        });
+
+
+                        //    }
+                        //        //Si el usuario cancela el proceso de hacer las licencias 0 entonces se devuelven las licencias al valor que estaban
+                        //    else {
+                        //        debugger;
+                        //        loadingDiv.hide();
+                        //        _currentObject.val(_lastLicenseValue);
+                        //    }
+                        //});
+                        //$('.bootbox-body').css("font-size", "14px");
+
+
+                        semaphore.showAtention(
+                            "",
+                            $('#NewConfirmDeleteFiles').text() + " " + "(" + _currentObject.data("productname") + " " + _currentObject.data("version") + ")",
+                            function () {
+                                loadingDiv.show();
+                                $.ajax({
+                                    url: $('#NS_UrlActionDeleteAllFilesByProduct').text() + "?pLeadID=" + $('#LeadID').text() + "&pCompanyID=" + $('#CompanyID').val() + "&pCampaignID=" + $('#CampaignID').val() + "&pProductID=" + _currentObject.data("productid"),
+                                    type: 'POST'
+                                }).done(function () {
+                                    debugger;
+                                    //Se limpia la info registrada para ese  producto
+                                    loadingDiv.hide();
+                                    clearProductInfo(gapObject, _currentObject)
+                                }).fail(function (err) {
+                                    debugger;
+                                    loadingDiv.hide();
+                                    _currentObject.val(_lastLicenseValue);
+                                });
+                            },
+                            function () {
+                                loadingDiv.hide();
+                                _currentObject.val(_lastLicenseValue);
+                            }
+                        );
+                    }
+                        //Si no hay archivos registrados en base de datos se baja el numero de licencias sin problemas
+                    else {
+                        //Se limpia la info registrada para ese  producto
+                        clearProductInfo(gapObject, _currentObject);
+                        loadingDiv.hide();
+                    }
+                }).fail(function (err) {
+                    debugger;
+                    loadingDiv.hide();
+                    _currentObject.val(_lastLicenseValue);
+                });
+            }
+        }
+    });
+
+    function clearProductInfo(gapObject, _currentObject) {
+        debugger;
+        gapObject.text("0");
+
+
+        if (!_currentObject.parent().parent().find("td:nth-child(3) input.NS-VLS, td:nth-child(4) input.NS-OEM, td:nth-child(5) input.NS-FPP").first().hasClass("inadvertido")) {
+            _currentObject.parent().parent().find("td:nth-child(6) img").toggleClass("inactivo")
+            _currentObject.parent().parent().find("td:nth-child(3) input.NS-VLS, td:nth-child(4) input.NS-OEM, td:nth-child(5) input.NS-FPP").toggleClass("inadvertido")
+            _currentObject.parent().parent().find("td:nth-child(3) input.NS-VLS, td:nth-child(4) input.NS-OEM, td:nth-child(5) input.NS-FPP").each(function () { $(this).val(0) })
+            _currentObject.parent().parent().find("td:nth-child(6) p").toggleClass("invisible")
+            _currentObject.parent().parent().find("td:nth-child(3), td:nth-child(4), td:nth-child(5)").toggleClass("bordem");
+        }
+
+        _currentObject.siblings().first().removeClass("activo");
+        _currentObject.siblings().parent().find("p").addClass("inactivo");
+        _currentObject.parent().parent().find("td:nth-child(6) img").addClass("inactivo");
+        _currentObject.parent().parent().find("td:nth-child(6) p").addClass("invisible");
+        _currentObject.parent().parent().find("td:nth-child(6) p").text("(0)");
+    }
+
+    function loadFilesFunction(pProductID) {
+        debugger;
+
+        var url = $('#NS_UrlActionLoadFiles').text() + "?pCompanyID=" + $('#CompanyID').val() + "&pCampaignID=" + $('#CampaignID').val() + "&pProductID=" + pProductID;
+
+        $.ajax({
+            url: $('#NS_UrlActionLoadFiles').text() + "?pCompanyID=" + $('#CompanyID').val() + "&pCampaignID=" + $('#CampaignID').val() + "&pProductID=" + pProductID,
+            type: 'POST',
+            processData: false,
+            contentType: false,
+        }).done(function (data) {
+            debugger;
+            $('#filesList').html(data);
+            var productQty = 0;
+            if ($("#filesList").find("h5").hasClass("no-files")) {
+                productQty = 0;               
+            } else {
+                productQty = parseInt($(".modal_files").first()[0].childElementCount);
+            }
+
+            _lastCounterForUpdate.text("(" + productQty + ")");
+
+            if (productQty >= maxFilesQty) {
+                $("#images-productid").attr('disabled', 'disabled');
+                $("#updload-files-btn").attr('disabled', 'disabled');                
+            } else {
+                $("#images-productid").removeAttr('disabled');
+                $("#updload-files-btn").removeAttr('disabled');
+            }
+
+            $(".modal_files li:even").addClass('alt');
+            loadingDiv.hide();
+        }).fail(function (err) {
+            debugger;
+            loadingDiv.hide();
+            console.log(err);
+        });
+
+    }
+
+</script>
+
+<div class="seccion pagina_sencilla">
+
+    <div class="centro">
+        <div class="col_izk">
+            <div id="mostrar">
+                <p class="show">[+] MORE</p>
+                <p class="hide">[-] HIDE</p>
+            </div>
+            <ul id="tabs_vertical">
+                @foreach (var family in Model.Families)
+                {
+                    <li><span class="logo"><img src="~/Content/Images/@family.Image" width="26" height="26"></span><span class="palabras">@family.Nombre</span></li>
+                }
+            </ul>
+        </div>
+
+        <div class="col_der formulario">
+
+            @{ var k = 0; var w = 0; var z = 0; var a = 0; int totalVersion = 0; int totalFamily = 0; int totalCAL = 0;}
+            @foreach (var family in Model.Families)
+            {
+                <div class="pagina_derecha_sencilla family-tabcontent">
+
+                    <p class="logo_grande"><img src="~/Content/Images/@family.ImageLarge" width="@family.ImageLargeWidth" height="@family.ImageLargeHeight"></p>
+
+                    @*Si no es AZURE*@
+                    @if (family.FamiliaID != 13)
+                    {
+
+                        <div class="acordeon familias" id="@family.FamiliaID" data-iswserver="@{ if (family.Nombre == "WINDOWS SERVER") { @Html.Raw(1); } else { @Html.Raw(0); } }"
+                             data-issqlserver="@{ if (family.Nombre == "SQL SERVER") { @Html.Raw(1); } else { @Html.Raw(0); } }">
+
+                            @foreach (var item in family.Versiones)
+                            {
+                                var id = String.Concat(family.FamiliaID, item.version);
+                                var Nid = id.Replace(" ", "").Replace(".", "");
+                                var inputId = String.Concat(family.FamiliaID, item.version);
+                                var NInputId = id.Replace(" ", "").Replace(".", "");
+                                var VLSInputId = String.Concat(NInputId, "VLS");
+                                var OEMInputId = String.Concat(NInputId, "OEM");
+                                var FPPInputId = String.Concat(NInputId, "FPP");
+                                var InstalledLicensesId = String.Concat(NInputId, "InstalledLicenses");
+                                var prodXVersion = family.Productos.Where(s => s.Version == item.version).OrderBy(m => m.DisplayOrder);
+                                var pos = 0;
+
+                                <h3 class="titulo" data-version="@item.version">@family.Nombre @item.version</h3>
+                                <div class="contenido version-content">
+                                    <fieldset @if (Model.IsFinal) { ViewContext.Writer.Write("disabled"); }>
+                                        <table border="0" cellspacing="0" cellpadding="0" class="especial_03">
+                                            <tr class="cabezote">
+                                                <td>@TranslatorHelper.TranslateTextByIdentifier("Old_Edicion")</td>
+                                                <td style="text-align:center;">@TranslatorHelper.TranslateTextByIdentifier("Old_LabelInstalledLicenses")</td>
+                                                <td style="text-align:center;" title="@TranslatorHelper.TranslateTextByIdentifier("Old_NewInfoVLSTooltip")">VLS</td>
+
+                                                @*@if (item.Flag)
+                                                    {*@
+                                                <td style="text-align:center;" title="@TranslatorHelper.TranslateTextByIdentifier("Old_NewInfoOEMTooltip")">OEM</td>
+                                                @*}
+                                                    else
+                                                    {
+                                                        <td style="text-align:center;" >WEB</td>
+                                                    }*@
+                                                <td style="text-align:center;" title="@TranslatorHelper.TranslateTextByIdentifier("Old_NewInfoFPPTooltip")">FPP</td>
+                                                <td style="text-align:center;">@TranslatorHelper.TranslateTextByIdentifier("Old_NewFiles")</td>
+                                            </tr>
+                                            @foreach (var produtosVersion in prodXVersion)
+                                            {
+                                                //totalVersion += produtosVersion.FPP + produtosVersion.OEM + produtosVersion.VLS + produtosVersion.WEB;
+                                                totalVersion += produtosVersion.InstalledLicenses;
+                                                //totalCAL += (produtosVersion.IsCal) ? (produtosVersion.FPP + produtosVersion.OEM + produtosVersion.VLS + produtosVersion.WEB) : 0;
+                                                totalCAL += (produtosVersion.IsCal) ? produtosVersion.InstalledLicenses : 0;
+                                                pos = pos + 1;
+                                                //activo = (pos % 2 == 0) ? "" : "active";
+                                                var _VLSInput = String.Concat(VLSInputId, pos);
+                                                var _OEMInput = String.Concat(OEMInputId, pos);
+                                                var _FPPInput = String.Concat(FPPInputId, pos);
+                                                var _InstalledLicenses = String.Concat(InstalledLicensesId, pos);
+                                                var _NombreProducto = (item.version == "Mac") ? produtosVersion.Nombre + " " + produtosVersion.ProductVersion : produtosVersion.Nombre;
+                                                var _productid = produtosVersion.Id;
+
+                                                <tr data-companyid='@Model.CompanyID' data-campaignid='@Model.CampaignID' data-productversion='@family.Nombre @item.version' data-iscal='@produtosVersion.IsCal'
+                                                    data-isfinalflag='@Model.IsFinal'>
+                                                    <td>
+                                                        @if (produtosVersion.IsCal)
+                                                        {
+                                                            <a href="#" title='@TranslatorHelper.TranslateTextByIdentifier("Old_UserCALHelp") @TranslatorHelper.TranslateTextByIdentifier("Old_DeviceCALHelp")'>
+                                                                <ul>
+                                                                    <li style="float:left; width:90px;">@Html.Label("", produtosVersion.NombreDisplay)</li>
+                                                                    <li style="float:left; width:120px; padding-left: 10px;"><img src="~/Content/Images/icono_ayuda.png" style="width: 12px; height:12px;margin-left: 30px;" /></li>
+                                                                </ul>
+                                                            </a>
+                                                        }
+                                                        else if (produtosVersion.NombreDisplay.Contains("Rmt Dsktp CAL"))
+                                                        {
+                                                            <a href="#" title='@TranslatorHelper.TranslateTextByIdentifier("Old_RemoteDesktopServicesCALHelp")'>
+                                                                <ul>
+                                                                    <li style="float:left; width:90px;">@Html.Label("", produtosVersion.NombreDisplay, new { style = "width: 120px;" })</li>
+                                                                    <li style="float:left; width:120px; padding-left: 10px;"><img src="~/Content/Images/icono_ayuda.png" style="width: 12px; height:12px; margin-left: 30px;" /></li>
+                                                                </ul>
+                                                            </a>
+                                                        }
+                                                        else if (produtosVersion.NombreDisplay.Contains("Core"))
+                                                        {
+                                                            <a href="#" title='@TranslatorHelper.TranslateTextByIdentifier("Old_CoreHelp")'>
+                                                                <ul>
+                                                                    <li style="float:left; width:90px;">@Html.Label("", produtosVersion.NombreDisplay, new { style = "width: 120px;" })</li>
+                                                                    <li style="float:left; width:120px; padding-left: 10px;"><img src="~/Content/Images/icono_ayuda.png" style="width: 12px; height:12px; margin-left: 30px;" /></li>
+                                                                </ul>
+                                                            </a>
+                                                        }
+                                                        else if (produtosVersion.NombreDisplay.Contains("CAL"))
+                                                        {
+                                                            <a href="#" title='@TranslatorHelper.TranslateTextByIdentifier("Old_CALHelp")'>
+                                                                <ul>
+                                                                    <li style="float:left; width:90px;">@Html.Label("", produtosVersion.NombreDisplay, new { style = "width: 120px;" })</li>
+                                                                    <li style="float:left; width:120px; padding-left: 10px;"><img src="~/Content/Images/icono_ayuda.png" style="width: 12px; height:12px; margin-left: 30px;" /></li>
+                                                                </ul>
+                                                            </a>
+                                                        }
+                                                        else
+                                                        {
+                                                            @Html.Label("", produtosVersion.NombreDisplay)
+                                                        }
+                                                        @Html.TextBox("IDProductos[" + k + "]", produtosVersion.Id, new { @hidden = true, @class = "TextHidden" })
+
+                                                        @*@Html.Label(_NombreProducto)*@
+                                                        @* Se cambia el helper @Html.Label(produtosVersion.NombreDisplay) por el siguiente debido a que en el nombre del *@
+                                                        @* producto puede llegar un punto (.) el cual genera problemas en la visualización *@
+
+                                                    </td>
+                                                    <td>
+                                                        @Html.TextBox("ProductosInstalledLicenses[" + k + "]", produtosVersion.InstalledLicenses, new
+                                                   {
+                                                       @class = "integerOnly inputChange isNotEmptyVLS installedLicense NS-Installed",
+                                                       @type = "text",
+                                                       @onkeypress = "return event.charCode >= 48 && event.charCode <= 57",
+                                                       @min = 0,
+                                                       @data_isinstalledlicenses = "1",
+                                                       @data_isvls = "0",
+                                                       @data_isweb = "0",
+                                                       @data_isoem = "0",
+                                                       @data_isfpp = "0",
+                                                       @data_productid = produtosVersion.Id,
+                                                       @data_productname = _NombreProducto,
+                                                       @data_productfamilyid = family.FamiliaID,
+                                                       @data_version = item.version,
+                                                       @style = "width:80%",
+                                                       @placeholder = ""
+
+                                               })
+                                                        @if (produtosVersion.InstalledLicenses > 0)
+                                                        {
+                                                            @*<img src="https://www.shareicon.net/data/512x512/2015/12/01/680797_button_512x512.png" alt="plus image" style="width:20%;margin-top: 7.205px;margin-left: 0px;padding-left: 3px; cursor:pointer; opacity: 0.7;"
+                                                                class="add-button" />*@
+                                                            <p title="@TranslatorHelper.TranslateTextByIdentifier("Old_NewLicenseTooltip")" class="specify add-button"></p>
+                                                        }
+                                                        else
+                                                        {
+                                                            @*<img hidden src="https://www.shareicon.net/data/512x512/2015/12/01/680797_button_512x512.png" alt="plus image" style="width:20%;margin-top: 7.205px;margin-left: 0px;padding-left: 3px; cursor:pointer; opacity: 0.7;"
+                                                                class="add-button" />*@
+                                                            <p title="@TranslatorHelper.TranslateTextByIdentifier("Old_NewLicenseTooltip")" class="specify add-button inactivo"></p>
+                                                        }
+
+                                                    </td>
+                                                    <td>
+                                                        @Html.TextBox("ProductosVLS[" + k + "]", produtosVersion.VLS == 0 ? "" : produtosVersion.VLS.ToString(), new
+                                                   {
+                                                       @class = "inadvertido integerOnly isNotEmptyVLS TextHidden NS-VLS",
+                                                       @type = "text",
+                                                       @onkeypress = "return event.charCode >= 48 && event.charCode <= 57",
+                                                       @min = 0,
+                                                       @data_isvls = "1",
+                                                       @data_isweb = "0",
+                                                       @data_isoem = "0",
+                                                       @data_isfpp = "0",
+                                                       @data_productid = produtosVersion.Id,
+                                                       @data_productname = _NombreProducto,
+                                                       @data_productfamilyid = family.FamiliaID,
+                                                       @placeholder = "VLS",
+                                                       @title = @TranslatorHelper.TranslateTextByIdentifier("Old_NewInfoVLSTooltip").ToString()
+                                                   })
+                                                    </td>
+                                                    <td>
+                                                        @*@if (item.Flag)
+                                                            {*@
+                                                        @Html.TextBox("ProductosOEM[" + z + "]", produtosVersion.OEM == 0 ? "" : produtosVersion.OEM.ToString(), new
+                                                   {
+                                                       @class = "inadvertido integerOnly TextHidden NS-OEM",
+                                                       @type = "text",
+                                                       @onkeypress = "return event.charCode >= 48 && event.charCode <= 57",
+                                                       @min = 0,
+                                                       @data_isoem = "1",
+                                                       @data_isweb = "0",
+                                                       @data_isvls = "0",
+                                                       @data_isfpp = "0",
+                                                       @data_productid = produtosVersion.Id,
+                                                       @data_productname = _NombreProducto,
+                                                       @placeholder = "OEM",
+                                                       @title = @TranslatorHelper.TranslateTextByIdentifier("Old_NewInfoOEMTooltip").ToString()
+                                                   })
+                                                        @Html.TextBox("IDProductosOEM[" + z + "]", produtosVersion.Id, new { @hidden = true, @class = "TextHidden" })
+                                                        @{
+                                                            z++;
+                                                        }
+
+                                                        @*}
+                                                             else
+                                                             {
+                                                                 @Html.TextBox("ProductosWEB[" + w + "]", produtosVersion.WEB, new
+                                                            {
+                                                                @class = "form-control integerOnly inputChange TextHidden",
+                                                                @type = "hidden",
+                                                                @onkeypress = "return event.charCode >= 48 && event.charCode <= 57",
+                                                                @min = 0,
+                                                                @data_isweb = "1",
+                                                                @data_isoem = "0",
+                                                                @data_isvls = "0",
+                                                                @data_isfpp = "0",
+                                                                @data_productid = produtosVersion.Id,
+                                                                @data_productname = _NombreProducto,
+                                                                @hidden = true
+                                                            })
+                                                                 @Html.TextBox("IDProductosWEB[" + w + "]", produtosVersion.Id, new { @hidden = true, @class = "TextHidden" })
+                                                                 w++;
+                                                             }*@
+
+                                                    </td>
+                                                    <td>
+                                                        @Html.TextBox("ProductosFPP[" + k + "]", produtosVersion.FPP == 0 ? "" : produtosVersion.FPP.ToString(), new
+                                                   {
+                                                       @class = "inadvertido integerOnly TextHidden NS-FPP",
+                                                       @type = "text",
+                                                       @onkeypress = "return event.charCode >= 48 && event.charCode <= 57",
+                                                       @min = 0,
+                                                       @data_isfpp = "1",
+                                                       @data_isoem = "0",
+                                                       @data_isvls = "0",
+                                                       @data_isweb = "0",
+                                                       @data_productid = produtosVersion.Id,
+                                                       @data_productname = _NombreProducto,
+                                                       @placeholder = "FPP",
+                                                       @title = @TranslatorHelper.TranslateTextByIdentifier("Old_NewInfoFPPTooltip").ToString()
+                                                   })
+                                                    </td>
+                                                    <td>
+                                                        @if (Model.IsFinal)
+                                                        {
+                                                            if (produtosVersion.InstalledLicenses > 0)
+                                                            {
+
+                                                                <img src="~/Content/Images/icono_files.png"
+                                                                     data-version="@item.version"
+                                                                     data-productname="@_NombreProducto"
+                                                                     data-productid="@produtosVersion.Id"
+                                                                     width="25"
+                                                                     height="24"
+                                                                     alt="files"
+                                                                     title="@TranslatorHelper.TranslateTextByIdentifier("Old_NewLicenseTestTooltip")"
+                                                                     class="files upload-button inactivo">
+                                                                <p class="cantidades">(@produtosVersion.FilesAmount)</p><!--Remover class invisible con jQinvisible  -->
+                                                            }
+                                                            else
+                                                            {
+                                                                <img src="~/Content/Images/icono_files.png"
+                                                                     data-version="@item.version"
+                                                                     data-productname="@_NombreProducto"
+                                                                     data-productid="@produtosVersion.Id"
+                                                                     width="25"
+                                                                     height="24"
+                                                                     alt="files"
+                                                                     title="@TranslatorHelper.TranslateTextByIdentifier("Old_NewLicenseTestTooltip")"
+                                                                     class="files upload-button inactivo">
+                                                                <p class="cantidades invisible">(0)</p>
+                                                                                                 <!--Remover class invisible con jQuery-->
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            if (produtosVersion.InstalledLicenses > 0)
+                                                            {
+
+                                                                <img src="~/Content/Images/icono_files.png"
+                                                                     data-version="@item.version"
+                                                                     data-productname="@_NombreProducto"
+                                                                     data-productid="@produtosVersion.Id"
+                                                                     width="25"
+                                                                     height="24"
+                                                                     alt="files"
+                                                                     title="@TranslatorHelper.TranslateTextByIdentifier("Old_NewLicenseTestTooltip")"
+                                                                     class="files upload-button">
+                                                                <p class="cantidades">(@produtosVersion.FilesAmount)</p><!--Remover class invisible con jQinvisible  -->
+                                                            }
+                                                            else
+                                                            {
+                                                                <img src="~/Content/Images/icono_files.png"
+                                                                     data-version="@item.version"
+                                                                     data-productname="@_NombreProducto"
+                                                                     data-productid="@produtosVersion.Id"
+                                                                     width="25"
+                                                                     height="24"
+                                                                     alt="files"
+                                                                     title="@TranslatorHelper.TranslateTextByIdentifier("Old_NewLicenseTestTooltip")"
+                                                                     class="files upload-button inactivo">
+                                                                <p class="cantidades invisible">(0)</p>
+                                                                                                 <!--Remover class invisible con jQuery-->
+                                                            }
+                                                        } 
+                                                    </td>
+                                                    <td hidden>@Html.Label("GAP", (produtosVersion.InstalledLicenses - produtosVersion.VLS - produtosVersion.OEM - produtosVersion.FPP).ToString(), new { @class = "NS-GAP" })</td>
+
+
+
+                                                    @{if (family.FamiliaID == 3 || family.FamiliaID == 4)
+                                                        {
+                                                            if (produtosVersion.InstalledLicenses > 0)
+                                                            {
+                                                                <td hidden>
+                                                                    @Html.TextBox("notNull[" + k + "]", produtosVersion.InstalledLicenses, new
+                                                   {
+                                                       @class = "server-not-zero",
+                                                       @data_productfamily = family.FamiliaID,
+                                                       @data_productid = produtosVersion.Id,
+                                                       @data_productname = _NombreProducto,
+                                                       @data_version = item.version,
+                                                       @hidden = true
+                                                   })
+                                                                </td>
+                                                            }
+                                                        }
+                                                    }
+
+                                                </tr>
+                                                            k++;
+                                                        }
+
+                                        </table>
+                                    </fieldset>
+                                    <div class="total"><p>TOTAL @family.Nombre @item.version</p><h5>@totalVersion</h5></div>
+                                    @{ totalFamily += totalVersion; totalVersion = 0;}
+                                </div>
+                                        }
+                        </div>
+                        <div class="gran_total">
+                            <p>TOTAL @family.Nombre</p><h5 class="LicensesxFamily" id="totalFamilia">
+                                @{ if (totalFamily == 0)
+                                    {
+                                        @Html.Raw(0);
+                                    }
+                                    else
+                                    {
+                                        @Html.Raw((totalFamily - totalCAL));
+                                    }
+                                }
+                            </h5>
+                        </div>
+                        <br />
+                                    if (family.FamilyHasCAL)
+                                    {
+                                        <div class="gran_total">
+                                            <p>TOTAL @family.Nombre CAL</p><h5 class="LicensesxFamilyCAL">@totalCAL</h5>
+                                        </div>
+                                    }
+
+                                    { totalFamily = 0; totalCAL = 0; }
+
+                                    <label>@TranslatorHelper.TranslateTextByIdentifier("Old_ComentariosAdicinales"):</label>
+                                    }
+                                    else
+                                    {
+
+                                        <fieldset class="set" @if (Model.IsFinal) { ViewContext.Writer.Write("disabled"); }>
+                                            <div class="radios_horizontales">
+                                                <div>
+                                                    <label> @TranslatorHelper.TranslateTextByIdentifier("Old_NewAzure1Question") </label>
+                                                </div>
+                                                @if (Model.AzureFlag == null || Model.AzureFlag == false)
+                                                {
+                                                    <div class="automatico">
+                                                        @Html.RadioButtonFor(model => model.AzureFlag, "true", new { id = "azureSi" })
+                                                        @Html.Label("azureSi", @TranslatorHelper.TranslateTextByIdentifier("Old_NewLabelSiAzure"))
+                                                    </div>
+                                                    <div class="automatico">
+                                                        @Html.RadioButtonFor(model => model.AzureFlag, "false", new { id = "azureNo", @checked = "true" })
+                                                        @Html.Label("azureNo", @TranslatorHelper.TranslateTextByIdentifier("Old_NewLabelNoAzure"))
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="automatico">
+                                                        @Html.RadioButtonFor(model => model.AzureFlag, "true", new { id = "azureSi", @checked = "true" })
+                                                        @Html.Label("azureSi", @TranslatorHelper.TranslateTextByIdentifier("Old_NewLabelSiAzure"))
+                                                    </div>
+                                                    <div class="automatico">
+                                                        @Html.RadioButtonFor(model => model.AzureFlag, "false", new { id = "azureNo" })
+                                                        @Html.Label("azureNo", @TranslatorHelper.TranslateTextByIdentifier("Old_NewLabelNoAzure"))
+                                                    </div>
+                                                }
+
+
+                                            </div>
+                                        </fieldset>
+                                        <label> @TranslatorHelper.TranslateTextByIdentifier("Old_NewAzure2Question") </label>
+                                    }
+
+                    @*SI NO ES AZURE*@
+                    <fieldset @if (Model.IsFinal) { ViewContext.Writer.Write("disabled"); }>
+                        @if (family.FamiliaID != 13 || (family.FamiliaID == 13 && Model.AzureFlag == true))
+                        {
+                            @Html.TextArea("ProductosComentariosAdicionales[" + a + "]", family.Comentario, new { @class = "form-control", @rows = "5", @cols = "290", @maxlength = "500", @style= "resize: vertical;" })
+                        }
+                        else
+                        {
+                            @Html.TextArea("ProductosComentariosAdicionales[" + a + "]", family.Comentario, new { @class = "form-control", @rows = "5", @cols = "290", @maxlength = "500", @style = "resize: vertical;min-height: 350px;margin-bottom:3px;",@placeholder= @TranslatorHelper.TranslateTextByIdentifier("Old_NewInfoTextAreaAzure").ToString(), @readonly = "readonly" })
+                        }
+                    </fieldset>
+                    @Html.TextBox("IDFamilyList[" + a + "]", family.FamiliaID, new { @hidden = true, @class = "TextHidden" })
+                    @{ a++; }
+
+
+
+                    @if (family.FamiliaID == 3)
+                    {
+                        <div id="dvDetailsResults">
+                            <fieldset @if (Model.IsFinal) { ViewContext.Writer.Write("disabled"); }>
+                                @{
+                                    Html.RenderAction("GetAdditionalQuestions", "MDS", new { pCampaignId = Model.CampaignID, pCompanyId = Model.CompanyID, pLeadID = Model.LeadID, pIsFinal = Model.IsFinal });
+                                }
+                            </fieldset>
+                        </div>
+
+                                    }
+
+                    @if (family.FamiliaID == 4)
+                    {
+                        <div id="dvDetailsResultsSQL">
+                            <fieldset @if (Model.IsFinal) { ViewContext.Writer.Write("disabled"); }>
+                                @{
+                                    Html.RenderAction("GetAdditionalQuestionsSQL", "MDS", new { pCampaignId = Model.CampaignID, pCompanyId = Model.CompanyID, pLeadID = Model.LeadID, pIsFinal = Model.IsFinal });
+                                }
+                            </fieldset>
+                        </div>
+                                    }
+                </div>
+                                    }
+
+        </div>
+
+    </div>
+    <!--================================= CONTROLES ======================================-->
+    <div class="controles">
+        <div class="centro">
+            <ul class="bloques centro">
+                <li class="azul izk">
+                    <a href="#" target="_self" class="prev_paso_2"><span>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelPrev")</span></a>
+                </li>
+                @if (!Model.IsFinal)
+                {
+                    <li class="azul">
+                        <a href="#" target="_self" class="botonEnviar" data-tabnumber="2">
+                            <span>
+                                @TranslatorHelper.TranslateTextByIdentifier("Old_LabelBorrador").ToUpper()
+                            </span>
+                        </a>
+                    </li>
+                }
+                <li class="azul der">
+                    <a href="#" target="_self" class="next_paso_2"><span>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelNext")</span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--================================= CONTROLES ======================================-->
+</div>
+<!--================================= MODALES ======================================-->
+<div id="opacidad">
+</div>
+
+<div id="modal">
+    <div class="titulo">
+        <h2 id="modal-product-name"></h2>
+        <p class="cerrar">
+        </p>
+    </div>
+
+    <div class="contenido">
+
+        <input type="hidden" name="pCompanyId" id="pCompanyId" value="@Model.CompanyID" />
+        <input type="hidden" name="pCampaignID" id="pCampaignID" value="@Model.CampaignID" />
+        @*<input id="images-productid" type="file" name="file" multiple style="width: 70%; height:45px; margin-right:10%;" accept=".jpg, .jpeg, .png, .pdf" />
+            <button id="updload-files-btn" class="btn btn-primary" style="width: 20%;"></button>*@
+
+        @*<form>*@
+            <input id="images-productid" type="file" name="browse" accept=".jpg, .jpeg, .png, .pdf" multiple style="margin-bottom: 3px;">
+            <input id="updload-files-btn" type="submit" name="browse" value="@TranslatorHelper.TranslateTextByIdentifier("Old_NewUpload").ToUpper()">
+            <span>@TranslatorHelper.TranslateTextByIdentifier("Old_NewFileSpecs")</span>
+        @*</form>*@
+        
+
+        <div id="filesList" style="margin-top: 10px;">
+        </div>
+
+    </div>
+</div>
+

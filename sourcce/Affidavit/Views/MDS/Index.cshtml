@@ -1,0 +1,193 @@
+﻿@using Affidavit.Models
+@using Affidavit.Utils
+@model SoftwareUpdateViewModel
+
+<script type="text/javascript" src="~/Scripts/Custom/bootbox.js"></script>
+@*<script src="~/Scripts/sobrescrituas.js"></script>*@
+<script>
+    var tabNumber = '@Model.TabNumber';
+    var lenguaje = '@ViewBag.Lenguaje';
+</script>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.PageTitle = @TranslatorHelper.TranslateTextByIdentifier("Old_MicrosoftDevelopmentSummary");
+
+                               //var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+}
+
+<script type="text/javascript" src='@Url.Content("~/Scripts/Custom/IndexScripts.js")'></script>
+<link rel=StyleSheet href='@Url.Content("~/Content/custom/Estilos.css")' type="text/css">
+<link rel=StyleSheet href='@Url.Content("~/Content/estilos.css")' type="text/css" >
+<link rel="stylesheet" href='@Url.Content("~/Content/sandstone.bootstrap.css")' type="text/css" />
+
+
+<label id="AuthorizedLabel" hidden>@TranslatorHelper.TranslateTextByIdentifier("Old_AuthorizedChannelMessage")</label>
+<label id="ContratodVolumenLabel" hidden>@TranslatorHelper.TranslateTextByIdentifier("Old_ContratodVolumenMessage")</label>
+<label id="ChannelContactNameLabel" hidden>@TranslatorHelper.TranslateTextByIdentifier("Old_ChannelContactName")</label>
+<label id="ChannelPhoneLabel" hidden>@TranslatorHelper.TranslateTextByIdentifier("Old_ChannelPhone")</label>
+<label id="ChannelEmailLabel" hidden>@TranslatorHelper.TranslateTextByIdentifier("Old_ChannelEmail")</label>
+<label id="ConfirmLabel" hidden>@TranslatorHelper.TranslateTextByIdentifier("Old_ConfirmationMessage")</label>
+
+<label id="SoftwareAssuranceRadioButtonLabel" hidden>@TranslatorHelper.TranslateTextByIdentifier("Old_SoftwareAssuranceRadioButtonMessage")</label>
+<label id="NewLicencesRadioButtonLabel" hidden>@TranslatorHelper.TranslateTextByIdentifier("Old_NewLicencesRadioButtonMessage")</label>
+<label id="UpgradesRadioButtonLabel" hidden>@TranslatorHelper.TranslateTextByIdentifier("Old_UpgradesRadioButtonMessage")</label>
+<label id="AuthorizedRadioButtonLabel" hidden>@TranslatorHelper.TranslateTextByIdentifier("Old_AuthorizedRadioButtonMessage")</label>
+
+<label id="CompanyNameLabel" hidden>@TranslatorHelper.TranslateTextByIdentifier("Old_CompanyNameField")</label>
+<label id="CompanyContactNameLabel" hidden>@TranslatorHelper.TranslateTextByIdentifier("Old_CompanyContactNameField")</label>
+<label id="CompanyEmailLabel" hidden>@TranslatorHelper.TranslateTextByIdentifier("Old_CompanyEmailField")</label>
+<label id="CompanyPhoneLabel" hidden>@TranslatorHelper.TranslateTextByIdentifier("Old_CompanyPhoneField")</label>
+<label id="CompanyDateLabel" hidden>@TranslatorHelper.TranslateTextByIdentifier("Old_CompanyDateField")</label>
+<label id="ClientTypeLabel" hidden>@TranslatorHelper.TranslateTextByIdentifier("Old_TipoClienteMessage")</label>
+<label id="ProcesoCompraLabel" hidden>@TranslatorHelper.TranslateTextByIdentifier("Old_ProcesoCompraMessage")</label>
+<label id="InvoicingNameLabel" hidden>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelNombreExactoFacturacion")</label>
+<label id="EstLicenciamientoLabel" hidden>@TranslatorHelper.TranslateTextByIdentifier("Old_EstLicenciamientoMessage")</label>
+<label id="NumeroTotalEmpleadosPcsLabel" hidden>@TranslatorHelper.TranslateTextByIdentifier("Old_NumeroTotalEmpleadosPcsMessage")</label>
+<label id="NoMenorLabel" hidden>@TranslatorHelper.TranslateTextByIdentifier("Old_NoMenorMessage")</label>
+<label id="ModifiedNumberServers_Delete" hidden>@TranslatorHelper.TranslateTextByIdentifier("Old_ModifiedNumberServers_Delete")</label>
+<label id="NewOtherProduct" hidden>@TranslatorHelper.TranslateTextByIdentifier("Old_NewOtherProduct")</label>
+<label id="NewWarningGAP" hidden>@TranslatorHelper.TranslateTextByIdentifier("Old_NewWarningGAP")</label>
+<label id="NewWarningShouldSelectFiles" hidden>@TranslatorHelper.TranslateTextByIdentifier("Old_NewWarningShouldSelectFiles")</label>
+<label id="NewConfirmDeleteFiles" hidden>@TranslatorHelper.TranslateTextByIdentifier("Old_NewConfirmDeleteFiles")</label>
+<label id="NewLargerFilesConstraint" hidden>@TranslatorHelper.TranslateTextByIdentifier("Old_NewLargerFilesConstraint")</label>
+<label id="NewExtensionFilesConstraint" hidden>@TranslatorHelper.TranslateTextByIdentifier("Old_NewExtensionFilesConstraint")</label>
+<label id="NewFilesQtyConstraint" hidden>@TranslatorHelper.TranslateTextByIdentifier("Old_NewFilesQtyConstraint")</label>
+<label id="NewWarningMAXServers" hidden>@TranslatorHelper.TranslateTextByIdentifier("Old_NewWarningMAXServers")</label>
+
+@*CON EL NUEVO MODELO DE TRADUCCIONES*@
+<label id="TH_MDS_Modal_Success_With_Assessments_Title" hidden>@TranslatorHelper.TranslateTextByIdentifier("MDS_Modal_Success_With_Assessments_Title")</label>
+<label id="TH_MDS_Modal_Success_With_Assessments_Body" hidden>@TranslatorHelper.TranslateTextByIdentifier("MDS_Modal_Success_With_Assessments_Body")</label>
+
+<label id="TH_MDS_Modal_Success_Without_Assessments_Title" hidden>@TranslatorHelper.TranslateTextByIdentifier("MDS_Modal_Success_Without_Assessments_Title")</label>
+<label id="TH_MDS_Modal_Success_Without_Assessments_Body" hidden>@TranslatorHelper.TranslateTextByIdentifier("MDS_Modal_Success_Without_Assessments_Body")</label>
+
+
+
+<label id="NS_UrlActionGetAdditionalQuestions" class="hidden">@Url.Action("GetAdditionalQuestions", "MDS")</label>
+<label id="NS_UrlActionGetAdditionalQuestionsSQL" class="hidden">@Url.Action("GetAdditionalQuestionsSQL", "MDS")</label>
+<label id="NS_UrlActionGetNroServersbyCategory" class="hidden">@Url.Action("getNroServersbyCategory", "MDS")</label>
+<label id="NS_UrlActionSubmitFile" class="hidden">@Url.Action("SubmitFile", "MDS")</label>
+<label id="NS_UrlActionLoadFiles" class="hidden">@Url.Action("LoadProductFiles", "MDS")</label>
+<label id="NS_UrlActionDeleteFiles" class="hidden">@Url.Action("DeleteProductFiles", "MDS")</label>
+<label id="NS_UrlActionFilesCountByProduct" class="hidden">@Url.Action("FilesCountByProduct", "MDS")</label>
+<label id="NS_UrlActionDeleteAllFilesByProduct" class="hidden">@Url.Action("DeleteAllFilesByProduct", "MDS")</label>
+
+
+
+
+<label id="CheckBoxMessageLabel" hidden>@TranslatorHelper.TranslateTextByIdentifier("Old_CheckBoxMessage")</label>
+
+
+<label id="LeadID" hidden>@Model.LeadID</label>
+<label id="CompanyIDLabel" hidden>@Model.CompanyId</label>
+<label id="CampaignIDLabel" hidden>@Model.CampaignID</label>
+
+<div id="franja_verde" style="width:120%; margin-left: -11%">
+    <div class="centro">
+        <p class="margen"><img src="@Url.Content("~/Content/Images/icono_mds.png")" width="155" height="51"></p>
+        <ul id="tabs">
+            <li><span class="numero">1</span><span class="palabras">@TranslatorHelper.TranslateTextByIdentifier("Old_LabelEncabezado")</span></li>
+            <li><span class="numero">2</span><span class="palabras">@TranslatorHelper.TranslateTextByIdentifier("Old_LabelProductosMS")</span></li>
+            <li><span class="numero">3</span><span class="palabras">@TranslatorHelper.TranslateTextByIdentifier("Old_LabelInformacionAdicional")</span></li>
+        </ul>
+    </div>
+</div>
+
+<!--================================= TABS ======================================-->
+<!--================================= PAGINA ======================================-->
+<div id="pagina" class="formulario" style="width:120%; margin-left: -11%">
+    @using (Html.BeginForm("GuardarGeneralAffidavit", "MDS", FormMethod.Post, new { enctype = "multipart/form-data", id = "formulario" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
+
+        <div class="">
+            <div class="centro">
+                <h1 style="text-align:justify; font-size: 16px; font-family: segoe_ui_semilight, Arial, Helvetica, sans-serif">@TranslatorHelper.TranslateTextByIdentifier("Old_LabelMessageMDSWelcome")</h1>
+            </div>
+        </div>
+
+        Html.RenderAction("DatosBasicosEmpresaPartial", new { pCompanyID = Model.CompanyId, pCampaignID = Model.CampaignID, pLead = Model.LeadID });
+
+        Html.RenderAction("MicrosoftProductsPartial", "MDS", new { pCompanyID = Model.CompanyId, pCampaignID = Model.CampaignID, pLead = Model.LeadID, pIsFinal = Model.IsFinalVersion });
+
+        Html.RenderAction("InformacionAdicionalPartial", new { pCompanyID = Model.CompanyId, pCampaignID = Model.CampaignID, pLead = Model.LeadID });
+
+
+    }
+
+</div>
+
+@*<div id="modalCongrats">
+    <div class="titulo">
+        <h2 id="modal-congrats">Congratulations!</h2>
+        
+        </p>
+    </div>
+
+    <div class="contenido">
+        <p>
+            You just finished the first part of this process. <br /> <br />
+            Please proceed to choose the best option from the following assessments and you will receive great additional information of your situation!.<br /> <br />
+            You can complete all the assessments if you want
+        </p>
+    </div>
+    <div class="footer">
+        <button id="btnOKFinish" class="ok-button">OK</button>
+    </div>
+</div>*@
+
+<div id="opacidadMeasure" class="platform">
+
+</div>
+
+<script>
+    debugger;
+    var isFinalVersionMDS = '@ViewBag.isFinalVersion';
+    var canISeeV3 = '@ViewBag.canISeeV3';
+    var fistTime = '@ViewBag.firsTime';
+
+    if (canISeeV3 == "True") {
+        if (isFinalVersionMDS == "True") {
+            //$("#header").css('position', 'unset');
+            //$('#modalCongrats').fadeIn('slow');
+            ////$('#modal').show();
+            //$("#opacidadMeasure").fadeIn('slow');
+
+            semaphore.showSuccess(
+                $("#TH_MDS_Modal_Success_With_Assessments_Title").text(),
+                $("#TH_MDS_Modal_Success_With_Assessments_Body").text(),
+                function () {
+                    window.location = '@Url.Action("Index","ChooseAnAction")'
+                }
+            );
+        }
+    }
+    else {
+        if (isFinalVersionMDS == "True") {
+            semaphore.showSuccess(
+                $("#TH_MDS_Modal_Success_Without_Assessments_Title").text(),
+                $("#TH_MDS_Modal_Success_Without_Assessments_Body").text()
+            );
+        }
+    }
+
+
+
+    $(document).ready(function () {
+        $(document).on('click', '#btnOKFinish', function () {
+            window.location = '@Url.Action("Index","ChooseAnAction")'
+        })
+        if (isFinalVersionMDS == 'False') {
+            if (fistTime == "True") {
+                gAnalytics.throwNormalEvent('First entry', 'MDS Form')
+            }
+            else {
+                gAnalytics.throwNormalEvent('Re-entry', 'MDS Form')
+            }
+        }
+        
+    });
+</script>

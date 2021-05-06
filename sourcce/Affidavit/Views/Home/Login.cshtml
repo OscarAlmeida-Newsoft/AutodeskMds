@@ -1,0 +1,64 @@
+﻿@model Affidavit.Models.Home.LoginVM
+@using Affidavit.Utils
+
+
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+
+@Html.Partial("_Header", Model)
+
+<style type="text/css">
+    div.container h1 {
+        color: black;
+    }
+
+    div.validation-summary-errors ul li {
+        margin: -3px 0px 3px 0px !important;
+        color:red;
+    }
+
+    #Usuario-error, #Password-error {
+        margin: -5px 0px 3px 0px;
+        color:red;
+        padding: 2px;
+    }
+</style>
+
+
+@using (Html.BeginForm("Login", "Home", new { pLeadID = Model.leadID } ,FormMethod.Post, new { role = "form", autocomplete = "off", id = "loginFrm" }))
+{
+    <div id="login">
+        @Html.HiddenFor(m => m.leadID)
+        @Html.AntiForgeryToken()
+        <h1>
+            @TranslatorHelper.TranslateTextByIdentifier("Old_MicrosoftDevelopmentSummary")
+        </h1>
+        <div class="formulario">
+            <label style="color:white !important">@Html.ValidationSummary(true)</label>
+            <fieldset>
+
+                @Html.EditorFor(model => model.Usuario, new { htmlAttributes = new { @autofocus = "", @placeholder = @TranslatorHelper.TranslateTextByIdentifier("Old_User") } })
+                <label>@Html.ValidationMessageFor(model => model.Usuario, null, new { @class = "text-danger" })</label>
+
+                @*@Html.EditorFor(model => model.Password,*@
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = @TranslatorHelper.TranslateTextByIdentifier("Old_Password") } })
+                <label>@Html.ValidationMessageFor(model => model.Password, null, new { @class = "text-danger" })</label>
+
+                <input name="Acceder" type="submit" value="@TranslatorHelper.TranslateTextByIdentifier("Old_Access")" />
+
+                <label style="margin-top: 10px;"><a href="~/Home/ForgetPassword">@TranslatorHelper.TranslateTextByIdentifier("Old_LabelForgetPass")</a></label>
+
+            </fieldset>
+        </div>
+    </div>
+
+}
+
+
+<script src="@Url.Content("~/Scripts/Custom/login.js")"></script>
+
+
+@Html.Partial("_Footer")
+

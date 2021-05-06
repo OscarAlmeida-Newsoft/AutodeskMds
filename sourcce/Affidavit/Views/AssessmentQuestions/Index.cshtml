@@ -1,0 +1,126 @@
+﻿@using Affidavit.Utils
+@model Affidavit.Models.AssessmentViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+
+@section Scripts{
+    <script src="@Url.Content("~/Scripts/Custom/assessment/assessmentQuestions.js")"></script>
+    <script type="text/javascript" src="~/Scripts/Custom/bootbox.js"></script>
+    <script>
+        var totalQuestions = @Model.TotalQuestion;
+        var text = '@TranslatorHelper.TranslateTextById(@Model.AssessmentTypeTranslatorId, 2)';
+        //assestmentId = assestmentId.toString();
+
+        $(document).ready(function(){
+            gAnalytics.throwNormalEvent('Begin','Assestments',text)
+        });
+    </script>
+}
+
+<label id="TH_Assessments_Questions_Modal_Error_Title" hidden>@TranslatorHelper.TranslateTextByIdentifier("Assessment_Questions_Modal_Error_Title")</label>
+<label id="TH_Assessments_Questions_Modal_Error_Body" hidden>@TranslatorHelper.TranslateTextByIdentifier("Assessment_Questions_Modal_Error_Body")</label>
+
+<label id="TH_Assessments_Questions_Modal_Atention_Title" hidden>@TranslatorHelper.TranslateTextByIdentifier("Assessment_Questions_Modal_Atention_Title")</label>
+<label id="TH_Assessments_Questions_Modal_Atention_Body" hidden>@TranslatorHelper.TranslateTextByIdentifier("Assessment_Questions_Modal_Atention_Body")</label>
+
+<div class="titulo rojo">
+    <div class="centro">
+        <img src="@Url.Content("~/Content/Images/"+Model.IconName)" width="43" height="50">
+        <h1>@TranslatorHelper.TranslateTextById(Model.AssessmentTypeTranslatorId)</h1>
+        <p class="indice">
+            <span id="answeredQuestions">@Model.AnsweredQuestions</span> @TranslatorHelper.TranslateTextByIdentifier("Assessment_Questions_Cuenta_Of") @Model.TotalQuestion
+        </p>
+    </div>
+</div>
+
+
+<!--================================= PAGINA ======================================-->
+<fieldset @{ if (Model.IsFinal == true) { ViewContext.Writer.Write("disabled"); } }>
+    @using (Html.BeginForm("SaveAssessmentInfo", "AssessmentQuestions", FormMethod.Post, new { id = "AssessmentQuestionsForm" }))
+    {
+
+        @Html.Hidden("pQuestionAnswersModel.CompanyId", Model.CompanyId);
+        @Html.Hidden("pQuestionAnswersModel.IsFinal", Model.IsFinal, new { @id = "pQuestionAnswersModelIsFinal" });
+        @Html.Hidden("pQuestionAnswersModel.CampaignId", Model.CampaignId);
+        @Html.Hidden("pQuestionAnswersModel.AssessmentSummaryId", Model.AssessmentSummaryId);
+        @Html.Hidden("pQuestionAnswersModel.AssessmentTypeId", Model.AssessmentTypeId);
+        <div id="pagina" class="formulario">
+            <div class="seccion">
+                @{
+                    //ViewBag.AssessmentTypeId = Model.AssessmentTypeId;
+                    ViewBag.AssessmentTypeId = TranslatorHelper.TranslateTextById(Model.AssessmentTypeTranslatorId, 2);
+                    Html.RenderPartial("_AssessmentQuestionsDetail", Model.AssessmentQuestions);
+                }
+            </div>
+
+
+            <!--================================= CONTROLES ======================================-->
+            <div class="controles">
+                <div class="centro">
+                    <ul class="bloques centro">
+                        <li class="azul izk">
+                            <a onclick="﻿gAnalytics.throwRedirectEvent('Click Save Draft','Assestments','@TranslatorHelper.TranslateTextById(Model.AssessmentTypeTranslatorId,2)','@Url.Action("Index","ChooseAnAction")')" href="#" target="_self" class="prev_paso_3">
+                                <span>
+                                    @TranslatorHelper.TranslateTextByIdentifier("Assessment_Questions_Boton_Atras")
+                                </span>
+                            </a>
+                        </li>
+                        @if (!Model.IsFinal)
+                {
+                            <li class="azul">
+                                <a href="#" target="_self" id="SendAssessmentDraft" data-event-label="@TranslatorHelper.TranslateTextById(Model.AssessmentTypeTranslatorId,2)">
+                                    <span>
+                                        @Html.Raw(@TranslatorHelper.TranslateTextByIdentifier("Assessment_Questions_Boton_Borrador"))
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="azul der end">
+                                <a href="#" target="_self" id="SendAssessmentFinal" data-event-label="@TranslatorHelper.TranslateTextById(Model.AssessmentTypeTranslatorId,2)">
+                                    <span>
+                                        @TranslatorHelper.TranslateTextByIdentifier("Assessment_Questions_Boton_Terminar")
+
+                                    </span>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <!--================================= CONTROLES ======================================-->
+        </div>
+                    }
+</fieldset>
+@*<div id="opacidad">
+    </div>
+    <div id="modalConfirm" class="modal-new">
+
+        <div class="titulo">
+            <h2>Confirm</h2>
+            <p class="cerrar">
+            </p>
+        </div>
+        <div class="contenido">
+            <h5>Are you sure you want to finish the assessment?</h5>
+        </div>
+        <div class="footer">
+            <button class="ok-button" id="SendAssessmentFinalOk">OK</button>
+            <button class="cancel-button">CANCEL</button>
+        </div>
+    </div>
+    <div id="modalNotCompleted" class="modal-new">
+
+        <div class="titulo">
+            <h2>Incomplete Assessment</h2>
+            <p class="cerrar">
+            </p>
+        </div>
+        <div class="contenido">
+            <h5>You must complete all questions</h5>
+        </div>
+        <div class="footer">
+            <button class="ok-button">OK</button>
+            <button class="cancel-button">CANCEL</button>
+        </div>
+    </div>*@

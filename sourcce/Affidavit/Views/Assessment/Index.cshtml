@@ -1,0 +1,49 @@
+﻿
+@using Affidavit.Utils
+
+@{
+    ViewBag.Title = "My Assessments";
+}
+
+
+@section Scripts{
+    <script src="@Url.Content("~/Scripts/Custom/assessment/assessment.js")"></script>
+}
+
+
+<div id="valla" style="background-image:url(@Url.Content("~/Content/Images/valla_participate_assesments.jpg")">
+    <h1>Participate in Assesments</h1>
+</div>
+
+
+
+<div id="pagina" class="gris">
+
+    <div class="seccion">
+        <div class="centro">
+            <div class="mds">
+                <div class="logo">
+                    <img src="@Url.Content("Content/images/icono_mds.png")" width="155" height="51" alt="mds">
+                </div>
+                <h2>Microsoft Deployment Summary</h2>
+
+                <div class="process">
+                    <span class="icon"><img src="@Url.Content("Content/Images/process_1.png")" width="19" height="14"></span>
+                    <h4><span>Available</span> </h4>
+                </div>
+                <a href="@Url.Action("Index","MDS")" target="_self" class="btn_assignments go">GO FOR IT</a>
+            </div>
+
+
+
+
+        
+
+
+
+
+<label id="NS_GridUrlActionGridCallBack" hidden>@Url.Action("GridListMyAssessmentCallback")</label>
+
+    <div id="grid-div">
+    </div>
+

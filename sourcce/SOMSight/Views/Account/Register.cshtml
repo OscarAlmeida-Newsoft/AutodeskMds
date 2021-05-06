@@ -1,0 +1,130 @@
+﻿@model SOMSight.Models.Account.RegisterVM
+@using CaptchaMvc.HtmlHelpers
+@{
+    ViewBag.Title = "Register";
+}
+
+
+<!--================================= HEADER ======================================-->
+<!--================================= TITULO ======================================-->
+<div class="titulo rojo small">
+    <div class="centro">
+        <h1>User Registration</h1>
+    </div>
+</div>
+<!--================================= TITULO ======================================-->
+<!--================================= PAGINA ======================================-->
+<div id="pagina" class="formulario registration">
+    <div class="seccion">
+        <div class="centro">
+            @*<h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam viverra nulla sed ex varius placerat. Duis eget convallis justo, rutrum euismod diam. Donec fermentum, tellus id vestibulum imperdiet, turpis ex consectetur metus, id congue sapien sem efficitur turpis. Praesent diam nulla, auctor vitae libero eu.</h3>*@
+
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "formulario" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary("", new { @class = "lista-texto-validacion" })
+                
+                @*<hr />*@
+                    <div class="fila">
+                        <div class="izk">                            
+                            @Html.LabelFor(m => m.CompanyName)
+                            @Html.TextBoxFor(m => m.CompanyName)
+                            @Html.ValidationMessageFor(m => m.CompanyName, "", new { @class = "texto-validacion" })
+                        </div>
+
+                        @*<div class="der">
+                            <label>Industry</label>
+                            <select id="Industry" type="text" name="Industry">
+                                <option value="">1</option>
+                                <option value="">2</option>
+                                <option value="">3</option>
+                            </select>
+                        </div>*@
+                        <div class="der">
+                            @Html.LabelFor(m => m.Industry)
+                            @Html.TextBoxFor(m => m.Industry)
+                            @Html.ValidationMessageFor(m => m.Industry, "", new { @class = "texto-validacion" })
+                        </div>
+                    </div>
+                    
+                    <div class="fila">
+                        <div class="izk">
+                            @Html.LabelFor(m => m.ContactName)
+                            @Html.TextBoxFor(m => m.ContactName)
+                            @Html.ValidationMessageFor(m => m.ContactName, "", new { @class = "texto-validacion" })
+                        </div>
+                        <div class="der">
+                            @Html.LabelFor(m => m.Email)
+                            @Html.TextBoxFor(m => m.Email)
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "texto-validacion" })
+                        </div>
+                    </div>
+                    <div class="fila">
+                        <div class="izk">
+                            @Html.LabelFor(m => m.Country)
+                            @Html.TextBoxFor(m => m.Country)
+                            @Html.ValidationMessageFor(m => m.Country, "", new { @class = "texto-validacion" })
+                        </div>
+
+                        <div class="der">
+                            @Html.LabelFor(m => m.Phone)
+                            @Html.TextBoxFor(m => m.Phone)
+                            @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "texto-validacion" })
+                        </div>
+                    </div>
+                    <div class="fila">
+                        <div class="izk">
+                            @Html.LabelFor(m => m.NumberOfDevices)
+                            @Html.TextBoxFor(m => m.NumberOfDevices)
+                            @Html.ValidationMessageFor(m => m.NumberOfDevices, "", new { @class = "texto-validacion" })
+                        </div>
+                    </div>
+
+
+                    <hr class="normal" />
+                    <div class="fila">
+                        <div class="izk">
+                            @Html.LabelFor(m => m.Password)
+                            @Html.PasswordFor(m => m.Password)
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "texto-validacion" })
+                        </div>
+
+                        <div class="der">
+                            @Html.LabelFor(m => m.PasswordConfirm)
+                            @Html.PasswordFor(m => m.PasswordConfirm)
+                            @Html.ValidationMessageFor(m => m.PasswordConfirm, "", new { @class = "texto-validacion" })
+                        </div>
+                    </div>
+                    <hr class="normal" />
+                    <div class="the_captcha">
+                        @Html.Captcha(5)
+
+                        @if (@TempData["ErrorMessage"] != null && !@TempData["ErrorMessage"].ToString().Equals(""))
+                        {
+                            <p style="font-weight:bold;color:red;">@TempData["ErrorMessage"]</p>
+                        }
+
+                        @*<p><img src="images/captcha_ejemplo.png" width="221" height="98"></p>
+                            <input id="code" type="text" name="code" placeholder="Type code here">*@
+                    </div>
+                    <div class="fila centrada">
+                        <input name="boton" type="submit" class="boton" value="REGISTER">
+                    </div>
+            }
+        </div>
+    </div>
+</div>
+<!--================================= PAGINA ======================================-->
+
+
+<script>
+    $(document).ready(function () {
+        debugger;
+        $("#CaptchaInputText").attr("placeholder", $("#InputCaptchaPlaceholder").text());
+        //$(".the_captcha").find("br").remove()
+    });
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,18 @@
+﻿@model Affidavit.Models.Recommendations.CreateUpdateVariableViewModel
+
+@using (Html.BeginForm("EditVariable", "Recommendation", FormMethod.Post, new { @id = "variable-form" }))
+{
+    <div class="row" style="margin-top: 0px;">
+        <div class="row" style="margin-top: 0px;">
+            <h4>Edit Variable</h4>
+        </div>
+        <hr>
+    </div>
+
+    @Html.Partial("_FormCreateEditVariable", Model)
+
+    <div class="row">
+        <input type="button" class="btn btn-warning col-md-2" value="Back" onclick="document.location.href='@Url.Action("ManageVariables","Recommendation")' ">
+        <input type="submit" class="btn btn-info col-md-offset-1 col-md-2" value="Edit">
+    </div>
+}

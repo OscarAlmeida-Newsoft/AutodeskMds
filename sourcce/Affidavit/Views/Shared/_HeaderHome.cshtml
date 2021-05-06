@@ -1,0 +1,110 @@
+﻿@using Affidavit.Helpers
+@using Affidavit.Utils
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <title>@ViewBag.Title - @TranslatorHelper.TranslateTextByIdentifier("Old_MicrosoftDevelopmentSummary")</title>
+    
+    @Styles.Render("~/Content/css")
+
+    @Html.Partial("_GAnalitycsPartial")
+    <script>
+        gAnalytics.addGoogleAnalytics();
+    </script>
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @*@Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")*@
+
+
+</head>
+
+@*@{
+    var _currentCulture = CultureHelper.GetCurrentCulture();
+    var _culCurr = _currentCulture == "en-US" ? "English" : "Español";
+}*@
+<body class="fondo" style="background-image:url(@Url.Content("~/Content/images/foto_1_cover.jpg")">
+    <div id="proceso_en_ejecucion" style="display:none;">
+        <div>
+            <img src='@Url.Content("~/Content/images/processing.gif")' width="58" height="58">
+        </div>
+    </div>
+    <div id="header" style="position:relative;z-index: 2;">
+        <div class="centro">
+            <!--================================================-->
+            <a class="logo" target="_self"><img src='@Url.Content("~/Content/images/logo.png")' width="164" height="60" alt=""></a>
+            @*<h1 class="invisible">@TranslatorHelper.TranslateTextByIdentifier("Old_MicrosoftDevelopmentSummary")</h1>*@
+
+            <div id="idiomas">
+                @{ Html.RenderPartial("_Idiomas"); }
+            </div>
+        </div>
+    </div>
+
+    @using (Html.BeginForm("SetCultureAdmin", "Home", FormMethod.Post, new { id = "langForm", name = "langForm" }))
+    {
+        <input type="hidden" name="returnUrl" id="returnUrl" value="@Request.Url" />
+        <input type="hidden" name="culture" id="culture" value="" />
+        @*<input type="hidden" name="leadID" id="leadIDCulture" value="" />*@
+        <input type="hidden" name="languageID" id="languageID" value="" />
+    }
+
+    @*<div id="loading">
+            <div id="loading-gif">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw" aria-hidden="true"></i>
+            </div>
+        </div>*@    
+
+    <script type="text/javascript">
+        function changeLanguage(langId) {
+            $("#langForm > #culture").val(langId);
+            //$("#langForm > #leadIDCulture").val($('#leadID').val());
+            $("#langForm > #languageID").val($('#languageID').text());
+
+            $("#langForm").submit();
+        }
+    </script>
+
+
+    <!--================================= ICONO HELP FIXED (lanza modal infografia) ======================================-->
+    <span id="ico_help_mds_fixed" title="Help">
+        <span>Help</span>
+    </span>
+
+
+    <!--================================= MODAL INFOGRAFIA ======================================-->
+    <div class="opacidad_modal_infografia" ></div>
+    <div class="modal_infografia" >
+        <span class="modal_infografia_close"><span>Close</span></span>
+        @if (CultureHelper.GetCurrentCulture() == "es" || CultureHelper.GetCurrentCulture() == "es-ES")
+        {
+            <img src="@Url.Content("~/Content/Images/infografia-mds-es.png")" />
+        }
+        else
+        {
+            <img src="@Url.Content("~/Content/Images/infografia-mds.png")" />
+        }
+    </div>
+
+    <script>
+    /*---Infografia modal en login (2018-02-08)---*/
+    //Cierra modal infografia
+    $(".modal_infografia_close, .modal_infografia").click(function () {
+        $(".opacidad_modal_infografia, .modal_infografia").hide();
+        return false;
+    });
+    //Boton fijo abre modal infografia
+    $("#ico_help_mds_fixed").click(function () {
+        $(".opacidad_modal_infografia, .modal_infografia").show();
+        return false;
+    });
+
+
+    /*---Cierra alertas modales (semáforo) (2018-02-08)---*/
+    $(".boton_alerta_modal").click(function () {
+        $(".alertas_modales, .opacidad_alertas_modales").hide();
+        return false;
+    });
+    </script>

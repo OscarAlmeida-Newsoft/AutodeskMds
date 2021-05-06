@@ -1,0 +1,71 @@
+﻿@using System
+@using Affidavit.Models
+@using Affidavit.Utils
+@model IEnumerable<AssessmentQuestionsViewModel>
+
+@{ 
+    int i = 0;
+    int mod = 0;
+    bool firsQuestion = true;
+}
+
+@foreach (AssessmentQuestionsViewModel question in Model)
+{
+
+    @Html.Hidden("pQuestionAnswersModel.AnswerDetails[" + i + "].CampaignId", question.CampaignId)
+    @Html.Hidden("pQuestionAnswersModel.AnswerDetails[" + i + "].CompanyId", question.CompanyId)
+    @Html.Hidden("pQuestionAnswersModel.AnswerDetails[" + i + "].AssessmentId", question.Id)
+
+    mod = (i + 1) % 2;
+
+
+    if(mod == 0)
+    {
+        ViewContext.Writer.Write("<div class='gris'>");
+    }
+
+    if(firsQuestion)
+    {
+        ViewContext.Writer.Write("<div class='centro' style='z-index: 20000;'>");
+    }
+    else
+    {
+        ViewContext.Writer.Write("<div class=centro'>");
+
+    }
+    <div class="centro">
+        <h1 class="required-label">@TranslatorHelper.TranslateTextById(question.TranslatorAdministratorId)</h1>
+        <hr/>
+
+        <div class="set radios_horizontales">
+            @foreach (AssessmentQuestionsOptionsViewModel options in question.Options)
+            {
+                <div class="item_lista">
+                    @Html.Hidden("pQuestionAnswersModel.AnswerDetails[" + i + "].CampaignId", question.CampaignId)
+                    @Html.Hidden("pQuestionAnswersModel.AnswerDetails[" + i + "].CompanyId", question.CompanyId)
+                    @Html.Hidden("pQuestionAnswersModel.AnswerDetails[" + i + "].AssessmentId", question.Id)                        
+                    <label class="automatico">
+                        @Html.RadioButton("pQuestionAnswersModel.AnswerDetails[" + i + "].SelectedOption", options.MaturityLevelId, options.MaturityLevelId == question.SelectedMaturityLevelId, new { @onclick = "gAnalytics.throwNormalEvent('Clicked answer for question "+i+ "', 'Assestments','" + ViewBag.AssessmentTypeId + "')" })
+                        @TranslatorHelper.TranslateTextById(options.TranslatorAdministratorId)
+                    </label>
+                </div>
+            }
+        </div>
+
+    </div>
+
+    if (firsQuestion)
+    {
+        firsQuestion = false;
+    }
+    ViewContext.Writer.Write("</div>");
+
+    if (mod == 0)
+    {
+        ViewContext.Writer.Write("</div>");
+    }
+
+    i++;
+}
+
+        

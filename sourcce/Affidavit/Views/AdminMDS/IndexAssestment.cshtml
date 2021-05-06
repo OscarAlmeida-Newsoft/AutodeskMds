@@ -1,0 +1,240 @@
+﻿@using Affidavit.Utils
+@{
+    ViewBag.Title = "Admin - " + @TranslatorHelper.TranslateTextByIdentifier("Old_MicrosoftDevelopmentSummary");
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    //var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+}
+
+<script type="text/javascript" src="~/Scripts/Custom/bootbox.js"></script>
+@Styles.Render("~/Content/cssadmin")
+
+<script type="text/javascript">
+    var selectedLanguage = 2;
+
+    $(document).ready(function () {
+        $('#implemented-cultures-drop-down option[value=' + selectedLanguage + ']').attr("selected", "selected");
+    });
+    $(document).on("click", "#searchCompany", function (e) {
+        e.preventDefault();
+
+        var _companyName = $("input[name=companyTextSearch]")[0].value;
+        console.log($("input[name=companyTextSearch]")[0].value.length);
+        //var _companyEmail = $("input[name=companyEmailSearch]")[0].value;
+
+        if ($("input[name=companyTextSearch]")[0].value.length < 3) {
+            bootbox.alert("The text must be greater or equal than 3 characters", null);
+            $('.bootbox-body').css("font-size", "14px");
+        } else if (_companyName == "" || _companyName == null /*&& (_companyEmail == "" || _companyEmail == null)*/) {
+            bootbox.alert('@TranslatorHelper.TranslateTextByIdentifier("Old_LabelEnterCompanyName")', null);
+            $('.bootbox-body').css("font-size", "14px");
+        } else {
+            loadingDiv.show();
+            $.ajax({
+                url: ("SearchCompany"),
+                data: { pCompanyName: _companyName },
+                type: 'POST',
+                //contentType: 'application/json; charset=utf-8'
+            })
+            .done(function (data) {
+
+                $('#companyInfoDiv').html(data);
+                $('#MDSInfoDiv').html("");
+                loadingDiv.hide();
+                //console.log(data);
+            })
+            .fail(function (err) {
+                loadingDiv.hide();
+                console.log(err);
+
+            });
+        }
+    });
+
+    $(document).on("click", "#VerFormularioMDS", function (e) {
+
+        var _companyID = $(this).data("companyid");
+        var _campaignID = $(this).data("campaign");
+        var _languageId = selectedLanguage;
+        debugger;
+        
+        loadingDiv.show();
+        CargaAssessmentsDetail(_companyID, _campaignID, _languageId);
+    });
+
+
+    function CargaAssessmentsDetail(_companyID, _campaignID, _languageId) {
+        debugger;
+        
+        $.ajax({
+            url: '@Url.Action("SearchMDSAssestmentInfo", "AdminMDS")',
+            data: { pCompanyID: _companyID, pCampaignID: _campaignID, pLanguageId: _languageId },
+            type: 'POST',
+            //contentType: 'application/json; charset=utf-8'
+        })
+        .done(function (data) {
+
+            $('#MDSInfoDiv').html(data);
+            loadingDiv.hide();
+            //console.log(data);
+        })
+        .fail(function (err) {
+            loadingDiv.hide();
+            console.log(err);
+
+        });
+
+    }
+
+    //Filter enter event
+    $(document).on("keypress", "#companyTextSearch", function (e) {
+        //e.preventDefault();
+        //console.log(e.which);
+        if (e.which == 13) {
+            var _companyName = $("input[name=companyTextSearch]")[0].value;
+
+            if ($("input[name=companyTextSearch]")[0].value.length < 3) {
+                bootbox.alert("The text must be greater or equal than 3 characters", null);
+                $('.bootbox-body').css("font-size", "14px");
+            } else if (_companyName == "" || _companyName == null) {
+                bootbox.alert('@TranslatorHelper.TranslateTextByIdentifier("Old_LabelEnterCompanyName")', null);
+                $('.bootbox-body').css("font-size", "14px");
+            } else {
+                loadingDiv.show();
+                $.ajax({
+                    url: ("SearchCompany"),
+                    data: { pCompanyName: _companyName },
+                    type: 'POST',
+                    //contentType: 'application/json; charset=utf-8'
+                })
+                .done(function (data) {
+
+                    $('#companyInfoDiv').html(data);
+                    $('#MDSInfoDiv').html("");
+                    loadingDiv.hide();
+                    //console.log(data);
+                })
+                .fail(function (err) {
+                    loadingDiv.hide();
+                    console.log(err);
+
+                });
+            }
+        }
+    });
+
+    $(document).on('change', '#implemented-cultures-drop-down', function () {
+        selectedLanguage = $(this).val();
+        selectedCultureCode = $(this).find(':selected').data("culturecode");
+
+
+        loadingDiv.show();
+        $.ajax({
+            url: ("ChangeLanguageAdmin"),
+            data: { pLangageId: selectedLanguage, pCultureCode : selectedCultureCode },
+            type: 'POST',
+            //contentType: 'application/json; charset=utf-8'
+        })
+        .done(function (data) {
+            $('#companyInfoDiv').html("");
+            $('#MDSInfoDiv').html("");
+            loadingDiv.hide();
+        })
+        .fail(function (err) {
+            loadingDiv.hide();
+            console.log(err);
+
+        });
+    });
+
+
+    $(document).on('click', '#unlockAssessment', function () {
+        debugger;
+        var _companyID = $(this).data('companyid');
+        var _campaignID = $(this).data('campaign');
+        var _languageId = selectedLanguage;
+
+        loadingDiv.show();
+        $.ajax({
+            url: $(this).attr('href'),
+            type: 'POST'
+        })
+        .done(function (data) {
+            debugger;
+            console.log(data);
+            if (data.error === "false") {
+                CargaAssessmentsDetail(_companyID, _campaignID, _languageId);
+            }
+            //$('#Assessments').html(data);
+            //$('#assessmentsModal').modal({ backdrop: "static" }, { keyboard: false });
+        })
+        .fail(function (jqXHR, exception) {
+
+
+            $('#companyInfoDiv').html("");
+            $('#MDSInfoDiv').html("");
+            loadingDiv.hide();
+        })
+        
+        return false;
+    });
+</script>
+
+<style type="text/css">
+    body {
+        padding-top: 0px !important;
+    }
+</style>
+
+
+<div id="pagina">
+    <div class="centro">
+        <div class="set" style="position: relative;z-index: 100000;">
+            @Html.Partial("_MenuNavegacion")
+
+            <div class="centro">
+                <div class="mensaje_alerta" style="display:none">
+                    <p>Acá va el texto de mensaje de alerta</p>
+                </div>
+                <div class="mensaje_confirmacion" style="display:none">
+                    <p>Acá va el texto de mensaje de alerta</p>
+                </div>
+            </div>
+
+            <div class="col_4" style="width: 25% !important;">
+                <div> &nbsp;</div>
+                <div> &nbsp;</div>
+                @Html.Label(@TranslatorHelper.TranslateTextByIdentifier("Old_LabelSearchCompany"), new { @class = "label-control" })
+                @Html.Editor("companyTextSearch", null, new { htmlAttributes = new { @class = "form-control", @maxlength = "120", autofocus = "autofocus", @placeholder = "Enter Company Name..." } })
+            </div>
+            <button class="btn btn-primary btn-sm new-landing searchCompany" id="searchCompany" style="margin: 67px 12px 0 0; float: left;">
+                <i class="fa fa-search-plus fa-2x"></i>
+            </button>
+
+            <div>
+                <div class="col_4" style="width: 25% !important;">
+                    @Html.Label("Language", new { @class = "label-control" })
+                    @Html.Partial("_ImplementedCulturesDropDownPartial")
+                </div>
+
+            </div>
+        </div>
+        
+        
+    </div>
+    <br />
+    <br />
+    <!--div -->
+    <div class="centro" id="companyInfoDiv" style="max-height: 50px !important; max-height: 250px !important; overflow:auto">
+
+    </div>
+    <br />
+    <br />
+    <br />
+    <!--div donde se carga la información de MDS consultado -->
+    <div class="centro" id="MDSInfoDiv">
+
+    </div>
+</div>
+
+
+

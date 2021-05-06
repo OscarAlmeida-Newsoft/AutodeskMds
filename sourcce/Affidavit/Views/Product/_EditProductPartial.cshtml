@@ -1,0 +1,104 @@
+﻿@model Affidavit.Models.Product.CreateUpdateProductViewModel
+@using Affidavit.Utils
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<style type="text/css">
+    .requiredMessage {
+        float: right;
+        margin: -3px 80px 0px 0px;
+        padding: 0px 0px 10px 0px;
+    }
+
+    .separationLabel {
+        margin-top: 13px;
+    }
+</style>
+
+@*@using (Html.BeginForm("UpdateProduct", "Product", FormMethod.Post))
+    {*@
+@Html.HiddenFor(x => x.ProductID)
+@*<div class="form-group">
+        @Html.LabelFor(model => model.QuestionText, new { @class = "col-sm-5 control-label" })
+        @Html.EditorFor(model => model.QuestionText, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.QuestionText)
+    </div>*@
+
+<div class="form-group">
+    @Html.LabelFor(model => model.ProductName, new { @class = "col-sm-5 control-label separationLabel" })
+    @Html.TextBoxFor(model => model.ProductName, new { @class = "form-control", @maxlength = "100" })
+    @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger requiredMessage" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.ProductVersion, new { @class = "col-sm-5 control-label separationLabel" })
+    @Html.TextBoxFor(model => model.ProductVersion, new { @class = "form-control", @maxlength = "15" })
+    @Html.ValidationMessageFor(model => model.ProductVersion, "", new { @class = "text-danger requiredMessage" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.ProductFamilyID, new { @class = "col-sm-5 control-label dropdownSeparation separationLabel" })
+    @Html.DropDownListFor(model => model.ProductFamilyID, Model.ProductFamilyList, new { @class = "form-control dropdownSeparation" })
+    @Html.ValidationMessageFor(model => model.ProductFamilyID, "", new { @class = "text-danger requiredMessage" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.ProductVersionGroup, new { @class = "col-sm-5 control-label separationLabel" })
+    @Html.TextBoxFor(model => model.ProductVersionGroup, new { @class = "form-control", @maxlength = "15" })
+    @Html.ValidationMessageFor(model => model.ProductVersionGroup, "", new { @class = "text-danger requiredMessage" })
+</div>
+@*<div class="form-group">
+        @Html.LabelFor(model => model.OEMFlag, new { @class = "col-sm-5 control-label dropdownSeparation separationLabel" })
+        @Html.EnumDropDownListFor(x => x.OEMFlag, new { @class = "form-control dropdownSeparation" })
+        @Html.ValidationMessageFor(model => model.OEMFlag)
+    </div>*@
+<div class="form-group">
+    @Html.Label("Status", new { @class = "col-sm-5 control-label dropdownSeparation separationLabel" })
+    @Html.DropDownListFor(x => x.IsActive,
+       new[]
+       {
+           new SelectListItem{ Value = "0", Text = "Inactive" },
+           new SelectListItem{ Value = "1", Text = "Active" }
+       }, new { @class = "form-control dropdownSeparation" })
+
+    @Html.ValidationMessageFor(model => model.IsActive)
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.OrderVersion, new { @class = "col-sm-5 control-label separationLabel" })
+    @Html.TextBoxFor(model => model.OrderVersion, new { @class = "form-control integerOnly" })
+    @Html.ValidationMessageFor(model => model.OrderVersion, "", new { @class = "text-danger requiredMessage" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.NameDisplay, new { @class = "col-sm-5 control-label separationLabel" })
+    @Html.TextBoxFor(model => model.NameDisplay, new { @class = "form-control", required = "required", @maxlength = "100" })
+    @Html.ValidationMessageFor(model => model.NameDisplay, "", new { @class = "text-danger requiredMessage" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.DisplayOrder, new { @class = "col-sm-5 control-label separationLabel" })
+    @Html.TextBoxFor(model => model.DisplayOrder, new { @class = "form-control integerOnly" })
+    @Html.ValidationMessageFor(model => model.DisplayOrder, "", new { @class = "text-danger requiredMessage" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.IsCal, new { @class = "col-sm-5 control-label separationLabel" })
+    @*@Html.TextBoxFor(model => model.IsCal, new { @class = "form-control" })*@
+    @Html.EnumDropDownListFor(x => x.IsCal, new { @class = "form-control dropdownSeparation" })
+    @Html.ValidationMessageFor(model => model.IsCal, "", new { @class = "text-danger requiredMessage" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.IsCommercial, new { @class = "col-sm-5 control-label separationLabel" })
+    @Html.EnumDropDownListFor(x => x.IsCommercial, new { @class = "form-control dropdownSeparation" })
+    @Html.ValidationMessageFor(model => model.IsCommercial, "", new { @class = "text-danger requiredMessage" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.IsCorporate, new { @class = "col-sm-5 control-label separationLabel" })
+    @Html.EnumDropDownListFor(x => x.IsCorporate, new { @class = "form-control dropdownSeparation" })
+    @Html.ValidationMessageFor(model => model.IsCorporate, "", new { @class = "text-danger requiredMessage" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.IsSupported, new { @class = "col-sm-5 control-label separationLabel" })
+    @Html.EnumDropDownListFor(x => x.IsSupported, new { @class = "form-control dropdownSeparation" })
+    @Html.ValidationMessageFor(model => model.IsSupported, "", new { @class = "text-danger requiredMessage" })
+</div>
+
+@*<button type="button" class="btn" id="cancelEditProduct" style="height:inherit !important;" data-dismiss="modal">@TranslatorHelper.TranslateTextByIdentifier("Old_LabelCancel")</button>
+    <button type="submit" class="btn btn-primary" style="height:inherit !important;">@TranslatorHelper.TranslateTextByIdentifier("Old_LabelSave")</button>*@
+
+@*}*@

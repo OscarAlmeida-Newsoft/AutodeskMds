@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="WCFSharedServices.MeasureMyPlataformServices" CodeBehind="MeasureMyPlataformServices.svc.cs" %>

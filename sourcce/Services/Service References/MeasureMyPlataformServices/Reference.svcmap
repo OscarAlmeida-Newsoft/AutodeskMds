@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="8be0642b-44ae-4f6a-b909-ac822039ced9" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:12312/MeasureMyPlataformServices.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="MeasureMyPlataformServices.xsd" MetadataType="Schema" ID="471e1d42-772a-418d-9738-1dfde9a89829" SourceId="1" SourceUrl="http://localhost:12312/MeasureMyPlataformServices.svc?xsd=xsd0" />
+    <MetadataFile FileName="MeasureMyPlataformServices.disco" MetadataType="Disco" ID="a8d0f979-70ce-4a86-98dd-098d1e81bc32" SourceId="1" SourceUrl="http://localhost:12312/MeasureMyPlataformServices.svc?disco" />
+    <MetadataFile FileName="MeasureMyPlataformServices.wsdl" MetadataType="Wsdl" ID="4b0e9e91-791c-4e41-aee6-cd66655ca79b" SourceId="1" SourceUrl="http://localhost:12312/MeasureMyPlataformServices.svc?wsdl" />
+    <MetadataFile FileName="MeasureMyPlataformServices1.xsd" MetadataType="Schema" ID="eb337167-f786-4c04-a908-ea382e17954b" SourceId="1" SourceUrl="http://localhost:12312/MeasureMyPlataformServices.svc?xsd=xsd1" />
+    <MetadataFile FileName="MeasureMyPlataformServices2.xsd" MetadataType="Schema" ID="1f1b3339-e347-4ebe-a14c-628c6e6436b3" SourceId="1" SourceUrl="http://localhost:12312/MeasureMyPlataformServices.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

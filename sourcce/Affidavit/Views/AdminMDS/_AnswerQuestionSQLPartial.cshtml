@@ -1,0 +1,53 @@
+﻿@model IEnumerable<object[]>
+@using Affidavit.Utils
+
+<div class="centro">
+    <div class="tabla_con_scroll_horizontal">
+        <hr />
+        <h1>SQL Server</h1>
+        <table border="0" cellspacing="0" cellpadding="0" class="especial_04" style="width: 100% !important;">
+      
+            @foreach (var row in Model)
+            {
+                if(row.Count() > 1)
+                {
+                    var j = 0;
+                    <tr class="cabezote">
+                        @foreach (var column in row)
+                        {
+                            <td class="headerFinal" @{ if(j == 0){ @Html.Raw("Style=\"width: 420px !important; text-align: center;\"") ; } else { @Html.Raw("Style=\"width: 120px !important; text-align: center;\""); }}>@column</td>
+                        }
+                    </tr>
+                    break;
+                }
+                
+            }
+            @{ var k = 0;}
+            @foreach (var row in Model)
+            {
+                if(row.Count() > 1)
+                {
+
+                    var i = 0;
+                    if (k == 0) {
+                        k++;
+                        continue;
+                    } else
+                    {
+                        <tr>
+                        @foreach (var column in row)
+                        {
+                            <td @{if (i == 0) { @Html.Raw("Style=\"width: 120px !important;\""); }}>@column</td>
+                        }
+                    </tr>
+                    }
+                } else {
+                   @Html.Raw("<h2>" + @TranslatorHelper.TranslateTextByIdentifier("Old_LabelNotAvailable") + "</h2>")
+                   break;
+                }   
+            
+            }
+        </table>
+    </div>
+</div>
+

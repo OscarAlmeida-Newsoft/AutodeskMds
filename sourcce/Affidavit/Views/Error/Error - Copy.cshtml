@@ -1,0 +1,79 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+@{
+    Layout = null;
+}
+
+<style>
+    .boton {
+        background-color: #DF3925 !important;
+        border: 0px !important;
+        color: #fff;
+        font-size: 14px !important;
+        text-transform: uppercase;
+        cursor: pointer;
+        height: 35px !important;
+        border-radius: 5px;
+        text-align: center;
+        -moz-border-radius: 5px;
+        margin: 0px 0 10px 0 !important;
+        font-family: gotham_medium, Arial, Helvetica, sans-serif;
+        padding: 10px 7px 10px 7px;
+        text-decoration: none;
+        margin-top: 20px;
+    }
+
+        .boton:hover {
+            background-color: #E56222 !important;
+        }
+
+    .campo {
+        background-color: #fff;
+        border: solid 1px #bbb;
+        height: 35px;
+        font-size: 15px;
+        padding: 0 5px;
+        margin: 0 0 14px 0;
+    }
+
+    .texto {
+        font-size: 14px;
+    }
+
+    .contenedor {
+        width: 100%;
+        float: left;
+        margin-top: 10%;
+        margin-bottom: 10%;
+    }
+
+    .contenedor-formulario {
+        width: 50%;
+        margin-left: 25%;
+    }
+
+    .centrar {
+        margin-bottom: 10px;
+        text-align: center;
+        color: white;
+    }
+    .imagen{
+       filter: brightness(100);
+    }
+</style>
+
+
+
+@Html.Partial("_Header")
+
+<div class="contenedor">
+    <div style="padding:20px;">
+        <img class="imagen" src="http://recuperaciondedatos.com.mx/wp-content/uploads/2014/05/error.png" alt="Error" height="120" width="120">
+        <h3 class="centrar" style="font-weight:bold; font-size: 20px;">
+            Sorry, an error occurred while processing your request
+        </h3>
+        <p class="centrar texto">@ViewBag.Description</p>
+        <h6 class="centrar texto" style="margin-top:30px">@Html.ActionLink("Go Back To Home Page", "Index", "Home", null, new { @class = "boton" })</h6>
+
+    </div>
+</div>
+@Html.Partial("_Footer")

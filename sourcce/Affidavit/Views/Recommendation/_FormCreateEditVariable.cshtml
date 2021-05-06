@@ -1,0 +1,1296 @@
+﻿@model Affidavit.Models.Recommendations.CreateUpdateVariableViewModel
+@using Affidavit.Utils
+<link href="@Url.Content("~/Content/jquery.tagit.css")" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
+<style type="text/css">
+    .requiredMessage {
+        float: right;
+        margin: -3px 80px 0px 0px;
+        padding: 0px 0px 10px 0px;
+    }
+
+    .separationLabel {
+        margin-top: 13px;
+    }
+
+    input[type="radio"].radio-selection {
+        width: fit-content;
+        width: -moz-fit-content;
+        width: -webkit-fit-content;
+        width: -ms-fit-content;
+        margin: 0px;
+    }
+
+    label.label-selection {
+        width: fit-content;
+        width: -moz-fit-content;
+        width: -webkit-fit-content;
+        width: -ms-fit-content;
+        margin: 0px 20px 0px 5px;
+    }
+
+    input[type=radio]:after {
+        content: attr(data-nombre);
+        margin: -3px 15px;
+        vertical-align: top;
+        white-space: nowrap;
+        display: inline-block;
+    }
+
+    input[type=checkbox].all-selection {
+        width: fit-content;
+        width: -moz-fit-content;
+        width: -webkit-fit-content;
+        width: -ms-fit-content;
+        margin: 0px;
+    }
+
+    label.label-selection {
+        width: fit-content;
+        width: -moz-fit-content;
+        width: -webkit-fit-content;
+        width: -ms-fit-content;
+        margin-left: 10px;
+    }
+
+    ul.tagit {
+        margin: 0px !important;
+        min-height: 100px;
+    }
+
+        ul.tagit li.tagit-choice-editable {
+            width: fit-content;
+            width: -moz-fit-content;
+            width: -webkit-fit-content;
+            width: -ms-fit-content;
+        }
+
+        ul.tagit li.tagit-new {
+            width: fit-content;
+            width: -moz-fit-content;
+            width: -webkit-fit-content;
+            width: -ms-fit-content;
+        }
+
+    .tag-it-elements {
+        width: 95%;
+    }
+
+        .tag-it-elements::after {
+            content: attr(data-title);
+            position: absolute;
+            left: 100%;
+        }
+
+    .row {
+        margin: 20px 0px 20px 0px;
+    }
+
+        .row label.separationLabel {
+            margin: 0px;
+        }
+
+    ul.tagit-autocomplete {
+        width: 40% !important;
+    }
+
+    .multi-select option {
+        font-size: 14px;
+    }
+
+    .keyboard-container{
+        margin-top:-3px;
+        display: inline-block;
+    }
+    .table_teclado {
+        border-spacing: 3px;
+    border-collapse: separate;
+    }
+
+    .syntax-button{
+        background: #29abe0 !important;
+    }
+    .syntax-button:hover{
+        background: #17759c !important;
+    }
+
+    .table_teclado tr td {
+        background: #29abe0;
+        color: #FFF;
+        padding: 1em;
+        font-size:14px;
+        cursor: pointer;
+        border-radius: 3px;
+        font-family: sans-serif;
+        border: 1px solid #29abe0;
+        position: relative;
+    }
+
+        .table_teclado tr td:hover {
+            background: #17759c;
+        }
+
+    .btn_delete_keyboard {
+        position: absolute;
+        left: 2em;
+        bottom: .3em;
+        width: 30px;
+    }
+
+</style>
+
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<script>
+    var id = 0;
+    var mathOpList = ["+","-","*","/"]
+
+    document.getElementById('formula-compound').addEventListener('keydown', function (e){
+        checkKey(e);
+        checkGeneralSyntax($('#formula-compound').val());
+    }, false);
+
+    function ValidateName(txt) {
+        txt.value = txt.value.replace(/[^a-zA-Z 0-9\n\r]+/g, '');
+    }
+
+    $(document).ready(function () {
+        var isEditing = @Html.Raw(Json.Encode(Model.IsEditing));
+        var varType = @Html.Raw(Json.Encode(Model.Type.ToString()));
+
+        if(isEditing)
+        {
+            if(varType == "Compound")
+            {
+                var compoundType = @Html.Raw(Json.Encode(Model.Selector.ToString()));
+                changeCompoundType(compoundType);
+                if(compoundType == "MATH EXPRESSION")
+                {
+                    checkGeneralSyntax($('#formula-compound').val());
+                }
+            }
+            //changeSection()
+
+        }
+
+        $("#add-item-function").click(function(){
+            //$("#function-list")function-list
+            if($("#function-list option[value='"+$("#VariableSelectorFunction").find(":selected").val()+"']").length>0){
+                bootbox.alert("You can't add the same variable at two times.");
+                $('.bootbox-body').css("font-size", "14px");
+            }else if($("#VariableSelectorFunction").find(":selected").length == 0)
+            {
+                bootbox.alert("There aren't variables to add to the list.");
+                $('.bootbox-body').css("font-size", "14px");
+            }
+            else
+            {
+                $('#function-list').append($('<option>', {
+                    value: $("#VariableSelectorFunction").find(":selected").val(),
+                    text: $("#VariableSelectorFunction").find(":selected").text(),
+                }));
+                id++;
+            }
+
+
+        });
+
+        $("#delete-item-function").click(function(){
+            $("#function-list").find(":selected").each(
+                function(i,e){
+                    $("#function-list option[value='"+$(this).val()+"']").remove();
+                }
+            );
+        });
+
+        $("#add-item-expression").click(function(){
+            //$("#function-list")function-list   formula-compound
+            if($("#VariableSelectorFunction").find(":selected").length == 0)
+            {
+                bootbox.alert("There aren't variables to add to the expression.");
+                $('.bootbox-body').css("font-size", "14px");
+            }
+            else{
+                $('#formula-compound').val($('#formula-compound').val() + $("#VariableSelectorMath").find(":selected").val()).focus();
+                checkGeneralSyntax($('#formula-compound').val());
+            }
+            
+        });
+
+
+        $('.table_teclado tr td').click(function(){
+            var input = $(this).text();
+
+            //Si entra aqui quiere decir que borrara
+            if (input == '')
+            {
+                var textAreaValue = $('#formula-compound').val();
+                var position = $('#formula-compound').prop("selectionStart")-1;
+                if(textAreaValue[position] == "}"){
+                    var startVariablePosition = -1;
+                    for(var i = position; i >= 0; i--){
+                        if(textAreaValue[i] == "{"){
+                            startVariablePosition = i;
+                            break;
+                        }
+                    }
+
+                    if(startVariablePosition!=-1){
+                        var cadenaInicio = textAreaValue.substring(0,i);
+                        var cadenaFinal = textAreaValue.substring(position+1,textAreaValue.length);
+                        $('#formula-compound').val(cadenaInicio+cadenaFinal);
+                        $('#formula-compound').prop("selectionStart",position+1)
+                        $('#formula-compound').prop("selectionEnd",position+1)
+                    }
+                }else if(textAreaValue[position] == "{"){
+                    var finalVariablePosition = -1;
+                    for(var i = position; i <= textAreaValue.length; i++){
+                        if(textAreaValue[i] == "}"){
+                            finalVariablePosition = i;
+                            break;
+                        }
+                    }
+
+                    if(finalVariablePosition!=-1){
+                        var cadenaInicio = textAreaValue.substring(0,position);
+                        var cadenaFinal = textAreaValue.substring(finalVariablePosition+1,textAreaValue.length);
+                        $('#formula-compound').val(cadenaInicio+cadenaFinal);
+                        $('#formula-compound').prop("selectionStart",position+1)
+                        $('#formula-compound').prop("selectionEnd",position+1)
+                    }
+                }else{
+                    //Si entra aqui es porque borrara normalmente
+                    $('#formula-compound').val($('#formula-compound').val().substr(0, $('#formula-compound').val().length - 1)).focus();
+                }
+
+                checkGeneralSyntax($('#formula-compound').val());
+            }
+            //Si es un signo
+            else if(mathOpList.indexOf(input) != -1){
+                if(mathOpList.indexOf($('#formula-compound').val().substring($('#formula-compound').val().length-1,$('#formula-compound').val().length))!=-1)
+                {
+                    $('#formula-compound').val($('#formula-compound').val().substring(0,$('#formula-compound').val().length-1) + input).focus();
+                }
+                else
+                {
+                    $('#formula-compound').val($('#formula-compound').val() + input).focus();
+                }
+
+                checkGeneralSyntax($('#formula-compound').val());
+                
+            }
+            //Si es un punto
+            else if(input==".")
+            {
+                if($('#formula-compound').val().substring($('#formula-compound').val().length-1, $('#formula-compound').val().length) != ".")
+                {
+                    $('#formula-compound').val($('#formula-compound').val() + input).focus();
+                    checkGeneralSyntax($('#formula-compound').val());
+                }
+            }
+            else
+            {
+                $('#formula-compound').val($('#formula-compound').val() + input).focus();
+                checkGeneralSyntax($('#formula-compound').val());
+            }
+            $('#formula-compound').focus()
+
+        });
+
+        changeSection($("#type-dropdown").val());
+
+
+        //Lista con todos los nombres de todas las familias
+        var actualFamilies = [];
+        //Lista con todos los (id,name) de todas las familias
+        var allFamilies = [];
+        //Lista con todos los id de las familias seleeccinadas
+        var selectedFamiliesFromVariable = [];
+        //Lista con nombres de las familias seleccionadas
+        var familiesFromVariable = @Html.Raw(Json.Encode(Model.families));
+        //Lista con todas las familias
+        var familiesListFromModel = @Html.Raw(Json.Encode(Model.FamiliesList));
+
+        //Lista con todos los nombres de todos las productos segun las familias seleccionadas
+        var actualProducts = [];
+        //Lista con todos los (id,idFamily,name) de todos las productos segun las familias seleccionadas
+        var allProducts = [];
+        //Lista con todos los id de los productos seleeccinados
+        var selectedProductsFromVariable = [];
+        //Lista con nombres de los productos seleccionados
+        var productsFromVariable = @Html.Raw(Json.Encode(Model.products));
+        //Lista con todas los productos
+        var productsListFromModel = @Html.Raw(Json.Encode(Model.ProductList));
+
+        var firstProduct = 0;
+        var firstProductFamily = 0;
+
+        debugger;
+
+        //######################################    PARA  FAMILIAS      #######################################
+        if(familiesFromVariable!=null && familiesFromVariable.length!=0){
+            familiesFromVariable.forEach(function(element,index){
+                var id = element.split("[")[1];
+                selectedFamiliesFromVariable.push(id.slice(0, id.length-1));
+            });
+        }
+
+
+        if(familiesListFromModel!= undefined && familiesListFromModel!=null && familiesListFromModel.length >0){
+            familiesListFromModel.forEach(function(element,index){
+                actualFamilies.push(element.Text +" [" +element.Value+"]");
+                allFamilies.push(
+                    {
+                        id: element.Value,
+                        name: element.Text
+                    }
+                );
+            });
+        }
+        //######################################    PARA  FAMILIAS      #######################################
+
+
+        //######################################    PARA  PRODUCTOS      #######################################
+        if(productsFromVariable!=null && productsFromVariable.length!=0){
+            productsFromVariable.forEach(function(element,index){
+                var id = element.split("[")[1];
+                selectedProductsFromVariable.push(id.slice(0, id.length-1));
+            });
+        }
+
+
+        if(productsListFromModel!= undefined && productsListFromModel!=null && productsListFromModel.length >0){
+            productsListFromModel.forEach(function(element,index){
+                var vector = element.Value.split("|");
+                //actualProducts.push(element.Text +" [" +vector[0]+"]");
+                allProducts.push(
+                    {
+                        id: vector[0],
+                        idFamily: vector[1],
+                        name: element.Text,
+                    }
+                );
+            });
+
+        }
+        //######################################    PARA  PRODUCTOS      #######################################
+
+        //Ya que tengo los id de las familias entonces agrego los productos a la lista
+        //de actualProducts disponibles
+        var _SelectAllFamilies = @Json.Encode(Model.SelectAllFamilies);
+
+        if(selectedFamiliesFromVariable.length!=0 && !_SelectAllFamilies){
+            selectedFamiliesFromVariable.forEach(function(element,index){
+                //actualProducts
+                allProducts.forEach(function(auxElement,auxIndex){
+                    if(auxElement.idFamily == element){
+                        actualProducts.push(auxElement.name + " ["+auxElement.id+"]");
+                    }
+                });
+            });
+        }
+        else
+        {
+            allProducts.forEach(function(auxElement,auxIndex){
+                actualProducts.push(auxElement.name + " ["+auxElement.id+"]");
+            });
+        }
+
+
+        $('#SelectAllFamilies').change(function() {
+            var checkbox =$(this);
+            if(checkbox.is(":checked")) {
+                if($("#product-families-tag").tagit("assignedTags").length>0){
+                    bootbox.confirm("All the families you taged will be delete. Are you sure?", function (eleccion) {
+                        $('.bootbox-body').css("font-size", "14px");
+                        if(eleccion){
+                            $('#product-families-tag .ui-autocomplete-input').prop('disabled', true).val('');
+                            $('#product-families-tag .tagit-choice').remove();
+                            $('#product-families-tag .ui-widget-content').css('opacity','.2');
+
+                            allProducts.forEach(function(auxElement,auxIndex){
+                                actualProducts.push(auxElement.name + " ["+auxElement.id+"]");
+                            });
+
+
+                            createTagItProduct(actualProducts);
+                        }
+                        checkbox.attr("checked", eleccion);
+                        checkbox.prop("checked", eleccion);
+                    });
+                    $('.bootbox-body').css("font-size", "14px");
+                }else{
+                    $('#product-families-tag .ui-autocomplete-input').prop('disabled', true).val('');
+                    $('#product-families-tag .tagit-choice').remove();
+                    $('#product-families-tag .ui-widget-content').css('opacity','.2');
+
+                    allProducts.forEach(function(auxElement,auxIndex){
+                        actualProducts.push(auxElement.name + " ["+auxElement.id+"]");
+                    });
+
+                    createTagItProduct(actualProducts);
+                }
+            }else{
+                if($("#product-tag").tagit("assignedTags").length>0){
+                    bootbox.confirm("All the products you taged will be delete. Are you sure?", function (event) {
+                        $('.bootbox-body').css("font-size", "14px");
+                        if(event){
+                            $('#product-families-tag .ui-widget-content').css('opacity','1');
+                            $('#product-families-tag .ui-autocomplete-input').prop('disabled', false);
+
+                            actualProducts = [];
+                            createTagItProduct(actualProducts);
+                        }
+
+                        checkbox.attr("checked", !event);
+                        checkbox.prop("checked", !event);
+                    });
+                }else{
+                    $('#product-families-tag .ui-widget-content').css('opacity','1');
+                    $('#product-families-tag .ui-autocomplete-input').prop('disabled', false);
+                    actualProducts = [];
+                    createTagItProduct(actualProducts);
+                }
+
+            }
+
+        });
+
+        $('#SelectAllProducts').change(function() {
+            var checkbox =$(this);
+            if(checkbox.is(":checked")) {
+                if($("#product-tag").tagit("assignedTags").length>0){
+                    bootbox.confirm("All the products you taged will be delete. Are you sure?", function (eleccion) {
+                        $('.bootbox-body').css("font-size", "14px");
+                        if(eleccion){
+                            $('#product-tag .ui-autocomplete-input').prop('disabled', true).val('');
+                            $('#product-tag .tagit-choice').remove();
+                            $('#product-tag .ui-widget-content').css('opacity','.2');
+                        }
+                        checkbox.attr("checked", eleccion);
+                    });
+                    $('.bootbox-body').css("font-size", "14px");
+                }else{
+                    $('#product-tag .ui-autocomplete-input').prop('disabled', true).val('');
+                    $('#product-tag .tagit-choice').remove();
+                    $('#product-tag .ui-widget-content').css('opacity','.2');
+                }
+            } else{
+                $('#product-tag .ui-widget-content').css('opacity','1');
+                $('#product-tag .ui-autocomplete-input').prop('disabled', false);
+            }
+        });
+
+        $("#variable-form").submit(function(e) {
+            var wasPrevent = false;
+            if($("#type-dropdown").val()==0)
+            {
+                //Validaciones para variables primarias
+                if($('#SelectAllFamilies').is(":checked") && !$('#SelectAllProducts').is(":checked") && $("#product-tag").tagit("assignedTags").length == 0){
+                    //Si selecciono todas las familias, no selecciono todos los productos y no especifico ninguno.
+
+                    //Seleccione todos los productos o al menos uno Especifique al menos un producto
+                    bootbox.alert("You must select \"All products\" option, or select at least one Product.");
+                    $('.bootbox-body').css("font-size", "14px");
+                    e.preventDefault();
+                    wasPrevent = true;
+                }
+                else if(!$('#SelectAllFamilies').is(":checked") && $("#product-families-tag").tagit("assignedTags").length == 0){
+                    //Si no selecciono todas las familias y no especifico ninguna
+
+                    //Debe seleccionar todas las familias o al menos una familia
+                    bootbox.alert("You must select the \"All families\" option, or select at least one Family.");
+                    $('.bootbox-body').css("font-size", "14px");
+                    e.preventDefault();
+                    wasPrevent = true;
+                }
+                else if(   !$('#SelectAllFamilies').is(":checked") &&
+                            $("#product-families-tag").tagit("assignedTags").length != 0 &&
+                            !$('#SelectAllProducts').is(":checked") &&
+                            $("#product-tag").tagit("assignedTags").length == 0){
+                    //Si no se seleccionaron todas las familias, pero se selecciono una, y no
+                    //se seleccionaron todos los productos ni uno especifico
+
+                    //Debe seleccionar todos los productos o al menos un producto
+                    bootbox.alert("You must select the \"All products\" option, or select at least one Product.");
+                    $('.bootbox-body').css("font-size", "14px");
+                    e.preventDefault();
+                    wasPrevent = true;
+                }
+            }
+            else if($("#type-dropdown").val()==1)
+            {
+                //Si es expresion matematica
+                if($("#compound-type-dropdown").val()=='MATH EXPRESSION')
+                {
+                    if($('#formula-compound').val() !=="")
+                    {
+                        if(!checkGeneralSyntax($('#formula-compound').val()))
+                        {
+                            //Debe seleccionar todos los productos o al menos un producto
+                            bootbox.alert("The expression you entered is not valid. Please check it syntax.");
+                            $('.bootbox-body').css("font-size", "14px");
+                            e.preventDefault();
+                            wasPrevent = true;
+                        }
+                    }
+                    else
+                    {
+                        //Debe seleccionar todos los productos o al menos un producto
+                        bootbox.alert("The expression field is empty. Please fill it and try to submit again.");
+                        $('.bootbox-body').css("font-size", "14px");
+                        e.preventDefault();
+                        wasPrevent = true;
+                    }
+                }
+                else
+                {
+                    if($("#function-list option").length < 2)
+                    {
+                        //Debe seleccionar al menos 2 variables
+                        bootbox.alert("You must add 2 variables at least for this \"Operator\"");
+                        $('.bootbox-body').css("font-size", "14px");
+                        e.preventDefault();
+                        wasPrevent = true;
+                    }
+                    else
+                    {
+                        $("#function-list option").prop("selected", true);
+                    }
+                }
+            }
+
+            if(!wasPrevent)
+            {
+                $("#type-dropdown").removeAttr("disabled");
+            }
+        });
+
+        $("#type-dropdown").change(function () {
+            changeSection($(this).val());
+        });
+
+        $("#compound-type-dropdown").change(function () {
+            changeCompoundType($(this).val());
+        });
+
+        $("#product-families-tag").tagit({
+            fieldName: "families",
+            availableTags: actualFamilies,
+            autocomplete: { delay: 0, minLength: 2 },
+            showAutocompleteOnFocus: true,
+            removeConfirmation: true,
+            caseSensitive: false,
+            allowDuplicates: false,
+            allowSpaces: true,
+            readOnly: false,
+            tagLimit: null,
+            singleField: false,
+            singleFieldDelimiter: ',',
+            singleFieldNode: null,
+            tabIndex: null,
+            placeholderText: "Type a family",
+            requireAutocomplete: true,
+
+            afterTagAdded: function (event, ui) {
+                debugger;
+                if(firstProductFamily!=selectedFamiliesFromVariable.length ){
+                    firstProductFamily+=1;
+                }else{
+                    actualProducts = [];
+
+                    $("#product-families-tag  .tagit-choice").find("input").each(function (index, element) {
+                        if (actualFamilies.indexOf(element.value) == -1) {
+                            element.parentElement.remove();
+                        }
+
+                        var id = element.value.split("[")[1].slice(0,element.value.split("[")[1].length-1);
+
+                        allProducts.forEach(function(auxElement,auxIndex){
+                            if(auxElement.idFamily == id){
+                                actualProducts.push(auxElement.name + " ["+auxElement.id+"]");
+                            }
+                        });
+                    });
+
+                    createTagItProduct(actualProducts);
+                }
+            },
+
+            afterTagRemoved: function(event, ui) {
+                debugger;
+                actualProducts = [];
+                $("#product-families-tag  .tagit-choice").find("input").each(function (index, element) {
+                    if (actualFamilies.indexOf(element.value) == -1) {
+                        element.parentElement.remove();
+                    }
+
+                    var id = element.value.split("[")[1].slice(0,element.value.split("[")[1].length-1);
+
+                    allProducts.forEach(function(auxElement,auxIndex){
+                        if(auxElement.idFamily == id){
+                            actualProducts.push(auxElement.name + " ["+auxElement.id+"]");
+                        }
+                    });
+                });
+
+                //Se actualiza la lista de tag de los productos
+                createTagItProduct(actualProducts);
+            }
+        });
+
+        //Se crea la tagit con productos
+        createTagItProduct(actualProducts);
+
+        //Revusa si esta chequeado "Todas las familias" y desactiva el tagit
+        if($("#SelectAllFamilies").is(":checked")) {
+            allProducts.forEach(function(auxElement,auxIndex){
+                actualProducts.push(auxElement.name + " ["+auxElement.id+"]");
+            });
+
+            console.log("ENTRE FAMILIES");
+            $('#product-families-tag .ui-autocomplete-input').prop('disabled', true).val('');
+            $('#product-families-tag .tagit-choice').remove();
+            $('#product-families-tag .ui-widget-content').css('opacity','.2');
+        }
+
+        if($("#SelectAllProducts").is(":checked")) {
+            console.log("ENTRE PROCUTS");
+            $('#product-tag .ui-autocomplete-input').prop('disabled', true).val('');
+            $('#product-tag .tagit-choice').remove();
+            $('#product-tag .ui-widget-content').css('opacity','.2');
+        }
+    });
+
+    function checkSyntax(){
+        //Si es check syntax
+        //var re = new RegExp ( "^\-?[0-9]*(([-+/*][0-9]*+)?([.,][0-9]*+)?)*?$");
+        var textToTest = $('#formula-compound').val();
+
+        var re = new RegExp ( "^([-+]?([0-9]*\\.?[0-9]+|[{]([A-z\\s]|\\d)*[(]\\d+[)][}])[\\/\\+\\-\\*])+([-+]?([0-9]*\\.?[0-9]+|[{]([A-z\\s]|\\d)*[(]\\d+[)][}]))$");
+        if(textToTest==""){
+            $("#formula-compound").css("background-color","#ffffff");
+        }else{
+            if(re.test(textToTest)){
+                $("#formula-compound").css("background-color","rgba(0, 255, 0, 0.20)");
+                return true;
+            }else{
+                $("#formula-compound").css("background-color","rgba(255, 0, 0, 0.20)");
+                return false;
+            }
+        }
+
+    }
+
+    function checkGeneralSyntax(textToTest){
+        var isValid = true;
+        ////Este string obtiene la expresión con variables
+        //var textToTest = $('#formula-compound').val();
+
+        if(textToTest.length>0)
+        {
+            //Este string tiene la expresion con variables reemplazadas por "a"
+            var textToTestWithOutVariables = reemplazarVariablesPorA(textToTest);
+
+            //Se necesita comprobar que la expresión cuente con los parentesis necesarios por lo que por medio de checkParentesis(string) se puede saber si estan bien
+            //Si resultParentesis es 0 quiere decir que tiene todos sus pares de parentesis correctamente ubicados, es decir, para cada "(" hay un ")" que lo cierra.
+            //Esto no garantiza que haya una expresión matematica correctamente formada, pero descarta de una vez por parentesis.
+            var resultParentesis = checkParentesis(textToTestWithOutVariables);
+        
+            //Si entra aqui quiere decir que tiene todos sus pares de parentesis correctamene o que no tiene ninguno
+            if(resultParentesis.result ==0)
+            {
+                //Expresion regular con numeros y variables
+                //var re = new RegExp ( "^([-+]?([0-9]*\\.?[0-9]+|[{]([A-z\\s]|\\d)*[(]\\d+[)][}])[\\/\\+\\-\\*])+([-+]?([0-9]*\\.?[0-9]+|[{]([A-z\\s]|\\d)*[(]\\d+[)][}]))$");
+                
+                //Expresion regular con "a" y variables
+                var regExp = new RegExp ( "^([-+]?([0-9]*\\.?[0-9]+|a)[\\/\\+\\-\\*])+([-+]?([0-9]*\\.?[0-9]+|a))$");
+
+                //Si hay que trabajar con parentesis
+                if(resultParentesis.parentesis.length > 0 )
+                {
+                    var _parentesisPorA = checkParentesisPorA(textToTestWithOutVariables);
+
+                    if(_parentesisPorA.result)
+                    {
+                        //Por cada par de parentesis hay que hacer el mismo proceso
+                        resultParentesis.parentesis.forEach(function(par,i){
+                            //Por medio de recursión se comprueba la expresión de cada parentesis
+                            var newTextToTest = textToTestWithOutVariables.substring(par.izquierdo + 1, par.derecho);
+                            //Si entra aqui es porque aun no encontro alguna inconsistencia
+                            if(isValid)
+                            {
+                                isValid = checkGeneralSyntax(newTextToTest);
+                            }
+                        });
+                    }
+                    else
+                    {
+                        isValid = false;
+                    }
+                }
+                //Si no hay parentesis en la expresión
+                else
+                {
+                    //Si entra aqui es porque la expresion sin parentesis esta bien formada
+                    if(regExp.test(textToTestWithOutVariables))
+                    {
+                        isValid = true;
+                    }
+                    //Si entra aqui es porque la expresion sin parentesis no esta bien formada
+                    else
+                    {
+                        isValid = false;
+                    }
+                }
+            }
+            //Si entra aqui es porque no tiene la cantidad correcta de parentesis, es decir, para cada "(" NO hay un ")" que lo cierra.
+            else
+            {               
+                isValid = false;
+            }
+        }
+        //Si entra aqui es porque la expresión esta vacia
+        else
+        {            
+            isValid = null;
+        }
+
+        //Se pinta el text area de acuerdo al estado de la expresion.
+        if(isValid)
+        {
+            $("#formula-compound").css("background-color","rgba(0, 255, 0, 0.20)"); //Se pone el input en verde
+        }
+        else if(!isValid){
+            $("#formula-compound").css("background-color","rgba(255, 0, 0, 0.20)"); //Se pone el input en rojo
+        }
+        else if(isValid == null)
+        {
+            $("#formula-compound").css("background-color","#ffffff"); //Se pone el input en blanco
+        }
+
+        return isValid;
+        
+    }
+
+    function Parentesis(izquierdo, derecho) {
+        this.izquierdo = izquierdo;
+        this.derecho = derecho;
+    }
+
+    function Dupla(result, parentesis) {
+        this.result = result;
+        this.parentesis = parentesis;
+    }
+
+    function DuplaExpression(result, expression) {
+        this.result = result;
+        this.expression = expression;
+    }
+    
+
+
+    function checkParentesis(textToTest)
+    {
+        var result = 0;
+        var countLeft = -1;
+        var countRight = 0;
+        var texto = textToTest;
+        var parentesis = [];
+        
+        if(texto.length>0)
+        {
+            try {
+                for (var i = 0; i < texto.length; i++) {
+                    var actualChar = texto.charAt(i);
+					
+                    if(actualChar == "(")
+                    {
+                        parentesis.push( new Parentesis(i, null));
+                        countLeft++;
+                        countRight = countLeft;
+                    }
+                    else if(actualChar == ")")
+                    {   
+                        if(parentesis.length==0)
+                        {
+                            //console.log('Sobra un parentesis derecho.')
+                            result = 1;
+                        }
+                        else
+                        {
+                            if(parentesis[countRight].derecho ==null)
+                            {
+                                parentesis[countRight].derecho= i;
+                                countRight--;
+                            }else{
+                                while(parentesis[countRight].derecho !=null){
+                                    countRight--;
+                                    if(parentesis[countRight].derecho ==null)
+                                    {
+                                        parentesis[countRight].derecho= i;
+                                        break;
+                                    }
+                                }	
+                            }
+                        }
+                    }
+                }
+				
+            }
+            catch(err) {
+                //Si Sobra un parentesis derecho
+                if(!parentesis.length == 0)
+                {
+                    //console.log('Sobra un parentesis derecho.')
+                    result = 1;
+                }
+
+            }
+
+
+            parentesis.forEach(function(e,i){
+                if(e.derecho == null || e.izquierdo  == null)
+                {
+                    //console.log('Sobra un parentesis izquierdo.')
+                    result = -1;
+                }
+            });
+        }
+        
+        //if(result == 0)
+        //{
+        //    console.log('Todo esta bien.')				
+        //}
+
+        return (new Dupla(result,parentesis));
+    }
+        
+    function reemplazarVariablesPorA(_mathExpression)
+    {
+        //1+2+12+12+1+{ Holas (12)} + { Holas (12)} + { Holas (12)}
+        var inicioCorchetes = -1;
+        var finalCorchetes = -1;
+
+        //Se extrae el id de la variable del termino
+
+        inicioCorchetes = _mathExpression.indexOf("{");
+        finalCorchetes = _mathExpression.indexOf("}");
+
+        while (inicioCorchetes != -1 && finalCorchetes != -1)
+        {                    
+            var variableString = _mathExpression.substring(inicioCorchetes, finalCorchetes+1);
+
+            _mathExpression = _mathExpression.replace(variableString, "a");
+
+            inicioCorchetes = _mathExpression.indexOf("{");
+            finalCorchetes = _mathExpression.indexOf("}");
+        }
+
+        return _mathExpression;
+    }
+
+    function checkParentesisPorA(pMathExpression)
+    {
+        var _mathExpression = pMathExpression;
+        var _result = new DuplaExpression(null,null);        
+        var _resultParentesis = checkParentesis(pMathExpression)
+
+        //Si entra aqui quiere decir que tiene todos sus pares de parentesis correctamene o que no tiene ninguno
+        if(_resultParentesis.result ==0)
+        {    
+            //Expresion regular con "a" y variables
+            var _regExp = new RegExp ( "^([-+]?([0-9]*\\.?[0-9]+|a)[\\/\\+\\-\\*])+([-+]?([0-9]*\\.?[0-9]+|a))$");
+
+            //Si hay que trabajar con parentesis
+            if(_resultParentesis.parentesis.length > 0 )
+            {                
+                while(_resultParentesis.parentesis.length > 0)
+                {
+                    var _toReplace = _mathExpression.substring(_resultParentesis.parentesis[0].izquierdo, _resultParentesis.parentesis[0].derecho + 1);
+
+                    _mathExpression = _mathExpression.replace(_toReplace,"a");
+
+                    _resultParentesis = checkParentesis(_mathExpression)
+                }
+
+
+                if(_regExp.test(_mathExpression))
+                {
+                    _result.result = true;
+                    _result.expression = _mathExpression;
+                }
+                    //Si entra aqui es porque la expresion sin parentesis no esta bien formada
+                else
+                {
+                    _result.result = false;
+                    _result.expression = _mathExpression;
+                }
+
+            }
+            //Si no hay parentesis en la expresión
+            else
+            {
+                //Si entra aqui es porque la expresion sin parentesis esta bien formada
+                if(_regExp.test(pMathExpression))
+                {
+                    _result.result = true;
+                    _result.expression = pMathExpression;
+
+                }
+                    //Si entra aqui es porque la expresion sin parentesis no esta bien formada
+                else
+                {
+                    _result.result = false;
+                    _result.expression = pMathExpression;
+                }
+            }
+        }
+        //Si entra aqui es porque no tiene la cantidad correcta de parentesis, es decir, para cada "(" NO hay un ")" que lo cierra.
+        else
+        {
+            _result.result = false;
+            _result.expression = pMathExpression;
+        }
+
+        return _result;
+    }
+
+    function checkKey(e){
+        var keyCode = document.all ? e.which : e.keyCode;
+
+        if (keyCode == 39)
+            return true;
+        else if (keyCode == 40)
+            return true;
+        else if (keyCode == 38)
+            return true;
+        else if (keyCode == 37)
+            return true;
+        else
+            e.preventDefault();
+            return false;
+    }
+
+
+
+
+    function createTagItProduct(actualProducts){
+        $("#product-tag").tagit({
+            fieldName: "products",
+            availableTags: actualProducts,
+            autocomplete: { delay: 0, minLength: 2 },
+            showAutocompleteOnFocus: true,
+            removeConfirmation: true,
+            caseSensitive: false,
+            allowDuplicates: false,
+            allowSpaces: true,
+            readOnly: false,
+            tagLimit: null,
+            singleField: false,
+            singleFieldDelimiter: ',',
+            singleFieldNode: null,
+            tabIndex: null,
+            placeholderText: "Type a product",
+            requireAutocomplete: true,
+
+            afterTagAdded: function (event, ui) {
+                $("#product-tag .tagit-choice").find("input").each(function (index, element) {
+                    if (actualProducts.indexOf(element.value) == -1) {
+                        element.parentElement.remove()
+                    }
+                });
+            }
+        });
+
+        $("#product-tag .tagit-choice").find("input").each(function (index, element) {
+            if (actualProducts.indexOf(element.value) == -1) {
+                element.parentElement.remove()
+            }
+        });
+    }
+
+    function changeSection(value) {
+        //$('#primary-section *').attr('disabled', true);
+        if (value == "" || isNaN(value) || value == undefined) {
+            $("#primary-section").css("display", "none");
+            $('#primary-section *').attr('disabled', true);
+            $("#compound-section").css("display", "none");
+            $('#compound-section *').attr('disabled', true);
+            $("#customer-section").css("display", "none");
+            $('#customer-section *').attr('disabled', true);
+        }
+        else if (value == 0) {
+            $("#primary-section").css("display", "block");
+            $('#primary-section *').removeAttr('disabled');
+            $("#compound-section").css("display", "none");
+            $('#compound-section *').attr('disabled', true);
+            $("#customer-section").css("display", "none");
+            $('#customer-section *').attr('disabled', true);
+        }
+        else if (value == 1) {
+            $("#primary-section").css("display", "none");
+            $('#primary-section *').attr('disabled', true);
+            $("#compound-section").css("display", "block");
+            $('#compound-section *').removeAttr('disabled');
+            $("#customer-section").css("display", "none");
+            $('#customer-section *').attr('disabled', true);
+        }
+        else if (value == 2) {
+            $("#primary-section").css("display", "none");
+            $('#primary-section *').attr('disabled', true);
+            $("#compound-section").css("display", "none");
+            $('#compound-section *').attr('disabled', true);
+            $("#customer-section").css("display", "block");
+            $('#customer-section *').removeAttr('disabled');
+        }
+        clearFields();
+    }
+
+    function changeCompoundType(value) {
+        if (value == "MATH EXPRESSION") {
+            $("#math-expression").css("display", "block");
+            $('#math-expression *').removeAttr('disabled');
+            $("#function").css("display", "none");
+            $('#function *').attr('disabled', true);
+        }
+        else {
+            $("#math-expression").css("display", "none");
+            $('#math-expression *').attr('disabled', true);
+            $("#function").css("display", "block");
+            $('#function *').removeAttr('disabled');
+        }
+        clearFields();
+    }
+
+    function clearFields() {
+        console.log("//TODO: Implementar este metodo para limpiar todos los campos ")
+    }
+</script>
+
+<div class="row">
+    @Html.HiddenFor(model => model.VariableID)
+    <div class="row">
+        @Html.LabelFor(model => model.Type, new { @class = "col-sm-2 control-label separationLabel" })
+        @if (Model.IsEditing)
+        {
+            @Html.EnumDropDownListFor(x => x.Type, null, new { @class = "form-control dropdownSeparation", @id = "type-dropdown",@disabled="disabled"})
+        }
+        else
+        {
+            @Html.EnumDropDownListFor(x => x.Type, null, new { @class = "form-control dropdownSeparation", @id = "type-dropdown" })
+        }
+        @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger requiredMessage" })
+    </div>
+    <hr>
+
+    <div id="primary-section" style="display:none;">
+        <div class="row">
+            @Html.LabelFor(model => model.Name, new { @class = "col-sm-2 control-label separationLabel" })
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control dropdownSeparation", @maxlength = "100", @placeholder = "Variable Name", @onkeyup = "ValidateName(this)" })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger requiredMessage" })
+        </div>
+        <div class="row">
+            @Html.LabelFor(model => model.Description, new { @class = "col-sm-2 control-label separationLabel" })
+            @Html.TextAreaFor(model => model.Description, new { @class = "form-control dropdownSeparation", @maxlength = "100", @placeholder = "Variable Description" })
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger requiredMessage" })
+        </div>
+        <div class="row">
+            @Html.LabelFor(model => model.Field, new { @class = "col-sm-2 control-label separationLabel", @style = "margin: 0px;" })
+            @Html.RadioButtonFor(model => model.Field, "Normal", new { id = "fieldSi", @class = "radio-selection" })
+            @Html.Label("fieldSi", "NORMAL", new { @class = "label-selection" })
+
+            @Html.RadioButtonFor(model => model.Field, "Cal", new { id = "fieldNo", @class = "radio-selection" })
+            @Html.Label("fieldNo", "CAL", new { @class = "label-selection" })
+
+            @Html.RadioButtonFor(model => model.Field, "Both", new { id = "fieldBoth", @class = "radio-selection" })
+            @Html.Label("fieldBoth", "BOTH", new { @class = "label-selection" })
+
+            @Html.ValidationMessageFor(model => model.Field, "", new { @class = "text-danger requiredMessage" })
+        </div>
+        <div class="row">
+            @Html.LabelFor(model => model.Selector, new { @class = "col-sm-2 control-label dropdownSeparation separationLabel" })
+            @Html.DropDownListFor(model => model.Selector, Model.SelectorList.Where(x => !x.Value.Contains("MATH EXPRESSION")), null, new { @class = "form-control dropdownSeparation", @required = "required" })
+            @Html.ValidationMessageFor(model => model.Selector, "", new { @class = "text-danger requiredMessage" })
+        </div>
+        <hr>
+        <div class="row">
+            @Html.LabelFor(model => model.SelectAllFamilies, new { @class = "col-sm-2 control-label separationLabel" })
+            @Html.CheckBoxFor(x => x.SelectAllFamilies, new { @class = "all-selection" }) <label class="label-selection">ALL FAMILIES</label>
+            @Html.ValidationMessageFor(model => model.SelectAllFamilies, "", new { @class = "text-danger requiredMessage" })
+        </div>
+
+        <div class="row">
+            <div class="col-md-offset-2 col-md-3 dropdownSeparation">
+                <ul id="product-families-tag" class="tag-it-elements" data-title="(LIST WITH FAMILIES)">
+                    <!-- Existing list items will be pre-added to the tags -->
+                    @if (Model.families != null && Model.families.Count() > 0 && !Model.SelectAllFamilies)
+                    {
+                        foreach (var aux in Model.families)
+                        {
+                            <li>@aux</li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+        <hr>
+
+        <div class="row">
+            @Html.LabelFor(model => model.SelectAllProducts, new { @class = "col-sm-2 control-label separationLabel" })
+            @*@Html.EnumDropDownListFor(x => x.SelectAllProducts, new { @class = "form-control dropdownSeparation" })*@
+            @Html.CheckBoxFor(x => x.SelectAllProducts, new { @class = "all-selection" }) <label class="label-selection">ALL PRODUCTS</label>
+            @Html.ValidationMessageFor(model => model.SelectAllProducts, "", new { @class = "text-danger requiredMessage" })
+        </div>
+
+        <div class="row">
+            <div class="col-md-offset-2 col-md-3 dropdownSeparation">
+                <ul id="product-tag" class="tag-it-elements" data-title="(LIST WITH PRODUCTS)">
+                    <!-- Existing list items will be pre-added to the tags -->
+                    @if (Model.products != null && Model.products.Count() > 0 && !Model.SelectAllProducts)
+                    {
+                        foreach (var aux in Model.products)
+                        {
+                            <li>@aux</li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="row">
+            @Html.LabelFor(model => model.IsCorporate, new { @class = "col-sm-2 control-label separationLabel", @style = "margin: 0px;" })
+            @Html.RadioButtonFor(model => model.IsCorporate, "true", new { id = "corporateSi", @class = "radio-selection" })
+            @Html.Label("corporateSi", @TranslatorHelper.TranslateTextByIdentifier("Old_LabelSi"), new { @class = "label-selection" })
+
+            @Html.RadioButtonFor(model => model.IsCorporate, "false", new { id = "corporateNo", @class = "radio-selection" })
+            @Html.Label("corporateNo", @TranslatorHelper.TranslateTextByIdentifier("Old_LabelNo"), new { @class = "label-selection" })
+
+            @Html.RadioButtonFor(model => model.IsCorporate, "both", new { id = "corporateBoth", @class = "radio-selection" })
+            @Html.Label("corporateBoth", "BOTH", new { @class = "label-selection" })
+
+            @Html.ValidationMessageFor(model => model.IsCorporate, "", new { @class = "text-danger requiredMessage" })
+        </div>
+
+
+        <div class="row">
+            @Html.LabelFor(model => model.IsCommercial, new { @class = "col-sm-2 control-label separationLabel", @style = "margin: 0px;" })
+            @Html.RadioButtonFor(model => model.IsCommercial, "true", new { id = "commercialSi", @class = "radio-selection" })
+            @Html.Label("commercialSi", @TranslatorHelper.TranslateTextByIdentifier("Old_LabelSi"), new { @class = "label-selection" })
+
+            @Html.RadioButtonFor(model => model.IsCommercial, "false", new { id = "commercialNo", @class = "radio-selection" })
+            @Html.Label("commercialNo", @TranslatorHelper.TranslateTextByIdentifier("Old_LabelNo"), new { @class = "label-selection" })
+
+            @Html.RadioButtonFor(model => model.IsCommercial, "both", new { id = "commercialBoth", @class = "radio-selection" })
+            @Html.Label("commercialBoth", "BOTH", new { @class = "label-selection" })
+
+            @Html.ValidationMessageFor(model => model.IsCommercial, "", new { @class = "text-danger requiredMessage" })
+        </div>
+
+
+        <div class="row">
+            @Html.LabelFor(model => model.IsSupported, new { @class = "col-sm-2 control-label separationLabel", @style = "margin: 0px;" })
+            @Html.RadioButtonFor(model => model.IsSupported, "true", new { id = "supportedSi", @class = "radio-selection" })
+            @Html.Label("supportedSi", @TranslatorHelper.TranslateTextByIdentifier("Old_LabelSi"), new { @class = "label-selection" })
+
+            @Html.RadioButtonFor(model => model.IsSupported, "false", new { id = "supportedNo", @class = "radio-selection" })
+            @Html.Label("supportedNo", @TranslatorHelper.TranslateTextByIdentifier("Old_LabelNo"), new { @class = "label-selection" })
+
+            @Html.RadioButtonFor(model => model.IsSupported, "both", new { id = "supportedBoth", @class = "radio-selection" })
+            @Html.Label("supportedBoth", "BOTH", new { @class = "label-selection" })
+
+            @Html.ValidationMessageFor(model => model.IsSupported, "", new { @class = "text-danger requiredMessage" })
+        </div>
+        <hr>
+    </div>
+
+    <div id="compound-section">
+        <div class="row">
+            @Html.LabelFor(model => model.Name, new { @class = "col-sm-2 control-label separationLabel" })
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control dropdownSeparation", @maxlength = "100", @placeholder = "Variable Name", @onkeyup = "ValidateName(this)" })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger requiredMessage" })
+        </div>
+        <div class="row">
+            @Html.LabelFor(model => model.Description, new { @class = "col-sm-2 control-label separationLabel" })
+            @Html.TextAreaFor(model => model.Description, new { @class = "form-control dropdownSeparation", @maxlength = "100", @placeholder = "Variable Description" })
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger requiredMessage" })
+        </div>
+        <div class="row">
+            @Html.LabelFor(model => model.Selector, new { @class = "col-sm-2 control-label dropdownSeparation separationLabel" })
+            @Html.DropDownListFor(model => model.Selector, Model.SelectorList, null, new { @class = "form-control dropdownSeparation", @required = "required", @id = "compound-type-dropdown" })
+            @Html.ValidationMessageFor(model => model.Selector, "", new { @class = "text-danger requiredMessage" })
+        </div>
+        <div id="math-expression" class="row">
+            <div class="row">
+                @Html.LabelFor(model => model.VariableSelector, new { @class = "col-sm-2 control-label dropdownSeparation separationLabel" })
+                @Html.DropDownListFor(model => model.VariableSelector, Model.VariableList, null, new { @class = "form-control dropdownSeparation", @required = "required", @id = "VariableSelectorMath" })
+                @Html.ValidationMessageFor(model => model.VariableSelector, "", new { @class = "text-danger requiredMessage" })
+                <input type="button" class="btn btn-primary col-md-2 col-md-offset-1" value="Add to expression" id="add-item-expression">
+            </div>
+            <div class="row">
+                @*<textarea id="formula-compound" class="form-control dropdownSeparation col-md-offset-2" rows="4" cols="50"></textarea>*@
+                @Html.TextAreaFor(m => m.MathExpression, new { @id = "formula-compound", @class = "form-control dropdownSeparation col-md-offset-2",@rows="4", @cols="50" })
+                
+                <div class="keyboard-container col-md-offset-1">
+                    <table class="table_teclado " >
+                        <tr>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>+</td>
+                            <td>*</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>5</td>
+                            <td>6</td>
+                            <td>-</td>
+                            <td>/</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>8</td>
+                            <td>9</td>
+                            <td>(</td>
+                            <td>)</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">0</td>
+                            <td colspan="1">.</td>
+                            <td colspan="2"><img class="btn_delete_keyboard" src="@Url.Content("~/Content/Images/borrar.png")"></td>
+                        </tr>
+                        @*<tr>
+                            <td class="syntax-button" colspan="5">Check Syntax</td>
+                        </tr>*@
+                    </table>
+                </div>
+
+            </div>
+        </div>
+        <div id="function" class="row" style="display:none;">
+            <div class="row">
+                @Html.LabelFor(model => model.VariableSelector, new { @class = "col-sm-2 control-label dropdownSeparation separationLabel" })
+                @Html.DropDownListFor(model => model.VariableSelector, Model.VariableList, null, new { @class = "form-control dropdownSeparation", @required = "required",@id= "VariableSelectorFunction" })
+                @Html.ValidationMessageFor(model => model.VariableSelector, "", new { @class = "text-danger requiredMessage" })
+                <input id="add-item-function" type="button" class="btn btn-primary col-md-2 col-md-offset-1" value="Add item">
+            </div>
+            <div class="row">
+                <select id="function-list" class="multi-select form-control dropdownSeparation col-md-offset-2" name="VariableFuntionList" multiple>
+                    @if (Model.VariableFuntionList != null && Model.VariableFuntionList.Count() > 0)
+                    {
+                        foreach (string aux in Model.VariableFuntionList)
+                        {
+                            int barra = aux.IndexOf("|");
+                            string value = aux.Substring(0, barra);
+                            string text = aux.Substring(barra + 1, aux.Length - barra - 1);
+                            <option value="@value">@text</option>
+                        }
+                    }
+                </select>
+                <input id="delete-item-function" type="button" class="btn btn-danger col-md-2 col-md-offset-1" value="Delete item(s)">
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Affidavit.Models.ManagePlatform.LandingsPerCountryVM>
+@using Affidavit.Utils
+
+<label for="campaign">@TranslatorHelper.TranslateTextByIdentifier("Old_CampaignAdmin")</label>
+<div class="landingsByCountry-content">
+    <ul class="list-group">
+        @foreach (var item in Model)
+            {
+            <li class="list-group-item campaign-replace-item" data-campaingreplaceid="@item.Id">
+                <i class="fa fa-square-o"></i>&nbsp; @item.Campaing
+            </li>
+        }
+    </ul>
+</div>
+
+

@@ -1,0 +1,117 @@
+﻿@using Affidavit.Helpers
+@using Affidavit.Utils
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <title>@ViewBag.Title - @TranslatorHelper.TranslateTextByIdentifier("Old_MicrosoftDevelopmentSummary")</title>
+    @Styles.Render("~/AffContent/css")
+
+    @Html.Partial("_GAnalitycsPartial")
+    <script>
+        gAnalytics.addGoogleAnalytics();
+    </script>
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/customjs")
+
+    <script>
+        function redirect(){
+            window.location.href = $('#NS_UrlActionIndex').text();
+        }
+    </script>
+
+
+</head>
+<body>
+    @if (!ModularityHelper.CanISeeV3())
+    {
+        <label id="NS_UrlActionIndex" style="display: none !important;visibility: hidden !important;">
+            @Url.Action("Index", "MDS")
+        </label>
+    }
+    else
+    {
+        <label id="NS_UrlActionIndex" style="display: none !important;visibility: hidden !important;">
+            @Url.Action("Index", "ChooseAnAction")
+        </label>
+    }
+
+
+    <div id="proceso_en_ejecucion">
+        <div>
+            <img src='@Url.Content("~/Content/Images/processing.gif")' width="58" height="58">
+        </div>
+    </div>
+    <div class="bb-alert alert" style="display: none;">
+        <span>Hello world callback</span>
+    </div>
+    <!--================================= HEADER ======================================-->
+    <div id="header" style="position:relative;z-index: 2;">
+        <div class="centro">
+            @{
+                    var _currentCulture = CultureHelper.GetCurrentCulture();
+                    var _culCurr = CultureHelper.GetCultureName(_currentCulture);
+            }
+            <!--================================================-->
+            <a class="logo" onclick="redirect()" style="cursor:pointer;" target="_self"><img src='@Url.Content("~/Content/Images/logo.png")' width="164" height="60" alt=""></a>
+            @*<h1>@TranslatorHelper.TranslateTextByIdentifier("Old_TituloFormulario")</h1>*@
+
+            <a href="#" id="logOut" class="logout" style="margin-left:10px;">@TranslatorHelper.TranslateTextByIdentifier("Old_LabelLogout")</a>
+            <a href="javascript:window.history.back();" class="linkGoBack">&laquo; @TranslatorHelper.TranslateTextByIdentifier("Old_LabelGoBack")</a>
+                                    
+        </div>
+    </div>
+    
+    <div class="container body-content" style="position:relative;z-index: 1;">
+        @RenderBody()
+
+        
+    </div>
+
+
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @RenderSection("scripts", required: false)
+    <div id="footer">
+        @Html.Partial("_FooterInsidePartial")
+    </div>
+
+    <input type="hidden" id="myLeadID" value="" />
+    
+</body>
+</html>
+
+@using (Html.BeginForm("SetCulture", "MDS", FormMethod.Post, new { id = "languageForm", name = "languageForm" }))
+{
+    <input type="hidden" name="returnUrl" id="returnUrl" value="@Request.Url" />
+    <input type="hidden" name="culture" id="culture" value="" />
+    <input type="hidden" name="leadId" id="leadId" value="" />
+    <input type="hidden" name="LanguageID" id="languageID" value="" />
+}
+
+@Html.Partial("_Infografia")
+
+<script type="text/javascript">
+    var _leadID;
+    function changeLanguageLetter(langId) {
+        console.log($('#LeadId').val());
+        $("#languageForm > #culture").val(langId);
+        $("#languageForm > #leadId").val($('#LeadId').val());
+        $("#languageForm > #languageID").val($('#languageID').text());
+
+        $("#languageForm").submit();
+    }
+
+    $(document).on("click", "#logOut", function (e) {
+        e.preventDefault();
+        //$('#IsLogOut').val(true);
+        //$("#formulario").submit();
+
+        window.location.href = '@Url.Action("LogOut", "Home")?pLeadID=' + $('#LeadId').val();
+    });
+
+    
+</script>

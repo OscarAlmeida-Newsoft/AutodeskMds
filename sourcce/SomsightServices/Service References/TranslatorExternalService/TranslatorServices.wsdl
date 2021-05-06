@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="TranslatorServices" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:12312/TranslatorServices.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:12312/TranslatorServices.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:12312/TranslatorServices.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/SharedEntities" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ITranslatorServices_TranslatorFileModel_InputMessage">
+    <wsdl:part name="parameters" element="tns:TranslatorFileModel" />
+  </wsdl:message>
+  <wsdl:message name="ITranslatorServices_TranslatorFileModel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TranslatorFileModelResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITranslatorServices_CreateTranslatorLanguage_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateTranslatorLanguage" />
+  </wsdl:message>
+  <wsdl:message name="ITranslatorServices_CreateTranslatorLanguage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateTranslatorLanguageResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITranslatorServices_UpdateTranslatorLanguage_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTranslatorLanguage" />
+  </wsdl:message>
+  <wsdl:message name="ITranslatorServices_UpdateTranslatorLanguage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTranslatorLanguageResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITranslatorServices_DeleteTranslatorLanguage_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTranslatorLanguage" />
+  </wsdl:message>
+  <wsdl:message name="ITranslatorServices_DeleteTranslatorLanguage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTranslatorLanguageResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITranslatorServices_GetTranslatorLanguageDropDown_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTranslatorLanguageDropDown" />
+  </wsdl:message>
+  <wsdl:message name="ITranslatorServices_GetTranslatorLanguageDropDown_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTranslatorLanguageDropDownResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITranslatorServices_CreateTranslatorAdministrator_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateTranslatorAdministrator" />
+  </wsdl:message>
+  <wsdl:message name="ITranslatorServices_CreateTranslatorAdministrator_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateTranslatorAdministratorResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITranslatorServices_UpdateTranslatorAdministrator_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTranslatorAdministrator" />
+  </wsdl:message>
+  <wsdl:message name="ITranslatorServices_UpdateTranslatorAdministrator_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTranslatorAdministratorResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITranslatorServices_DeleteTranslatorAdministrator_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTranslatorAdministrator" />
+  </wsdl:message>
+  <wsdl:message name="ITranslatorServices_DeleteTranslatorAdministrator_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTranslatorAdministratorResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITranslatorServices_GetTranslatorAdministrator_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTranslatorAdministrator" />
+  </wsdl:message>
+  <wsdl:message name="ITranslatorServices_GetTranslatorAdministrator_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTranslatorAdministratorResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITranslatorServices_CreateTranslatorXLanguage_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateTranslatorXLanguage" />
+  </wsdl:message>
+  <wsdl:message name="ITranslatorServices_CreateTranslatorXLanguage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateTranslatorXLanguageResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITranslatorServices_UpdateTranslatorXLanguage_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTranslatorXLanguage" />
+  </wsdl:message>
+  <wsdl:message name="ITranslatorServices_UpdateTranslatorXLanguage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTranslatorXLanguageResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITranslatorServices_DeleteTranslatorXLanguage_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTranslatorXLanguage" />
+  </wsdl:message>
+  <wsdl:message name="ITranslatorServices_DeleteTranslatorXLanguage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTranslatorXLanguageResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITranslatorServices_GetTranslationXLanguage_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTranslationXLanguage" />
+  </wsdl:message>
+  <wsdl:message name="ITranslatorServices_GetTranslationXLanguage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTranslationXLanguageResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ITranslatorServices">
+    <wsdl:operation name="TranslatorFileModel">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITranslatorServices/TranslatorFileModel" message="tns:ITranslatorServices_TranslatorFileModel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITranslatorServices/TranslatorFileModelResponse" message="tns:ITranslatorServices_TranslatorFileModel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateTranslatorLanguage">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITranslatorServices/CreateTranslatorLanguage" message="tns:ITranslatorServices_CreateTranslatorLanguage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITranslatorServices/CreateTranslatorLanguageResponse" message="tns:ITranslatorServices_CreateTranslatorLanguage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTranslatorLanguage">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITranslatorServices/UpdateTranslatorLanguage" message="tns:ITranslatorServices_UpdateTranslatorLanguage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITranslatorServices/UpdateTranslatorLanguageResponse" message="tns:ITranslatorServices_UpdateTranslatorLanguage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTranslatorLanguage">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITranslatorServices/DeleteTranslatorLanguage" message="tns:ITranslatorServices_DeleteTranslatorLanguage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITranslatorServices/DeleteTranslatorLanguageResponse" message="tns:ITranslatorServices_DeleteTranslatorLanguage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTranslatorLanguageDropDown">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITranslatorServices/GetTranslatorLanguageDropDown" message="tns:ITranslatorServices_GetTranslatorLanguageDropDown_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITranslatorServices/GetTranslatorLanguageDropDownResponse" message="tns:ITranslatorServices_GetTranslatorLanguageDropDown_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateTranslatorAdministrator">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITranslatorServices/CreateTranslatorAdministrator" message="tns:ITranslatorServices_CreateTranslatorAdministrator_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITranslatorServices/CreateTranslatorAdministratorResponse" message="tns:ITranslatorServices_CreateTranslatorAdministrator_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTranslatorAdministrator">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITranslatorServices/UpdateTranslatorAdministrator" message="tns:ITranslatorServices_UpdateTranslatorAdministrator_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITranslatorServices/UpdateTranslatorAdministratorResponse" message="tns:ITranslatorServices_UpdateTranslatorAdministrator_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTranslatorAdministrator">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITranslatorServices/DeleteTranslatorAdministrator" message="tns:ITranslatorServices_DeleteTranslatorAdministrator_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITranslatorServices/DeleteTranslatorAdministratorResponse" message="tns:ITranslatorServices_DeleteTranslatorAdministrator_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTranslatorAdministrator">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITranslatorServices/GetTranslatorAdministrator" message="tns:ITranslatorServices_GetTranslatorAdministrator_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITranslatorServices/GetTranslatorAdministratorResponse" message="tns:ITranslatorServices_GetTranslatorAdministrator_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateTranslatorXLanguage">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITranslatorServices/CreateTranslatorXLanguage" message="tns:ITranslatorServices_CreateTranslatorXLanguage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITranslatorServices/CreateTranslatorXLanguageResponse" message="tns:ITranslatorServices_CreateTranslatorXLanguage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTranslatorXLanguage">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITranslatorServices/UpdateTranslatorXLanguage" message="tns:ITranslatorServices_UpdateTranslatorXLanguage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITranslatorServices/UpdateTranslatorXLanguageResponse" message="tns:ITranslatorServices_UpdateTranslatorXLanguage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTranslatorXLanguage">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITranslatorServices/DeleteTranslatorXLanguage" message="tns:ITranslatorServices_DeleteTranslatorXLanguage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITranslatorServices/DeleteTranslatorXLanguageResponse" message="tns:ITranslatorServices_DeleteTranslatorXLanguage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTranslationXLanguage">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITranslatorServices/GetTranslationXLanguage" message="tns:ITranslatorServices_GetTranslationXLanguage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITranslatorServices/GetTranslationXLanguageResponse" message="tns:ITranslatorServices_GetTranslationXLanguage_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ITranslatorServices" type="tns:ITranslatorServices">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="TranslatorFileModel">
+      <soap:operation soapAction="http://tempuri.org/ITranslatorServices/TranslatorFileModel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateTranslatorLanguage">
+      <soap:operation soapAction="http://tempuri.org/ITranslatorServices/CreateTranslatorLanguage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTranslatorLanguage">
+      <soap:operation soapAction="http://tempuri.org/ITranslatorServices/UpdateTranslatorLanguage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTranslatorLanguage">
+      <soap:operation soapAction="http://tempuri.org/ITranslatorServices/DeleteTranslatorLanguage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTranslatorLanguageDropDown">
+      <soap:operation soapAction="http://tempuri.org/ITranslatorServices/GetTranslatorLanguageDropDown" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateTranslatorAdministrator">
+      <soap:operation soapAction="http://tempuri.org/ITranslatorServices/CreateTranslatorAdministrator" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTranslatorAdministrator">
+      <soap:operation soapAction="http://tempuri.org/ITranslatorServices/UpdateTranslatorAdministrator" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTranslatorAdministrator">
+      <soap:operation soapAction="http://tempuri.org/ITranslatorServices/DeleteTranslatorAdministrator" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTranslatorAdministrator">
+      <soap:operation soapAction="http://tempuri.org/ITranslatorServices/GetTranslatorAdministrator" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateTranslatorXLanguage">
+      <soap:operation soapAction="http://tempuri.org/ITranslatorServices/CreateTranslatorXLanguage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTranslatorXLanguage">
+      <soap:operation soapAction="http://tempuri.org/ITranslatorServices/UpdateTranslatorXLanguage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTranslatorXLanguage">
+      <soap:operation soapAction="http://tempuri.org/ITranslatorServices/DeleteTranslatorXLanguage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTranslationXLanguage">
+      <soap:operation soapAction="http://tempuri.org/ITranslatorServices/GetTranslationXLanguage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TranslatorServices">
+    <wsdl:port name="BasicHttpBinding_ITranslatorServices" binding="tns:BasicHttpBinding_ITranslatorServices">
+      <soap:address location="http://localhost:12312/TranslatorServices.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

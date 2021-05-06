@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/SharedEntities" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SharedEntities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="UserSAMLive">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Company" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DefaultDashboard" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Mobil" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MyProperty" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RefUserGroupID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Telephone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Token" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserSAMLive" nillable="true" type="tns:UserSAMLive" />
+  <xs:complexType name="TokenResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Url" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="data" nillable="true" type="tns:TokenData" />
+      <xs:element minOccurs="0" name="error" type="xs:boolean" />
+      <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TokenResponse" nillable="true" type="tns:TokenResponse" />
+  <xs:complexType name="TokenData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="timeStamp" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TokenData" nillable="true" type="tns:TokenData" />
+</xs:schema>

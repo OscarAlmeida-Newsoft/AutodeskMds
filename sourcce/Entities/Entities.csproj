@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F86D3C10-C4C1-49E1-B329-003742F94C98}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Entities</RootNamespace>
+    <AssemblyName>Entities</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Crm.Sdk.Proxy, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\DynamicsCRM\SDK\Bin\Microsoft.Crm.Sdk.Proxy.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xrm.Client, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\JFAlzate\Documentos\CRM_SDK\Microsoft.Xrm.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xrm.Sdk, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\DynamicsCRM\SDK\Bin\Microsoft.Xrm.Sdk.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assessments\NS_TblAnswerXAssessment.cs" />
+    <Compile Include="Assessments\NS_TblAssessmentQuestion.cs" />
+    <Compile Include="Assessments\NS_TblAssessmentQuestionOption.cs" />
+    <Compile Include="Assessments\NS_TblAssessmentSummary.cs" />
+    <Compile Include="Assessments\NS_TblAssessmentType.cs" />
+    <Compile Include="Assessments\NS_TblCapability.cs" />
+    <Compile Include="Assessments\NS_TblMaturityLevel.cs" />
+    <Compile Include="Assessments\NS_TblRecommendation.cs" />
+    <Compile Include="DbAffidavit\DB_Affidavit.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB_Affidavit.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbAffidavit\DB_Affidavit.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB_Affidavit.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbAffidavit\DB_Affidavit.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB_Affidavit.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DbAffidavit\NS_spAdditionalComments_Select_Result.cs">
+      <DependentUpon>DB_Affidavit.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbAffidavit\NS_spAnswerCompany_SelectQuestionID_Result.cs">
+      <DependentUpon>DB_Affidavit.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbAffidavit\NS_spCampaign_Select_Result.cs">
+      <DependentUpon>DB_Affidavit.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbAffidavit\NS_spCompanyContact_Select_Result.cs">
+      <DependentUpon>DB_Affidavit.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbAffidavit\NS_spCompanyInfo_Select_Result.cs">
+      <DependentUpon>DB_Affidavit.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbAffidavit\NS_spCompany_Select_Result.cs">
+      <DependentUpon>DB_Affidavit.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbAffidavit\NS_spCountry_Select_Result.cs">
+      <DependentUpon>DB_Affidavit.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbAffidavit\NS_spIndustry_Select_Result.cs">
+      <DependentUpon>DB_Affidavit.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbAffidavit\NS_spLanguages_Select_Result.cs">
+      <DependentUpon>DB_Affidavit.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbAffidavit\NS_spPartnerCapabilityInfo_Select_Result.cs">
+      <DependentUpon>DB_Affidavit.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbAffidavit\NS_spPartnerProgramInfo_Select_Result.cs">
+      <DependentUpon>DB_Affidavit.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbAffidavit\NS_spProductCompany_Select_Result.cs">
+      <DependentUpon>DB_Affidavit.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbAffidavit\NS_spProductFamilyCompany_Select_Result.cs">
+      <DependentUpon>DB_Affidavit.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbAffidavit\NS_spProductFamily_SelectAll_Result.cs">
+      <DependentUpon>DB_Affidavit.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbAffidavit\NS_spProductFamily_Select_Result.cs">
+      <DependentUpon>DB_Affidavit.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbAffidavit\NS_spProductInfo_Select_Result.cs">
+      <DependentUpon>DB_Affidavit.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbAffidavit\NS_spProduct_SelectID_Result.cs">
+      <DependentUpon>DB_Affidavit.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbAffidavit\NS_spProduct_Select_Result.cs">
+      <DependentUpon>DB_Affidavit.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbAffidavit\NS_spQuestionByID_Select_Result.cs">
+      <DependentUpon>DB_Affidavit.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbAffidavit\NS_spQuestionByLanguage_Select_Result.cs">
+      <DependentUpon>DB_Affidavit.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbAffidavit\NS_spQuestionxProductFamily_Select_Result.cs">
+      <DependentUpon>DB_Affidavit.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbAffidavit\NS_spQuestion_SelectByLanguage_Result.cs">
+      <DependentUpon>DB_Affidavit.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbAffidavit\NS_spResponseDataType_Select_Result.cs">
+      <DependentUpon>DB_Affidavit.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmailQueue\NS_tblEmailQueue.cs" />
+    <Compile Include="Industries\NS_TblIndustrySOMSight.cs" />
+    <Compile Include="IndustryInsights\NS_TblActivity.cs" />
+    <Compile Include="IndustryInsights\NS_TblDigitalTransformation.cs" />
+    <Compile Include="IndustryInsights\NS_TblDigitalTransformationPreLoaded.cs" />
+    <Compile Include="IndustryInsights\NS_TblDigitalTransformationVersions.cs" />
+    <Compile Include="IndustryInsights\NS_tblIndustryIndIns.cs" />
+    <Compile Include="IndustryInsights\NS_TblProblem.cs" />
+    <Compile Include="IndustryInsights\NS_TblProblemPreLoaded.cs" />
+    <Compile Include="IndustryInsights\NS_TblProblemVersions.cs" />
+    <Compile Include="IndustryInsights\NS_TblProcess.cs" />
+    <Compile Include="IndustryInsights\NS_TblProcessPreLoaded.cs" />
+    <Compile Include="IndustryInsights\NS_TblProcessVersions.cs" />
+    <Compile Include="IndustryInsights\NS_TblTypeActivity.cs" />
+    <Compile Include="Landing\LandingCampaign.cs" />
+    <Compile Include="LeadInformation.cs" />
+    <Compile Include="MyOrganizationCrmSdkTypes.cs" />
+    <Compile Include="NS_tblAnswerCompany.cs" />
+    <Compile Include="NS_tblCampaign.cs" />
+    <Compile Include="NS_tblCompany.cs" />
+    <Compile Include="NS_tblCompanyContacts.cs" />
+    <Compile Include="NS_tblCompanyInfo.cs" />
+    <Compile Include="NS_tblCompanyType.cs" />
+    <Compile Include="NS_tblCountry.cs" />
+    <Compile Include="NS_tblIndustry.cs" />
+    <Compile Include="NS_tblIndustryGroup.cs" />
+    <Compile Include="NS_tblTranslatorLanguage.cs" />
+    <Compile Include="NS_tblLead.cs" />
+    <Compile Include="NS_tblLicenseStatusResponse.cs" />
+    <Compile Include="NS_tblPartnerCapability.cs" />
+    <Compile Include="NS_tblPartnerCapabilityCompany.cs" />
+    <Compile Include="NS_tblPartnerProgram.cs" />
+    <Compile Include="NS_tblPartnerProgramCompany.cs" />
+    <Compile Include="NS_tblProduct.cs" />
+    <Compile Include="NS_tblProductCompanyFile.cs" />
+    <Compile Include="NS_tblProductCompany.cs" />
+    <Compile Include="NS_tblProductFamily.cs" />
+    <Compile Include="NS_tblProductFamilyCompany.cs" />
+    <Compile Include="NS_tblQuestion.cs" />
+    <Compile Include="NS_tblQuestionxLanguage.cs" />
+    <Compile Include="NS_tblQuestionxProductFamily.cs" />
+    <Compile Include="NS_tblRegion.cs" />
+    <Compile Include="NS_tblResponseDataType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recommendations\NS_tblVariable.cs" />
+    <Compile Include="Recommendations\NS_tblVariableProduct.cs" />
+    <Compile Include="Recommendations\NS_tblVariableProductFamily.cs" />
+    <Compile Include="Recommendations\NS_tblCompoundVariable.cs" />
+    <Compile Include="SurveyQuestionResponse\SurveyQuestionResponse.cs" />
+    <Compile Include="Translator\NS_TblTranslationXLanguage.cs" />
+    <Compile Include="Translator\NS_tblTranslatorLanguage.cs" />
+    <Compile Include="Translator\NS_tblTranslatorAdministrator.cs" />
+    <Compile Include="Users\ApplicationUserStore.cs" />
+    <Compile Include="Users\User.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Resources\Resources.csproj">
+      <Project>{da723f64-abf0-4546-933d-3ccf1a569820}</Project>
+      <Name>Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <EntityDeploy Include="DbAffidavit\DB_Affidavit.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DB_Affidavit.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DbAffidavit\DB_Affidavit.edmx.diagram">
+      <DependentUpon>DB_Affidavit.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DbAffidavit\DB_Affidavit.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DB_Affidavit.edmx</DependentUpon>
+      <LastGenOutput>DB_Affidavit.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DbAffidavit\DB_Affidavit.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DB_Affidavit.edmx</DependentUpon>
+      <LastGenOutput>DB_Affidavit.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

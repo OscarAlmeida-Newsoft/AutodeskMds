@@ -1,0 +1,572 @@
+﻿@using Affidavit.Helpers
+@using Affidavit.Utils
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - @Resources.MicrosoftDevelopmentSummary</title>
+    @Styles.Render("~/AffContent_FinalUser/css")
+
+    @Html.Partial("_GAnalitycsPartial")
+    <script>
+        gAnalytics.addGoogleAnalytics();
+    </script>
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/customjs")
+
+</head>
+<body class="industry_insights define">
+    @Html.Partial("_Semaphore")
+
+    <div id="proceso_en_ejecucion">
+        <div>
+            <img src='@Url.Content("~/Content/Images/processing.gif")' width="58" height="58">
+        </div>
+    </div>
+
+    <div class="bb-alert alert" style="display: none;">
+        <span>Hello world callback</span>
+    </div>
+    <!--================================= HEADER ======================================-->
+    <div id="header" style="position:relative;z-index: 2;">
+        <div class="centro">
+            <!--================================================-->
+            @if (!ModularityHelper.CanISeeV3())
+            {
+                <a class="logo" href="@Url.Action("Index","MDS")"><img src="@Url.Content("~/Content/Images/logo.png")" width="164" height="60" alt=""></a>
+            }
+            else
+            {
+                <a class="logo" href="@Url.Action("Index","ChooseAnAction")"><img src="@Url.Content("~/Content/Images/logo.png")" width="164" height="60" alt=""></a>
+            }
+
+
+
+
+
+            <ul id="menu">
+
+
+
+                <!--================================================-->
+                <li class="item">
+                    <p>
+                        <span class="flag"><img src="@Url.Content("~/Content/Images/icono_ayuda.png")" width="18" height="18"></span>
+                        <span class="palabra"><a href="@Url.Action("SeeLetter","MDS")" class="ayuda">@Resources.LabelSeeLetter</a></span>
+                    </p>
+
+                </li>
+                <li class="item">
+                    <p>
+                        <span class="flag"><img src="@Url.Content("~/Content/Images/icono_ayuda.png")" width="18" height="18"></span>
+                        <span class="palabra"><a href="#" target="_blank" id="popupContactus" class="ayuda">@Resources.LabelContactUs</a></span>
+                    </p>
+
+                </li>
+                <!--================================================-->
+                <li class="item desplegable btn_idiomas">
+
+                    @{ Html.RenderPartial("_Idiomas"); }
+
+                </li>
+                <!--================================================-->
+                <li class="item desplegable btn_settings">
+                    <p>
+                        <span class="flag"><img src="@Url.Content("~/Content/Images/icono_settings.png")" width="18" height="18"></span>
+                        <span class="palabra">
+                            @TranslatorHelper.TranslateTextByIdentifier("MDS_Menu_Settings")
+                        </span>
+                        <span class="flecha"></span>
+                    </p>
+                    <ul style="z-index:1000; margin-top:-1px;">
+                        <li>
+                            <a href="@Url.Action("Index","MDSAccount")" target="_self">
+                                <span class="palabra">
+                                    @TranslatorHelper.TranslateTextByIdentifier("MDS_Menu_Settings_Account")
+                                </span>
+                            </a>
+                        </li>
+
+
+                        @*<li>
+                                <a href="#" target="_self">
+                                    <span class="palabra">Opción 2</span>
+                                </a>
+                            </li>*@
+
+                    </ul>
+
+                </li>
+                <!--================================================-->
+                <li class="item btn_logout">
+                    <p>
+                        <span class="flag"><img src="@Url.Content("~/Content/Images/icono_logout.png")" width="18" height="15"></span>
+                        <span class="palabra"><a href="#" target="_blank" id="logOut" class="ayuda">@Resources.LabelLogout</a></span>
+                    </p>
+                </li>
+            </ul>
+        </div>
+    
+
+
+    @*<div id="header" style="position:relative;z-index: 2;">
+            <div class="centro">
+                @{var _currentCulture = CultureHelper.GetCurrentCulture();
+                    var _culCurr = CultureHelper.GetCultureName(_currentCulture);
+                }
+                <a class="item logo" target="_self"><img src='@Url.Content("~/Content/Images/logo.png")' width="164" height="60" alt=""></a>
+
+
+                <a href="#" id="logOut" class="item logout">@Resources.LabelLogout</a>
+
+
+                <div id="idiomas">
+                    @{ Html.RenderPartial("_Idiomas"); }
+                </div>
+
+                <a href="#" id="popupContactus" class="item ayuda">@Resources.LabelContactUs</a>
+                <a href="@Url.Action("SeeLetter","MDS")" id="carta" class="item ayuda">@Resources.LabelSeeLetter</a>
+
+            </div>
+        </div>*@
+    <!--================================= HEADER ======================================-->
+    @*<div id="loading">
+            <div id="loading-gif">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw" aria-hidden="true"></i>
+            </div>
+        </div>*@
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>*@
+    @*@Html.ActionLink("Affidavit", "Index", "Affidavit", new { area = "" }, new { @class = "navbar-brand" })*@
+    @*</div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">*@
+    @*<li>@Html.ActionLink("Home", "Index", "Home")</li>
+        <li>@Html.ActionLink("Affidavit", "Index", "Affidavit")</li>
+        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+    @*<li>@Html.ActionLink("Help", "About", "Home")</li>*@
+    @*<li>@Html.ActionLink(Resources.CreateNewQuestion, "CreateNewQuestion", "Affidavit", null, new { data_target = "#exampleModal", data_toggle = "modal" })</li>*@
+    @*<li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    @Resources.LabelIdioma
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    @foreach (string culture in CultureHelper._cultures)
+                    {
+                        if (culture != "ar")
+                        {
+                            var _cul = culture == "en-US" ? "English" : "Español";
+                            <li><a href="#" onclick="changeLanguaje('@culture')">@_cul</a></li>
+                        } else
+                        {
+                            continue;
+                        }
+                    }
+                </ul>
+            </li>
+        </ul>*@
+    @*@Html.Partial("_LoginPartial")*@
+    @*</div>
+            </div>
+        </div>*@
+   
+        @RenderBody()
+    
+
+
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @RenderSection("scripts", required: false)
+    <div id="footer">
+        @Html.Partial("_FooterInsidePartial")
+    </div>
+    @Html.Partial("_Infografia")
+
+    <input type="hidden" id="myLeadID" value="" />
+    <div id="popup" style="display: none;">
+        <div class="content-popup">
+            <div class="closetab"><a href="#" id="closetab"><img src="~/Content/Images/icono_cerrar_tooltip.png" /></a></div>
+            <h2 style="font-size:medium;" class="header">@Resources.LabelContactUs</h2>
+            <div id="cuerpo">
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    @*<div id="fixedsocial">
+            <div class="facebookflat">
+                <img src="@Url.Content("~/Content/images/contact_icon.png")" />
+            </div>
+        </div>
+        <!-- The Modal -->
+        <div id="myModal" class="mymodal">
+
+            <!-- Modal content -->
+            <div class="mymodal-content">
+                <div class="mymodal-header">
+                    <span class="close">&times;</span>
+                    <h2>Contact a consultant</h2>
+                </div>
+                <div class="mymodal-body">
+                    @{
+                        Html.RenderAction("ContactAConsultant", "Home");
+                     }
+                </div>
+                <div class="mymodal-footer ">
+                    <button class="btn btn-default pull-right" id="contactaConsultant">Contact a consultant</button>
+                    <span class="pull-right">&nbsp;</span>
+                    <button class="btn btn-primary pull-right" id="closeContactAConsultantModal">Cancel</button>
+                </div>
+            </div>
+        </div>*@
+</body>
+</html>
+
+@using (Html.BeginForm("SetCulture", "MDS", FormMethod.Post, new { id = "langForm", name = "langForm" }))
+{
+    <input type="hidden" name="returnUrl" id="returnUrl" value="@Request.Url" />
+    <input type="hidden" name="culture" id="culture" value="" />
+    <input type="hidden" name="leadID" id="leadID" value="" />
+    <input type="hidden" name="languageID" id="languageID" value="" />
+    <input type="hidden" name="isFinal" id="isFinal" value="" />
+}
+
+<script type="text/javascript">
+    var _leadID;
+    function changeLanguage(langId) {
+        console.log($('#LeadID').text());
+        $("#langForm > #culture").val(langId);
+        $("#langForm > #leadID").val($('#LeadID').text());
+        $("#langForm > #languageID").val($('#languageID').text());
+
+        $("#langForm").submit();
+    }
+
+    $(document).on("click", "#logOut", function (e) {
+        e.preventDefault();
+
+        console.log($('#IsFinal').val());
+        if ($('#IsFinal').val() == "False") {
+            $('#IsLogOut').val(true);
+            $("#formulario").submit();
+        } else {
+            //window.location.href = "../../Home/LogOut?pLeadID=" + $('#LeadID').text();
+            window.location.href = '@Url.Action("LogOut", "Home")?pLeadID=' + $('#LeadID').text();
+        }
+
+    });
+
+    $(document).on("click", "#popupContactus", function (e) {
+        e.preventDefault();
+        loadingDiv.show();
+        $.ajax({
+            url: '@Url.Action("ContacUs", "MDS")',
+            type: 'POST',
+            //contentType: 'application/json; charset=utf-8'
+        })
+			.done(function (data) {
+			    $('#popup').fadeIn('slow');
+			    $('#popup').show();
+			    $('.popup-overlay').fadeIn('slow');
+			    $('.popup-overlay').height($(window).height());
+			    $('#cuerpo').html(data);
+			    loadingDiv.hide();
+			    return false;
+			    //console.log(data);
+			})
+			.fail(function (err) {
+			    //$('#progressbargrid').addClass('hide');
+			    loadingDiv.hide();
+			    console.log(err);
+
+			});
+    });
+
+    @*$(document).on("click", "#carta", function (e) {
+        e.preventDefault();
+        var lan = $('#languageID').text();
+
+        //window.location = "../../MDS/SeeLetter?pLeadID=" + $('#LeadID').text();
+        window.location = '@Url.Action("SeeLetter", "MDS")?pLeadID=' + $('#LeadID').text();
+
+    });*@
+
+    $(document).on("click", ".facebookflat", function () {
+        modal.style.display = "block";
+    });
+
+    $(document).on("click", "#closeContactAConsultantModal", function () {
+        modal.style.display = "none";
+    });
+
+    $(document).on("click", "#contactaConsultant", function () {
+
+        if ($('#MessageText').val().trim() == "") {
+            toastMessage.show("Please fill message field", "alert-warning");
+            return false;
+        }
+
+
+        modal.style.zIndex = 99;
+        loadingDiv.show();
+
+        $('#contactAConsultantForm').submit();
+        loadingDiv.hide();
+
+        modal.style.display = "none";
+        toastMessage.show("The contact form has been sent", "alert-success");
+    });
+
+    $(document).on("click", ".close", function () {
+        modal.style.display="none"
+    });
+
+    var modal = document.getElementById('myModal');
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //    $('#popupContactus').click(function () {
+        //        $('#popup').fadeIn('slow');
+        //        $('.popup-overlay').fadeIn('slow');
+        //        $('.popup-overlay').height($(window).height());
+        //        return false;
+        //    });
+
+        $('#closetab').click(function () {
+            $('#popup').fadeOut('slow');
+            $('.popup-overlay').fadeOut('slow');
+            loadingDiv.hide();
+            return false;
+        });
+    });
+</script>
+
+<style type="text/css">
+    #popup, #popupProduct, #popupCreate,
+    #popupCreateProduct, #popupEditProduct {
+        left: 0 !important;
+        position: absolute !important;
+        top: 0 !important;
+        width: 100% !important;
+        z-index: 1001 !important;
+    }
+
+    .content-popup {
+        margin: 0px auto !important;
+        margin-top: 120px !important;
+        position: relative !important;
+        padding: 20px !important;
+        width: 500px !important;
+        min-height: 250px !important;
+        border-radius: 4px !important;
+        background-color: #FFFFFF !important;
+        box-shadow: 0 2px 5px #666666 !important;
+        line-height: 200%;
+    }
+
+        .content-popup h2 {
+            color: #48484B !important;
+            border-bottom: 1px solid #48484B !important;
+            margin-top: 0 !important;
+            padding-bottom: 4px !important;
+            font-weight: normal;
+            font-size: 17px;
+        }
+
+    .popup-overlay {
+        left: 0 !important;
+        position: absolute !important;
+        top: 0 !important;
+        width: 100% !important;
+        z-index: 999 !important;
+        display: none !important;
+        background-color: #777777 !important;
+        cursor: pointer !important;
+        opacity: 0.7 !important;
+    }
+
+    .closetab, .closeProduct, .closeCreate,
+    .closeCreateProduct, .closeEditProduct {
+        position: absolute;
+        right: 15px;
+    }
+
+    span.consultantInfo {
+        font-weight: bold !important;
+        text-decoration: underline;
+        font-size: medium;
+    }
+
+
+    #fixedsocial {
+        top: 70%;
+        height: 200px;
+        width: 60px;
+        position: fixed;
+        right: 0;
+        z-index: 1000;
+    }
+
+    .facebookflat {
+        /*background:url("http://placehold.it/50x50");*/
+        height: 64px;
+        width: 64px;
+        transition: ease 500ms;
+        background-size: 50px;
+        opacity: 1;
+    }
+
+        .facebookflat:hover {
+            /*background:url("http://placehold.it/50x50");*/
+            height: 50px;
+            width: 50px;
+            background-size: 60px;
+            opacity: 0.5;
+            transition: ease 500ms;
+            margin-left: -20px;
+            width: 70px;
+            cursor: pointer;
+        }
+
+
+
+    .mymodal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1001; /* Sit on top */
+        padding-top: 50px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .mymodal-content {
+        position: relative;
+        background-color: #fefefe;
+        margin: auto;
+        padding: 0;
+        border: 1px solid #888;
+        width: 60%;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+        -webkit-animation-name: animatetop;
+        -webkit-animation-duration: 0.4s;
+        animation-name: animatetop;
+        animation-duration: 0.4s;
+        /*height:200px;*/
+        overflow: auto;
+    }
+
+    #popup, #popupProduct, #popupCreate,
+    #popupCreateProduct, #popupEditProduct {
+        left: 0 !important;
+        position: absolute !important;
+        top: 0 !important;
+        width: 100% !important;
+        z-index: 1001 !important;
+    }
+
+    .content-popup {
+        margin: 0px auto !important;
+        margin-top: 120px !important;
+        position: relative !important;
+        padding: 20px !important;
+        width: 500px !important;
+        min-height: 250px !important;
+        border-radius: 4px !important;
+        background-color: #FFFFFF !important;
+        box-shadow: 0 2px 5px #666666 !important;
+        line-height: 200%;
+    }
+    /* The Close Button */
+    .close {
+        color: white;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .content-popup h2 {
+        color: #48484B !important;
+        border-bottom: 1px solid #48484B !important;
+        margin-top: 0 !important;
+        padding-bottom: 4px !important;
+        font-weight: normal;
+        font-size: 17px;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .popup-overlay {
+        left: 0 !important;
+        position: absolute !important;
+        top: 0 !important;
+        width: 100% !important;
+        z-index: 999 !important;
+        display: none !important;
+        background-color: #777777 !important;
+        cursor: pointer !important;
+        opacity: 0.7 !important;
+    }
+
+    .mymodal-header {
+        padding: 2px 16px;
+        background-color: #5cb85c;
+        color: white;
+        overflow: auto;
+    }
+
+    .mymodal-body {
+        padding: 2px 16px;
+        overflow: auto;
+    }
+
+    .closetab, .closeProduct, .closeCreate,
+    .closeCreateProduct, .closeEditProduct {
+        position: absolute;
+        right: 15px;
+    }
+
+    .mymodal-footer {
+        padding: 2px 16px;
+        background-color: #fff;
+        color: white;
+        overflow: auto;
+    }
+
+    span.consultantInfo {
+        font-weight: bold !important;
+        text-decoration: underline;
+        font-size: medium;
+    }
+</style>

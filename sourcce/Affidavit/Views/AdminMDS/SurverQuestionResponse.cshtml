@@ -1,0 +1,173 @@
+﻿@using Affidavit.Utils
+@*<script type="text/javascript" src="~/Scripts/Plugins/toastMessage.js"></script>
+<script src="~/Scripts/sobrescrituas.js"></script>*@
+<script type="text/javascript" src="~/Scripts/Custom/bootbox.js"></script>
+@Styles.Render("~/Content/cssadmin")
+
+@{
+    ViewBag.Title = "Surver Question Response";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    //var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+}
+
+
+<script type="text/javascript">
+    $(document).on("click", "#searchSurvey", function (e) {
+        e.preventDefault();
+        var _companyName = $("input[name=SurveyQuestionTextSearch]")[0].value;
+
+        if (_companyName == "" || _companyName == null) {
+            bootbox.alert('@TranslatorHelper.TranslateTextByIdentifier("Old_LabelEnterCompanyName")', null);
+            $('.bootbox-body').css("font-size", "14px");
+        } else {
+            loadingDiv.show();
+            $.ajax({
+                url: ("searchCompanySurvey"),
+                data: { pCompanyName: _companyName },
+                type: 'POST',
+                //contentType: 'application/json; charset=utf-8'
+            })
+            .done(function (data) {
+
+                $('#surveyInfoDiv').html(data);
+                $('#SurveyQuestionInfoDiv').html("");
+                loadingDiv.hide();
+                //console.log(data);
+            })
+            .fail(function (err) {
+                loadingDiv.hide();
+                console.log(err);
+
+            });
+        }
+    });
+
+    //Search enter event
+    $(document).on("keypress", "#SurveyQuestionTextSearch", function (e) {
+        //e.preventDefault();
+        console.log(e.which);
+        if (e.which == 13) {
+            var _companyName = $("input[name=SurveyQuestionTextSearch]")[0].value;
+
+            if (_companyName == "" || _companyName == null) {
+                bootbox.alert('@TranslatorHelper.TranslateTextByIdentifier("Old_LabelEnterCompanyName")', null);
+                $('.bootbox-body').css("font-size", "14px");
+            } else {
+                loadingDiv.show();
+                $.ajax({
+                    url: ("searchCompanySurvey"),
+                    data: { pCompanyName: _companyName },
+                    type: 'POST',
+                    //contentType: 'application/json; charset=utf-8'
+                })
+                .done(function (data) {
+
+                    $('#surveyInfoDiv').html(data);
+                    $('#SurveyQuestionInfoDiv').html("");
+                    loadingDiv.hide();
+                    //console.log(data);
+                })
+                .fail(function (err) {
+                    loadingDiv.hide();
+                    console.log(err);
+
+                });
+            }
+        }
+    });
+
+    $(document).on("click", "#VerFormularioMDS", function (e) {
+
+        var _leadID = $(this).data("leadid");
+
+        loadingDiv.show();
+        $.ajax({
+            url: ("SearchSurveyQuestionInfo"),
+            data: { pLeadID: _leadID },
+            type: 'POST',
+            //contentType: 'application/json; charset=utf-8'
+        })
+        .done(function (data) {
+
+            $('#SurveyQuestionInfoDiv').html(data);
+            loadingDiv.hide();
+            //console.log(data);
+        })
+        .fail(function (err) {
+            loadingDiv.hide();
+            console.log(err);
+
+        });
+    });
+
+    $(document).on("click", ".botonActivarParaMDS", function (e) {
+        var estado = $("input[id=activarParaMDS]:checked").length;
+        var leadId = $('#activarParaMDS').data('activarparamds');
+        loadingDiv.show();
+        console.log(leadId + " - " + estado);
+
+        $.ajax({
+            url: ("ActiveToMDS"),
+            data: { pIsNotInterested: estado, pLeadID: leadId },
+            type: 'POST',
+            //contentType: 'application/json; charset=utf-8'
+        })
+            .done(function (data) {
+                //$('#dvDetailsResultsSQL').html(data);
+                setTimeout(function () { redirectToSurverQuestionResponse(); }, 4000)
+                //loadingDiv.hide();
+                //console.log(data);
+            })
+            .fail(function (err) {
+                loadingDiv.hide();
+                console.log(err);
+
+            });
+    });
+
+    function redirectToSurverQuestionResponse() {
+        loadingDiv.hide();
+        window.location.href = "SurverQuestionResponse"
+    }
+
+</script>
+
+<style type="text/css">
+    body {
+        padding-top: 0px !important;
+    }
+</style>
+
+<div id="pagina">
+    <div class="centro">
+        <div class="set" style="position: relative;z-index: 100000;">
+            @Html.Partial("_MenuNavegacion")
+            <div> &nbsp;</div>
+            <div> &nbsp;</div>
+            <div class="col_4" style="width: 25% !important;">
+                @Html.Label("Search Survey Question", new { @class = "label-control" })
+                @Html.Editor("SurveyQuestionTextSearch", null, new { htmlAttributes = new { @class = "form-control", @maxlength = "120", @autofocus = "autofocus", @placeholder = "Company Name..." } })
+                @*<a href="#" target="_self" class="botonEnviar" id="searchCompany"><span>Search</span></a>*@
+            </div>
+            <button class="btn btn-primary btn-sm new-landing searchSurvey" id="searchSurvey" style="margin: 25px 12px 0 0; float: left;">
+                <i class="fa fa-search-plus fa-2x"></i>
+            </button>
+            @*<button type="button" class="" id="searchCompany">Search</button>*@
+        </div>
+    </div>
+    <!--div -->
+    <div class="centro" id="surveyInfoDiv" style="max-height: 50px !important; max-height: 250px !important; overflow:auto">
+
+    </div>
+    <br />
+    <br />
+    <br />
+    <!--div donde se carga la información de MDS consultado -->
+    <div class="centro" id="SurveyQuestionInfoDiv">
+
+    </div>
+</div>
+
+
+
+

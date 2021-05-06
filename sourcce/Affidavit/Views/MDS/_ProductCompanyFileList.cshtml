@@ -1,0 +1,62 @@
+﻿@using Affidavit.Models
+@using Affidavit.Utils
+@model ProductCompanyFileViewModel
+
+@if (Model.Products != null && Model.Products.Count() > 0)
+{
+    <script>
+        $(document).ready(function () {
+            debugger;
+            $(".trash").click(function () {
+                loadingDiv.show();
+                var productID = $(this).data("productid");
+
+                $.ajax({
+                    url: $('#NS_UrlActionDeleteFiles').text() + "?pLeadID=" + $('#LeadID').text() + "&pCompanyID=" + $('#CompanyID').val() + "&pCampaignID=" + $('#CampaignID').val() + "&pProductID=" + productID + "&pFileNumber=" + $(this).data("filenumber"),
+                    type: 'POST',
+                    processData: false,
+                    contentType: "application/zip",
+                }).done(function (data) {
+                    debugger;
+                    loadFilesFunction(productID);
+                    loadingDiv.hide();
+                }).fail(function (err) {
+                    debugger;
+                    loadingDiv.hide();
+                    console.log(err);
+                });
+            });
+        });
+    </script>
+
+    <h5>@TranslatorHelper.TranslateTextByIdentifier("Old_NewFiles").ToUpper()</h5>
+
+    <ul id="ul-file-list" class="modal_files">
+        @foreach (ProductFileViewModel productFile in Model.Products)
+        {
+            <li>
+                @productFile.AlternativeName.ToString()
+                @*<img src="https://maxcdn.icons8.com/Share/icon/p1em/Editing//trash1600.png" alt="plus image"
+                        style="width:2em; cursor:pointer; opacity: 0.7;"
+                        data-companyid='@productFile.CompanyID'
+                        data-campaignid='@productFile.CampaignID'
+                        data-productid='@productFile.ProductID'
+                        data-filenumber='@productFile.FileNumber'
+                        class="delete-button" />*@
+                <span class="trash"  
+                      data-companyid='@productFile.CompanyID'
+                      data-campaignid='@productFile.CampaignID'
+                      data-productid='@productFile.ProductID'
+                      data-filenumber='@productFile.FileNumber'>
+                </span>
+            </li>
+        }
+
+    </ul>
+}
+else
+{
+    <h5 class="no-files">
+        * @TranslatorHelper.TranslateTextByIdentifier("Old_NewWarningShouldSelectFiles")
+    </h5>
+}

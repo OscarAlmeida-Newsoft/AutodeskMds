@@ -1,0 +1,24 @@
+﻿@using Affidavit.Utils
+
+<div class="centro">
+    <ul>
+        <li><a href="@TranslatorHelper.TranslateTextByIdentifier("Old_TermsOfUseMS")" target="_blank">@TranslatorHelper.TranslateTextByIdentifier("Old_TermsOfUse")</a></li>
+        <li><a href="https://go.microsoft.com/fwlink/?LinkId=521839" target="_blank">@TranslatorHelper.TranslateTextByIdentifier("Old_PrivacyAndCookies")</a></li>
+    </ul>
+
+    <div class="content-hosted">
+        <p>
+            <div class="content-div-hosted">© @DateTime.Now.Year | <strong>Microsoft Corporation</strong> | All rights reserved </div>
+            <div style="font-size:14px;">
+                @TranslatorHelper.TranslateTextByIdentifier("Old_HostedFor")
+                <strong>
+                    <a class="somsight-link"
+                       onclick="gAnalytics.throwRedirectBlankEvent('Click SOMSight', 'SOMSight','somsight_redirect')">
+                        @Html.Raw(@TranslatorHelper.TranslateTextByIdentifier("Old_HostedForCompany").ToString())
+                    </a>
+                    <a href="@SOMSightHelper.GetSOMSightPath()" style="display:none" id="somsight_redirect" target="_blank">SOMSight</a>
+                </strong> part of Echez Group
+            </div>
+        </p>
+    </div>
+</div>

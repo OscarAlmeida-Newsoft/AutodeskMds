@@ -1,0 +1,464 @@
+﻿@model Affidavit.Models.AdditionalInfoViewModel
+@using Affidavit.Utils
+
+<div class="seccion pagina_sencilla">
+    <fieldset @if (Model.IsFinal) { ViewContext.Writer.Write("disabled"); }>
+        <div class="centro" style="z-index:10000;">
+            <a href="#" title='@TranslatorHelper.TranslateTextByIdentifier("Old_SoftwareAssuranceMessage")'>
+                <h1>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelSoftwareAssurance") <img src="~/Content/Images/icono_ayuda.png" /></h1>
+            </a>
+            <hr />
+            <div class="set">
+                <div class="col_4 radios_horizontales">
+                    <div>
+                        <label  class="required-label">@TranslatorHelper.TranslateTextByIdentifier("Old_LabelTieneSoftAssurance") </label>
+                    </div>
+                    <div class="automatico">
+                        @Html.RadioButtonFor(model => model.Assurance, "true", new { id = "assuranceSi" })
+                        @Html.Label("assuranceSi", @TranslatorHelper.TranslateTextByIdentifier("Old_LabelSi"))
+                    </div>
+                    <div class="automatico">
+                        @Html.RadioButtonFor(model => model.Assurance, "false", new { id = "assuranceNo" })
+                        @Html.Label("assuranceNo", @TranslatorHelper.TranslateTextByIdentifier("Old_LabelNo"))
+                    </div>
+
+                </div>
+                <div class="col_8">
+                    <label>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelEstadoSoftAssurance"):</label>
+                    @Html.TextAreaFor(model => model.EstadoContrato, 3, 35, new { @class = "form-control", @maxlength = "500" })
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="gris">
+            <div class="centro">
+                <h1>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelNewLicences")</h1>
+                <hr />
+                <div class="set">
+                    <div class="col_4 radios_horizontales">
+                        <div>
+                            <label class="required-label">@TranslatorHelper.TranslateTextByIdentifier("Old_LabelPlanesNuevasLic")</label>
+                        </div>
+                        <div class="automatico">
+                            @Html.RadioButtonFor(model => model.NewLinceses, "true", new { id = "newLincesesSi" })
+                            @Html.Label("newLincesesSi", @TranslatorHelper.TranslateTextByIdentifier("Old_LabelSi"))
+                        </div>
+                        <div class="automatico">
+                            @Html.RadioButtonFor(model => model.NewLinceses, "false", new { id = "newLincesesNo" })
+                            @Html.Label("newLincesesNo", @TranslatorHelper.TranslateTextByIdentifier("Old_LabelNo"))
+                        </div>
+                    </div>
+                    <div class="col_8">
+                        <label>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelExplique"):</label>
+                        @Html.TextAreaFor(model => model.ExpliqueNewLinc, 3, 35, new { @class = "form-control", @maxlength = "500" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="centro">
+            <h1>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelUpgrades")</h1>
+            <hr />
+            <div class="set">
+                <div class="col_4 radios_horizontales">
+                    <div>
+                        <label class="required-label">@TranslatorHelper.TranslateTextByIdentifier("Old_LabelPlanesActualizacionLic")</label>
+                    </div>
+                    <div class="automatico">
+                        @Html.RadioButtonFor(model => model.UpgrateLicenses, "true", new { id = "upgrateLicensesSi" })
+                        @Html.Label("upgrateLicensesSi", @TranslatorHelper.TranslateTextByIdentifier("Old_LabelSi"))
+                    </div>
+                    <div class="automatico">
+                        @Html.RadioButtonFor(model => model.UpgrateLicenses, "false", new { id = "upgrateLicensesNo" })
+                        @Html.Label("upgrateLicensesNo", @TranslatorHelper.TranslateTextByIdentifier("Old_LabelNo"))
+                    </div>
+
+                </div>
+                <div class="col_8">
+                    <label>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelExplique"):</label>
+                    @Html.TextAreaFor(model => model.ExpliqueUpgrateLinc, 3, 35, new { @class = "form-control", @maxlength = "500" })
+                </div>
+            </div>
+        </div>
+
+        <div class="gris">
+            <div class="centro">
+                <h1>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelAuthorizedMSChannel")</h1>
+                <hr />
+                <div class="set">
+                    <div class="radios_horizontales">
+                        <div>
+                            <label class="required-label">@TranslatorHelper.TranslateTextByIdentifier("Old_LabelTieneCanalAutorizado")</label>
+                        </div>
+                        <div class="automatico">
+                            @Html.RadioButtonFor(model => model.AutMicChannel, "true", new { id = "autMicChannelSi" })
+                            @Html.Label("autMicChannelSi", @TranslatorHelper.TranslateTextByIdentifier("Old_LabelSi"))
+                        </div>
+                        <div class="automatico">
+                            @Html.RadioButtonFor(model => model.AutMicChannel, "false", new { id = "autMicChannelNo" })
+                            @Html.Label("autMicChannelNo", @TranslatorHelper.TranslateTextByIdentifier("Old_LabelNo"))
+                        </div>
+
+                    </div>
+                    <div class="col_8" id="partnerInfo" @{ if (Model.AutMicChannel == null || Model.AutMicChannel == false) { @Html.Raw("Style=\"display:none;\"")   ; } }>
+                        <div>
+                            <label>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelEmpresaContacto"):</label>
+                        </div>
+                        <div class="set">
+                            <div class="col_6">
+                                <label>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelCanalAutorizado"):</label>
+                                @Html.EditorFor(model => model.AutChannel, new { htmlAttributes = new { @class = "form-control", @maxlength = "50" } })
+                                <label>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelTelefono"):</label>
+                                @Html.EditorFor(model => model.TelefonoCanalAutorizado, new { htmlAttributes = new { @class = "form-control", @maxlength = "50" } })
+                            </div>
+                            <div class="col_6">
+                                <label>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelNombreContacto"):</label>
+                                @Html.EditorFor(model => model.ContactNameCanalAutorizado, new { htmlAttributes = new { @class = "form-control" } })
+                                <label>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelEmail"):</label>
+                                @Html.EditorFor(model => model.EmailCanalAutorizado, new { htmlAttributes = new { @class = "form-control EmailValidation", @maxlength = "50" } })
+                                <label id="emailChannelMessage" style="color: red;" hidden>@TranslatorHelper.TranslateTextByIdentifier("Old_EmailAddressField")</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="centro">
+            <div id="customOrBasicAppDiv" @{ if (Model.TipoDeCliente.ToString() != "DeveloperPartner") { @Html.Raw("Style=\"display:none;\"")  ; } }>
+                <h1>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelApplicationsType")</h1>
+                <hr />
+                <div class="set">
+                    <div class="col_4 radios_horizontales">
+                        <div>
+                            <label>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelCustomOrBasicsApplications")</label>
+                        </div>
+                        <div class="automatico">
+                            @Html.RadioButtonFor(model => model.CustomOrBasicsApplications, "true", new { id = "customApplications" })
+                            @Html.Label("customApplications", @TranslatorHelper.TranslateTextByIdentifier("Old_LabelCustom"))
+                        </div>
+                        <div class="automatico">
+                            @Html.RadioButtonFor(model => model.CustomOrBasicsApplications, "false", new { id = "BasicsApplications" })
+                            @Html.Label("BasicsApplications", @TranslatorHelper.TranslateTextByIdentifier("Old_LabelBasic"))
+                        </div>
+
+                    </div>
+                    <div class="col_8">
+                        <label>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelDevelopersPartnersApplicationsType")</label>
+                        @Html.TextAreaFor(model => model.DevelopersPartnersApplicationsType, 3, 35, new { @class = "form-control", @maxlength = "480" })
+
+                        <label>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelDevelopersPartnersMicrosofTools")</label>
+                        @Html.TextAreaFor(model => model.DevelopersPartnersMicrosofTools, 3, 35, new { @class = "form-control", @maxlength = "480" })
+
+                        <label>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelDevelopersPartnersProjectsTypes")</label>
+                        @Html.TextAreaFor(model => model.DevelopersPartnersProjectsTypes, 3, 35, new { @class = "form-control", @maxlength = "480" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="gris">
+            <div class="centro">
+                <h1>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelCurrentSituation")</h1>
+                <hr />
+                <div class="set radios_horizontales">
+                    <p class="required-label">@TranslatorHelper.TranslateTextByIdentifier("Old_LabelSeleccionaOpcionAplique"):</p>
+                    @foreach (var item in Model.EstLicenciamiento.ToSelectList().ToList())
+            {
+                        @Html.Raw("<div class=\"item_lista\">");
+
+                        @Html.RadioButtonFor(model => model.EstLicenciamiento, item.Text);
+                        @Html.Raw("<label class=\"automatico\">");
+                switch (@item.Text)
+                {
+                    case "Correcto":
+                                @TranslatorHelper.TranslateTextByIdentifier("Old_LabelCorrectamenteLicenciado")
+                                break;
+
+                            case "Diferencias":
+                                @TranslatorHelper.TranslateTextByIdentifier("Old_LabelEncontramosDiferencias")
+                                break;
+
+                            case "Apoyo":
+                                @TranslatorHelper.TranslateTextByIdentifier("Old_LabelSolicitoApoyo")
+                                break;
+                        }
+                        @Html.Raw("</label>");
+
+                        @Html.Raw("</div>");
+
+            }
+                </div>
+            </div>
+        </div>
+
+        <div class="gris">
+            <div class="centro accept-participation">
+                <div class="set">
+                    <div>
+                        <label class="required-label"><input type="checkbox" id="IDLetterInfoText1" @if (Model.IsFinal) { ViewContext.Writer.Write("checked"); }> @TranslatorHelper.TranslateTextByIdentifier("Old_LetterInfoText1").</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--================================= CONTROLES ======================================-->
+        <div class="controles">
+            <div class="centro">
+
+                <a href="https://go.microsoft.com/fwlink/?LinkId=521839" target="_blank" class="linkPrivacy">@TranslatorHelper.TranslateTextByIdentifier("Old_PrivacyAndCookies")</a>
+                <ul class="bloques centro">
+                    <li class="azul izk">
+                        <a target="_self" class="prev_paso_3"><span>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelPrev")</span></a>
+                    </li>
+                    @if (!Model.IsFinal)
+                    {
+                        <li class="azul">
+                            <a href="#" target="_self" class="botonEnviar" data-tabnumber="3">
+                                <span>
+                                    @TranslatorHelper.TranslateTextByIdentifier("Old_LabelBorrador").ToUpper()
+                                </span>
+                            </a>
+                        </li>
+
+                        <li class="azul der end">
+                            <a href="#" id="confirmar" target="_self"><span>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelEnd")</span></a>
+                        </li>
+                    }
+                </ul>
+
+            </div>
+        </div>
+    </fieldset>
+</div>
+
+
+
+
+@*<LINK REL=StyleSheet HREF="~/Content/custom/Estilos.css" TYPE="text/css" MEDIA=screen>
+    <script type="text/javascript" src="~/Scripts/Plugins/bootbox.min.js"></script>
+
+
+
+    <div class="container">
+        <div class="col-md-6">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 NS_fondoAzul">
+                        @TranslatorHelper.TranslateTextByIdentifier("Old_LabelTieneSoftAssurance")
+                        <div class="popup" id="softAssuranceHelp">
+                            <i class="fa fa-info-circle" aria-hidden="true"></i>
+                            <span class="popuptext" id="AssuranceHelp">@TranslatorHelper.TranslateTextByIdentifier("Old_SoftwareAssuranceMessage")</span>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="radio">
+                            @Html.RadioButtonFor(model => model.Assurance, "true", new { id = "assuranceSi" })
+                             @Html.Label("assuranceSi", @TranslatorHelper.TranslateTextByIdentifier("Old_LabelSi"))
+                        </label>
+                        <label class="radio">
+                            @Html.RadioButtonFor(model => model.Assurance, "false", new { id = "assuranceNo" })
+                            @Html.Label("assuranceNo", @TranslatorHelper.TranslateTextByIdentifier("Old_LabelNo"))
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 NS_fondoAzul">
+                        @TranslatorHelper.TranslateTextByIdentifier("Old_LabelEstadoSoftAssurance")
+                    </div>
+                    <div class="col-md-6">
+                        @Html.TextAreaFor(model => model.EstadoContrato, 3, 35, new { @class = "form-control", @maxlength = "500" })
+                    </div>
+                    <br />
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container">
+
+        <div class="col-md-6">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 NS_fondoAzul">
+                        @TranslatorHelper.TranslateTextByIdentifier("Old_LabelPlanesNuevasLic")
+                    </div>
+                    <div class="col-md-2">
+                        <label class="radio">
+                            @Html.RadioButtonFor(model => model.NewLinceses, "true", new { id = "newLincesesSi" })
+                            @Html.Label("newLincesesSi", @TranslatorHelper.TranslateTextByIdentifier("Old_LabelSi"))
+                        </label>
+                        <label class="radio">
+                            @Html.RadioButtonFor(model => model.NewLinceses, "false", new { id = "newLincesesNo" })
+                            @Html.Label("newLincesesNo", @TranslatorHelper.TranslateTextByIdentifier("Old_LabelNo"))
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 NS_fondoAzul">
+                        @TranslatorHelper.TranslateTextByIdentifier("Old_LabelExplique")
+                    </div>
+                    <div class="col-md-6">
+                        @Html.TextAreaFor(model => model.ExpliqueNewLinc, 3, 35, new { @class = "form-control", @maxlength = "500" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="col-md-6">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 NS_fondoAzul">
+                        @TranslatorHelper.TranslateTextByIdentifier("Old_LabelPlanesActualizacionLic")
+                    </div>
+                    <div class="col-md-2">
+                        <label class="radio">
+                            @Html.RadioButtonFor(model => model.UpgrateLicenses, "true", new { id = "upgrateLicensesSi" })
+                            @Html.Label("upgrateLicensesSi", @TranslatorHelper.TranslateTextByIdentifier("Old_LabelSi"))
+                        </label>
+                        <label class="radio">
+                            @Html.RadioButtonFor(model => model.UpgrateLicenses, "false", new { id = "upgrateLicensesNo" })
+                            @Html.Label("upgrateLicensesNo", @TranslatorHelper.TranslateTextByIdentifier("Old_LabelNo"))
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 NS_fondoAzul">
+                        @TranslatorHelper.TranslateTextByIdentifier("Old_LabelExplique")
+                    </div>
+                    <div class="col-md-6">
+                        @Html.TextAreaFor(model => model.ExpliqueUpgrateLinc, 3, 35, new { @class = "form-control", @maxlength = "500" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="col-md-6">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 NS_fondoAzul">
+                        <p>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelTieneCanalAutorizado")</p>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="radio">
+                            @Html.RadioButtonFor(model => model.AutMicChannel, "true", new { id = "autMicChannelSi" })
+                            @Html.Label("autMicChannelSi", @TranslatorHelper.TranslateTextByIdentifier("Old_LabelSi"))
+                        </label>
+                        <label class="radio">
+                            @Html.RadioButtonFor(model => model.AutMicChannel, "false", new { id = "autMicChannelNo" })
+                            @Html.Label("autMicChannelNo", @TranslatorHelper.TranslateTextByIdentifier("Old_LabelNo"))
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="col-md-6">
+            <div class="container">
+                <div class="row" id="partnerInfo" hidden>
+                    <div class="col-md-3 NS_fondoAzulGrande" style="height: 210px;" >
+                        @TranslatorHelper.TranslateTextByIdentifier("Old_LabelEmpresaContacto")
+                    </div>
+                    <div class="col-md-9">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelCanalAutorizado")</th>
+                                <td>@Html.EditorFor(model => model.AutChannel, new { htmlAttributes = new { @class = "form-control", @maxlength = "50" } })</td>
+                            </tr>
+                            <tr>
+                                <th>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelNombreContacto")</th>
+                                <td>@Html.EditorFor(model => model.ContactNameCanalAutorizado, new { htmlAttributes = new { @class = "form-control" } })</td>
+                            </tr>
+                            <tr>
+                                <th>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelTelefono")</th>
+                                <td>@Html.EditorFor(model => model.TelefonoCanalAutorizado, new { htmlAttributes = new { @class = "form-control", @maxlength = "50" } })</td>
+                            </tr>
+                            <tr>
+                                <th>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelEmail")</th>
+                                <td>
+                                    @Html.EditorFor(model => model.EmailCanalAutorizado, new { htmlAttributes = new { @class = "form-control EmailValidation", @maxlength = "50" } })
+                                    <label id="emailChannelMessage" style="color: red;" hidden>@TranslatorHelper.TranslateTextByIdentifier("Old_EmailAddressField")</label>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <br />
+        <div class="col-md-10">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2 NS_fondoAzulGrande">
+                        @TranslatorHelper.TranslateTextByIdentifier("Old_LabelSeleccionaOpcionAplique")
+                    </div>
+                    <div class="col-md-8">
+                        <table class="table table-bordered">
+                            @foreach (var item in Model.EstLicenciamiento.ToSelectList().ToList())
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="radio">
+                                            <label>
+                                                @Html.RadioButtonFor(model => model.EstLicenciamiento, item.Text)
+                                                @switch (@item.Text)
+                                                {
+                                                    case "Correcto":
+                                                        @TranslatorHelper.TranslateTextByIdentifier("Old_LabelCorrectamenteLicenciado")
+                                                        break;
+
+                                                    case "Diferencias":
+                                                        @TranslatorHelper.TranslateTextByIdentifier("Old_LabelEncontramosDiferencias")
+                                                        break;
+
+                                                    case "Apoyo":
+                                                        @TranslatorHelper.TranslateTextByIdentifier("Old_LabelSolicitoApoyo")
+                                                        break;
+                                                }
+
+                                            </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+@*<div class="container">
+        <div class="row">
+            <button type="button" id="confirmar" value="finalizar" class="">@TranslatorHelper.TranslateTextByIdentifier("Old_LabelFinalizar")</button>
+        </div>
+    </div>*@

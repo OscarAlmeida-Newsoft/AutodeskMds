@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:12312/TranslatorServices.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/SharedEntities" />
+  <xs:element name="TranslatorFileModel">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="pLanguageId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TranslatorFileModelResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/SharedEntities" minOccurs="0" name="TranslatorFileModelResult" nillable="true" type="q1:ArrayOfTranslatorFileModel" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateTranslatorLanguage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/SharedEntities" minOccurs="0" name="pModel" nillable="true" type="q2:NS_tblTranslatorLanguage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateTranslatorLanguageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/SharedEntities" minOccurs="0" name="CreateTranslatorLanguageResult" nillable="true" type="q3:ProcessResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateTranslatorLanguage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/SharedEntities" minOccurs="0" name="pModel" nillable="true" type="q4:NS_tblTranslatorLanguage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateTranslatorLanguageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/SharedEntities" minOccurs="0" name="UpdateTranslatorLanguageResult" nillable="true" type="q5:ProcessResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteTranslatorLanguage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/SharedEntities" minOccurs="0" name="pModel" nillable="true" type="q6:NS_tblTranslatorLanguage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteTranslatorLanguageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/SharedEntities" minOccurs="0" name="DeleteTranslatorLanguageResult" nillable="true" type="q7:ProcessResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTranslatorLanguageDropDown">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTranslatorLanguageDropDownResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/SharedEntities" minOccurs="0" name="GetTranslatorLanguageDropDownResult" nillable="true" type="q8:ArrayOfNS_tblTranslatorLanguageDropDown" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateTranslatorAdministrator">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/SharedEntities" minOccurs="0" name="pModel" nillable="true" type="q9:NS_TblTranslatorAdministrator" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateTranslatorAdministratorResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/SharedEntities" minOccurs="0" name="CreateTranslatorAdministratorResult" nillable="true" type="q10:ProcessResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateTranslatorAdministrator">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/SharedEntities" minOccurs="0" name="pModel" nillable="true" type="q11:NS_TblTranslatorAdministrator" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateTranslatorAdministratorResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/SharedEntities" minOccurs="0" name="UpdateTranslatorAdministratorResult" nillable="true" type="q12:ProcessResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteTranslatorAdministrator">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/SharedEntities" minOccurs="0" name="pModel" nillable="true" type="q13:NS_TblTranslatorAdministrator" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteTranslatorAdministratorResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/SharedEntities" minOccurs="0" name="DeleteTranslatorAdministratorResult" nillable="true" type="q14:ProcessResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTranslatorAdministrator">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTranslatorAdministratorResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/SharedEntities" minOccurs="0" name="GetTranslatorAdministratorResult" nillable="true" type="q15:ArrayOfNS_TblTranslatorAdministrator" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateTranslatorXLanguage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/SharedEntities" minOccurs="0" name="pModel" nillable="true" type="q16:NS_TblTranslationXLanguage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateTranslatorXLanguageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/SharedEntities" minOccurs="0" name="CreateTranslatorXLanguageResult" nillable="true" type="q17:ProcessResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateTranslatorXLanguage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/SharedEntities" minOccurs="0" name="pModel" nillable="true" type="q18:NS_TblTranslationXLanguage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateTranslatorXLanguageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/SharedEntities" minOccurs="0" name="UpdateTranslatorXLanguageResult" nillable="true" type="q19:ProcessResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteTranslatorXLanguage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/SharedEntities" minOccurs="0" name="pModel" nillable="true" type="q20:NS_TblTranslationXLanguage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteTranslatorXLanguageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/SharedEntities" minOccurs="0" name="DeleteTranslatorXLanguageResult" nillable="true" type="q21:ProcessResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTranslationXLanguage">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTranslationXLanguageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/SharedEntities" minOccurs="0" name="GetTranslationXLanguageResult" nillable="true" type="q22:ArrayOfNS_TblTranslationXLanguage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

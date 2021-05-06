@@ -1,0 +1,18 @@
+﻿@model Affidavit.Models.ContactUsViewModel
+@using Affidavit.Utils
+<br />
+<br />
+<br />
+<br />
+<div class="centro">
+    <p style="font-size:medium; text-align: justify;">@Html.Raw( @TranslatorHelper.TranslateTextByIdentifier("Old_ContactUsMessage") )</p>
+    &nbsp;<br />
+    <p style="font-size:medium; text-align: justify;">
+        @Html.Raw(
+            @TranslatorHelper.TranslateTextByIdentifier("Old_ConsultantInfoMessage")
+            .Replace("{{ConsultantName}}", Model.ConsultantName)
+            .Replace("{{ConsultantPhoneNumber}}", Model.PhoneNumber)
+            .Replace("{{ConsultantEmailAddress}}", Model.EmailAddress)
+            )
+    </p>
+</div>

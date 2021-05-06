@@ -1,0 +1,841 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="NS_dbAffidavitNewModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="NS_spAdditionalComments_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="companyID" Type="int" Mode="In" />
+          <Parameter Name="campaignID" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="NS_spAnswerCompany_QuestionResponses" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CompanyID" Type="int" Mode="In" />
+          <Parameter Name="CampaignID" Type="smallint" Mode="In" />
+          <Parameter Name="LanguageID" Type="int" Mode="In" />
+          <Parameter Name="ProductFamilyID" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="NS_spAnswerCompany_SelectQuestionID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="NS_spCampaign_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="NS_spCompany_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="NS_spCompanyContact_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="companyId" Type="int" Mode="In" />
+          <Parameter Name="campaignID" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="NS_spCompanyInfo_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="NS_spCountry_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="NS_spCreateLetterLatam" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="createdById" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="landingText" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="countryId" Type="int" Mode="In" />
+          <Parameter Name="campaign" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="notSave" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="NS_spCreateNewQuestion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="responseDataTypeID" Type="int" Mode="In" />
+          <Parameter Name="relatedQuestionID" Type="int" Mode="In" />
+          <Parameter Name="relatedQuestionIDResponse" Type="nvarchar" Mode="In" />
+          <Parameter Name="questionsxLanguages" Type="xml" Mode="In" />
+          <Parameter Name="productFamilyID" Type="tinyint" Mode="In" />
+          <Parameter Name="displayOrder" Type="int" Mode="In" />
+        </Function>
+        <Function Name="NS_spIndustry_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="NS_spLanguages_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="NS_spPartnerCapabilityInfo_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="companyID" Type="int" Mode="In" />
+          <Parameter Name="campaignID" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="NS_spPartnerProgramInfo_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="companyID" Type="int" Mode="In" />
+          <Parameter Name="campaignID" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="NS_spProduct_Create" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="productName" Type="nvarchar" Mode="In" />
+          <Parameter Name="productVersion" Type="nvarchar" Mode="In" />
+          <Parameter Name="productFamilyID" Type="tinyint" Mode="In" />
+          <Parameter Name="productVersionGroup" Type="nvarchar" Mode="In" />
+          <Parameter Name="OEMFlag" Type="bit" Mode="In" />
+          <Parameter Name="orderVersion" Type="smallint" Mode="In" />
+          <Parameter Name="isActive" Type="bit" Mode="In" />
+          <Parameter Name="productNameDisplay" Type="nvarchar" Mode="In" />
+          <Parameter Name="isCAL" Type="bit" Mode="In" />
+          <Parameter Name="isCommercial" Type="bit" Mode="In" />
+          <Parameter Name="isCorporate" Type="bit" Mode="In" />
+          <Parameter Name="isSupported" Type="bit" Mode="In" />
+          <Parameter Name="displayOrder" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="NS_spProduct_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="productID" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="NS_spProduct_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="NS_spProduct_SelectID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="productID" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="NS_spProduct_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="productID" Type="smallint" Mode="In" />
+          <Parameter Name="productName" Type="nvarchar" Mode="In" />
+          <Parameter Name="productVersion" Type="nvarchar" Mode="In" />
+          <Parameter Name="productFamilyID" Type="tinyint" Mode="In" />
+          <Parameter Name="productVersionGroup" Type="nvarchar" Mode="In" />
+          <Parameter Name="OEMFlag" Type="bit" Mode="In" />
+          <Parameter Name="orderVersion" Type="smallint" Mode="In" />
+          <Parameter Name="isActive" Type="bit" Mode="In" />
+          <Parameter Name="productNameDisplay" Type="nvarchar" Mode="In" />
+          <Parameter Name="isCAL" Type="bit" Mode="In" />
+          <Parameter Name="isCommercial" Type="bit" Mode="In" />
+          <Parameter Name="isCorporate" Type="bit" Mode="In" />
+          <Parameter Name="isSupported" Type="bit" Mode="In" />
+          <Parameter Name="displayOrder" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="NS_spProductCompany_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="NS_spProductFamily_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProducFamilyName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="NS_spProductFamily_SelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="NS_spProductFamilyCompany_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="companyID" Type="int" Mode="In" />
+          <Parameter Name="campaignID" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="NS_spProductInfo_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="companyID" Type="int" Mode="In" />
+          <Parameter Name="campaignID" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="NS_spQuestion_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="questionID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="NS_spQuestion_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="responseDataTypeID" Type="int" Mode="In" />
+          <Parameter Name="relatedQuestionID" Type="int" Mode="In" />
+          <Parameter Name="relatedQuestionIDResponse" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="NS_spQuestion_SelectByLanguage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="NS_spQuestion_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="questionID" Type="int" Mode="In" />
+          <Parameter Name="responseDataTypeID" Type="int" Mode="In" />
+          <Parameter Name="relatedQuestionID" Type="int" Mode="In" />
+          <Parameter Name="relatedQuestionIDResponse" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="NS_spQuestionByID_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="questionID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="NS_spQuestionByLanguage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="questionId" Type="int" Mode="In" />
+          <Parameter Name="languageID" Type="int" Mode="In" />
+          <Parameter Name="questionText" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="NS_spQuestionByLanguage_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="NS_spQuestionxLanguage_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="questionID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="NS_spQuestionxLanguage_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="questionID" Type="int" Mode="In" />
+          <Parameter Name="languageID" Type="int" Mode="In" />
+          <Parameter Name="questionText" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="NS_spQuestionxProductFamily_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="questionID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="NS_spQuestionxProductFamily_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="questionID" Type="int" Mode="In" />
+          <Parameter Name="productFamilyID" Type="tinyint" Mode="In" />
+          <Parameter Name="displayOrder" Type="int" Mode="In" />
+        </Function>
+        <Function Name="NS_spQuestionxProductFamily_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="NS_spQuestionxProductFamily_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="productFamilyID" Type="tinyint" Mode="In" />
+          <Parameter Name="questionID" Type="int" Mode="In" />
+          <Parameter Name="displayOrder" Type="int" Mode="In" />
+          <Parameter Name="isActive" Type="int" Mode="In" />
+        </Function>
+        <Function Name="NS_spResponseDataType_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="NS_dbAffidavitNewModelStoreContainer" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NS_dbAffidavitNewModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="AffidavitModelsConnection" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="NS_spAdditionalComments_Select" ReturnType="Collection(NS_dbAffidavitNewModel.NS_spAdditionalComments_Select_Result)">
+            <Parameter Name="companyID" Mode="In" Type="Int32" />
+            <Parameter Name="campaignID" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="NS_spAnswerCompany_SelectQuestionID" ReturnType="Collection(NS_dbAffidavitNewModel.NS_spAnswerCompany_SelectQuestionID_Result)" />
+          <FunctionImport Name="NS_spCampaign_Select" ReturnType="Collection(NS_dbAffidavitNewModel.NS_spCampaign_Select_Result)" />
+          <FunctionImport Name="NS_spCompany_Select" ReturnType="Collection(NS_dbAffidavitNewModel.NS_spCompany_Select_Result)" />
+          <FunctionImport Name="NS_spCompanyContact_Select" ReturnType="Collection(NS_dbAffidavitNewModel.NS_spCompanyContact_Select_Result)">
+            <Parameter Name="companyId" Mode="In" Type="Int32" />
+            <Parameter Name="campaignID" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="NS_spCreateNewQuestion">
+            <Parameter Name="responseDataTypeID" Mode="In" Type="Int32" />
+            <Parameter Name="relatedQuestionID" Mode="In" Type="Int32" />
+            <Parameter Name="relatedQuestionIDResponse" Mode="In" Type="String" />
+            <Parameter Name="questionsxLanguages" Mode="In" Type="String" />
+            <Parameter Name="productFamilyID" Mode="In" Type="Byte" />
+            <Parameter Name="displayOrder" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="NS_spIndustry_Select" ReturnType="Collection(NS_dbAffidavitNewModel.NS_spIndustry_Select_Result)" />
+          <FunctionImport Name="NS_spLanguages_Select" ReturnType="Collection(NS_dbAffidavitNewModel.NS_spLanguages_Select_Result)" />
+          <FunctionImport Name="NS_spPartnerCapabilityInfo_Select" ReturnType="Collection(NS_dbAffidavitNewModel.NS_spPartnerCapabilityInfo_Select_Result)">
+            <Parameter Name="companyID" Mode="In" Type="Int32" />
+            <Parameter Name="campaignID" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="NS_spPartnerProgramInfo_Select" ReturnType="Collection(NS_dbAffidavitNewModel.NS_spPartnerProgramInfo_Select_Result)">
+            <Parameter Name="companyID" Mode="In" Type="Int32" />
+            <Parameter Name="campaignID" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="NS_spProduct_Delete">
+          <Parameter Name="productID" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="NS_spProductCompany_Select" ReturnType="Collection(NS_dbAffidavitNewModel.NS_spProductCompany_Select_Result)" />
+          <FunctionImport Name="NS_spProductFamily_Select" ReturnType="Collection(NS_dbAffidavitNewModel.NS_spProductFamily_Select_Result)">
+          <Parameter Name="ProducFamilyName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="NS_spProductFamily_SelectAll" ReturnType="Collection(NS_dbAffidavitNewModel.NS_spProductFamily_SelectAll_Result)" />
+          <FunctionImport Name="NS_spProductFamilyCompany_Select" ReturnType="Collection(NS_dbAffidavitNewModel.NS_spProductFamilyCompany_Select_Result)">
+            <Parameter Name="companyID" Mode="In" Type="Int32" />
+            <Parameter Name="campaignID" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="NS_spQuestion_Delete">
+          <Parameter Name="questionID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="NS_spQuestion_Insert">
+            <Parameter Name="responseDataTypeID" Mode="In" Type="Int32" />
+            <Parameter Name="relatedQuestionID" Mode="In" Type="Int32" />
+            <Parameter Name="relatedQuestionIDResponse" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="NS_spQuestion_SelectByLanguage" ReturnType="Collection(NS_dbAffidavitNewModel.NS_spQuestion_SelectByLanguage_Result)" />
+          <FunctionImport Name="NS_spQuestion_Update">
+            <Parameter Name="questionID" Mode="In" Type="Int32" />
+            <Parameter Name="responseDataTypeID" Mode="In" Type="Int32" />
+            <Parameter Name="relatedQuestionID" Mode="In" Type="Int32" />
+            <Parameter Name="relatedQuestionIDResponse" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="NS_spQuestionByID_Select" ReturnType="Collection(NS_dbAffidavitNewModel.NS_spQuestionByID_Select_Result)">
+          <Parameter Name="questionID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="NS_spQuestionByLanguage">
+            <Parameter Name="questionId" Mode="In" Type="Int32" />
+            <Parameter Name="languageID" Mode="In" Type="Int32" />
+            <Parameter Name="questionText" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="NS_spQuestionByLanguage_Select" ReturnType="Collection(NS_dbAffidavitNewModel.NS_spQuestionByLanguage_Select_Result)" />
+          <FunctionImport Name="NS_spQuestionxLanguage_Delete">
+          <Parameter Name="questionID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="NS_spQuestionxLanguage_Update">
+            <Parameter Name="questionID" Mode="In" Type="Int32" />
+            <Parameter Name="languageID" Mode="In" Type="Int32" />
+            <Parameter Name="questionText" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="NS_spQuestionxProductFamily_Delete">
+          <Parameter Name="questionID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="NS_spQuestionxProductFamily_Insert">
+            <Parameter Name="questionID" Mode="In" Type="Int32" />
+            <Parameter Name="productFamilyID" Mode="In" Type="Byte" />
+            <Parameter Name="displayOrder" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="NS_spQuestionxProductFamily_Select" ReturnType="Collection(NS_dbAffidavitNewModel.NS_spQuestionxProductFamily_Select_Result)" />
+          <FunctionImport Name="NS_spQuestionxProductFamily_Update">
+            <Parameter Name="productFamilyID" Mode="In" Type="Byte" />
+            <Parameter Name="questionID" Mode="In" Type="Int32" />
+            <Parameter Name="displayOrder" Mode="In" Type="Int32" />
+            <Parameter Name="isActive" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="NS_spResponseDataType_Select" ReturnType="Collection(NS_dbAffidavitNewModel.NS_spResponseDataType_Select_Result)" />
+          <FunctionImport Name="NS_spProductInfo_Select" ReturnType="Collection(NS_dbAffidavitNewModel.NS_spProductInfo_Select_Result)">
+            <Parameter Name="companyID" Mode="In" Type="Int32" />
+            <Parameter Name="campaignID" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="NS_spCountry_Select" ReturnType="Collection(NS_dbAffidavitNewModel.NS_spCountry_Select_Result)" />
+          <FunctionImport Name="NS_spCreateLetterLatam">
+            <Parameter Name="createdById" Mode="In" Type="Guid" />
+            <Parameter Name="landingText" Mode="In" Type="String" />
+            <Parameter Name="countryId" Mode="In" Type="Int32" />
+            <Parameter Name="campaign" Mode="In" Type="String" />
+            <Parameter Name="notSave" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="NS_spAnswerCompany_QuestionResponses">
+            <Parameter Name="CompanyID" Mode="In" Type="Int32" />
+            <Parameter Name="CampaignID" Mode="In" Type="Int16" />
+            <Parameter Name="LanguageID" Mode="In" Type="Int32" />
+            <Parameter Name="ProductFamilyID" Mode="In" Type="Byte" />
+          </FunctionImport>
+          <FunctionImport Name="NS_spProduct_Create">
+            <Parameter Name="productName" Mode="In" Type="String" />
+            <Parameter Name="productVersion" Mode="In" Type="String" />
+            <Parameter Name="productFamilyID" Mode="In" Type="Byte" />
+            <Parameter Name="productVersionGroup" Mode="In" Type="String" />
+            <Parameter Name="OEMFlag" Mode="In" Type="Boolean" />
+            <Parameter Name="orderVersion" Mode="In" Type="Int16" />
+            <Parameter Name="isActive" Mode="In" Type="Boolean" />
+            <Parameter Name="productNameDisplay" Mode="In" Type="String" />
+            <Parameter Name="isCAL" Mode="In" Type="Boolean" />
+            <Parameter Name="isCommercial" Mode="In" Type="Boolean" />
+            <Parameter Name="isCorporate" Mode="In" Type="Boolean" />
+            <Parameter Name="isSupported" Mode="In" Type="Boolean" />
+            <Parameter Name="displayOrder" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="NS_spProduct_Update">
+            <Parameter Name="productID" Mode="In" Type="Int16" />
+            <Parameter Name="productName" Mode="In" Type="String" />
+            <Parameter Name="productVersion" Mode="In" Type="String" />
+            <Parameter Name="productFamilyID" Mode="In" Type="Byte" />
+            <Parameter Name="productVersionGroup" Mode="In" Type="String" />
+            <Parameter Name="OEMFlag" Mode="In" Type="Boolean" />
+            <Parameter Name="orderVersion" Mode="In" Type="Int16" />
+            <Parameter Name="isActive" Mode="In" Type="Boolean" />
+            <Parameter Name="productNameDisplay" Mode="In" Type="String" />
+            <Parameter Name="isCAL" Mode="In" Type="Boolean" />
+            <Parameter Name="isCommercial" Mode="In" Type="Boolean" />
+            <Parameter Name="isCorporate" Mode="In" Type="Boolean" />
+            <Parameter Name="isSupported" Mode="In" Type="Boolean" />
+            <Parameter Name="displayOrder" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="NS_spProduct_SelectID" ReturnType="Collection(NS_dbAffidavitNewModel.NS_spProduct_SelectID_Result)">
+          <Parameter Name="productID" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="NS_spCompanyInfo_Select" ReturnType="Collection(NS_dbAffidavitNewModel.NS_spCompanyInfo_Select_Result)" />
+          <FunctionImport Name="NS_spProduct_Select" ReturnType="Collection(NS_dbAffidavitNewModel.NS_spProduct_Select_Result)" />
+        </EntityContainer>
+        <ComplexType Name="NS_spAdditionalComments_Select_Result">
+          <Property Type="String" Name="ProductFamilyName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="AdditionalComments" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="NS_spAnswerCompany_SelectQuestionID_Result">
+          <Property Type="Int32" Name="QuestionID" Nullable="false" />
+          <Property Type="Int32" Name="CompanyID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="NS_spCampaign_Select_Result">
+          <Property Type="Int16" Name="CampaignID" Nullable="false" />
+          <Property Type="String" Name="CampaignName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="CRMCampaignID" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="NS_spCompany_Select_Result">
+          <Property Type="Int32" Name="CompanyID" Nullable="false" />
+          <Property Type="String" Name="AccountNumber" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CompanyName" Nullable="false" MaxLength="120" />
+          <Property Type="Int16" Name="IndustryID" Nullable="false" />
+          <Property Type="Byte" Name="CompanyTypeID" Nullable="true" />
+          <Property Type="Boolean" Name="UpdatedFromCRMFlag" Nullable="true" />
+          <Property Type="Int32" Name="CountryID" Nullable="false" />
+          <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="15" />
+          <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="23" />
+          <Property Type="String" Name="ModifiedBy" Nullable="true" MaxLength="15" />
+          <Property Type="DateTime" Name="ModifiedOn" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="PurchaseAndInvoicingMode" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="NS_spCompanyContact_Select_Result">
+          <Property Type="Int32" Name="CompanyID" Nullable="false" />
+          <Property Type="Int16" Name="CampaignID" Nullable="false" />
+          <Property Type="String" Name="ContactName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CompanyEmail" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CompanyPhone" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="NS_spIndustry_Select_Result">
+          <Property Type="Int16" Name="IndustryID" Nullable="false" />
+          <Property Type="String" Name="IndustryName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="IndustrySpanishName" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="NS_spLanguages_Select_Result">
+          <Property Type="Int32" Name="LanguageID" Nullable="false" />
+          <Property Type="String" Name="LanguageName" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="NS_spPartnerCapabilityInfo_Select_Result">
+          <Property Type="String" Name="Category" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="IDPartner" Nullable="true" MaxLength="10" />
+          <Property Type="DateTime" Name="RenovationDate" Nullable="true" />
+          <Property Type="String" Name="PartnerCapabilityName" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="NS_spPartnerProgramInfo_Select_Result">
+          <Property Type="String" Name="IDPartner" Nullable="true" MaxLength="10" />
+          <Property Type="DateTime" Name="ExpirationDate" Nullable="true" />
+          <Property Type="String" Name="PartnerProgramName" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="NS_spProductCompany_Select_Result">
+          <Property Type="Int32" Name="CompanyID" Nullable="false" />
+          <Property Type="Int16" Name="ProductID" Nullable="false" />
+          <Property Type="Int16" Name="CampaignID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="NS_spProductFamily_Select_Result">
+          <Property Type="Byte" Name="ProductFamilyID" Nullable="false" />
+          <Property Type="String" Name="ProductFamilyName" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="NS_spProductFamily_SelectAll_Result">
+          <Property Type="Byte" Name="ProductFamilyID" Nullable="false" />
+          <Property Type="String" Name="ProductFamilyName" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="NS_spProductFamilyCompany_Select_Result">
+          <Property Type="Int32" Name="CompanyID" Nullable="false" />
+          <Property Type="Byte" Name="ProductFamilyID" Nullable="false" />
+          <Property Type="Int16" Name="CampaignID" Nullable="false" />
+          <Property Type="String" Name="AdditionalComments" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="NS_spQuestion_SelectByLanguage_Result">
+          <Property Type="Int32" Name="QuestionID" Nullable="false" />
+          <Property Type="String" Name="QuestionText" Nullable="true" MaxLength="500" />
+          <Property Type="Byte" Name="ProductFamilyID" Nullable="false" />
+          <Property Type="String" Name="ProductFamilyName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="DisplayOrder" Nullable="false" />
+          <Property Type="Int32" Name="ReletedQuestionID" Nullable="true" />
+          <Property Type="String" Name="RelatedQuestionIDResponse" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ResponseDataTypeID" Nullable="false" />
+          <Property Type="String" Name="ResponseDataTypeDescription" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="IsActive" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="NS_spQuestionByID_Select_Result">
+          <Property Type="Int32" Name="QuestionID" Nullable="false" />
+          <Property Type="Int32" Name="ResponseDataTypeID" Nullable="false" />
+          <Property Type="Int32" Name="ReletedQuestionID" Nullable="true" />
+          <Property Type="String" Name="RelatedQuestionIDResponse" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="NS_spQuestionByLanguage_Select_Result">
+          <Property Type="Int32" Name="QuestionID" Nullable="false" />
+          <Property Type="Int32" Name="LanguageID" Nullable="false" />
+          <Property Type="String" Name="QuestionText" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="NS_spQuestionxProductFamily_Select_Result">
+          <Property Type="Byte" Name="ProductFamilyID" Nullable="false" />
+          <Property Type="Int32" Name="QuestionID" Nullable="false" />
+          <Property Type="Int32" Name="DisplayOrder" Nullable="false" />
+          <Property Type="Int32" Name="IsActive" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="NS_spResponseDataType_Select_Result">
+          <Property Type="Int32" Name="ResponseDataTypeID" Nullable="false" />
+          <Property Type="String" Name="ResponseDataTypeDescription" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="ResponseDataTypeLength" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="NS_spProductInfo_Select_Result">
+          <Property Type="String" Name="ProductFamilyName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProductNameDisplay" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ProductVersionGroup" Nullable="false" MaxLength="15" />
+          <Property Type="Int16" Name="InstalledLicenses" Nullable="true" />
+          <Property Type="Int16" Name="ProductID" Nullable="false" />
+          <Property Type="Int16" Name="VLS" Nullable="true" />
+          <Property Type="Int16" Name="OEM" Nullable="true" />
+          <Property Type="Int16" Name="FPP" Nullable="true" />
+          <Property Type="Int16" Name="WEB" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="NS_spCountry_Select_Result">
+          <Property Type="Int32" Name="CountryID" Nullable="false" />
+          <Property Type="String" Name="CountryName" Nullable="false" MaxLength="100" />
+          <Property Type="Int16" Name="RegionID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="NS_spProduct_SelectID_Result">
+          <Property Type="Int16" Name="ProductID" Nullable="false" />
+          <Property Type="String" Name="ProductName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ProductNameDisplay" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ProductVersion" Nullable="false" MaxLength="15" />
+          <Property Type="Byte" Name="ProductFamilyID" Nullable="false" />
+          <Property Type="String" Name="ProductVersionGroup" Nullable="false" MaxLength="15" />
+          <Property Type="Boolean" Name="OEMFlag" Nullable="false" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <Property Type="Int16" Name="OrderVersion" Nullable="true" />
+          <Property Type="Boolean" Name="IsCal" Nullable="false" />
+          <Property Type="Boolean" Name="IsCommercial" Nullable="false" />
+          <Property Type="Boolean" Name="IsCorporate" Nullable="false" />
+          <Property Type="Boolean" Name="IsSupported" Nullable="false" />
+          <Property Type="Int16" Name="DisplayOrder" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="NS_spProduct_Select_Result">
+          <Property Type="Int16" Name="ProductID" Nullable="false" />
+          <Property Type="String" Name="ProductName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ProductNameDisplay" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ProductVersion" Nullable="false" MaxLength="15" />
+          <Property Type="Byte" Name="ProductFamilyID" Nullable="false" />
+          <Property Type="String" Name="ProductVersionGroup" Nullable="false" MaxLength="15" />
+          <Property Type="Boolean" Name="OEMFlag" Nullable="false" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <Property Type="Int16" Name="OrderVersion" Nullable="true" />
+          <Property Type="String" Name="ProductFamilyName" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsCal" Nullable="false" />
+          <Property Type="Boolean" Name="IsCorporate" Nullable="false" />
+          <Property Type="Boolean" Name="IsCommercial" Nullable="false" />
+          <Property Type="Boolean" Name="IsSupported" Nullable="false" />
+          <Property Type="Int16" Name="DisplayOrder" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="NS_spCompanyInfo_Select_Result">
+          <Property Type="Int32" Name="CompanyID" Nullable="false" />
+          <Property Type="Int16" Name="CampaignID" Nullable="false" />
+          <Property Type="String" Name="LeadID" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="LogFileID" Nullable="true" />
+          <Property Type="DateTime" Name="FolderCreationDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="TotalQuantityOfEmployees" Nullable="true" />
+          <Property Type="Int16" Name="TotalQuantityOfDesktops" Nullable="true" />
+          <Property Type="Int16" Name="TotalQuantityOfLaptops" Nullable="true" />
+          <Property Type="Int16" Name="TotalQuantityPCWithOtherOS" Nullable="true" />
+          <Property Type="Int16" Name="TotalQuantityOfPhysicalServers" Nullable="true" />
+          <Property Type="Int16" Name="TotalQuantityOfVirtualServers" Nullable="true" />
+          <Property Type="Int16" Name="AcademicQttyTeachersPartialTime" Nullable="true" />
+          <Property Type="Int16" Name="AcademicQttyTeachersFullTime" Nullable="true" />
+          <Property Type="Int16" Name="AcademicQttyAdmEmpPartialTime" Nullable="true" />
+          <Property Type="Int16" Name="AcademicQttyAdmEmpFullTime" Nullable="true" />
+          <Property Type="String" Name="ExactNameInInvoicing" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="VolumeLicenceNumber1" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="VolumeLicenceNumber2" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="VolumeLicenceNumber3" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="VolumeLicenceNumber4" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="VolumeLicenceNumber5" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="VolumeLicenceNumber6" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="VolumeLicenceNumber7" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="VolumeLicenceNumber8" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="VolumeLicenceNumber9" Nullable="true" MaxLength="15" />
+          <Property Type="Boolean" Name="SoftwareAssuranceFlag" Nullable="true" />
+          <Property Type="String" Name="StatusRenewalAndContratDetails" Nullable="true" MaxLength="500" />
+          <Property Type="Boolean" Name="PlansToPurchaseNewLicensesFlag" Nullable="true" />
+          <Property Type="String" Name="PlansToPurchaseNewLicensesComments" Nullable="true" MaxLength="500" />
+          <Property Type="Boolean" Name="PlansToUpgradeCurrentlyOwnedLicensesFlag" Nullable="true" />
+          <Property Type="String" Name="PlansToUpgradeCurrentlyOwnedLicensesComments" Nullable="true" MaxLength="500" />
+          <Property Type="Boolean" Name="AuthorizedMicrosoftChannelFlag" Nullable="true" />
+          <Property Type="String" Name="AuthorizedChannel" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MicrosoftPartnerContactName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MicrosoftPartnerPhoneNumber" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MicrosoftPartnerEmail" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CustomOrBasicsApplications" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="DevelopersPartnersApplicationsType" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="DevelopersPartnersMicrosofTools" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="DevelopersPartnersProjectsTypes" Nullable="true" MaxLength="500" />
+          <Property Type="Byte" Name="LicenseStatusResponseID" Nullable="true" />
+          <Property Type="Boolean" Name="IsFinalVersion" Nullable="false" />
+          <Property Type="Int16" Name="TotalQuantityOfSQLServers" Nullable="true" />
+          <Property Type="Boolean" Name="AzureFlag" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NS_dbAffidavitNewModelStoreContainer" CdmEntityContainer="AffidavitModelsConnection" >
+          <FunctionImportMapping FunctionImportName="NS_spAdditionalComments_Select" FunctionName="NS_dbAffidavitNewModel.Store.NS_spAdditionalComments_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NS_dbAffidavitNewModel.NS_spAdditionalComments_Select_Result">
+                <ScalarProperty Name="ProductFamilyName" ColumnName="ProductFamilyName" />
+                <ScalarProperty Name="AdditionalComments" ColumnName="AdditionalComments" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="NS_spAnswerCompany_SelectQuestionID" FunctionName="NS_dbAffidavitNewModel.Store.NS_spAnswerCompany_SelectQuestionID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NS_dbAffidavitNewModel.NS_spAnswerCompany_SelectQuestionID_Result">
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="NS_spCampaign_Select" FunctionName="NS_dbAffidavitNewModel.Store.NS_spCampaign_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NS_dbAffidavitNewModel.NS_spCampaign_Select_Result">
+                <ScalarProperty Name="CampaignID" ColumnName="CampaignID" />
+                <ScalarProperty Name="CampaignName" ColumnName="CampaignName" />
+                <ScalarProperty Name="CRMCampaignID" ColumnName="CRMCampaignID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="NS_spCompany_Select" FunctionName="NS_dbAffidavitNewModel.Store.NS_spCompany_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NS_dbAffidavitNewModel.NS_spCompany_Select_Result">
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="IndustryID" ColumnName="IndustryID" />
+                <ScalarProperty Name="CompanyTypeID" ColumnName="CompanyTypeID" />
+                <ScalarProperty Name="UpdatedFromCRMFlag" ColumnName="UpdatedFromCRMFlag" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="PurchaseAndInvoicingMode" ColumnName="PurchaseAndInvoicingMode" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="NS_spCompanyContact_Select" FunctionName="NS_dbAffidavitNewModel.Store.NS_spCompanyContact_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NS_dbAffidavitNewModel.NS_spCompanyContact_Select_Result">
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="CampaignID" ColumnName="CampaignID" />
+                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+                <ScalarProperty Name="CompanyEmail" ColumnName="CompanyEmail" />
+                <ScalarProperty Name="CompanyPhone" ColumnName="CompanyPhone" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="NS_spCreateNewQuestion" FunctionName="NS_dbAffidavitNewModel.Store.NS_spCreateNewQuestion" />
+          <FunctionImportMapping FunctionImportName="NS_spIndustry_Select" FunctionName="NS_dbAffidavitNewModel.Store.NS_spIndustry_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NS_dbAffidavitNewModel.NS_spIndustry_Select_Result">
+                <ScalarProperty Name="IndustryID" ColumnName="IndustryID" />
+                <ScalarProperty Name="IndustryName" ColumnName="IndustryName" />
+                <ScalarProperty Name="IndustrySpanishName" ColumnName="IndustrySpanishName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="NS_spLanguages_Select" FunctionName="NS_dbAffidavitNewModel.Store.NS_spLanguages_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NS_dbAffidavitNewModel.NS_spLanguages_Select_Result">
+                <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
+                <ScalarProperty Name="LanguageName" ColumnName="LanguageName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="NS_spPartnerCapabilityInfo_Select" FunctionName="NS_dbAffidavitNewModel.Store.NS_spPartnerCapabilityInfo_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NS_dbAffidavitNewModel.NS_spPartnerCapabilityInfo_Select_Result">
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="IDPartner" ColumnName="IDPartner" />
+                <ScalarProperty Name="RenovationDate" ColumnName="RenovationDate" />
+                <ScalarProperty Name="PartnerCapabilityName" ColumnName="PartnerCapabilityName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="NS_spPartnerProgramInfo_Select" FunctionName="NS_dbAffidavitNewModel.Store.NS_spPartnerProgramInfo_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NS_dbAffidavitNewModel.NS_spPartnerProgramInfo_Select_Result">
+                <ScalarProperty Name="IDPartner" ColumnName="IDPartner" />
+                <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+                <ScalarProperty Name="PartnerProgramName" ColumnName="PartnerProgramName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="NS_spProduct_Delete" FunctionName="NS_dbAffidavitNewModel.Store.NS_spProduct_Delete" />
+          <FunctionImportMapping FunctionImportName="NS_spProductCompany_Select" FunctionName="NS_dbAffidavitNewModel.Store.NS_spProductCompany_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NS_dbAffidavitNewModel.NS_spProductCompany_Select_Result">
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="CampaignID" ColumnName="CampaignID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="NS_spProductFamily_Select" FunctionName="NS_dbAffidavitNewModel.Store.NS_spProductFamily_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NS_dbAffidavitNewModel.NS_spProductFamily_Select_Result">
+                <ScalarProperty Name="ProductFamilyID" ColumnName="ProductFamilyID" />
+                <ScalarProperty Name="ProductFamilyName" ColumnName="ProductFamilyName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="NS_spProductFamily_SelectAll" FunctionName="NS_dbAffidavitNewModel.Store.NS_spProductFamily_SelectAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NS_dbAffidavitNewModel.NS_spProductFamily_SelectAll_Result">
+                <ScalarProperty Name="ProductFamilyID" ColumnName="ProductFamilyID" />
+                <ScalarProperty Name="ProductFamilyName" ColumnName="ProductFamilyName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="NS_spProductFamilyCompany_Select" FunctionName="NS_dbAffidavitNewModel.Store.NS_spProductFamilyCompany_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NS_dbAffidavitNewModel.NS_spProductFamilyCompany_Select_Result">
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="ProductFamilyID" ColumnName="ProductFamilyID" />
+                <ScalarProperty Name="CampaignID" ColumnName="CampaignID" />
+                <ScalarProperty Name="AdditionalComments" ColumnName="AdditionalComments" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="NS_spQuestion_Delete" FunctionName="NS_dbAffidavitNewModel.Store.NS_spQuestion_Delete" />
+          <FunctionImportMapping FunctionImportName="NS_spQuestion_Insert" FunctionName="NS_dbAffidavitNewModel.Store.NS_spQuestion_Insert" />
+          <FunctionImportMapping FunctionImportName="NS_spQuestion_SelectByLanguage" FunctionName="NS_dbAffidavitNewModel.Store.NS_spQuestion_SelectByLanguage">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NS_dbAffidavitNewModel.NS_spQuestion_SelectByLanguage_Result">
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+                <ScalarProperty Name="QuestionText" ColumnName="QuestionText" />
+                <ScalarProperty Name="ProductFamilyID" ColumnName="ProductFamilyID" />
+                <ScalarProperty Name="ProductFamilyName" ColumnName="ProductFamilyName" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="ReletedQuestionID" ColumnName="ReletedQuestionID" />
+                <ScalarProperty Name="RelatedQuestionIDResponse" ColumnName="RelatedQuestionIDResponse" />
+                <ScalarProperty Name="ResponseDataTypeID" ColumnName="ResponseDataTypeID" />
+                <ScalarProperty Name="ResponseDataTypeDescription" ColumnName="ResponseDataTypeDescription" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="NS_spQuestion_Update" FunctionName="NS_dbAffidavitNewModel.Store.NS_spQuestion_Update" />
+          <FunctionImportMapping FunctionImportName="NS_spQuestionByID_Select" FunctionName="NS_dbAffidavitNewModel.Store.NS_spQuestionByID_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NS_dbAffidavitNewModel.NS_spQuestionByID_Select_Result">
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+                <ScalarProperty Name="ResponseDataTypeID" ColumnName="ResponseDataTypeID" />
+                <ScalarProperty Name="ReletedQuestionID" ColumnName="ReletedQuestionID" />
+                <ScalarProperty Name="RelatedQuestionIDResponse" ColumnName="RelatedQuestionIDResponse" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="NS_spQuestionByLanguage" FunctionName="NS_dbAffidavitNewModel.Store.NS_spQuestionByLanguage" />
+          <FunctionImportMapping FunctionImportName="NS_spQuestionByLanguage_Select" FunctionName="NS_dbAffidavitNewModel.Store.NS_spQuestionByLanguage_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NS_dbAffidavitNewModel.NS_spQuestionByLanguage_Select_Result">
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+                <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
+                <ScalarProperty Name="QuestionText" ColumnName="QuestionText" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="NS_spQuestionxLanguage_Delete" FunctionName="NS_dbAffidavitNewModel.Store.NS_spQuestionxLanguage_Delete" />
+          <FunctionImportMapping FunctionImportName="NS_spQuestionxLanguage_Update" FunctionName="NS_dbAffidavitNewModel.Store.NS_spQuestionxLanguage_Update" />
+          <FunctionImportMapping FunctionImportName="NS_spQuestionxProductFamily_Delete" FunctionName="NS_dbAffidavitNewModel.Store.NS_spQuestionxProductFamily_Delete" />
+          <FunctionImportMapping FunctionImportName="NS_spQuestionxProductFamily_Insert" FunctionName="NS_dbAffidavitNewModel.Store.NS_spQuestionxProductFamily_Insert" />
+          <FunctionImportMapping FunctionImportName="NS_spQuestionxProductFamily_Select" FunctionName="NS_dbAffidavitNewModel.Store.NS_spQuestionxProductFamily_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NS_dbAffidavitNewModel.NS_spQuestionxProductFamily_Select_Result">
+                <ScalarProperty Name="ProductFamilyID" ColumnName="ProductFamilyID" />
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="NS_spQuestionxProductFamily_Update" FunctionName="NS_dbAffidavitNewModel.Store.NS_spQuestionxProductFamily_Update" />
+          <FunctionImportMapping FunctionImportName="NS_spResponseDataType_Select" FunctionName="NS_dbAffidavitNewModel.Store.NS_spResponseDataType_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NS_dbAffidavitNewModel.NS_spResponseDataType_Select_Result">
+                <ScalarProperty Name="ResponseDataTypeID" ColumnName="ResponseDataTypeID" />
+                <ScalarProperty Name="ResponseDataTypeDescription" ColumnName="ResponseDataTypeDescription" />
+                <ScalarProperty Name="ResponseDataTypeLength" ColumnName="ResponseDataTypeLength" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="NS_spProductInfo_Select" FunctionName="NS_dbAffidavitNewModel.Store.NS_spProductInfo_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NS_dbAffidavitNewModel.NS_spProductInfo_Select_Result">
+                <ScalarProperty Name="ProductFamilyName" ColumnName="ProductFamilyName" />
+                <ScalarProperty Name="ProductNameDisplay" ColumnName="ProductNameDisplay" />
+                <ScalarProperty Name="ProductVersionGroup" ColumnName="ProductVersionGroup" />
+                <ScalarProperty Name="InstalledLicenses" ColumnName="InstalledLicenses" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="VLS" ColumnName="VLS" />
+                <ScalarProperty Name="OEM" ColumnName="OEM" />
+                <ScalarProperty Name="FPP" ColumnName="FPP" />
+                <ScalarProperty Name="WEB" ColumnName="WEB" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="NS_spCountry_Select" FunctionName="NS_dbAffidavitNewModel.Store.NS_spCountry_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NS_dbAffidavitNewModel.NS_spCountry_Select_Result">
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="NS_spCreateLetterLatam" FunctionName="NS_dbAffidavitNewModel.Store.NS_spCreateLetterLatam" />
+          <FunctionImportMapping FunctionImportName="NS_spAnswerCompany_QuestionResponses" FunctionName="NS_dbAffidavitNewModel.Store.NS_spAnswerCompany_QuestionResponses" />
+          <FunctionImportMapping FunctionImportName="NS_spProduct_Create" FunctionName="NS_dbAffidavitNewModel.Store.NS_spProduct_Create" />
+          <FunctionImportMapping FunctionImportName="NS_spProduct_Update" FunctionName="NS_dbAffidavitNewModel.Store.NS_spProduct_Update" />
+          <FunctionImportMapping FunctionImportName="NS_spProduct_SelectID" FunctionName="NS_dbAffidavitNewModel.Store.NS_spProduct_SelectID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NS_dbAffidavitNewModel.NS_spProduct_SelectID_Result">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductNameDisplay" ColumnName="ProductNameDisplay" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="ProductFamilyID" ColumnName="ProductFamilyID" />
+                <ScalarProperty Name="ProductVersionGroup" ColumnName="ProductVersionGroup" />
+                <ScalarProperty Name="OEMFlag" ColumnName="OEMFlag" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="OrderVersion" ColumnName="OrderVersion" />
+                <ScalarProperty Name="IsCal" ColumnName="IsCal" />
+                <ScalarProperty Name="IsCommercial" ColumnName="IsCommercial" />
+                <ScalarProperty Name="IsCorporate" ColumnName="IsCorporate" />
+                <ScalarProperty Name="IsSupported" ColumnName="IsSupported" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="NS_spProduct_Select" FunctionName="NS_dbAffidavitNewModel.Store.NS_spProduct_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NS_dbAffidavitNewModel.NS_spProduct_Select_Result">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductNameDisplay" ColumnName="ProductNameDisplay" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="ProductFamilyID" ColumnName="ProductFamilyID" />
+                <ScalarProperty Name="ProductVersionGroup" ColumnName="ProductVersionGroup" />
+                <ScalarProperty Name="OEMFlag" ColumnName="OEMFlag" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="OrderVersion" ColumnName="OrderVersion" />
+                <ScalarProperty Name="ProductFamilyName" ColumnName="ProductFamilyName" />
+                <ScalarProperty Name="IsCal" ColumnName="IsCal" />
+                <ScalarProperty Name="IsCorporate" ColumnName="IsCorporate" />
+                <ScalarProperty Name="IsCommercial" ColumnName="IsCommercial" />
+                <ScalarProperty Name="IsSupported" ColumnName="IsSupported" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="NS_spCompanyInfo_Select" FunctionName="NS_dbAffidavitNewModel.Store.NS_spCompanyInfo_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NS_dbAffidavitNewModel.NS_spCompanyInfo_Select_Result">
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="CampaignID" ColumnName="CampaignID" />
+                <ScalarProperty Name="LeadID" ColumnName="LeadID" />
+                <ScalarProperty Name="LogFileID" ColumnName="LogFileID" />
+                <ScalarProperty Name="FolderCreationDate" ColumnName="FolderCreationDate" />
+                <ScalarProperty Name="TotalQuantityOfEmployees" ColumnName="TotalQuantityOfEmployees" />
+                <ScalarProperty Name="TotalQuantityOfDesktops" ColumnName="TotalQuantityOfDesktops" />
+                <ScalarProperty Name="TotalQuantityOfLaptops" ColumnName="TotalQuantityOfLaptops" />
+                <ScalarProperty Name="TotalQuantityPCWithOtherOS" ColumnName="TotalQuantityPCWithOtherOS" />
+                <ScalarProperty Name="TotalQuantityOfPhysicalServers" ColumnName="TotalQuantityOfPhysicalServers" />
+                <ScalarProperty Name="TotalQuantityOfVirtualServers" ColumnName="TotalQuantityOfVirtualServers" />
+                <ScalarProperty Name="AcademicQttyTeachersPartialTime" ColumnName="AcademicQttyTeachersPartialTime" />
+                <ScalarProperty Name="AcademicQttyTeachersFullTime" ColumnName="AcademicQttyTeachersFullTime" />
+                <ScalarProperty Name="AcademicQttyAdmEmpPartialTime" ColumnName="AcademicQttyAdmEmpPartialTime" />
+                <ScalarProperty Name="AcademicQttyAdmEmpFullTime" ColumnName="AcademicQttyAdmEmpFullTime" />
+                <ScalarProperty Name="ExactNameInInvoicing" ColumnName="ExactNameInInvoicing" />
+                <ScalarProperty Name="VolumeLicenceNumber1" ColumnName="VolumeLicenceNumber1" />
+                <ScalarProperty Name="VolumeLicenceNumber2" ColumnName="VolumeLicenceNumber2" />
+                <ScalarProperty Name="VolumeLicenceNumber3" ColumnName="VolumeLicenceNumber3" />
+                <ScalarProperty Name="VolumeLicenceNumber4" ColumnName="VolumeLicenceNumber4" />
+                <ScalarProperty Name="VolumeLicenceNumber5" ColumnName="VolumeLicenceNumber5" />
+                <ScalarProperty Name="VolumeLicenceNumber6" ColumnName="VolumeLicenceNumber6" />
+                <ScalarProperty Name="VolumeLicenceNumber7" ColumnName="VolumeLicenceNumber7" />
+                <ScalarProperty Name="VolumeLicenceNumber8" ColumnName="VolumeLicenceNumber8" />
+                <ScalarProperty Name="VolumeLicenceNumber9" ColumnName="VolumeLicenceNumber9" />
+                <ScalarProperty Name="SoftwareAssuranceFlag" ColumnName="SoftwareAssuranceFlag" />
+                <ScalarProperty Name="StatusRenewalAndContratDetails" ColumnName="StatusRenewalAndContratDetails" />
+                <ScalarProperty Name="PlansToPurchaseNewLicensesFlag" ColumnName="PlansToPurchaseNewLicensesFlag" />
+                <ScalarProperty Name="PlansToPurchaseNewLicensesComments" ColumnName="PlansToPurchaseNewLicensesComments" />
+                <ScalarProperty Name="PlansToUpgradeCurrentlyOwnedLicensesFlag" ColumnName="PlansToUpgradeCurrentlyOwnedLicensesFlag" />
+                <ScalarProperty Name="PlansToUpgradeCurrentlyOwnedLicensesComments" ColumnName="PlansToUpgradeCurrentlyOwnedLicensesComments" />
+                <ScalarProperty Name="AuthorizedMicrosoftChannelFlag" ColumnName="AuthorizedMicrosoftChannelFlag" />
+                <ScalarProperty Name="AuthorizedChannel" ColumnName="AuthorizedChannel" />
+                <ScalarProperty Name="MicrosoftPartnerContactName" ColumnName="MicrosoftPartnerContactName" />
+                <ScalarProperty Name="MicrosoftPartnerPhoneNumber" ColumnName="MicrosoftPartnerPhoneNumber" />
+                <ScalarProperty Name="MicrosoftPartnerEmail" ColumnName="MicrosoftPartnerEmail" />
+                <ScalarProperty Name="CustomOrBasicsApplications" ColumnName="CustomOrBasicsApplications" />
+                <ScalarProperty Name="DevelopersPartnersApplicationsType" ColumnName="DevelopersPartnersApplicationsType" />
+                <ScalarProperty Name="DevelopersPartnersMicrosofTools" ColumnName="DevelopersPartnersMicrosofTools" />
+                <ScalarProperty Name="DevelopersPartnersProjectsTypes" ColumnName="DevelopersPartnersProjectsTypes" />
+                <ScalarProperty Name="LicenseStatusResponseID" ColumnName="LicenseStatusResponseID" />
+                <ScalarProperty Name="IsFinalVersion" ColumnName="IsFinalVersion" />
+                <ScalarProperty Name="TotalQuantityOfSQLServers" ColumnName="TotalQuantityOfSQLServers" />
+                <ScalarProperty Name="AzureFlag" ColumnName="AzureFlag" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/SharedEntities" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SharedEntities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:12312/AssessmentServices.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfNS_TblAssessmentType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="NS_TblAssessmentType" nillable="true" type="tns:NS_TblAssessmentType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfNS_TblAssessmentType" nillable="true" type="tns:ArrayOfNS_TblAssessmentType" />
+  <xs:complexType name="NS_TblAssessmentType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreatedById" type="ser:guid" />
+      <xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IconName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IndustryId" type="xs:int" />
+      <xs:element minOccurs="0" name="IsIndustryInsights" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Status" type="xs:boolean" />
+      <xs:element minOccurs="0" name="TranslatorAdministratorDescriptionId" type="xs:int" />
+      <xs:element minOccurs="0" name="TranslatorAdministratorId" type="xs:int" />
+      <xs:element minOccurs="0" name="UpdatedById" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="UpdatedDate" nillable="true" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NS_TblAssessmentType" nillable="true" type="tns:NS_TblAssessmentType" />
+  <xs:complexType name="ArrayOfNS_TblAssessmentQuestion">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="NS_TblAssessmentQuestion" nillable="true" type="tns:NS_TblAssessmentQuestion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfNS_TblAssessmentQuestion" nillable="true" type="tns:ArrayOfNS_TblAssessmentQuestion" />
+  <xs:complexType name="NS_TblAssessmentQuestion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AssessmentQuestionOptions" nillable="true" type="tns:ArrayOfNS_TblAssessmentQuestionOption" />
+      <xs:element minOccurs="0" name="AssessmentTypeId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreatedById" type="ser:guid" />
+      <xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DisplayOrder" type="xs:int" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Status" type="xs:boolean" />
+      <xs:element minOccurs="0" name="TranslatorAdministratorId" type="xs:int" />
+      <xs:element minOccurs="0" name="UpdatedById" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="UpdatedDate" nillable="true" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NS_TblAssessmentQuestion" nillable="true" type="tns:NS_TblAssessmentQuestion" />
+  <xs:complexType name="ArrayOfNS_TblAssessmentQuestionOption">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="NS_TblAssessmentQuestionOption" nillable="true" type="tns:NS_TblAssessmentQuestionOption" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfNS_TblAssessmentQuestionOption" nillable="true" type="tns:ArrayOfNS_TblAssessmentQuestionOption" />
+  <xs:complexType name="NS_TblAssessmentQuestionOption">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AssessmentQuestionId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreatedById" type="ser:guid" />
+      <xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="MaturityLevelId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Status" type="xs:boolean" />
+      <xs:element minOccurs="0" name="TranslatorAdministratorId" type="xs:int" />
+      <xs:element minOccurs="0" name="UpdatedById" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="UpdatedDate" nillable="true" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NS_TblAssessmentQuestionOption" nillable="true" type="tns:NS_TblAssessmentQuestionOption" />
+  <xs:complexType name="ArrayOfNS_TblRecommendation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="NS_TblRecommendation" nillable="true" type="tns:NS_TblRecommendation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfNS_TblRecommendation" nillable="true" type="tns:ArrayOfNS_TblRecommendation" />
+  <xs:complexType name="NS_TblRecommendation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AssessmentQuestionId" type="xs:int" />
+      <xs:element minOccurs="0" name="AssessmentTypeId" type="xs:int" />
+      <xs:element minOccurs="0" name="AssessmentTypeTranslationAdministrationId" type="xs:int" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="MaturityLevelId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TranslatorAdministratorNameId" type="xs:int" />
+      <xs:element minOccurs="0" name="TranslatorAdministratorTextId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NS_TblRecommendation" nillable="true" type="tns:NS_TblRecommendation" />
+  <xs:complexType name="ArrayOfNS_TblMaturityLevel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="NS_TblMaturityLevel" nillable="true" type="tns:NS_TblMaturityLevel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfNS_TblMaturityLevel" nillable="true" type="tns:ArrayOfNS_TblMaturityLevel" />
+  <xs:complexType name="NS_TblMaturityLevel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MaturityLevelId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Points" type="xs:int" />
+      <xs:element minOccurs="0" name="TranslatorAdministratorId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NS_TblMaturityLevel" nillable="true" type="tns:NS_TblMaturityLevel" />
+</xs:schema>

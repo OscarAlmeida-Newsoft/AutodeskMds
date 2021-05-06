@@ -1,0 +1,33 @@
+﻿@model List<List<string>>
+
+@{ 
+    var cabeceras = Model.First();
+    Model.RemoveAt(0);
+}
+
+<table>
+    <thead>
+        <tr>
+            @foreach (string aux in cabeceras)
+            {
+                <th>
+                    @aux.Replace("-", " ")
+                </th>
+            }
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (List<string> auxList in Model)
+        {
+            <tr>
+                @foreach (string aux in auxList)
+                {
+                    <td>
+                        @aux
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

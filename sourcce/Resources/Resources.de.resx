@@ -1,0 +1,823 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Nombre" xml:space="preserve">
+    <value>German</value>
+  </data>
+  <data name="Access" xml:space="preserve">
+    <value>Anmelden</value>
+  </data>
+  <data name="AdditionalQuestionsMessage" xml:space="preserve">
+    <value>Beantworten Sie bitte die folgenden Fragen für jedes der zuvor ausgewählten Produkte</value>
+  </data>
+  <data name="AuthorizedChannelMessage" xml:space="preserve">
+    <value>Geben Sie bitte den Namen des autorisierten Microsoft-Partners ein</value>
+  </data>
+  <data name="AuthorizedRadioButtonMessage" xml:space="preserve">
+    <value>Wählen Sie bitte eine Option für den autorisierten Microsoft-Partner aus</value>
+  </data>
+  <data name="CALHelp" xml:space="preserve">
+    <value>Lizenz, die Zugriff auf konkrete Software von Microsoft-Servern erlaubt.</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="ChannelContactName" xml:space="preserve">
+    <value>Geben Sie bitte den Namen des Kontakts des autorisierten Microsoft-Partners ein</value>
+  </data>
+  <data name="ChannelEmail" xml:space="preserve">
+    <value>Geben Sie bitte die E-Mail-Adresse des autorisierten Microsoft-Partners ein</value>
+  </data>
+  <data name="ChannelPhone" xml:space="preserve">
+    <value>Geben Sie bitte die Telefonnummer des autorisierten Microsoft-Partners ein</value>
+  </data>
+  <data name="CheckBoxMessage" xml:space="preserve">
+    <value>Klicken Sie bitte das Kontrollkästchen an, um zu bestätigen, dass die angegebenen Informationen richtig sind und gemäß der Microsoft-Richtlinien unterstützt werden können.</value>
+  </data>
+  <data name="ComentariosAdicinales" xml:space="preserve">
+    <value>Zusätzliche Kommentare</value>
+  </data>
+  <data name="CompanyContactNameField" xml:space="preserve">
+    <value>Geben Sie bitte den Namen des Kontakts in den allgemeinen Firmen-Informationen ein</value>
+  </data>
+  <data name="CompanyDateField" xml:space="preserve">
+    <value>Geben Sie bitte das Datum in den allgemeinen Firmen-Informationen ein</value>
+  </data>
+  <data name="CompanyEmailField" xml:space="preserve">
+    <value>Geben Sie bitte die E-Mail-Adresse  in den allgemeinen Firmen-Informationen ein</value>
+  </data>
+  <data name="CompanyNameField" xml:space="preserve">
+    <value>Geben Sie bitte den Firmennamen  in den allgemeinen Firmen-Informationen ein</value>
+  </data>
+  <data name="CompanyPhoneField" xml:space="preserve">
+    <value>Geben Sie bitte die Telefonnummer des Unternehmens  in den allgemeinen Firmen-Informationen ein</value>
+  </data>
+  <data name="ConfirmationMessage" xml:space="preserve">
+    <value>Möchten Sie die Eingabe der Informationen wirklich beenden? Beachten Sie bitte, dass nach Abschluss der Eingabe keine Veränderungen mehr möglich sind</value>
+  </data>
+  <data name="ConsultantInfoMessage" xml:space="preserve">
+    <value>"Falls Sie Hilfe während dieses Vorgangs brauchen, kontaktieren Sie Ihren Lizensierungsberater &lt;span class="consultantInfo"&gt;{{ConsultantName}}&lt;/span&gt; unter der folgenden Telefonnummer&lt;span class="consultantInfo"&gt; {{ConsultantPhoneNumber}}&lt;/span&gt; oder unter der E-Mail-Adresse&lt;span class="consultantInfo"&gt; {{ConsultantEmailAddress}}&lt;/span&gt;"</value>
+  </data>
+  <data name="ContactUsMessage" xml:space="preserve">
+    <value>"Danke für Ihre Entscheidung, die Microsoft-Lizenzauswertung auszufüllen und zu senden. Wenn Sie dieses Formular nicht auf einmal ausfüllen können, können Sie Ihre Informationen durch die Option "Entwurf" am Ende jeder Seite speichern."</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Fortsetzen</value>
+  </data>
+  <data name="ContratodVolumenMessage" xml:space="preserve">
+    <value>"Wenn Sie Volumenlizenzverträge (VLS) haben, geben Sie bitte die entsprechenden Vertragsnummern in "Rechnungsstellung" im Teil "Allgemeine Informationen" an"</value>
+  </data>
+  <data name="CoreHelp" xml:space="preserve">
+    <value>KERN: Eine der verschiedenen Verarbeitungseinheiten, die parallel auf einem Gerät arbeiten.</value>
+  </data>
+  <data name="CPUHelp" xml:space="preserve">
+    <value>Bestandteil, der Befehle befolgt und die Daten der Programme auf einem Gerät verarbeitet</value>
+  </data>
+  <data name="DeviceCALHelp" xml:space="preserve">
+    <value>Lizenz für Geräte, die Zugriff auf konkrete Microsoft-Server Software erlaubt.</value>
+  </data>
+  <data name="Disagree" xml:space="preserve">
+    <value>Ich bin nicht interessiert</value>
+  </data>
+  <data name="Edicion" xml:space="preserve">
+    <value>EDITION</value>
+  </data>
+  <data name="EmailAddressField" xml:space="preserve">
+    <value>Geben Sie bitte eine gültige E-Mail-Adresse ein</value>
+  </data>
+  <data name="EncabezadoContratosVolumen" xml:space="preserve">
+    <value>Wenn Sie Volumenlizenzverträge besitzen (Open, Academic, Enterprise Agreement, Select Plus, usw.), geben Sie bitte die entsprechenden Vertragsnummern an</value>
+  </data>
+  <data name="EncabezadoDatosBasicos" xml:space="preserve">
+    <value>Allgemeine Informationen des Unternehmens</value>
+  </data>
+  <data name="EncabezadoDatosGeneralesEquipos" xml:space="preserve">
+    <value>Allgemeine Informationen der Computer</value>
+  </data>
+  <data name="EncabezadoProcesoCompra" xml:space="preserve">
+    <value>Haben Sie Microsoft-Software unter einem anderen Namen erworben?</value>
+  </data>
+  <data name="EncabezadoTipoCliente" xml:space="preserve">
+    <value>Kundentyp</value>
+  </data>
+  <data name="EstLicenciamientoMessage" xml:space="preserve">
+    <value>Wählen Sie bitte die Option, die Ihren gegenwärtigen Lizensierungsstatus am besten beschreibt</value>
+  </data>
+  <data name="FechaRenovacion" xml:space="preserve">
+    <value>Verlängerungsdatum</value>
+  </data>
+  <data name="FechaVencimiento" xml:space="preserve">
+    <value>Ablaufdatum</value>
+  </data>
+  <data name="FieldRequired" xml:space="preserve">
+    <value>Pflichtfeld</value>
+  </data>
+  <data name="ForgetPassMessage" xml:space="preserve">
+    <value>"Geben Sie bitte Ihre E-Mail-Adresse ein und klicken Sie "Senden". Sie werden eine E-Mail mit Ihrem Passwort erhalten"</value>
+  </data>
+  <data name="ForgetPassValidationMessage" xml:space="preserve">
+    <value>Es existiert keine Microsoft-Lizenzauswertung für diesen Benutzernamen. Überprüfen Sie bitte Ihre E-Mail-Adresse oder bestätigen Sie, falls Sie die E-Mail mit den Anweisungen für den Zugriff erhalten haben.</value>
+  </data>
+  <data name="FPPMessage" xml:space="preserve">
+    <value>Paketversion, die eine CD-ROM oder DVD enthält und in einem Geschäft erworben wurde</value>
+  </data>
+  <data name="IdPartner" xml:space="preserve">
+    <value>Partner-ID</value>
+  </data>
+  <data name="InComplianceHelp" xml:space="preserve">
+    <value>Übereinstimmung mit den Softwarerichtlinien, den Spezifikationen und den rechtlichen Anforderungen</value>
+  </data>
+  <data name="InvoicingNameMessage" xml:space="preserve">
+    <value>Geben Sie bitte den genauen Namen an, wie er in der Rechnung angegeben ist</value>
+  </data>
+  <data name="LabelAcademico" xml:space="preserve">
+    <value>Akademisch</value>
+  </data>
+  <data name="LabelAdmEmployees" xml:space="preserve">
+    <value>Verwaltungsmitarbeiter</value>
+  </data>
+  <data name="LabelAnterior" xml:space="preserve">
+    <value>Vorherige</value>
+  </data>
+  <data name="LabelApplicationsType" xml:space="preserve">
+    <value>Weitere Informationen für Entwicklungspartner von Microsoft</value>
+  </data>
+  <data name="LabelAuthorizedMSChannel" xml:space="preserve">
+    <value>Autorisierter Microsoft-Partner</value>
+  </data>
+  <data name="LabelAyuda" xml:space="preserve">
+    <value>Hilfe</value>
+  </data>
+  <data name="LabelBasic" xml:space="preserve">
+    <value>Grundlagen</value>
+  </data>
+  <data name="LabelBorrador" xml:space="preserve">
+    <value>Entwurf speichern</value>
+  </data>
+  <data name="LabelCanalAutorizado" xml:space="preserve">
+    <value>Name des Partners</value>
+  </data>
+  <data name="LabelCancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="LabelComercial" xml:space="preserve">
+    <value>Privates Unternehmen</value>
+  </data>
+  <data name="LabelCompetencia" xml:space="preserve">
+    <value>Kapazität</value>
+  </data>
+  <data name="LabelContactUs" xml:space="preserve">
+    <value>Kontaktieren Sie uns</value>
+  </data>
+  <data name="LabelCorrectamenteLicenciado" xml:space="preserve">
+    <value>Wir sind korrekt lizensiert.</value>
+  </data>
+  <data name="LabelCurrentSituation" xml:space="preserve">
+    <value>Gegenwärtiger Status</value>
+  </data>
+  <data name="LabelCustom" xml:space="preserve">
+    <value>Benutzerdefinierte</value>
+  </data>
+  <data name="LabelCustomOrBasicsApplications" xml:space="preserve">
+    <value>Entwickelt Ihr Unternehmen grundlegende oder benutzerdefinierte Anwendungen?</value>
+  </data>
+  <data name="LabelDevelopersPartnersApplicationsType" xml:space="preserve">
+    <value>Erklären Sie bitte die Art von Anwendungen, die Sie entwickeln</value>
+  </data>
+  <data name="LabelDevelopersPartnersMicrosofTools" xml:space="preserve">
+    <value>Welche sind die Microsoft-Tools, die Ihr Unternehmen für Entwicklung benutzt?</value>
+  </data>
+  <data name="LabelDevelopersPartnersProjectsTypes" xml:space="preserve">
+    <value>Was ist die wichtigste Art von Projekten, die Ihr Unternehmen für seine Kunden entwickelt?</value>
+  </data>
+  <data name="LabelEmpresaContacto" xml:space="preserve">
+    <value>Geben Sie bitte das Unternehmen und den Kontakt an</value>
+  </data>
+  <data name="LabelEncabezado" xml:space="preserve">
+    <value>Allgemeine Informationen</value>
+  </data>
+  <data name="LabelEncontramosDiferencias" xml:space="preserve">
+    <value>Wir haben Unterschiede in unserer Lizensierung gefunden, die wir in den nächsten 30 Tagen korrigieren werden</value>
+  </data>
+  <data name="LabelEnd" xml:space="preserve">
+    <value>SENDEN</value>
+  </data>
+  <data name="LabelEnterCompanyName" xml:space="preserve">
+    <value>Geben Sie bitte den Firmennamen für die Suche an</value>
+  </data>
+  <data name="LabelEstadoSoftAssurance" xml:space="preserve">
+    <value>Geben Sie bitte den Status, das Verlängerungsdatum und die Vertragsnummer an</value>
+  </data>
+  <data name="LabelExplique" xml:space="preserve">
+    <value>Erklären Sie bitte</value>
+  </data>
+  <data name="LabelExportToExcel" xml:space="preserve">
+    <value>In Excel speichern</value>
+  </data>
+  <data name="LabelFecha" xml:space="preserve">
+    <value>Datum</value>
+  </data>
+  <data name="LabelFinalizar" xml:space="preserve">
+    <value>SENDEN</value>
+  </data>
+  <data name="LabelForgetPass" xml:space="preserve">
+    <value>Ich habe mein Passwort vergessen</value>
+  </data>
+  <data name="LabelGoBack" xml:space="preserve">
+    <value>Zurück zu MDS</value>
+  </data>
+  <data name="LabelGobierno" xml:space="preserve">
+    <value>Regierung</value>
+  </data>
+  <data name="LabelHelp" xml:space="preserve">
+    <value>Hilfe</value>
+  </data>
+  <data name="LabelIdioma" xml:space="preserve">
+    <value>Sprache</value>
+  </data>
+  <data name="LabelIndustria" xml:space="preserve">
+    <value>Industrie</value>
+  </data>
+  <data name="LabelInformacionAdicional" xml:space="preserve">
+    <value>Beenden und senden</value>
+  </data>
+  <data name="LabelInstalledLicenses" xml:space="preserve">
+    <value>Lizenzen in Gebrauch/Installierte Lizenzen</value>
+  </data>
+  <data name="LabelInvoicing" xml:space="preserve">
+    <value>Lizensierungsinformationen</value>
+  </data>
+  <data name="LabelLoginMessage" xml:space="preserve">
+    <value>Diese Website erlaubt den Microsoft-Kunden an einem freiwilligen Beratungsprogramm für Microsoft-Softwareverwaltung teilzunehmen. Durch dieses vorteilhafte Programm erhält Ihr Unternehmen eine kostenlose Beratung von einem Experten hinsichtlich der Optimierung und der Lizensierung von Microsoft-Produkten. &lt;br /&gt; &lt;br /&gt; Wenn Sie den Vorgang bereits angefangen und einen Entwurf der Microsoft-Lizenzauswertung haben, melden Sie sich bitte wieder an:</value>
+  </data>
+  <data name="LabelLogout" xml:space="preserve">
+    <value>Abmelden</value>
+  </data>
+  <data name="LabelMessageMDSWelcome" xml:space="preserve">
+    <value>Willkommen bei der Microsoft-Lizenzauswertung. Die angegebenen Informationen in diesem Formular werden uns helfen, den gegenwärtigen Lizensierungsstatus zu identifizieren. Auf diese Weise helfen wir Ihnen die Lizenznutzung zu optimieren und bewährten Methoden der Lizenzverwaltung zu folgen </value>
+  </data>
+  <data name="LabelMSPartnersNetwork" xml:space="preserve">
+    <value>Microsoft Partner Netzwerk</value>
+  </data>
+  <data name="LabelNewLicences" xml:space="preserve">
+    <value>Neue Lizenzen</value>
+  </data>
+  <data name="LabelNext" xml:space="preserve">
+    <value>NÄCHSTE</value>
+  </data>
+  <data name="LabelNivel" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="LabelNo" xml:space="preserve">
+    <value>NEIN</value>
+  </data>
+  <data name="LabelNombreComercial" xml:space="preserve">
+    <value>Handelsname</value>
+  </data>
+  <data name="LabelNombreContacto" xml:space="preserve">
+    <value>Name des Kontakts</value>
+  </data>
+  <data name="LabelNombreEmpresa" xml:space="preserve">
+    <value>Firmenname</value>
+  </data>
+  <data name="LabelNombreExactoFacturacion" xml:space="preserve">
+    <value>Geben Sie bitte den genauen Namen an, wie er im Vertrag agegeben ist</value>
+  </data>
+  <data name="LabelNotAvailable" xml:space="preserve">
+    <value>Nicht verfügbar</value>
+  </data>
+  <data name="LabelNotCompanyFound" xml:space="preserve">
+    <value>Die Suche war nicht erfolgreich</value>
+  </data>
+  <data name="LabelNumeroPCsEscritorio" xml:space="preserve">
+    <value>Computer und Laptops mit Windows-Betriebssystem</value>
+  </data>
+  <data name="LabelNumeroPCsOtrosSO" xml:space="preserve">
+    <value>Computer und Laptops mit anderem Betriebssystem</value>
+  </data>
+  <data name="LabelNumeroPortatiles" xml:space="preserve">
+    <value>Anzahl von Laptops</value>
+  </data>
+  <data name="LabelNumeroServidoresFisicos" xml:space="preserve">
+    <value>Anzahl von physischen Servern</value>
+  </data>
+  <data name="LabelNumeroServidoresVirtuales" xml:space="preserve">
+    <value>Anzahl von virtuellen Servern</value>
+  </data>
+  <data name="LabelNumeroTotalEmpleados" xml:space="preserve">
+    <value>Anzahl von Mitarbeitern</value>
+  </data>
+  <data name="LabelPartial" xml:space="preserve">
+    <value>Partiell</value>
+  </data>
+  <data name="LabelPartner" xml:space="preserve">
+    <value>Microsoft-Partner</value>
+  </data>
+  <data name="LabelPartnerDesarrollador" xml:space="preserve">
+    <value>Entwicklungspartner</value>
+  </data>
+  <data name="LabelPersonaNatural" xml:space="preserve">
+    <value>Natürliche Person</value>
+  </data>
+  <data name="LabelPlanesActualizacionLic" xml:space="preserve">
+    <value>Planen Sie die gegenwärtigen Lizenzen zu aktualisieren?</value>
+  </data>
+  <data name="LabelPlanesNuevasLic" xml:space="preserve">
+    <value>Planen Sie neue Lizenzen zu erwerben?</value>
+  </data>
+  <data name="LabelPrev" xml:space="preserve">
+    <value>Vorherige</value>
+  </data>
+  <data name="LabelProductFamily" xml:space="preserve">
+    <value>Produktfamilie</value>
+  </data>
+  <data name="LabelProductName" xml:space="preserve">
+    <value>Name des Produktes</value>
+  </data>
+  <data name="LabelProductosMS" xml:space="preserve">
+    <value>Microsoft-Produkte</value>
+  </data>
+  <data name="LabelProductVersion" xml:space="preserve">
+    <value>Produktversion</value>
+  </data>
+  <data name="LabelPublicSector" xml:space="preserve">
+    <value>Öffentlicher Sektor</value>
+  </data>
+  <data name="LabelQuantity" xml:space="preserve">
+    <value>Anzahl</value>
+  </data>
+  <data name="LabelQuestionText" xml:space="preserve">
+    <value>Fragetext</value>
+  </data>
+  <data name="LabelRazonSocial" xml:space="preserve">
+    <value>Registrierter Firmenname</value>
+  </data>
+  <data name="LabelRelatedQuestion" xml:space="preserve">
+    <value>Zugehörige Frage</value>
+  </data>
+  <data name="LabelResponseDataType" xml:space="preserve">
+    <value>Antworttyp</value>
+  </data>
+  <data name="LabelRquired" xml:space="preserve">
+    <value>* Pflichtfelder</value>
+  </data>
+  <data name="LabelSave" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="LabelSearchCompany" xml:space="preserve">
+    <value>Unternehmen suchen</value>
+  </data>
+  <data name="LabelSeeLetter" xml:space="preserve">
+    <value>Brief ansehen</value>
+  </data>
+  <data name="LabelSeleccionaOpcionAplique" xml:space="preserve">
+    <value>Wählen Sie bitte die entsprechende Option aus</value>
+  </data>
+  <data name="LabelSi" xml:space="preserve">
+    <value>JA</value>
+  </data>
+  <data name="LabelSiguiente" xml:space="preserve">
+    <value>NÄCHSTE</value>
+  </data>
+  <data name="LabelSoftwareAssurance" xml:space="preserve">
+    <value>Software-Versicherung</value>
+  </data>
+  <data name="LabelSolicitoApoyo" xml:space="preserve">
+    <value>Wir brauchen Hilfe, um unsere gegenwärtige Situation zu klären</value>
+  </data>
+  <data name="LabelTeachers" xml:space="preserve">
+    <value>Lehrer</value>
+  </data>
+  <data name="LabelTelefono" xml:space="preserve">
+    <value>Telefon</value>
+  </data>
+  <data name="LabelTieneCanalAutorizado" xml:space="preserve">
+    <value>Haben Sie einen autorisierten Microsoft Partner?</value>
+  </data>
+  <data name="LabelTieneSoftAssurance" xml:space="preserve">
+    <value>Haben Sie Software-Versicherung?</value>
+  </data>
+  <data name="LabelTime" xml:space="preserve">
+    <value>Zeit</value>
+  </data>
+  <data name="LabelUpgrades" xml:space="preserve">
+    <value>Updates</value>
+  </data>
+  <data name="LetterInfoText1" xml:space="preserve">
+    <value>Ich bestätige, dass die angegebenen Informationen richtig sind und gemäß der Microsoft-Richtlinien unterstützt werden können</value>
+  </data>
+  <data name="LinkAyuda" xml:space="preserve">
+    <value>Hilfe</value>
+  </data>
+  <data name="LinkCerrarSesion" xml:space="preserve">
+    <value>Abmelden</value>
+  </data>
+  <data name="ManageLandingAdmin" xml:space="preserve">
+    <value>Briefeverwaltung</value>
+  </data>
+  <data name="MensajeErrorNombreEmpresaLargo" xml:space="preserve">
+    <value>Es müssen weniger als 120 Zeichen sein</value>
+  </data>
+  <data name="MensajeErrorNombreEmpresaRequerido" xml:space="preserve">
+    <value>Geben Sie bitte den Firmennamen ein</value>
+  </data>
+  <data name="MicrosoftDevelopmentSummary" xml:space="preserve">
+    <value>Microsoft-Lizenzauswertung</value>
+  </data>
+  <data name="NewLicencesRadioButtonMessage" xml:space="preserve">
+    <value>Wählen Sie bitte eine Option für neue Lizenzen aus</value>
+  </data>
+  <data name="NoMenorMessage" xml:space="preserve">
+    <value>Sie können keine Zahl kleiner als die derzeitige eingeben</value>
+  </data>
+  <data name="NumeroTotalEmpleadosPcsMessage" xml:space="preserve">
+    <value>Geben Sie bitte die Gesamtanzahl von Mitarbeitern und Desktop-PCs ein</value>
+  </data>
+  <data name="OEMMessage" xml:space="preserve">
+    <value>Zum Zeitpunkt des Erwerbs auf einem Gerät vorinstallierte Lizenzen </value>
+  </data>
+  <data name="OnlinePurchaseHelp" xml:space="preserve">
+    <value>Einkäufe im Microsoft Store oder auf autorisierten Websites</value>
+  </data>
+  <data name="Option1ForSurverQuestion1" xml:space="preserve">
+    <value>a. Unser Unternehmen hat proaktive und einheitliche Richtlinien für die Lizenzverwaltung. Wir sind lizensiert und ziehen keine zusätzlichen Vorteile für uns aus diesem Vorgang.</value>
+  </data>
+  <data name="Option1ForSurverQuestion2" xml:space="preserve">
+    <value>a. Die Verbesserung unserer finanziellen Effizienz durch die Lizensierung von Software</value>
+  </data>
+  <data name="Option1ForSurverQuestion3" xml:space="preserve">
+    <value>a. IT-Management</value>
+  </data>
+  <data name="Option1ForSurverQuestion4" xml:space="preserve">
+    <value>Der Berater war freundlich</value>
+  </data>
+  <data name="Option2ForSurverQuestion1" xml:space="preserve">
+    <value>b. Ich bin besorgt bezüglich des Datenschutzes und der Legitimität dieses Vorgangs</value>
+  </data>
+  <data name="Option2ForSurverQuestion2" xml:space="preserve">
+    <value>b. Reduzierung von Risiken der Computer- und Netzsicherheit durch die Verbesserung meiner Lizensierung und meiner Technologieprodukte</value>
+  </data>
+  <data name="Option2ForSurverQuestion3" xml:space="preserve">
+    <value>b. Einkauf</value>
+  </data>
+  <data name="Option2ForSurverQuestion4" xml:space="preserve">
+    <value>Der Berater hat meine Kommentare aufmerksam angehört</value>
+  </data>
+  <data name="Option3ForSurverQuestion1" xml:space="preserve">
+    <value>c. Ich denke, dass dieser Dienst für die gegenwärtige Situation meines Unternehmens nicht geeignet ist</value>
+  </data>
+  <data name="Option3ForSurverQuestion2" xml:space="preserve">
+    <value>c. Prävention von möglichen Strafen durch staatliche Prüfungen oder Instanzen zum Schutz des geistigen Eigentums</value>
+  </data>
+  <data name="Option3ForSurverQuestion3" xml:space="preserve">
+    <value>c. Der Nutzer des zu lizensierenden Produktes</value>
+  </data>
+  <data name="Option3ForSurverQuestion4" xml:space="preserve">
+    <value>Der Berater hat meine Fragen und Bedenken klar und deutlich beantwortet</value>
+  </data>
+  <data name="Option4ForSurverQuestion1" xml:space="preserve">
+    <value>d. Ich habe den Eindruck, dass die Teilnahme an diesen Prozess zusätzliche Kosten für mein Unternehmen generieren wird</value>
+  </data>
+  <data name="Option4ForSurverQuestion2" xml:space="preserve">
+    <value>d. Bestätigung der Legitimität meiner Lizenzen</value>
+  </data>
+  <data name="Option4ForSurverQuestion3" xml:space="preserve">
+    <value>Geschäftsleitung</value>
+  </data>
+  <data name="Option4ForSurverQuestion4" xml:space="preserve">
+    <value>Ich wurde über den Umfang und die Erwartungen,sowie über die von meinem Unternehmen für den Prozess benötigten Informationen  vollständig informiert.</value>
+  </data>
+  <data name="Option5ForSurverQuestion1" xml:space="preserve">
+    <value>e. Ich habe weder Zeit noch Mittel für diesen Vorgang</value>
+  </data>
+  <data name="Option5ForSurverQuestion2" xml:space="preserve">
+    <value>e. Besseres Verständnis des Software-Lebenszyklus und des Lizensierungsdiagramms </value>
+  </data>
+  <data name="Option5ForSurverQuestion3" xml:space="preserve">
+    <value>e. Präsidentschaft</value>
+  </data>
+  <data name="Option6ForSurverQuestion1" xml:space="preserve">
+    <value>f. Andere. Welche?</value>
+  </data>
+  <data name="Option6ForSurverQuestion2" xml:space="preserve">
+    <value>f. Kenntnis über die unterschiedlichen Richtlinien und Risiken der Lizensierung und des geistigen Eigentums auf meinem heimischen Markt oder Märkten, in denen mein Unternehmen tätig ist</value>
+  </data>
+  <data name="Option6ForSurverQuestion3" xml:space="preserve">
+    <value>e. Lizensierungsanalyst</value>
+  </data>
+  <data name="Option7ForSurverQuestion2" xml:space="preserve">
+    <value>g. Bessere und schnellere Verhandlungen von Software-Lizensierung</value>
+  </data>
+  <data name="Option7ForSurverQuestion3" xml:space="preserve">
+    <value>g. Ein Dritter, der berät.</value>
+  </data>
+  <data name="Option8ForSurverQuestion2" xml:space="preserve">
+    <value>h. Andere. Welche?</value>
+  </data>
+  <data name="Option8ForSurverQuestion3" xml:space="preserve">
+    <value>c. Der Hersteller des zu lizensierenden Produktes</value>
+  </data>
+  <data name="Option9ForSurverQuestion3" xml:space="preserve">
+    <value>i. Anderer. Welcher?</value>
+  </data>
+  <data name="PartnerNetworkMessage" xml:space="preserve">
+    <value>Wenn Ihr Unternehmen ein aktives Mitglied des Microsoft Partner Netzwerkes ist, spezifizieren Sie bitte Ihren Status </value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Passwort</value>
+  </data>
+  <data name="PhoneNumberField" xml:space="preserve">
+    <value>Dies ist keine gültige Telefonnummer</value>
+  </data>
+  <data name="PrivacyAndCookies" xml:space="preserve">
+    <value>Datenschutz und Cookies</value>
+  </data>
+  <data name="ProcesoCompraMessage" xml:space="preserve">
+    <value>Wählen Sie bitte eine Option für die Rechnungsinformation aus</value>
+  </data>
+  <data name="ProductList" xml:space="preserve">
+    <value>Produktliste</value>
+  </data>
+  <data name="ProgramType" xml:space="preserve">
+    <value>Programm</value>
+  </data>
+  <data name="QuestionsList" xml:space="preserve">
+    <value>Fragenliste</value>
+  </data>
+  <data name="RecordNotFoundAdmin" xml:space="preserve">
+    <value>Datensatz nicht gefunden</value>
+  </data>
+  <data name="RemoteDesktopServicesCALHelp" xml:space="preserve">
+    <value>Lizenz, die einem Nutzer erlaubt, die Kontrolle eines Remote-Gerätes oder einer virtuellen Maschine mittels einer Netzwerkverbindung zu übernehmen</value>
+  </data>
+  <data name="SavePDF" xml:space="preserve">
+    <value>In PDF-Format speichern</value>
+  </data>
+  <data name="SaveSurveyQuestionResponseSuccessMessage" xml:space="preserve">
+    <value>Ihre Antworten wurden korrekt erhalten</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>SENDEN</value>
+  </data>
+  <data name="SoftwareAssuranceMessage" xml:space="preserve">
+    <value>Microsoft-Wartungsdienste für Unternehmen mit Volumenverträgen</value>
+  </data>
+  <data name="SoftwareAssuranceRadioButtonMessage" xml:space="preserve">
+    <value>Wählen Sie bitte eine Option für Software-Versicherung aus</value>
+  </data>
+  <data name="SurveyIntro" xml:space="preserve">
+    <value>"Sie haben diese Seite erreicht, weil Sie die Option "Ich bin nicht interessiert" ausgewählt haben, obwohl Sie Ihre Teilnahme telefonisch bestätigt hatten. Falls dies ein Versehen war, klicken Sie bitte "Abbrechen", um Ihre Teilnahme zu bestätigen und mit dem Vorgang fortzufahren. Wenn Sie tatsächlich nicht an dem Vorgang teilnehmen möchten, antworten Sie bitte auf die folgenden Fragen:"</value>
+  </data>
+  <data name="SurveyQuestion1" xml:space="preserve">
+    <value>1. Was ist der Hauptgrund, nicht teilzunehmen?</value>
+  </data>
+  <data name="SurveyQuestion1Empty" xml:space="preserve">
+    <value>Wählen Sie bitte eine Antwort für Frage 1 aus</value>
+  </data>
+  <data name="SurveyQuestion1OptionOtherEmpty" xml:space="preserve">
+    <value>Geben Sie bitte die Antwort für die ausgewählte Option in Frage 1 ein</value>
+  </data>
+  <data name="SurveyQuestion2" xml:space="preserve">
+    <value>2. In welchen Bereichen (bezüglich Lizensierung und Compliance) möchten Sie beraten werden?</value>
+  </data>
+  <data name="SurveyQuestion2Empty" xml:space="preserve">
+    <value>Wählen Sie bitte eine Antwort für Frage 2 aus</value>
+  </data>
+  <data name="SurveyQuestion2OptionOtherEmpty" xml:space="preserve">
+    <value>Geben Sie bitte die Antwort für die ausgewählte Option in Frage 2 ein</value>
+  </data>
+  <data name="SurveyQuestion3" xml:space="preserve">
+    <value>3. Wer soll, Ihrer Meinung nach, in einem Unternehmen für Lizensierung verantwortlich sein?</value>
+  </data>
+  <data name="SurveyQuestion3Empty" xml:space="preserve">
+    <value>Wählen Sie bitte eine Antwort für Frage 3 aus</value>
+  </data>
+  <data name="SurveyQuestion3OptionOtherEmpty" xml:space="preserve">
+    <value>Geben Sie bitte die Antwort für die ausgewählte Option in Frage 3 ein</value>
+  </data>
+  <data name="SurveyQuestion4" xml:space="preserve">
+    <value>4. Wie war Ihre Erfahrung in der Telefonkommunikation mit unserem Berater? (1 ist die niedrigste und 5 die höchste Bewertung)</value>
+  </data>
+  <data name="SurveyQuestion4Empty" xml:space="preserve">
+    <value>Bewerten Sie bitte alle Optionen für Frage 4</value>
+  </data>
+  <data name="SurveyQuestion5" xml:space="preserve">
+    <value>5. Haben Sie zusätzliche Anmerkungen bezüglich Ihrer Erfahrung oder des Zwecks dieser Aktion?</value>
+  </data>
+  <data name="SurveyQuestionResponseMessage" xml:space="preserve">
+    <value>"Ihre Entscheidung, nicht teilzunehmen, wurde bereits weitergeleitet. Wenn Sie an dieser Aktion teilnehmen möchten, kontaktieren Sie Ihren Lizensierungsberater &lt;span class="consultantInfo"&gt;{{ConsultantName}}&lt;/span&gt; unter der folgenden Telefonnummer&lt;span class="consultantInfo"&gt; {{ConsultantPhoneNumber}}&lt;/span&gt; oder unter der E-Mail-Adresse&lt;span class="consultantInfo"&gt; {{ConsultantEmailAddress}}&lt;/span&gt;"</value>
+  </data>
+  <data name="TermsOfUse" xml:space="preserve">
+    <value>Nutzungsbedingungen</value>
+  </data>
+  <data name="TextoIdioma" xml:space="preserve">
+    <value>Sprache</value>
+  </data>
+  <data name="TipoClienteMessage" xml:space="preserve">
+    <value>Wählen Sie bitte einen Kundentyp aus</value>
+  </data>
+  <data name="TittleImageLetterPage" xml:space="preserve">
+    <value>Willkommen</value>
+  </data>
+  <data name="TituloFormulario" xml:space="preserve">
+    <value>Microsoft-Lizenzauswertung</value>
+  </data>
+  <data name="UpgradesRadioButtonMessage" xml:space="preserve">
+    <value>Wählen Sie bitte eine Option für Updates aus</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Benutzername</value>
+  </data>
+  <data name="UserCALHelp" xml:space="preserve">
+    <value>Lizenz, die Nutzern den Zugriff auf Software von Microsoft-Servern erlaubt oder</value>
+  </data>
+  <data name="VLSMessage" xml:space="preserve">
+    <value>Lizenzen, die durch einen Volumenlizenzvertrag mit Microsoft erwoben wurden</value>
+  </data>
+  <data name="WithoutLeadId" xml:space="preserve">
+    <value>Kopieren Sie bitte die richtige URL, da die LeadID nicht gefunden wurde</value>
+  </data>
+  <data name="WrongUserAccess" xml:space="preserve">
+    <value>Sie haben keinen Entwurf der Microsoft-Lizenzauswertung. Suchen Sie bitte in Ihren E-Mails nach den Anweisungen, um auf diese Anwendung zuzugreifen.</value>
+  </data>
+  <data name="WrongUserPassword" xml:space="preserve">
+    <value>Der Login ist fehlgeschlagen. Überprüfen Sie bitte den Benutzernamen und das Passwort </value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Resources.es" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources.es.resx;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="Resources.es.Designer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources.es.designer.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="LabelNumeroServidoresSQL" xml:space="preserve">
+    <value>Anzahl von SQL Server</value>
+  </data>
+  <data name="NewAzure1Question" xml:space="preserve">
+    <value>Haben Sie Azure-Dienste?</value>
+  </data>
+  <data name="NewAzure2Question" xml:space="preserve">
+    <value>Welche?</value>
+  </data>
+  <data name="NewFiles" xml:space="preserve">
+    <value>Dateien</value>
+  </data>
+  <data name="NewFileSpecs" xml:space="preserve">
+    <value>Maximale Dateigröße 5 MB .png .jpg .pdf</value>
+  </data>
+  <data name="NewLabelNoAzure" xml:space="preserve">
+    <value>Nein</value>
+  </data>
+  <data name="NewLabelSiAzure" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+  <data name="NewLicenseTestTooltip" xml:space="preserve">
+    <value>Klicken Sie, um Dokumente oder Bilder, die den Ursprung Ihrer Lizenzen aufzeigen, hochzuladen.</value>
+  </data>
+  <data name="NewLicenseTooltip" xml:space="preserve">
+    <value>Klicken Sie hier, wenn Sie den Lizenztyp, den Ihr Unternehmen verwendet, ausführlich beschreiben möchten.</value>
+  </data>
+  <data name="NewUpload" xml:space="preserve">
+    <value>HOCHLADEN</value>
+  </data>
+  <data name="NewWarningShouldSelectFiles" xml:space="preserve">
+    <value>Sie müssen mindestens eine Datei zum Hochladen auswählen!</value>
+  </data>
+  <data name="NewInfoFPPTooltip" xml:space="preserve">
+    <value>Lizenzen im Einzelhandel erworben</value>
+  </data>
+  <data name="NewInfoOEMTooltip" xml:space="preserve">
+    <value>Vorinstallierte Lizenzen mit der Maschine erworben</value>
+  </data>
+  <data name="NewInfoVLSTooltip" xml:space="preserve">
+    <value>Volumenlizenzen durch einem Vertrag erworben</value>
+  </data>
+  <data name="NewInfoTextAreaAzure" xml:space="preserve">
+    <value>Beschreiben Sie bitte so ausführlich wie möglich.</value>
+  </data>
+  <data name="NewExtensionFilesConstraint" xml:space="preserve">
+    <value>Diese Datei ist kein .png/.jpg/.pdf-Format. Bestätigen Sie bitte die Dateierweiterung.</value>
+  </data>
+  <data name="NewFilesQtyConstraint" xml:space="preserve">
+    <value>Sie können nicht mehr als 100 Dateien gleichzeitig hochladen. Versuchen Sie bitte erneut.</value>
+  </data>
+  <data name="NewLargerFilesConstraint" xml:space="preserve">
+    <value>Diese Datei ist länger als 5 Mb. Bestätigen Sie bitte die Dateigröße.</value>
+  </data>
+</root>

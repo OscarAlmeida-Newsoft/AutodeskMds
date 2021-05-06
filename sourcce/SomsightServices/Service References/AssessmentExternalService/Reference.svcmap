@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="01a5c1b3-ab89-49f5-85f9-921b688b3aff" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:12312/AssessmentServices.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="AssessmentServices.wsdl" MetadataType="Wsdl" ID="5bc708dc-7c2f-4610-9b76-ba80f7a50f70" SourceId="1" SourceUrl="http://localhost:12312/AssessmentServices.svc?wsdl" />
+    <MetadataFile FileName="AssessmentServices.xsd" MetadataType="Schema" ID="be1cef0d-875f-4185-859b-e1049434864d" SourceId="1" SourceUrl="http://localhost:12312/AssessmentServices.svc?xsd=xsd2" />
+    <MetadataFile FileName="AssessmentServices1.xsd" MetadataType="Schema" ID="3ac68e13-05da-43fc-ad1e-11a62ba7c259" SourceId="1" SourceUrl="http://localhost:12312/AssessmentServices.svc?xsd=xsd1" />
+    <MetadataFile FileName="AssessmentServices.disco" MetadataType="Disco" ID="bff5faa1-8e32-426b-9977-b7743d8eee22" SourceId="1" SourceUrl="http://localhost:12312/AssessmentServices.svc?disco" />
+    <MetadataFile FileName="AssessmentServices2.xsd" MetadataType="Schema" ID="70992d61-fce0-4a78-b1cc-6daa9f102c7d" SourceId="1" SourceUrl="http://localhost:12312/AssessmentServices.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

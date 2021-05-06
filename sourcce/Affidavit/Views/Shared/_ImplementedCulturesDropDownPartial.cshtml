@@ -1,0 +1,11 @@
+﻿@using Affidavit.Utils
+
+
+<select id="implemented-cultures-drop-down" name="implemented-cultures-drop-down">
+     @foreach (var item in TranslatorHelper.GetImplementedCultures())
+     {
+         <option value="@item.Culture.CultureIdentifier" data-culturecode="@item.Culture.CultureCode">
+             @item.Culture.CultureName
+         </option>
+     }
+</select>

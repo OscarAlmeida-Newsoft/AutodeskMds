@@ -1,0 +1,1078 @@
+﻿@model Affidavit.Models.AdminMDS.MDSInfoViewModel
+@using Affidavit.Utils
+
+
+<script src="~/Scripts/sobrescrituas.js"></script>
+<script src="~/Scripts/Plugins/toastMessage.js"></script>
+<script type="text/javascript">
+    $(".download-files-sharepoint").hover(function () {
+        $(".download-files-sharepoint img").toggleClass("white-image");
+    }, function () {
+        $(".download-files-sharepoint img").toggleClass("white-image");
+    });
+
+    $(document).on("click", ".botonCambiaEstado", function (e) {
+        debugger;
+        var companyName = $("#input-company-id").val();
+
+        if (companyName == undefined || companyName.length >= 3) {
+            var estado = $("input[id=activarMDS]:checked").length;
+            console.log("EL ESTADO HA CAMBIADO A: " + estado)
+            var listaLicencias = $('#tableLicenses').find('tr');
+            var model = [];
+            //listaLicencias.each(function () {
+            //    console.log($(this).data('producid') + ' - ' + $(this).find('.NS-col2').val() + ' - ' + $(this).find('.NS-col3').val() + ' - ' + $(this).find('.NS-col4').val() + ' - ' + $(this).find('.NS-col5').val());
+            //});
+            $.each(listaLicencias, function () {
+                if ($(this).data('producid') != undefined) {
+
+                    model.push({
+                        ProductId: $(this).data('producid'),
+                        InstalledLicenses: $(this).find('.NS-Installed').text(),
+                        VLS: $(this).find('.NS-VLS').val(),
+                        OEM: $(this).find('.NS-OEM').val(),
+                        FPP: $(this).find('.NS-FPP').val(),
+                        WEB: $(this).find('.NS-WEB').val(),
+                        CompanyID: '@Model.Company.CompanyID',
+                        CampaignID: '@Model.CompanyInfo.CampaignID'
+                    });
+                }
+
+            });
+
+            if ('@Session["postofficebox"].ToString() == "System Administrator"' || '@Session["vTitle"]' == "License Consultant" || '@Session["vTitle"]' == "Operations Leader") {
+                $.ajax({
+                    url: ("ChangeState"),
+                    data: { pIsFinal: estado, pCompanyID: '@Model.Company.CompanyID', pCampaignID: '@Model.CompanyInfo.CampaignID', pCompanyName: companyName },
+                    type: 'POST',
+                    //contentType: 'application/json; charset=utf-8'
+                })
+                .done(function (data) {
+                    $('#dvDetailsResultsSQL').html(data);
+                    loadingDiv.hide();
+                    //console.log(data);
+                })
+                .fail(function (err) {
+                    loadingDiv.hide();
+                    console.log(err);
+
+                });
+            }
+
+
+            //Guardar número de licencias
+            $.ajax({
+                url: ("SaveLicenses"),
+                data: JSON.stringify(model),
+                type: 'POST',
+                contentType: 'application/json; charset=utf-8'
+            })
+                .done(function (data) {
+                    var result = data._EqualLicensesNumber;
+                    if (!result) {
+                        //toastMessage.show("Info save successfuly", "alert-success");
+                        $('.mensaje_alerta p').text("The number of Installed licenses is greater than to the total number of licenses for one or more products");
+                        $('.mensaje_alerta').show('slow').delay(4000).hide('slow');
+                    } else {
+                        $('.mensaje_confirmacion p').text("Info save successfuly");
+                        $('.mensaje_confirmacion').show('slow').delay(4000).hide('slow');
+                        setTimeout(function () { redirectToIndex(); }, 4000)
+
+                    }
+
+                    //loadingDiv.hide();
+                    //console.log(data);
+                })
+                .fail(function (err) {
+                    //$('#progressbargrid').addClass('hide');
+                    loadingDiv.hide();
+                    console.log(err);
+
+                });
+        } else {
+            bootbox.alert("The company name must be greater or equal than 3 characters", null);
+            $('.bootbox-body').css("font-size", "14px");
+        }
+        
+    });
+
+    function redirectToIndex() {
+        window.location.href = "IndexAdmin";
+    }
+
+    $(document).on("keydown", ".integerOnly", function (e) {
+
+        if (!((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105) ||
+       (e.keyCode == 8 || e.keyCode == 46 || e.keyCode == 37 || e.keyCode == 9 ||
+        e.keyCode == 39)))
+            e.preventDefault();
+    });
+
+    @*$(document).on("click", "#ExportProducts", function (e) {
+
+        window.location.href = "ExportToCSV?pCompanyID=" + '@Model.Company.CompanyID' + "?pCampaignID=" + '@Model.CompanyInfo.CampaignID';
+
+        $.ajax({
+            url: ("ExportToCSV"),
+            data: { pCompanyID: '@Model.Company.CompanyID', pCampaignID: '@Model.CompanyInfo.CampaignID' },
+            type: 'POST',
+            //contentType: 'application/json; charset=utf-8'
+        })
+            .done(function (data) {
+                //$('#dvDetailsResultsSQL').html(data);
+                //loadingDiv.hide();
+                console.log(data);
+            })
+            .fail(function (err) {
+                loadingDiv.hide();
+                console.log(err);
+
+            });
+    });*@
+
+    $(document).ready(function () {
+        $(".download-files").click(function () {
+            $(this).closest("tr").attr("data-producid")
+        });
+
+    });
+</script>
+
+<style type="text/css">
+    label.InstalledLicenses {
+        display: block;
+        text-align: center !important;
+        line-height: 150%;
+        font-size: .85em;
+    }
+</style>
+
+<div class="pagina_secilla">
+    <div class="pagina_derecha_sencilla">
+        <br />
+
+
+        @*<div class="centro">
+                <h1 style="font-size: xx-large !important;">@Model.CompanyInfo.ExactNameInInvoicing</h1>
+            </div>*@
+        <div class="tituloSinAcordeon">
+            <h3 class="titulo" style="font-size: 15px !important;">@TranslatorHelper.TranslateTextByIdentifier("Old_EncabezadoDatosBasicos")</h3>
+        </div>
+        <div class="contenido">
+            <div class="set">
+
+                <div class="margenes">
+                    <div class="EtiquetasIzquierdaSubTituloBack2 ">
+                        @Html.LabelFor(model => model.Company.CompanyName, new { @class = "control-label" })
+                    </div>
+                    <div class="CeldaValores">
+                        @if (Session["postofficebox"].ToString() == "System Administrator")
+                        {
+                            @Html.TextBox("CompanyName", Model.Company.CompanyName, new { @class = "form-control", @maxlength = "120", @id = "input-company-id", @style = "margin: 0;height: 25px;" })
+                        }
+                        else
+                        {
+                            @Html.Label("CompanyName", Model.Company.CompanyName, new { htmlAttributes = new { @class = "control-label", @maxlength = "120" } })
+                        }
+
+                        
+                    </div>
+                </div>
+                <div class="margenes">
+                    <div class="EtiquetasIzquierdaSubTituloBack2 ">
+                        @Html.LabelFor(model => model.CompanyContact.ContactName, new { @class = "control-label" })
+                    </div>
+                    <div class="CeldaValores">
+                        @Html.Label("CompanyName", Model.CompanyContact.ContactName, new { htmlAttributes = new { @class = "control-label", @maxlength = "120" } })
+                    </div>
+                </div>
+                <div class="margenes">
+                    <div class="EtiquetasIzquierdaSubTituloBack2 ">
+                        @Html.LabelFor(model => model.CompanyContact.CompanyEmail, new { @class = "control-label" })
+                    </div>
+                    <div class="CeldaValores">
+                        @Html.Label("CompanyEmail", Model.CompanyContact.CompanyEmail, new { htmlAttributes = new { @class = "control-label", @maxlength = "120" } })
+                    </div>
+                </div>
+                <div class="margenes">
+                    <div class="EtiquetasIzquierdaSubTituloBack2 ">
+                        @Html.LabelFor(model => model.CompanyContact.CompanyPhone, new { @class = "control-label" })
+                    </div>
+                    <div class="CeldaValores">
+                        @Html.Label("CompanyPhone", Model.CompanyContact.CompanyPhone, new { htmlAttributes = new { @class = "control-label", @maxlength = "120" } })
+                    </div>
+                </div>
+                <div class="margenes">
+                    <div class="EtiquetasIzquierdaSubTituloBack2 ">
+                        @Html.LabelFor(model => model.Company.IndustryID, new { @class = "control-label" })
+                    </div>
+                    <div class="CeldaValores">
+                        @Html.Label("CompanyIndustry", Model.IndustryName, new { htmlAttributes = new { @class = "control-label", @maxlength = "120" } })
+                    </div>
+                </div>
+                <div class="margenes">
+                    <div class="EtiquetasIzquierdaSubTituloBack2 ">
+                        @Html.Label(@TranslatorHelper.TranslateTextByIdentifier("Old_EncabezadoTipoCliente"), new { @class = "control-label" })
+                    </div>
+                    <div class="CeldaValores">
+
+                        @Html.Label("CompanyTipoCliente", Model.TipoCliente, new { htmlAttributes = new { @class = "control-label", @maxlength = "120" } })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="acordeon">
+
+
+            <h3 class="titulo">@TranslatorHelper.TranslateTextByIdentifier("Old_EncabezadoDatosGeneralesEquipos")</h3>
+            <div class="contenido">
+                <div class="set">
+                    <div class="margenes">
+                        <div class="EtiquetasIzquierdaSubTituloBack2 ">
+                            @Html.Label(@TranslatorHelper.TranslateTextByIdentifier("Old_LabelNumeroTotalEmpleados"), new { @class = "control-label" })
+                        </div>
+                        <div class="CeldaValores">
+                            @Html.Label("TotalEmployees", Model.CompanyInfo.TotalQuantityOfEmployees.ToString(), new { htmlAttributes = new { @class = "control-label", @maxlength = "120" } })
+                        </div>
+                    </div>
+                    <div class="margenes">
+                        <div class="EtiquetasIzquierdaSubTituloBack2 ">
+                            @Html.LabelFor(m => m.CompanyInfo.TotalQuantityOfDesktops, new { @class = "control-label" })
+                        </div>
+                        <div class="CeldaValores">
+                            @Html.Label("TotalQuantityOfDesktops", Model.CompanyInfo.TotalQuantityOfDesktops.ToString(), new { htmlAttributes = new { @class = "control-label", @maxlength = "120" } })
+                        </div>
+                    </div>
+                    @*Cambio datos CRM*@
+                    <div class="margenes">
+                        <div class="EtiquetasIzquierdaSubTituloBack2">
+                            @Html.Label(@TranslatorHelper.TranslateTextByIdentifier("Old_LabelNumeroTotalEmpleadosCRM"), new { @class = "control-label" })
+                        </div>
+                        <div class="CeldaValores">
+                            @Html.Label("TotalEmployees", Model.CompanyInfoCRM.NumberOfEmployees.ToString(), new { htmlAttributes = new { @class = "control-label", @maxlength = "120" } })
+                        </div>
+                    </div>
+
+                    <div class="margenes">
+                        <div class="EtiquetasIzquierdaSubTituloBack2">
+                            @Html.Label(@TranslatorHelper.TranslateTextByIdentifier("Old_LabelNumeroPcsCRM"), new { @class = "control-label" })
+                        </div>
+                        <div class="CeldaValores">
+                            @Html.Label("TotalEmployees", Model.CompanyInfoCRM.NumberOfPCs.ToString(), new { htmlAttributes = new { @class = "control-label", @maxlength = "120" } })
+                        </div>
+                    </div>
+
+
+
+                    @if (Model.CompanyInfo.TotalQuantityPCWithOtherOS != null)
+                    {
+                    <div class="margenes">
+                        <div class="EtiquetasIzquierdaSubTituloBack2 ">
+                            @Html.LabelFor(m => m.CompanyInfo.TotalQuantityPCWithOtherOS, new { @class = "control-label" })
+                        </div>
+                        <div class="CeldaValores">
+                            @Html.Label("TotalQuantityPCWithOtherOS", Model.CompanyInfo.TotalQuantityPCWithOtherOS.ToString(), new { htmlAttributes = new { @class = "control-label", @maxlength = "120" } })
+                        </div>
+                    </div>
+                    }
+
+                    @if (Model.CompanyInfo.TotalQuantityOfPhysicalServers != null)
+                    {
+                    <div class="margenes">
+                        <div class="EtiquetasIzquierdaSubTituloBack2 ">
+                            @Html.Label(@TranslatorHelper.TranslateTextByIdentifier("Old_LabelNumeroServidoresFisicos"), new { @class = "control-label" })
+                        </div>
+                        <div class="CeldaValores">
+                            @Html.Label("TotalPhisicalServers", Model.CompanyInfo.TotalQuantityOfPhysicalServers.ToString(), new { htmlAttributes = new { @class = "control-label", @maxlength = "120" } })
+                        </div>
+                    </div>
+                    }
+
+                    @if (Model.CompanyInfo.TotalQuantityOfVirtualServers != null)
+                    {
+                    <div class="margenes">
+                        <div class="EtiquetasIzquierdaSubTituloBack2 ">
+                            @Html.Label(@TranslatorHelper.TranslateTextByIdentifier("Old_LabelNumeroServidoresVirtuales"), new { @class = "control-label" })
+                        </div>
+                        <div class="CeldaValores">
+                            @Html.Label("TotalVirtualServers", Model.CompanyInfo.TotalQuantityOfVirtualServers.ToString(), new { htmlAttributes = new { @class = "control-label", @maxlength = "120" } })
+                        </div>
+                    </div>
+                    }
+
+                </div>
+            </div>
+
+            <h3 class="titulo">@TranslatorHelper.TranslateTextByIdentifier("Old_LabelInvoicing")</h3>
+            <div class="contenido">
+                <div class="set">
+                    <div class="margenes">
+                        <div class="EtiquetasIzquierdaSubTituloBack2 ">
+                            @Html.Label("Has the company acquired Microsoft software under a different name?", new { @class = "control-label" })
+                        </div>
+                        <div class="CeldaValores">
+                            @Html.Label("PurchaseAndInvoicingMode", (Model.Company.PurchaseAndInvoicingMode == 1) ? "Yes" : "No", new { htmlAttributes = new { @class = "control-label", @maxlength = "120" } })
+                        </div>
+                    </div>
+                    <div class="margenes">
+                        <div class="EtiquetasIzquierdaSubTituloBack2 ">
+                            @Html.Label("Name(s) as it appear in the agreement", new { @class = "control-label" })
+                        </div>
+                        <div class="CeldaValores">
+                            @Html.Label("ExactNameInInvoicing", Model.CompanyInfo.ExactNameInInvoicing, new { htmlAttributes = new { @class = "control-label", @maxlength = "120" } })
+                        </div>
+                    </div>
+                    <br />
+                    <hr />
+                    <table>
+                        @if (Model.CompanyInfo.VolumeLicenceNumber1 != "")
+                        {
+                        <tr>
+                            <td>@Html.Label("Volume Licence Number 1")</td>
+                            <td>@Html.Label("VolumeLicenceNumber1", Model.CompanyInfo.VolumeLicenceNumber1, new { @class = "control-label" })</td>
+                        </tr>
+                        }
+
+                        @if (Model.CompanyInfo.VolumeLicenceNumber2 != "")
+                        {
+                        <tr>
+                            <td>@Html.Label("Volume Licence Number 2")</td>
+                            <td>@Html.Label("VolumeLicenceNumber2", Model.CompanyInfo.VolumeLicenceNumber2, new { @class = "control-label" })</td>
+                        </tr>
+                        }
+
+                        @if (Model.CompanyInfo.VolumeLicenceNumber3 != "")
+                        {
+                        <tr>
+                            <td>@Html.Label("Volume Licence Number 3")</td>
+                            <td>@Html.Label("VolumeLicenceNumber3", Model.CompanyInfo.VolumeLicenceNumber3, new { @class = "control-label" })</td>
+                        </tr>
+                        }
+
+                        @if (Model.CompanyInfo.VolumeLicenceNumber4 != "")
+                        {
+                        <tr>
+                            <td>@Html.Label("Volume Licence Number 4")</td>
+                            <td>@Html.Label("VolumeLicenceNumber4", Model.CompanyInfo.VolumeLicenceNumber4, new { @class = "control-label" })</td>
+                        </tr>
+                        }
+
+                        @if (Model.CompanyInfo.VolumeLicenceNumber5 != "")
+                        {
+                        <tr>
+                            <td>@Html.Label("Volume Licence Number 5")</td>
+                            <td>@Html.Label("VolumeLicenceNumber5", Model.CompanyInfo.VolumeLicenceNumber5, new { @class = "control-label" })</td>
+                        </tr>
+                        }
+
+                        @if (Model.CompanyInfo.VolumeLicenceNumber6 != "")
+                        {
+                        <tr>
+                            <td>@Html.Label("Volume Licence Number 6")</td>
+                            <td>@Html.Label("VolumeLicenceNumber6", Model.CompanyInfo.VolumeLicenceNumber6, new { @class = "control-label" })</td>
+                        </tr>
+                        }
+
+                        @if (Model.CompanyInfo.VolumeLicenceNumber7 != "")
+                        {
+                        <tr>
+                            <td>@Html.Label("Volume Licence Number 7")</td>
+                            <td>@Html.Label("VolumeLicenceNumber7", Model.CompanyInfo.VolumeLicenceNumber7, new { @class = "control-label" })</td>
+                        </tr>
+                        }
+
+                        @if (Model.CompanyInfo.VolumeLicenceNumber8 != "")
+                        {
+                        <tr>
+                            <td>@Html.Label("Volume Licence Number 8")</td>
+                            <td>@Html.Label("VolumeLicenceNumber8", Model.CompanyInfo.VolumeLicenceNumber8, new { @class = "control-label" })</td>
+                        </tr>
+                        }
+
+                        @if (Model.CompanyInfo.VolumeLicenceNumber9 != "")
+                        {
+                        <tr>
+                            <td>@Html.Label("Volume Licence Number 9")</td>
+                            <td>@Html.Label("VolumeLicenceNumber9", Model.CompanyInfo.VolumeLicenceNumber9, new { @class = "control-label" })</td>
+                        </tr>
+                        }
+
+                    </table>
+                </div>
+
+            </div>
+
+            @if (Model.TipoCliente == "Academic")
+            {
+                <h3 class="titulo">Academic Information</h3>
+                <div class="contenido">
+                    <div class="set">
+                        <div style="min-height:50px;">
+                            <h3>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelTeachers")</h3>
+                            <hr />
+                            <div class="margenes">
+                                <div class="EtiquetasIzquierdaSubTituloBack2 ">
+                                    @Html.Label("Partial Time", new { @class = "control-label" })
+                                </div>
+                                <div class="CeldaValores">
+                                    @Html.Label("AcademicQttyTeachersPartialTime", Model.CompanyInfo.AcademicQttyTeachersPartialTime.ToString(), new { htmlAttributes = new { @class = "control-label", @maxlength = "120" } })
+                                </div>
+                            </div>
+
+                            <div class="margenes">
+                                <div class="EtiquetasIzquierdaSubTituloBack2 ">
+                                    @Html.Label("Full Time", new { @class = "control-label" })
+                                </div>
+                                <div class="CeldaValores">
+                                    @Html.Label("AcademicQttyTeachersFullTime", Model.CompanyInfo.AcademicQttyTeachersFullTime.ToString(), new { htmlAttributes = new { @class = "control-label", @maxlength = "120" } })
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelPartial")</h3>
+                        <hr />
+                        <div class="margenes">
+                            <div class="EtiquetasIzquierdaSubTituloBack2 ">
+                                @Html.Label("Partial Time", new { @class = "control-label" })
+                            </div>
+                            <div class="CeldaValores">
+                                @Html.Label("AcademicQttyAdmEmpPartialTime", Model.CompanyInfo.AcademicQttyAdmEmpPartialTime.ToString(), new { htmlAttributes = new { @class = "control-label", @maxlength = "120" } })
+                            </div>
+                        </div>
+
+                        <div class="margenes">
+                            <div class="EtiquetasIzquierdaSubTituloBack2 ">
+                                @Html.Label("Full Time", new { @class = "control-label" })
+                            </div>
+                            <div class="CeldaValores">
+                                @Html.Label("AcademicQttyAdmEmpFullTime", Model.CompanyInfo.AcademicQttyAdmEmpFullTime.ToString(), new { htmlAttributes = new { @class = "control-label", @maxlength = "120" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <h3 class="titulo">@TranslatorHelper.TranslateTextByIdentifier("Old_LabelMSPartnersNetwork")</h3>
+            <div class="contenido">
+                <div class="set">
+                    <br />
+                    @if (Model.PartnerProgramVMList.Count() != 0)
+                    {
+                    <table border="0" cellspacing="0" cellpadding="0" class="especial_03">
+                        <tr class="cabezote">
+                            <td>Program Type</td>
+                            <td>Partner ID</td>
+                            <td>Due date</td>
+                        </tr>
+                        @for (var i = 0; i < Model.PartnerProgramVMList.Count(); i++)
+                            {
+                            <tr>
+                                <td>@Html.Label("ProgramType" + i, Model.PartnerProgramVMList[i].PartenerProgramName)</td>
+                                <td>@Html.Label("IdPartner" + i, Model.PartnerProgramVMList[i].IDPartner)</td>
+                                <td>@Html.Label("ExpirationDate" + i, Model.PartnerProgramVMList[i].ExpirationDate.ToString())</td>
+                            </tr>
+                            }
+                    </table>
+                    }
+                    else
+                    {
+                    <table border="0" cellspacing="0" cellpadding="0" class="especial_03">
+                        <tr class="cabezote"><td>Program Type</td></tr>
+                        <tr>
+                            <td>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelNotAvailable")</td>
+                        </tr>
+                    </table>
+
+                    }
+                    <br />
+                    <br />
+
+                    @if (Model.PartnerCapabilityVMList.Count() != 0)
+                    {
+                    <table border="0" cellspacing="0" cellpadding="0" class="especial_03">
+                        <tr class="cabezote">
+                            <td>Capability</td>
+                            <td>Category</td>
+                            <td>Partner ID</td>
+                            <td>Renewal date</td>
+                        </tr>
+                        @for (var i = 0; i < Model.PartnerCapabilityVMList.Count(); i++)
+                            {
+                            <tr>
+                                <td>@Html.Label("Capability" + i, Model.PartnerCapabilityVMList[i].PartenerCapabilityName)</td>
+                                <td>@Html.Label("Category" + i, Model.PartnerCapabilityVMList[i].Category)</td>
+                                <td>@Html.Label("IdPartner" + i, Model.PartnerCapabilityVMList[i].IDPartner)</td>
+                                <td>@Html.Label("RenovationDate" + i, Model.PartnerCapabilityVMList[i].RenovationDate.ToString())</td>
+                            </tr>
+                            }
+                    </table>
+                    }
+                    else
+                    {
+                    <table border="0" cellspacing="0" cellpadding="0" class="especial_03">
+                        <tr class="cabezote"><td>Capability</td></tr>
+                        <tr>
+                            <td>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelNotAvailable")</td>
+                        </tr>
+                    </table>
+
+                    }
+
+                    @if (Model.TipoCliente == "DeveloperPartner")
+                    {
+                    <hr />
+                    <div style="min-height:90px;">
+                        <div class="margenes">
+                            <div class="EtiquetasIzquierdaSubTituloBack2 ">
+                                @Html.Label("Custom Or Basics Applications", new { @class = "control-label" })
+                            </div>
+                            <div class="CeldaValores">
+                                @Html.Label("CustomOrBasicsApplications", Model.CompanyInfo.CustomOrBasicsApplications, new { htmlAttributes = new { @class = "control-label", @maxlength = "120" } })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="margenes">
+                        <div class="EtiquetasIzquierdaSubTituloBack2 ">
+                            @Html.Label("Developers Partners Applications Type", new { @class = "control-label" })
+                        </div>
+                        <div class="CeldaValores">
+                            @Html.Label("DevelopersPartnersApplicationsType", Model.CompanyInfo.DevelopersPartnersApplicationsType, new { htmlAttributes = new { @class = "control-label", @maxlength = "500" } })
+                        </div>
+                    </div>
+
+                    <div class="margenes">
+                        <div class="EtiquetasIzquierdaSubTituloBack2 ">
+                            @Html.Label("Developers Partners Microsoft Tools", new { @class = "control-label" })
+                        </div>
+                        <div class="CeldaValores">
+                            @Html.Label("DevelopersPartnersMicrosofTools", Model.CompanyInfo.DevelopersPartnersMicrosofTools, new { htmlAttributes = new { @class = "control-label", @maxlength = "120" } })
+                        </div>
+                    </div>
+
+                    <div class="margenes">
+                        <div class="EtiquetasIzquierdaSubTituloBack2 ">
+                            @Html.Label("Developers Partners Projects Types", new { @class = "control-label" })
+                        </div>
+                        <div class="CeldaValores">
+                            @Html.Label("DevelopersPartnersProjectsTypes", Model.CompanyInfo.DevelopersPartnersProjectsTypes, new { htmlAttributes = new { @class = "control-label", @maxlength = "120" } })
+                        </div>
+                    </div>
+                    }
+
+                </div>
+            </div>
+
+            <h3 class="titulo">@TranslatorHelper.TranslateTextByIdentifier("Old_LabelProductosMS")</h3>
+            <div class="contenido">
+                <div class="set">
+                    <br />
+                    @if (Model.ProductsVMList.Count() != 0)
+                    {
+                        if (Session["postofficebox"].ToString() == "System Administrator" || (Session["vTitle"] != null && Session["vTitle"].ToString() == "SAM Consultant"))
+                        {
+                            <table border="0" cellspacing="0" cellpadding="0" class="especial_03" id="tableLicenses">
+                                <tr class="cabezote">
+                                    <td style="width: 38% !important">Edition</td>
+                                    <td>VLS</td>
+                                    <td>OEM</td>
+                                    <td>FPP</td>
+                                    <td hidden>WEB</td>
+                                    <td>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelInstalledLicenses")</td>
+                                    <td>GAP</td>
+                                    @if (Model.HaveFiles)
+                                    {
+                                        <td>Donwload</td>
+                                        <td>Name Format</td>
+                                    }
+                                </tr>
+                                @foreach (var item in Model.ProductsVMList)
+                                {
+                                    <tr data-producid="@item.ProductID" data-companyid="@Model.CompanyInfo.CompanyID" data-campaignid="@Model.CompanyInfo.CampaignID">
+                                        <td style="width: 38% !important">
+                                            @Html.Label("ProductFamily", item.ProductFamily + " " + item.ProductVersion + " " + item.ProductName)
+                                        </td>
+                                        <td>
+                                            @Html.TextBox("VLSLicenses" + item.ProductID, item.VLS.ToString(), new
+                                       {
+                                           @class = "form-control integerOnly NS-VLS",
+                                           @type = "text",
+                                           @onkeypress = "return event.charCode >= 48 && event.charCode <= 57",
+                                           @min = 0,
+                                           max = "190"
+                                       })
+                                        </td>
+                                        <td>
+                                            @Html.TextBox("OEMLicenses", item.OEM.ToString(), new
+                                   {
+                                       @class = "form-control integerOnly NS-OEM",
+                                       @type = "text",
+                                       @onkeypress = "return event.charCode >= 48 && event.charCode <= 57",
+                                       @min = 0,
+                                       max = "190"
+                                   })
+                                        </td>
+                                        <td>
+                                            @Html.TextBox("FPPLicenses", item.FPP.ToString(), new
+                               {
+                                   @class = "form-control integerOnly NS-FPP",
+                                   @type = "text",
+                                   @onkeypress = "return event.charCode >= 48 && event.charCode <= 57",
+                                   @min = 0,
+                                   max = "190"
+                               })
+                                        </td>
+                                        <td hidden>
+                                                    @Html.TextBox("WEBLicenses", item.WEB.ToString(), new
+                                                           {
+                                                               @class = "form-control integerOnly NS-WEB",
+                                                               @type = "text",
+                                                               @onkeypress = "return event.charCode >= 48 && event.charCode <= 57",
+                                                               @min = 0,
+                                                               max = "190"
+                                                           })
+                                            </td>
+                                        <td>@Html.Label("InstalledLicenses", item.InstalledLicenses.ToString(), new { @class = "NS-Installed InstalledLicenses" })</td>
+                                        <td>@Html.Label("GAP", (item.InstalledLicenses - item.VLS - item.OEM - item.FPP).ToString(), new { @class = "NS-GAP" })</td>
+
+
+                                        @if (Model.HaveFiles)
+                                        {
+                                            <td style="text-align:  center;">
+                                                @if (item.HaveFiles)
+                                                {
+                                                    <a href="@Model.SharepointURL" class="download-files" target="_blank">
+                                                        <img src="@Url.Content("~/Content/Images/icono_vertical_sharepoint.png")" height="25" width="25" />
+                                                    </a>
+                                                    @*<a class="download-files" href="~/AdminMDS/DownloadWithoutSaving?pLeadID=@Model.CompanyInfo.LeadID&pCompanyID=@Model.CompanyInfo.CompanyID&pCampaignID=@Model.CompanyInfo.CampaignID&pProductID=@item.ProductID"><img src="http://www.escolasbrasil.com.br/themes/escolas/images/downloads.png" height="25" width="25" style="margin-left: 27%;opacity:0.6;"></a>*@
+                                                }
+
+                                            </td>
+                                            <td>
+                                                @{
+                                                    string name = Model.CompanyInfo.CompanyID + "_" + Model.CompanyInfo.CampaignID + "_" + item.ProductID;
+                                                }
+                                                @name
+                                            </td>
+                                        }
+                                    </tr>
+                                }
+                            </table>
+                        }
+                        else
+                        {
+                            <table border="0" cellspacing="0" cellpadding="0" class="especial_03">
+                                <tr class="cabezote">
+                                    <td style="width: 38% !important">Edition</td>
+                                    <td>VLS</td>
+                                    <td>OEM</td>
+                                    <td>FPP</td>
+                                    <td hidden>WEB</td>
+                                    <td>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelInstalledLicenses")</td>
+                                    @if (Model.HaveFiles)
+                                    {
+                                        <td>Donwload</td>
+                                        <td>Name Format</td>
+                                    }
+                                </tr>
+                                @foreach (var item in Model.ProductsVMList)
+                                {
+                                    <tr data-producid="@item.ProductID">
+                                        <td style="width: 38% !important">
+                                            @Html.Label("ProductFamily", item.ProductFamily + " " + item.ProductVersion + " " + item.ProductName)
+                                        </td>
+                                        <td>@Html.TextBox("VLSLicenses" + item.ProductID, item.VLS.ToString(), new { @class = "form-control integerOnly NS-VLS", @type = "number", @min = 0, max = "190", @readonly = "readonly" })</td>
+                                        <td>@Html.TextBox("OEMLicenses", item.OEM.ToString(), new { @class = "form-control integerOnly NS-OEM", @type = "number", @min = 0, max = "190", @readonly = "readonly" })</td>
+                                        <td>@Html.TextBox("FPPLicenses", item.FPP.ToString(), new { @class = "form-control integerOnly NS-FPP", @type = "number", @min = 0, max = "190", @readonly = "readonly" })</td>
+                                        <td hidden>@Html.TextBox("WEBLicenses", item.WEB.ToString(), new { @class = "form-control integerOnly NS-WEB", @type = "number", @min = 0, max = "190", @readonly = "readonly" })</td>
+                                        <td>@Html.Label("InstalledLicenses", item.InstalledLicenses.ToString(), new { @class = "NS-Installed InstalledLicenses" })</td>
+                                        @if (Model.HaveFiles)
+                                        {
+                                            <td style="text-align:  center;">
+                                                @if (item.HaveFiles)
+                                                {
+                                                    <a href="@Model.SharepointURL" class="download-files" target="_blank">
+                                                        <img src="@Url.Content("~/Content/Images/icono_vertical_sharepoint.png")" height="25" width="25" />
+                                                    </a>
+                                                    @*<a class="download-files" href="~/AdminMDS/DownloadWithoutSaving?pLeadID=@Model.CompanyInfo.LeadID&pCompanyID=@Model.CompanyInfo.CompanyID&pCampaignID=@Model.CompanyInfo.CampaignID&pProductID=@item.ProductID"><img src="http://www.escolasbrasil.com.br/themes/escolas/images/downloads.png" height="25" width="25" style="margin-left: 27%;opacity:0.6;"></a>*@
+                                                }
+
+                                            </td>
+                                            <td>
+                                                @{
+                                                    string name = Model.CompanyInfo.CompanyID + "_" + Model.CompanyInfo.CampaignID + "_" + item.ProductID;
+                                                }
+                                                @name
+                                            </td>
+                                                    }
+                                    </tr>
+                                }
+                            </table>
+                        }
+                    }
+                    else
+                    {
+                        <table border="0" cellspacing="0" cellpadding="0" class="especial_03">
+                            <tr class="cabezote"><td>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelProductosMS")</td></tr>
+                            <tr>
+                                <td>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelNotAvailable")</td>
+                            </tr>
+                        </table>
+                    }
+
+                </div>
+
+                @*@if (Model.HaveFiles)
+                {
+                    <div class="set">
+                        <a class="download-files"
+                           href="~/AdminMDS/DownloadWithoutSaving?pLeadID=@Model.CompanyInfo.LeadID&amp;pCompanyID=@Model.CompanyInfo.CompanyID&amp;pCampaignID=@Model.CompanyInfo.CampaignID&amp;pProductID=-1"
+                           style="padding: 10px;margin: 10px;background-color: #93C54A;color: white;border-radius: 10px;float: right;">
+                            <span>
+                                Download all product files
+                            </span>
+                            <img src="http://www.escolasbrasil.com.br/themes/escolas/images/downloads.png" height="25" width="25" style="opacity:0.5">
+                        </a>
+                        <a class="download-files-sharepoint" 
+                           href="@Model.SharepointURL"
+                           target="_blank">
+                            <span>
+                                Go to SharePoint
+                            </span>
+                            <img src="@Url.Content("~/Content/Images/icono_vertical_sharepoint.png")" height="25" width="25">
+                        </a>
+                    </div>
+                }*@
+
+
+
+                @{
+                    var comment = Model.AdditionalCommentsVMList.Where(x => x.ProductFamilyName.Contains("AZURE")).FirstOrDefault();
+                }
+
+                @if (@Model.CompanyInfo.AzureFlag != null && comment != null)
+                {
+                    <div class="set">
+                        <table border="0" cellspacing="0" cellpadding="0" class="especial_03">
+                            <tr class="cabezote">
+                                <td>Cloud information</td>
+                                <td>@TranslatorHelper.TranslateTextByIdentifier("Old_NewAzure1Question")</td>
+                                <td>@TranslatorHelper.TranslateTextByIdentifier("Old_NewAzure2Question")</td>
+                            </tr>
+                            <tr style="width: 38% !important;">
+                                <td>AZURE</td>
+                                <td>@Model.CompanyInfo.AzureFlag.ToString()</td>
+                                <td>@comment.AdditionalComments.ToString()</td>
+                            </tr>
+                        </table>
+                    </div>
+                }
+
+                <div class="set">
+                    @{ Html.RenderAction("GetAnswerCompany", "AdminMDS", new { pCompanyID = Model.CompanyInfo.CompanyID, pCampaignID = Model.CompanyInfo.CampaignID, pFamilyId = 3 }); }
+                </div>
+                <div class="set">
+                    @{ Html.RenderAction("GetAnswerCompany", "AdminMDS", new { pCompanyID = Model.CompanyInfo.CompanyID, pCampaignID = Model.CompanyInfo.CampaignID, pFamilyId = 4 }); }
+                </div>
+
+                @if (Model.ProductsVMList.Count() != 0)
+                {
+                    if (Session["postofficebox"].ToString() == "System Administrator" || Session["postofficebox"].ToString() == "Operations Leader" ||
+                        (Session["vTitle"] != null && (Session["vTitle"].ToString() == "SAM Consultant" || Session["vTitle"].ToString() == "License Consultant" ||
+                        Session["vTitle"].ToString() == "Operations Leader")))
+                    {
+                        using (Html.BeginForm("ExportToCSV", "AdminMDS", FormMethod.Post))
+                        {
+
+                            @Html.Hidden("pCompanyID", Model.CompanyInfo.CompanyID)
+                            @Html.Hidden("pCampaignID", Model.CompanyInfo.CampaignID)
+                            <input type="submit" class="ExportProducts" value="@TranslatorHelper.TranslateTextByIdentifier("Old_LabelExportToExcel")" />
+                        }
+                    }
+                }
+
+            </div>
+
+            @*<h3 class="titulo">Additional Answers to Server Products</h3>
+                <div class="contenido">
+                    <div class="set">
+                        @{ Html.RenderAction("GetAnswerCompany", "AdminMDS", new { pCompanyID = Model.CompanyInfo.CompanyID, pCampaignID = Model.CompanyInfo.CampaignID, pFamilyId = 3 }); }
+                    </div>
+                    <div class="set">
+                        @{ Html.RenderAction("GetAnswerCompany", "AdminMDS", new { pCompanyID = Model.CompanyInfo.CompanyID, pCampaignID = Model.CompanyInfo.CampaignID, pFamilyId = 4 }); }
+                    </div>
+
+                    @using (Html.BeginForm("ExportAnswersToCSV", "AdminMDS", FormMethod.Post))
+                    {
+                        @Html.Hidden("pCompanyID", Model.CompanyInfo.CompanyID)
+                        @Html.Hidden("pCampaignID", Model.CompanyInfo.CampaignID)
+                        <input type="submit" class="ExportProducts" value="@TranslatorHelper.TranslateTextByIdentifier("Old_LabelExportToExcel")" />
+                    }
+                </div>*@
+
+            <h3 class="titulo">@TranslatorHelper.TranslateTextByIdentifier("Old_ComentariosAdicinales")</h3>
+            <div class="contenido">
+                <div class="set">
+                    <br />
+                    @if (Model.ProductFamilyCompanyList.Count() != 0)
+                    {
+                        <table border="0" cellspacing="0" cellpadding="0" class="especial_03">
+                            <tr class="cabezote">
+                                <td>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelProductFamily")</td>
+                                <td>@TranslatorHelper.TranslateTextByIdentifier("Old_ComentariosAdicinales")</td>
+                            </tr>
+                            @for (var i = 0; i < Model.AdditionalCommentsVMList.Count(); i++)
+                            {
+                                if (!Model.AdditionalCommentsVMList[i].ProductFamilyName.ToString().Contains("AZURE"))
+                                {
+                                    <tr style="width: 38% !important;">
+                                        <td>@Html.Label("ProductFamilyID" + i, Model.AdditionalCommentsVMList[i].ProductFamilyName.ToString())</td>
+                                        <td>@Html.Label("AdditionalComments" + i, Model.AdditionalCommentsVMList[i].AdditionalComments)</td>
+                                    </tr>
+                                }
+
+                            }
+                        </table>
+                    }
+                    else
+                    {
+                        <table border="0" cellspacing="0" cellpadding="0" class="especial_03">
+                            <tr class="cabezote"><td style="width: 38% !important;">@TranslatorHelper.TranslateTextByIdentifier("Old_ComentariosAdicinales")</td></tr>
+                            <tr>
+                                <td>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelNotAvailable")</td>
+                            </tr>
+                        </table>
+                    }
+
+                </div>
+            </div>
+
+            <h3 class="titulo">Software Assurance</h3>
+            <div class="contenido">
+                <div class="set">
+                    <table style="border: none !important;">
+                        <tr>
+                            <td style="padding: 6px 0px 26px 0px;">
+                                <div class="margenes">
+                                    <div class="EtiquetasIzquierdaSubTituloBack2 ">
+                                        @Html.Label("Does the company have software assurance?", new { @class = "control-label" })
+                                    </div>
+                                    <div class="CeldaValores">
+                                        @Html.Label("AssuranceFlag", (Model.CompanyInfo.SoftwareAssuranceFlag == true) ? "Yes" : "No", new { htmlAttributes = new { @class = "control-label", @maxlength = "120" } })
+                                    </div>
+                                </div>
+
+                                <div class="margenes">
+                                    <div class="EtiquetasIzquierdaSubTituloBack2 ">
+                                        @Html.Label("Comment", new { @class = "control-label" })
+                                    </div>
+                                    <div class="CeldaValores">
+                                        @Html.Label("AssuranceComment", (Model.CompanyInfo.StatusRenewalAndContratDetails == null) ? @TranslatorHelper.TranslateTextByIdentifier("Old_LabelNotAvailable") : Model.CompanyInfo.StatusRenewalAndContratDetails, new { htmlAttributes = new { @class = "control-label", @maxlength = "120" } })
+                                    </div>
+                                </div>
+
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+
+            <h3 class="titulo">New Licences</h3>
+            <div class="contenido">
+                <div class="set">
+                    <table style="border: none !important;">
+                        <tr>
+                            <td style="padding: 6px 0px 26px 0px;">
+                                <div class="margenes">
+                                    <div class="EtiquetasIzquierdaSubTituloBack2 ">
+                                        @Html.Label("Does the company have plans to purchase new licenses?", new { @class = "control-label" })
+                                    </div>
+                                    <div class="CeldaValores">
+                                        @Html.Label("PlansToPurchaseNewLicensesFlag", (Model.CompanyInfo.PlansToPurchaseNewLicensesFlag == true) ? "Yes" : "No", new { htmlAttributes = new { @class = "control-label" } })
+                                    </div>
+                                </div>
+
+                                <div class="margenes">
+                                    <div class="EtiquetasIzquierdaSubTituloBack2 ">
+                                        @Html.Label("Comment", new { @class = "control-label" })
+                                    </div>
+                                    <div class="CeldaValores">
+                                        @Html.Label("PlansToPurchaseNewLicensesComments", (Model.CompanyInfo.PlansToPurchaseNewLicensesComments == null) ? @TranslatorHelper.TranslateTextByIdentifier("Old_LabelNotAvailable") : Model.CompanyInfo.PlansToPurchaseNewLicensesComments, new { htmlAttributes = new { @class = "control-label", @maxlength = "120" } })
+                                    </div>
+                                </div>
+
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <h3 class="titulo">Upgrades</h3>
+            <div class="contenido">
+                <div class="set">
+                    <table style="border: none !important;">
+                        <tr>
+                            <td style="padding: 6px 0px 26px 0px;">
+                                <div class="margenes">
+                                    <div class="EtiquetasIzquierdaSubTituloBack2 ">
+                                        @Html.Label("Does the company have plans to upgrade the licenses it currently owns?", new { @class = "control-label" })
+                                    </div>
+                                    <div class="CeldaValores">
+                                        @Html.Label("UpgradeFlag", (Model.CompanyInfo.PlansToUpgradeCurrentlyOwnedLicensesFlag == true) ? "Yes" : "No", new { htmlAttributes = new { @class = "control-label", @maxlength = "120" } })
+                                    </div>
+                                </div>
+
+                                <div class="margenes">
+                                    <div class="EtiquetasIzquierdaSubTituloBack2 ">
+                                        @Html.Label("Comment", new { @class = "control-label" })
+                                    </div>
+                                    <div class="CeldaValores">
+                                        @Html.Label("UpgradeComment", (Model.CompanyInfo.PlansToUpgradeCurrentlyOwnedLicensesComments == null) ? @TranslatorHelper.TranslateTextByIdentifier("Old_LabelNotAvailable") : Model.CompanyInfo.PlansToUpgradeCurrentlyOwnedLicensesComments, new { htmlAttributes = new { @class = "control-label", @maxlength = "120" } })
+                                    </div>
+                                </div>
+
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+
+            <h3 class="titulo">@TranslatorHelper.TranslateTextByIdentifier("Old_LabelAuthorizedMSChannel")</h3>
+            <div class="contenido">
+                <div class="set">
+                    <table style="border: none !important;">
+                        <tr>
+                            <td style="padding: 6px 0px 26px 0px;">
+                                <div class="margenes">
+                                    <div class="EtiquetasIzquierdaSubTituloBack2 ">
+                                        @Html.Label("Does the company have an authorize Microsoft partner?", new { @class = "control-label" })
+                                    </div>
+                                    <div class="CeldaValores">
+                                        @Html.Label("MicrosoftChFlag", (Model.CompanyInfo.AuthorizedMicrosoftChannelFlag == true) ? "Yes" : "No", new { htmlAttributes = new { @class = "control-label", @maxlength = "120" } })
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        @if (Model.CompanyInfo.AuthorizedMicrosoftChannelFlag == true)
+                        {
+                            <tr>
+                                <td style="padding: 6px 0px 26px 0px;">
+                                    <div class="margenes">
+                                        <div class="EtiquetasIzquierdaSubTituloBack2 ">
+                                            @Html.Label("Name of Partner", new { @class = "control-label" })
+                                        </div>
+                                        <div class="CeldaValores">
+                                            @Html.Label("MicrosoftChFlag", (Model.CompanyInfo.AuthorizedChannel != null) ? Model.CompanyInfo.AuthorizedChannel : @TranslatorHelper.TranslateTextByIdentifier("Old_LabelNotAvailable"), new { htmlAttributes = new { @class = "control-label", @maxlength = "120" } })
+                                        </div>
+                                    </div>
+
+                                    <div class="margenes">
+                                        <div class="EtiquetasIzquierdaSubTituloBack2 ">
+                                            @Html.Label("Contact Name", new { @class = "control-label" })
+                                        </div>
+                                        <div class="CeldaValores">
+                                            @Html.Label("MicrosoftPartnerContactName", (Model.CompanyInfo.MicrosoftPartnerContactName != null) ? Model.CompanyInfo.MicrosoftPartnerContactName : @TranslatorHelper.TranslateTextByIdentifier("Old_LabelNotAvailable"), new { htmlAttributes = new { @class = "control-label", @maxlength = "120" } })
+                                        </div>
+                                    </div>
+
+                                    <div class="margenes">
+                                        <div class="EtiquetasIzquierdaSubTituloBack2 ">
+                                            @Html.Label("Email Address", new { @class = "control-label" })
+                                        </div>
+                                        <div class="CeldaValores">
+                                            @Html.Label("MicrosoftPartnerEmail", (Model.CompanyInfo.MicrosoftPartnerEmail != null) ? Model.CompanyInfo.MicrosoftPartnerEmail : @TranslatorHelper.TranslateTextByIdentifier("Old_LabelNotAvailable"), new { htmlAttributes = new { @class = "control-label", @maxlength = "120" } })
+                                        </div>
+                                    </div>
+
+                                    <div class="margenes">
+                                        <div class="EtiquetasIzquierdaSubTituloBack2 ">
+                                            @Html.Label("Phone Number", new { @class = "control-label" })
+                                        </div>
+                                        <div class="CeldaValores">
+                                            @Html.Label("MicrosoftPartnerEmail", (Model.CompanyInfo.MicrosoftPartnerPhoneNumber != null) ? Model.CompanyInfo.MicrosoftPartnerEmail : @TranslatorHelper.TranslateTextByIdentifier("Old_LabelNotAvailable"), new { htmlAttributes = new { @class = "control-label", @maxlength = "120" } })
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+
+            <h3 class="titulo">@TranslatorHelper.TranslateTextByIdentifier("Old_LabelCurrentSituation")</h3>
+            <div class="contenido">
+                <div class="set">
+                    <div class="margenes">
+                        <div class="EtiquetasIzquierdaSubTituloBack2 ">
+                            @Html.Label(@TranslatorHelper.TranslateTextByIdentifier("Old_LabelCurrentSituation"), new { @class = "control-label" })
+                        </div>
+                        <div class="CeldaValores">
+                            @{ var _licenceState = "";}
+                            @switch (Model.CompanyInfo.LicenseStatusResponseID)
+                            {
+                                case 1:
+                                    _licenceState = @TranslatorHelper.TranslateTextByIdentifier("Old_LabelCorrectamenteLicenciado");
+                                    break;
+                                case 2:
+                                    _licenceState = @TranslatorHelper.TranslateTextByIdentifier("Old_LabelEncontramosDiferencias");
+                                    break;
+                                case 3:
+                                    _licenceState = @TranslatorHelper.TranslateTextByIdentifier("Old_LabelSolicitoApoyo");
+                                    break;
+                                default:
+                                    _licenceState = @TranslatorHelper.TranslateTextByIdentifier("Old_LabelNotAvailable");
+                                    break;
+                            }
+                            @Html.Label("LicenceState", _licenceState, new { htmlAttributes = new { @class = "control-label", @maxlength = "120" } })
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="gris">
+        <div class="centro accept-participation">
+            <div class="set">
+                <div>
+                    @if (Session["vTitle"].ToString() == "License Consultant" || Session["vTitle"].ToString() == "Operations Leader" || Session["postofficebox"].ToString() == "System Administrator" || Session["vTitle"].ToString() == "SAM Consultant")
+                    {
+                        if (Model.IsFinalVersion)
+                        {
+                    <label><input type="checkbox" id="activarMDS" checked> Blocked MDS </label>
+                        }
+                        else
+                        {
+                    <label><input type="checkbox" id="activarMDS"> Unblocked MDS </label>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--================================= CONTROLES ======================================-->
+    <div class="controles">
+        <div class="centro">
+            <ul class="bloques centro">
+
+                <li class="azul end">
+                    <a href="#" target="_self" class="botonCambiaEstado">
+                        <span>
+                            @TranslatorHelper.TranslateTextByIdentifier("Old_LabelSave")
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

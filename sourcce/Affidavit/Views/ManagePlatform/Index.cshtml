@@ -1,0 +1,27 @@
+﻿@using Affidavit.Utils
+
+@{
+    ViewBag.Title = "Admin - " + @TranslatorHelper.TranslateTextByIdentifier("Old_MicrosoftDevelopmentSummary");
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+}
+
+
+<div class="pagina">
+    <div class="centro">
+        <div> &nbsp;</div>
+        <div class="set" style="position: relative;z-index: 100000;">
+            @Html.Partial("_MenuNavegacion")
+        </div>
+
+        <div id="valla" style="background-image:url(@Url.Content("~/Content/images/valla_welcome.jpg")">
+            <h1>@TranslatorHelper.TranslateTextByIdentifier("Old_TittleImageLetterPage") </h1>
+        </div>
+        <div id="franja_valla">
+            <div class="centro">
+                <h4>Microsoft / @DateTime.Now.ToString("MMMM dd, yyy")</h4>
+            </div>
+        </div>
+    </div>
+</div>
+

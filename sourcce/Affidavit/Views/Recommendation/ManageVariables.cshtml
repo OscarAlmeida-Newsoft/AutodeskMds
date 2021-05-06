@@ -1,0 +1,101 @@
+﻿@model Affidavit.Models.ManagePlatform.ManageLandingNewVM
+@using Affidavit.Utils
+@{
+    ViewBag.Title = @TranslatorHelper.TranslateTextByIdentifier("Old_NewManageVariables");
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<script type="text/javascript" src="~/Scripts/Custom/bootbox.js"></script>
+@Styles.Render("~/Content/cssadmin")
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#CreateVariableButton").click(function (ev) {
+            var button = $(this);
+            loadingDiv.show();
+
+            //$('#addVariableModal').val('');
+            //$('#addVariableModal').modal('show');EditVariableButton
+
+            $.ajax({
+                url: ("CreateVariable"),
+                type: 'GET',
+            })
+                .done(function (data) {
+                    $('#variable-list').html(data);
+                    loadingDiv.hide();
+                    button.hide();
+                    return false;
+                })
+                .fail(function (err) {
+                    console.log(err);
+                    loadingDiv.hide();
+                });
+            loadingDiv.hide();
+
+        });
+
+        $(".EditVariableButton").click(function (ev) {
+            var button = $(this);
+            loadingDiv.show();
+
+            //$('#addVariableModal').val('');
+            //$('#addVariableModal').modal('show');EditVariableButton
+
+            $.ajax({
+                url: ("EditVariable"),
+                type: 'GET',
+                data: { pVariableID: button.data("variableid") }
+            })
+                .done(function (data) {
+                    $('#variable-list').html(data);
+                    loadingDiv.hide();
+                    return false;
+                })
+                .fail(function (err) {
+                    console.log(err);
+                    loadingDiv.hide();
+                });
+            loadingDiv.hide();
+
+        });
+    });
+
+</script>
+
+
+<style type="text/css">
+    body {
+        padding-top: 0px !important;
+    }
+</style>
+
+
+
+<div class="">
+    <div class="centro">
+        <div> &nbsp;</div>
+
+        <div class="set">
+            @Html.Partial("_MenuNavegacion")
+        </div>
+        
+        <div class="row">
+            <div class="col-md-12 ">
+                <ul style="padding: 3px;">
+                    <li style="float:left; width:50%;"><h3 class="titulo" style="font-size: xx-large;">@TranslatorHelper.TranslateTextByIdentifier("Old_NewManageVariables")</h3></li>
+                    <li style="float:left; width:90px;">
+                        @*<button type="button" id="CreateProductButton" class="btn btn_search" style="width: 160px; float:initial;">Create New Product </button>*@
+                        <button class="btn btn-primary btn-sm new-landing" id="CreateVariableButton" style="margin-top:27px;" data-toggle="tooltip" data-placement="top" title="Create New"><i class="fa fa-plus-circle fa-2x"></i></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <hr />
+
+        <div id="variable-list">
+            @{ Html.RenderAction("ManageVariableList");}
+        </div>
+
+    </div>
+</div>

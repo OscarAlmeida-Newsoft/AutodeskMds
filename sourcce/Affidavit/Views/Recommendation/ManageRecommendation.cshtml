@@ -1,0 +1,29 @@
+﻿@model Affidavit.Models.ManagePlatform.ManageLandingNewVM
+@using Affidavit.Utils
+@{
+    ViewBag.Title = @TranslatorHelper.TranslateTextByIdentifier("Old_NewManageRecommendations");
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<script type="text/javascript" src="~/Scripts/Custom/bootbox.js"></script>
+@Styles.Render("~/Content/cssadmin")
+
+
+<style type="text/css">
+    body {
+        padding-top: 0px !important;
+    }
+</style>
+
+
+
+<div class="pagina">
+    <div class="centro">
+        <div> &nbsp;</div>
+
+        <div class="set">
+            @Html.Partial("_MenuNavegacion")
+            <h2>@TranslatorHelper.TranslateTextByIdentifier("Old_NewManageRecommendations")</h2>
+        </div>
+    </div>
+</div>

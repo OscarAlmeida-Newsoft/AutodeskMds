@@ -1,0 +1,241 @@
+﻿@model Affidavit.Models.ChooseAnAction.ChooseAnActionVM
+@using Affidavit.Utils
+@{
+    ViewBag.Title = "Index";
+    var SAM360Provider = new SAM360Provider();
+}
+
+<!--================================= HEADER ======================================-->
+<!--================================= VALLA ======================================-->
+<div id="valla" class="sam" style="background-image:url(@Url.Content("~/Content/Images/valla_choose_activity.jpg")">
+    <h1>
+        @TranslatorHelper.TranslateTextByIdentifier("SAM")
+    </h1>
+
+</div>
+
+
+@section Scripts{
+    <script src="@Url.Content("~/Scripts/Custom/IndustryInsights/IndexBoard.js")"></script>
+    <script src="@Url.Content("~/Scripts/Custom/choose_an_action/chooseAnAction.js")"></script>
+    <script type="text/javascript">
+
+        var IdIndustry = '@(Model.IdIndustry ?? null)';
+
+        var gGetUrlAction = {
+            IndustryInsightsIndex: '@Url.Action("Index", "IndustryInsights", new { Id = 1})',
+            ListIndustries: '@Url.Action("ListIndustries", "IndustryInsights")',
+            MeasureMyPlataform: '@Url.Action("Index", "MyPlatform")',
+            IsSAM360On: '@SAM360Provider.GetSAM360On().ToString()'
+        };
+    </script>
+}
+
+@ViewBag.IsFinalVersionMDS
+<label id="NS_GridUrlActionGridCallBack" hidden>@Url.Action("GridListMyAssessmentCallback")</label>
+<!--================================= VALLA ======================================-->
+<!--================================= PAGINA ======================================-->
+<div id="pagina" class="sam">
+    <div class="seccion">
+        <div class="centro">
+            <div class="mds">
+                <div class="blue">
+                    <div class="logo"> <img src="@Url.Content("~/Content/Images/logo_mds_sam.png")" width="224" height="79" alt="mds"> </div>
+                    @Html.Raw(@TranslatorHelper.TranslateTextByIdentifier("Control_Software_Assets"))
+                    <div class="buttons">
+                        @if (Model.MDSPercentage == 0)
+                        {
+                            <a href="@Url.Action("Index","MDS")" target="_self" class="start">
+                                @TranslatorHelper.TranslateTextByIdentifier("MDS_Comenzar")
+                            </a>
+                        }
+                        else if (Model.MDSPercentage == 100)
+                        {
+
+                            <a href="@Url.Action("Index","MDS")" target="_self" class="well">
+                                @TranslatorHelper.TranslateTextByIdentifier("MDS_Completado")
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Index","MDS")" target="_self" class="start">
+                                @TranslatorHelper.TranslateTextByIdentifier("MDS_Continuar")
+                            </a>
+                        }
+
+                        <!--<a href = "#" target="_self" class="well">Well done</a>-->
+                    </div>
+
+                    <div class="contiene_indicador">
+                        @if (Model.MDSPercentage == 100)
+                        {
+
+
+                            <p>
+                                @TranslatorHelper.TranslateTextByIdentifier("MDS_Progreso_Completado")
+                            </p>
+                        }
+                        else
+                        {
+                            <p>
+                                @TranslatorHelper.TranslateTextByIdentifier("MDS_Progreso")
+                            </p>
+                        }
+
+                        <div class="indicador">
+                            <span style="width: @Model.MDSPercentage.ToString().Replace(",",".")%;"></span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="doubts">
+                    <h3>
+                        @TranslatorHelper.TranslateTextByIdentifier("Measure_Dudas")
+                    </h3>
+                    @if (Model.ShowMyplatformManualModal)
+                    {
+                        <p>
+                            <a href="#" target="_self" class="platform" id="measureMyPlatformAction">
+                                @Html.Raw(@TranslatorHelper.TranslateTextByIdentifier("Measure_Clic_Aqui"))
+                            </a>
+                        </p>
+                    }
+                    else
+                    {
+                        <p>
+                            <a onclick="redirectToSAMLive()" href="#" target="_self" class="platform">
+                                @*<a href="@Url.Action("MeasureMyPlataform")" target="_self" class="platform">*@
+                                @Html.Raw(@TranslatorHelper.TranslateTextByIdentifier("Measure_Clic_Aqui"))
+                            </a>
+                        </p>
+                    }
+
+                    <p>
+                        @TranslatorHelper.TranslateTextByIdentifier("Measure_Explicacion")
+                    </p>
+
+                </div>
+
+            </div>
+            <div class="assesments">
+                <div class="color">
+
+                    <!--Empieza Capa opacidad que impide el acceso a los Assesments-->
+                    @*<div class="capa">
+                            <h4>to get access to this assestments, <span>fill the mds first</span></h4>
+                        </div>*@
+                    <!--Termina Capa opacidad que impide el acceso a los Assesments-->
+
+
+
+                    <div id="grid-div">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @*<div class="seccion">
+            <div class="centro">
+                <h4>
+                    Get an up to date summary of your Software assets, using our on-line assessment or our self-inventory discovery tool. Select what is best for your need.
+                </h4>
+
+                <ul class="activities">
+                    <li>
+                        <a href="@Url.Action("Index","Assessment")" target="_self" class="red">
+                            Participate in
+                            <span>Assesments</span>
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="#" target="_self" class="yellow" id="measureMyPlatformAction">
+                            Measure
+                            <span>My platform</span>
+                        </a>
+                    </li>
+
+                </ul>
+
+
+            </div>
+        </div>*@
+
+
+</div>
+<!--================================= PAGINA ======================================-->
+@*<div id="opacidad">
+    </div>
+    <div id="modalConfirm" class="modal-new">
+
+        <div class="titulo">
+            <h2>Confirm</h2>
+            <p class="cerrar">
+            </p>
+        </div>
+        <div class="contenido-justificado">
+            <h5>You are being directed outside of the Microsoft domain.
+             Somsight TM is a registered trademark of Echez Group.
+            You can find information about Echez Group at the Microsoft Partner Center or with your
+            Microsoft software asset management consultant.</h5>
+        </div>
+        <input type="checkbox" id="showModalNextTime" value="Select next time" checked />
+        <div class="footer">
+            <button class="ok-button" id="SendAssessmentFinalOk">OK</button>
+            <button class="cancel-button">CANCEL</button>
+        </div>
+    </div>*@
+
+
+
+@*<div id="grid-div">
+    </div>*@
+
+
+<!--================================= bof MODAL NUEVO: 15 DICIEMBRE 2017 ======================================-->
+<div id="opacidadMeasure" class="platform">
+</div>
+
+
+
+<div id="modalMeasure" class="platform">
+    <div class="izk">
+        <h1>
+            @Html.Raw(@TranslatorHelper.TranslateTextByIdentifier("Measure_Modal_Texto_Intro"))
+        </h1>
+        <p>
+            <img src="@Url.Content("~/Content/Images/img_modal_assignments.jpg")" width="500" height="328" alt="microsoft">
+        </p>
+        <p class="cerrar"></p>
+    </div>
+    <div class="der">
+
+        <a onclick="gAnalytics.throwRedirectEvent('Click Download Agent Manual','SAM Live','@Url.Action("DownloadManual")')" href="#" target="_self" class="cloud single_line">
+            @TranslatorHelper.TranslateTextByIdentifier("Measure_Modal_Manual")
+        </a>
+
+        <a onclick="gAnalytics.throwRedirectEvent('Click Download Set Up File','SAM Live','@Url.Action("DownloadAgent")')" href="#" target="_self" class="cloud">
+            @Html.Raw(@TranslatorHelper.TranslateTextByIdentifier("Measure_Modal_Setup"))
+        </a>
+        <a style="cursor: pointer;" class="continue" id="SendAssessmentFinalOk">
+            @Html.Raw(@TranslatorHelper.TranslateTextByIdentifier("Measure_Modal_Continuar"))
+        </a>
+
+        <div class="row">
+            <input type="checkbox" name="" id="showModalNextTime" checked>
+            <label>
+                @TranslatorHelper.TranslateTextByIdentifier("Measure_Modal_Next_Time")
+            </label>
+        </div>
+    </div>
+
+</div>
+
+<div class="opacidad"></div>
+<div id="listIndustries" class="modal formulary height_220">
+
+</div>

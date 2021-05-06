@@ -1,0 +1,58 @@
+﻿@model List<List<string>>
+
+@if (Model != null && Model.Count > 0)
+{
+    <h1>Report</h1>
+
+    <select id="select-report-type">
+        @{
+            foreach (string aux in ViewBag.ReportList)
+            {
+                
+                <option value="@aux">@aux</option>
+            }
+        }
+    </select>
+    <hr />
+    <div id="report-container" style="width:100%;overflow:scroll; max-height:400px">
+        @Html.Partial("_MDSReportTable", Model)
+    </div>
+}
+else
+{
+    <h1>There are not reports for this company</h1>
+}
+<label id="NS_pLeadID" hidde class="hidden">@ViewBag.LeadID</label>
+<label id="NS_UrlActionGetSelectedReportInfo" hidde class="hidden">@Url.Action("GetSelectedReportInfo", "AdminMyPlatform")</label>
+
+<script>
+    $(document).ready(function () {
+        $("#select-report-type").change(function () {
+            var str = "";
+            $("#select-report-type option:selected").each(function () {
+                str += $(this).text() + " ";
+            });
+
+            loadingDiv.show();
+            $.ajax({
+                url: ($("#NS_UrlActionGetSelectedReportInfo").text()),
+                data: {
+                    pLeadID: $("#NS_pLeadID").text(),
+                    pReportName: str
+                },
+                type: 'POST',
+            })
+            .done(function (data) {
+                $('#report-container').html(data);
+                loadingDiv.hide();
+            })
+            .fail(function (err) {
+                loadingDiv.hide();
+                console.log(err);
+
+            });
+
+        });
+    });
+
+</script>

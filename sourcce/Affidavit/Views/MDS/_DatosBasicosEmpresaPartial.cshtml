@@ -1,0 +1,398 @@
+﻿@model Affidavit.Models.CompanyViewModel
+@using Affidavit.Utils
+
+
+@Html.HiddenFor(m => m.CompanyID)
+@Html.HiddenFor(m => m.CampaignID)
+@Html.HiddenFor(m => m.LeadID)
+@Html.HiddenFor(m => m.IsFinal)
+@Html.HiddenFor(m => m.IsLogOut)
+
+@Html.HiddenFor(m => m.CurrentTab)
+
+<!--===============================================-->
+<!--===============================================-->
+<!--===============================================-->
+
+<div class="seccion pagina_sencilla">
+    <fieldset @if (Model.IsFinal) { ViewContext.Writer.Write("disabled"); }>
+        <div class="centro" style="z-index: 10000;">
+            <h1 style="float:right !important; font-style: italic;">@Html.Label(@TranslatorHelper.TranslateTextByIdentifier("Old_LabelRquired"), new { @class = "control-label", @float = "right" })</h1>
+            <h1>@TranslatorHelper.TranslateTextByIdentifier("Old_EncabezadoDatosBasicos")</h1>
+            <hr />
+            <div class="set">
+                <div class="col_3 ">
+                    * @Html.LabelFor(model => model.CompanyName, new { @class = "control-label", value = "Jorge Empresa" })
+                    @Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control", @maxlength = "120", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.CompanyName)
+                </div>
+                <div class="col_3">
+                    * @Html.LabelFor(model => model.NombreContacto, new { @class = "control-label" })
+                    @Html.EditorFor(model => model.NombreContacto, new { htmlAttributes = new { @class = "form-control", @maxlength = "50" } })
+                    @Html.ValidationMessageFor(model => model.NombreContacto)
+                </div>
+                <div class="col_3">
+                    * @Html.LabelFor(model => model.Email, new { @class = "control-label", @type = "email" })
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control EmailValidation", @data_message = "Required", @maxlength = "50" } })
+                    @Html.ValidationMessageFor(model => model.Email)
+                </div>
+                <div class="col_3">
+                    * @Html.LabelFor(model => model.Telefono, new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control", @type = "phone", @maxlength = "50" } })
+                    @Html.ValidationMessageFor(model => model.Telefono)
+                </div>
+            </div>
+
+            <div class="set">
+                <div class="col_6">
+                    * @Html.LabelFor(model => model.Industria, new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.IndustryID, Model.Industries, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.IndustryID)
+                </div>
+                <div class="col_3">
+                    @Html.LabelFor(model => model.Fecha, new { @class = "control-label", @hidden = true })
+                    @Html.EditorFor(model => model.Fecha, new { htmlAttributes = new { @id = "basic_date", required = "required", @readonly = "readonly", @hidden = true } })
+                    <label id="emailMessage" style="color: red;" hidden>@TranslatorHelper.TranslateTextByIdentifier("Old_EmailAddressField")</label>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="gris">
+            <div class="centro radios_horizontales">
+                <h1 class="required-label">@TranslatorHelper.TranslateTextByIdentifier("Old_EncabezadoTipoCliente")</h1>
+                <hr />
+                <div class="automatico">
+                    @foreach (var item in Model.TipoCliente.ToSelectList().ToList())
+                    {
+                        <label class="automatico">
+                            @Html.RadioButtonFor(model => model.TipoCliente, item.Value)
+                            @switch (item.Text)
+                            {
+                                case "Comercial":
+                                    @TranslatorHelper.TranslateTextByIdentifier("Old_LabelComercial");
+                                    break;
+                                case "Partner":
+                                    @TranslatorHelper.TranslateTextByIdentifier("Old_LabelPartner");
+                                    break;
+                                case "Academic":
+                                    @TranslatorHelper.TranslateTextByIdentifier("Old_LabelAcademico");
+                                    break;
+                                case "DeveloperPartner":
+                                    @TranslatorHelper.TranslateTextByIdentifier("Old_LabelPartnerDesarrollador");
+                                    break;
+                                case "PublicSector":
+                                    @TranslatorHelper.TranslateTextByIdentifier("Old_LabelPublicSector");
+                                    break;
+                            }
+
+                        </label>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="centro">
+            <h1>@TranslatorHelper.TranslateTextByIdentifier("Old_EncabezadoDatosGeneralesEquipos")</h1>
+            <hr />
+            <div class="set">
+                <div class="col_4">
+                    @Html.LabelFor(model => model.NumeroTotalEmpleados, new { @class = "control-label required-label lines-2" })
+                    @Html.EditorFor(model => model.NumeroTotalEmpleados, new { htmlAttributes = new { @class = "form-control integerOnly", @type = "number", @min = 0 } })
+                    @Html.ValidationMessageFor(model => model.NumeroTotalEmpleados)
+                </div>
+                <div class="col_4">
+                        @Html.LabelFor(model => model.NumeroPCsEscritorio, new { @class = "control-label required-label lines-2" })
+                        @*@Html.Label(@Model.NumeroPCsEscritorio +"*", new { @class = "control-label" })*@
+                        @Html.EditorFor(model => model.NumeroPCsEscritorio, new { htmlAttributes = new { @class = "form-control integerOnly", @type = "number", @min = 0 } })
+                        @Html.ValidationMessageFor(model => model.NumeroPCsEscritorio)
+                </div>
+                <div class="col_4" hidden>
+                    @Html.LabelFor(model => model.NumeroPortatiles, new { @class = "col-sm-8 control-label lines-2" })
+                    @Html.EditorFor(model => model.NumeroPortatiles, new { htmlAttributes = new { @class = "form-control integerOnly", @type = "number", @min = 0 } })
+                    @Html.ValidationMessageFor(model => model.NumeroPortatiles)
+                </div>
+                <div class="col_4">
+                    @Html.LabelFor(model => model.NumeroPCsOtrosSO, new { @class = "col-sm-8 control-label lines-2" })
+                    @Html.EditorFor(model => model.NumeroPCsOtrosSO, new { htmlAttributes = new { @class = "form-control integerOnly", @type = "number", @min = 0 } })
+                    @Html.ValidationMessageFor(model => model.NumeroPCsOtrosSO)
+                </div>
+            </div>
+            <div class="set">
+                <div class="col_4">
+                    @Html.LabelFor(model => model.NumeroServidoresFisicos, new { @class = "col-sm-8 control-label lines-2" })
+                    @Html.EditorFor(model => model.NumeroServidoresFisicos, new { htmlAttributes = new { @class = "form-control integerOnly serverChange", @id = "physicServer", @type = "text", @onkeypress = "return event.charCode >= 48 && event.charCode <= 57", @min = 0 } })
+                    @Html.ValidationMessageFor(model => model.NumeroServidoresFisicos)
+                </div>
+                <div class="col_4">
+                    @Html.LabelFor(model => model.NumeroServidoresVirtuales, new { @class = "col-sm-8 control-label lines-2" })
+                    @Html.EditorFor(model => model.NumeroServidoresVirtuales, new { htmlAttributes = new { @class = "form-control integerOnly serverChange", @id = "virtualServer", @type = "text", @onkeypress = "return event.charCode >= 48 && event.charCode <= 57", @min = 0 } })
+                    @Html.ValidationMessageFor(model => model.NumeroServidoresVirtuales)
+                </div>
+                <div class="col_4">
+                    @Html.LabelFor(model => model.NumeroServidoresSQL, new { @class = "col-sm-8 control-label lines-2" })
+                    @Html.EditorFor(model => model.NumeroServidoresSQL, new { htmlAttributes = new { @class = "form-control integerOnly serverChange",@id = "sqlServer", @type = "text", @onkeypress= "return event.charCode >= 48 && event.charCode <= 57", @min = 0 } })
+                    @Html.ValidationMessageFor(model => model.NumeroServidoresSQL)
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="gris">
+            <div class="centro radios_horizontales">
+                <h1>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelInvoicing")</h1>
+                <hr />
+                <div class="set">
+                    <div class="col_6 radios_horizontales">
+                        <div>
+                            <label class="mas_margen">@TranslatorHelper.TranslateTextByIdentifier("Old_EncabezadoProcesoCompra")</label><br />
+                        </div>
+                        @*@foreach (var item in Model.ProcesoCompra.ToSelectList().ToList())
+                            {
+                                <div class="automatico">
+                                    <label class="automatico">
+                                        @Html.RadioButtonFor(model => model.ProcesoCompra, item.Value)
+                                        @switch (item.Text)
+                                        {
+                                            case "RegisteredName":
+                                                @TranslatorHelper.TranslateTextByIdentifier("Old_LabelRazonSocial");
+                                                break;
+                                            case "NaturalPerson":
+                                                @TranslatorHelper.TranslateTextByIdentifier("Old_LabelPersonaNatural");
+                                                break;
+                                            case "TradeName":
+                                                @TranslatorHelper.TranslateTextByIdentifier("Old_LabelNombreComercial");
+                                                break;
+                                        }
+                                    </label>
+                                </div>
+                            }*@
+                        <div class="automatico">
+                            @Html.RadioButtonFor(model => model.ProcesoCompra, "true", new { id = "procesoCompraSi" })
+                            @Html.Label("procesoCompraSi", @TranslatorHelper.TranslateTextByIdentifier("Old_LabelSi"))
+                        </div>
+                        <div class="automatico">
+                            @Html.RadioButtonFor(model => model.ProcesoCompra, "false", new { id = "procesoCompraNo" })
+                            @Html.Label("procesoCompraNo", @TranslatorHelper.TranslateTextByIdentifier("Old_LabelNo"))
+                        </div>
+                    </div>
+                    <div class="col_6" id="txtboxProcesoCompra" @{ if ((!Model.ProcesoCompra == true)) { @Html.Raw("Style=\"display:none;\"") ; } }>
+                        <label class="required-label">@TranslatorHelper.TranslateTextByIdentifier("Old_LabelNombreExactoFacturacion").</label>
+                        @Html.EditorFor(model => model.NombreExactoFacturacion, new { htmlAttributes = new { @class = "form-control", @maxlength = "50" } })
+                        @Html.ValidationMessageFor(model => model.NombreExactoFacturacion)
+                    </div>
+
+                </div>
+                <hr />
+                <label class="mas_margen">@TranslatorHelper.TranslateTextByIdentifier("Old_EncabezadoContratosVolumen"):</label>
+                @{ var _cont = 0; }
+                @for (int i = 0; i < 9; i++)
+            {
+                if (_cont == 0)
+                {
+                        @Html.Raw("<div class=\"set\">");
+                }
+
+                _cont++;
+                    @Html.Raw("<div class=\"col_3\">");
+                    @Html.TextBox("ContratosPorVolumen[" + i + "]", Model.ContratosPorVolumen[i], new { @class = "form-control contratosVolumen", @maxlength = "15" })
+                    @Html.Raw("</div>");
+
+                if (_cont == 4)
+                {
+                        @Html.Raw("</div>");
+                    _cont = 0;
+                }
+            }
+                @if (_cont < 4)
+            {
+                    @Html.Raw("</div>");
+            }
+
+            </div>
+        </div>
+
+
+        <div class="centro">
+            <div id="PartnerDiv" @{ if (!(Model.TipoCliente.ToString() == "Partner" || Model.TipoCliente.ToString() == "DeveloperPartner")) { @Html.Raw("Style=\"display:none;\"") ; } }>
+                @{
+                    var _programas = Model.Programas.ToList();
+                    double _totalProgramas = Model.Programas.Count();
+                    double _mitadProgamas = _totalProgramas / 2;
+                    int _mitad1 = Convert.ToInt32(Math.Ceiling(_mitadProgamas));
+                    int _mitad2 = Convert.ToInt32(Math.Floor(_mitadProgamas));
+                    int _enumerador = 0;
+
+                    var _competencias = Model.Competencias.ToList();
+                    double _totalCompetencias = Model.Competencias.Count();
+                    double _mitadCompetencias = _totalCompetencias / 2;
+                    int _mitadCompetencias1 = Convert.ToInt32(Math.Ceiling(_mitadCompetencias));
+                    int _mitadCompetencias2 = Convert.ToInt32(Math.Floor(_mitadCompetencias));
+                    int _enumeradorCompetencias = 0;
+
+                }
+
+                <h1>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelMSPartnersNetwork")</h1>
+                <hr />
+                <p>@TranslatorHelper.TranslateTextByIdentifier("Old_PartnerNetworkMessage").</p>
+                <hr />
+                <div class="set">
+                    <div class="col_6">
+                        <table border="0" cellspacing="0" cellpadding="0" class="especial_01">
+                            <tr class="cabezote">
+                                <td>@TranslatorHelper.TranslateTextByIdentifier("Old_ProgramType")</td>
+                                <td>@TranslatorHelper.TranslateTextByIdentifier("Old_IdPartner")</td>
+                                <td>@TranslatorHelper.TranslateTextByIdentifier("Old_FechaVencimiento")</td>
+                            </tr>
+
+                            @for (_enumerador = 0; _enumerador < _mitad1; _enumerador++)
+                            {
+
+                                var _valorSelect = Model.ProgramCompanyDTOList.Where(x => x.PartnerProgramID == _programas[_enumerador].PartnerProgramID);
+                                string _valorFinalIDPartner = (_valorSelect.Count() == 0) ? null : _valorSelect.First().IDPartner;
+                                string _valorFinalExpDate = (_valorSelect.Count() == 0) ? null : _valorSelect.First().ExpirationDate.ToString();
+                                <tr>
+                                    <td>@_programas[_enumerador].PartnerProgramName</td>
+                                    <td>@Html.TextBox("ProgramasPartnerID[" + _enumerador + "]", _valorFinalIDPartner, new { @class = "form-control integerOnly", @maxlength = "10" })</td>
+                                    <td>@Html.TextBox("ProgramasDate[" + _enumerador + "]", _valorFinalExpDate, new { @class = "form-control form-control datepicker partnerDate" })</td>
+                                </tr>
+
+                            }
+                        </table>
+                    </div>
+                    <div class="col_6">
+                        <table border="0" cellspacing="0" cellpadding="0" class="especial_01">
+                            <tr class="cabezote">
+                                <td>@TranslatorHelper.TranslateTextByIdentifier("Old_ProgramType")</td>
+                                <td>@TranslatorHelper.TranslateTextByIdentifier("Old_IdPartner")</td>
+                                <td>@TranslatorHelper.TranslateTextByIdentifier("Old_FechaVencimiento")</td>
+                            </tr>
+
+                            @for (int i = 0; i < _mitad2; i++)
+                            {
+                                var _valorSelect = Model.ProgramCompanyDTOList.Where(x => x.PartnerProgramID == _programas[i + _enumerador].PartnerProgramID);
+                                string _valorFinalIDPartner = (_valorSelect.Count() == 0) ? null : _valorSelect.First().IDPartner;
+                                string _valorFinalExpDate = (_valorSelect.Count() == 0) ? null : _valorSelect.First().ExpirationDate.ToString();
+                                <tr>
+                                    <td>@_programas[(i + _enumerador)].PartnerProgramName</td>
+                                    <td>@Html.TextBox("ProgramasPartnerID[" + (i + _enumerador) + "]", _valorFinalIDPartner, new { @class = "form-control integerOnly", @maxlength = "10" })</td>
+                                    <td>@Html.TextBox("ProgramasDate[" + (i + _enumerador) + "]", _valorFinalExpDate, new { @class = "form-control form-control datepicker partnerDate" })</td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+                <hr />
+
+                <div class="set">
+                    <div class="col_6">
+                        <table border="0" cellspacing="0" cellpadding="0" class="especial_02">
+                            <tr class="cabezote">
+                                <td>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelCompetencia")</td>
+                                <td>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelNivel")</td>
+                                <td>@TranslatorHelper.TranslateTextByIdentifier("Old_IdPartner")</td>
+                                <td>@TranslatorHelper.TranslateTextByIdentifier("Old_FechaRenovacion")</td>
+                            </tr>
+
+                            @for (_enumeradorCompetencias = 0; _enumeradorCompetencias < _mitadCompetencias1; _enumeradorCompetencias++)
+                            {
+                                var _valorSelect = Model.CapabilityCompanyDTOList.Where(x => x.PartnerCapabilityID == _competencias[_enumeradorCompetencias].PartnerCapabilityID);
+                                string _valorFinalLevel = (_valorSelect.Count() == 0) ? null : _valorSelect.First().Category;
+                                string _valorFinalPartnerId = (_valorSelect.Count() == 0) ? null : _valorSelect.First().IDPartner;
+                                string _valorFinalDate = (_valorSelect.Count() == 0) ? null : _valorSelect.First().RenovationDate.ToString();
+
+                                <tr>
+                                    <td>@_competencias[_enumeradorCompetencias].PartnerCapabilityName</td>
+                                    <td>@Html.TextBox("CompetenciasLevel[" + _enumeradorCompetencias + "]", _valorFinalLevel, new { @class = "form-control", @maxlength = "10" })</td>
+                                    <td>@Html.TextBox("CompetenciasPartnerID[" + _enumeradorCompetencias + "]", _valorFinalPartnerId, new { @class = "form-control integerOnly", @maxlength = "10" })</td>
+                                    <td>@Html.TextBox("CompetenciasDate[" + _enumeradorCompetencias + "]", _valorFinalDate, new { @class = "form-control form-control datepicker partnerDate" })</td>
+                                </tr>
+                            }
+
+
+                        </table>
+                    </div>
+                    <div class="col_6">
+                        <table border="0" cellspacing="0" cellpadding="0" class="especial_02">
+                            <tr class="cabezote">
+                                <td>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelCompetencia")</td>
+                                <td>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelNivel")</td>
+                                <td>@TranslatorHelper.TranslateTextByIdentifier("Old_IdPartner")</td>
+                                <td>@TranslatorHelper.TranslateTextByIdentifier("Old_FechaRenovacion")</td>
+                            </tr>
+
+                            @for (int i = 0; i < _mitadCompetencias2; i++)
+                            {
+                                var _valorSelect = Model.CapabilityCompanyDTOList.Where(x => x.PartnerCapabilityID == _competencias[i + _enumeradorCompetencias].PartnerCapabilityID);
+                                string _valorFinalLevel = (_valorSelect.Count() == 0) ? null : _valorSelect.First().Category;
+                                string _valorFinalPartnerId = (_valorSelect.Count() == 0) ? null : _valorSelect.First().IDPartner;
+                                string _valorFinalDate = (_valorSelect.Count() == 0) ? null : _valorSelect.First().RenovationDate.ToString();
+
+                                <tr>
+                                    <td>@_competencias[(i + _enumeradorCompetencias)].PartnerCapabilityName</td>
+                                    <td>@Html.TextBox("CompetenciasLevel[" + (i + _enumeradorCompetencias) + "]", _valorFinalLevel, new { @class = "form-control", @maxlength = "10" })</td>
+                                    <td>@Html.TextBox("CompetenciasPartnerID[" + (i + _enumeradorCompetencias) + "]", _valorFinalPartnerId, new { @class = "form-control integerOnly", @maxlength = "10" })</td>
+                                    <td>@Html.TextBox("CompetenciasDate[" + (i + _enumeradorCompetencias) + "]", _valorFinalDate, new { @class = "form-control form-control datepicker partnerDate" })</td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="AcademicDiv" class="centro" @{ if (!(Model.TipoCliente.ToString() == "Academic")) { @Html.Raw("Style=\"display:none;\"") ; } }>
+            <h1>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelInformacionAcademica") <span hidden>****Preguntar titulo****</span></h1>
+            <hr />
+            <h2>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelTeachers")</h2>
+            <div class="set">
+                <div class="col_3">
+                    <label>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelPartial"):</label>
+                    @Html.EditorFor(m => m.AcademicQttyTeachersPartialTime, new { htmlAttributes = new { @class = "form-control integerOnly", @type = "number", @min = 0, max = "999" } })
+                </div>
+                <div class="col_3">
+                    <label>Full:</label>
+                    @Html.EditorFor(m => m.AcademicQttyTeachersFullTime, new { htmlAttributes = new { @class = "form-control integerOnly", @type = "number", @min = 0, @max = "999" } })
+                </div>
+            </div>
+            <h2>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelAdmEmployees")</h2>
+            <div class="set">
+                <div class="col_3">
+                    <label>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelPartial"):</label>
+                    @Html.EditorFor(m => m.AcademicQttyAdmEmpPartialTime, new { htmlAttributes = new { @class = "form-control integerOnly", @type = "number", @min = 0, @max = "999" } })
+                </div>
+                <div class="col_3">
+                    <label>Full:</label>
+                    @Html.EditorFor(m => m.AcademicQttyAdmEmpFullTime, new { htmlAttributes = new { @class = "form-control integerOnly", @type = "number", @min = 0, @max = "9999" } })
+                </div>
+            </div>
+        </div>
+
+        <!--================================= CONTROLES ======================================-->
+        <div class="controles">
+            <div class="centro">
+                <ul class="bloques centro">
+                    @if (!Model.IsFinal)
+                    {
+                        <li class="azul">
+                            <a href="#" target="_self" class="botonEnviar" data-tabnumber="1">
+                                <span>
+                                    @TranslatorHelper.TranslateTextByIdentifier("Old_LabelBorrador").ToUpper()
+                                </span>
+                            </a>
+                        </li>
+                    }
+                    <li class="azul der">
+                        <a href="#" target="_self" class="next_paso_1"><span>@TranslatorHelper.TranslateTextByIdentifier("Old_LabelNext")</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </fieldset>
+</div>
+<!--================================= CONTROLES ======================================-->
+<!--===============================================-->
+<!--===============================================-->
+<!--===============================================-->

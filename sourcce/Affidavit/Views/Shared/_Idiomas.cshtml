@@ -1,0 +1,25 @@
+﻿@using Affidavit.Helpers
+@{
+    var _currentCulture = CultureHelper.GetCurrentCulture();
+    var _culCurr = CultureHelper.GetCultureName(_currentCulture);    
+}
+
+<p>
+    <span class="flag"><img src="@string.Format(Url.Content("~/Content/images/flag_{0}.{1}"),_currentCulture,"png")" width="16" height="14"></span>
+    <span class="palabra">@_culCurr</span>
+    <span class="flecha"></span>
+</p>
+<ul style="z-index:1000; margin-top:-1px;">
+    @foreach (var item in CultureHelper._cultures)
+    {
+        var _cul = CultureHelper.GetCultureName(item);
+        <li>
+            <a href="#" target="_self" onclick="changeLanguage('@item')">
+                <span class="flag"><img src="@string.Format(Url.Content("~/Content/images/flag_{0}.{1}"),item,"png")" width="16" height="14" /></span>
+                <span class="palabra">@_cul</span>
+                <span class="flecha"></span>
+            </a>
+        </li>
+    }
+</ul>
+

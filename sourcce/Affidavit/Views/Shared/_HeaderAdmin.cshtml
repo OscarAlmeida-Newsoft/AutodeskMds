@@ -1,0 +1,62 @@
+﻿@using Affidavit.Helpers
+@using Affidavit.Utils
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <title>@ViewBag.Title - @TranslatorHelper.TranslateTextByIdentifier("Old_MicrosoftDevelopmentSummary")</title>
+   
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @*@Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")*@
+
+
+</head>
+
+@{
+    var _currentCulture = CultureHelper.GetCurrentCulture();
+    var _culCurr = CultureHelper.GetCultureName(_currentCulture);
+}
+<body class="fondo" style="background-image:url(@Url.Content("~/Content/images/foto_1_cover.jpg")">
+    <div id="proceso_en_ejecucion" style="display:none;">
+        <div>
+            <img src='@Url.Content("~/Content/images/processing.gif")' width="58" height="58">
+        </div>
+    </div>
+    <div id="header" style="position:relative;z-index: 2;">
+        <div class="centro">
+            <!--================================================-->
+            <a class="logo" target="_self"><img src='@Url.Content("~/Content/images/logo.png")' width="164" height="60" alt=""></a>
+            @*<h1 class="invisible">@TranslatorHelper.TranslateTextByIdentifier("Old_MicrosoftDevelopmentSummary")</h1>*@
+        </div>
+    </div>
+
+    @using (Html.BeginForm("SetCulture", "Home", FormMethod.Post, new { id = "langForm", name = "langForm" }))
+    {
+        <input type="hidden" name="returnUrl" id="returnUrl" value="@Request.Url" />
+        <input type="hidden" name="culture" id="culture" value="" />
+        <input type="hidden" name="leadID" id="leadIDCulture" value="" />
+        <input type="hidden" name="languageID" id="languageID" value="" />
+    }
+
+    @*<div id="loading">
+            <div id="loading-gif">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw" aria-hidden="true"></i>
+            </div>
+        </div>*@
+
+    
+
+    <script type="text/javascript">
+        function changeLanguage(langId) {
+            $("#langForm > #culture").val(langId);
+            $("#langForm > #leadIDCulture").val($('#leadID').val());
+            $("#langForm > #languageID").val($('#languageID').text());
+
+            $("#langForm").submit();
+        }
+    </script>
+
+

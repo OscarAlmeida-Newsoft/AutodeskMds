@@ -1,0 +1,42 @@
+﻿@using Affidavit.Helpers
+
+<!--================================= ICONO HELP FIXED (lanza modal infografia) ======================================-->
+<a  id="ico_help_mds_fixed" title="Help">
+    <span>Help</span>
+</a>
+
+
+<!--================================= MODAL INFOGRAFIA ======================================-->
+<div class="opacidad_modal_infografia" style="display: none;"></div>
+<div class="modal_infografia" style="display: none;">
+    <a href="#" class="modal_infografia_close"><span>Close</span></a>
+    @if (CultureHelper.GetCurrentCulture() == "es" || CultureHelper.GetCurrentCulture() == "es-ES")
+    {
+        <img src="@Url.Content("~/Content/Images/infografia-mds-es.png")" />
+    }
+    else
+    {
+        <img src="@Url.Content("~/Content/Images/infografia-mds.png")" />
+    }
+</div>
+
+<script>
+    /*---Infografia modal en login (2018-02-08)---*/
+    //Cierra modal infografia
+    $(".modal_infografia_close, .modal_infografia").click(function () {
+        $(".opacidad_modal_infografia, .modal_infografia").hide();
+        return false;
+    });
+    //Boton fijo abre modal infografia
+    $("#ico_help_mds_fixed").click(function () {
+        $(".opacidad_modal_infografia, .modal_infografia").show();
+        return false;
+    });
+
+
+    /*---Cierra alertas modales (semáforo) (2018-02-08)---*/
+    $(".boton_alerta_modal").click(function () {
+        $(".alertas_modales, .opacidad_alertas_modales").hide();
+        return false;
+    });
+</script>

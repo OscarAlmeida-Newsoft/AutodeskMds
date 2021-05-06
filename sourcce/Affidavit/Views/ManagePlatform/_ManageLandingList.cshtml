@@ -1,0 +1,122 @@
+﻿@model Affidavit.Models.ManagePlatform.ManageLandingVM
+@using Affidavit.Helpers
+@using Affidavit.Utils
+
+<script type="text/javascript" src="~/Scripts/Custom/bootbox.js"></script>
+
+@*<link rel="stylesheet" type="text/css" href="~/Content/estilos_base.css" media="screen" />*@
+
+<div class="table-scroll-div">
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered">
+            <thead class="thead-default table-header-tittle">
+                <tr>
+                    <th class="text-center text-uppercase ">
+                        <label>@TranslatorHelper.TranslateTextByIdentifier("Old_CampaignAdmin")</label>
+                    </th>
+                    <th class="text-center text-uppercase ">
+                        <label>@TranslatorHelper.TranslateTextByIdentifier("Old_CountryAdmin")</label>
+                    </th>
+                    <th class="text-center text-uppercase">
+                        <label>@TranslatorHelper.TranslateTextByIdentifier("Old_CreatedByAdmin")</label>
+                    </th>
+                    <th class="text-center text-uppercase">
+                        <label>@TranslatorHelper.TranslateTextByIdentifier("Old_CreatedDateAdmin")</label>
+                    </th>
+                    <th class="text-center text-uppercase">
+                        <label>@TranslatorHelper.TranslateTextByIdentifier("Old_ActionsAdmin")</label>
+                    </th>
+                </tr>
+                <tr class="filter-table">
+                    <th>
+                        <div class="input-group">
+                            <input type="text" class="form-control input-sm filter-text" placeholder="" value="@Model.filters.Campaing">
+                            <span class="input-group-btn">
+                                <button class="btn btn-link btn-sm btn-filter" type="button" data-filtername="Campaing"><i class="fa fa-filter"></i></button>
+                            </span>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="input-group">
+                            <input type="text" class="form-control input-sm filter-text" placeholder="" value="@Model.filters.Country">
+                            <span class="input-group-btn">
+                                <button class="btn btn-link btn-sm btn-filter" type="button" data-filtername="Country"><i class="fa fa-filter"></i></button>
+                            </span>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="input-group">
+                            <input type="text" class="form-control input-sm filter-text" placeholder="" value="@Model.filters.CreatedBy">
+                            <span class="input-group-btn">
+                                <button class="btn btn-link btn-sm btn-filter" type="button" data-filtername="CreatedBy"><i class="fa fa-filter"></i></button>
+                            </span>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="input-group">
+                            <input type="text" class="form-control input-sm filter-text" placeholder="" value="@Model.filters.CreatedDate">
+                            <span class="input-group-btn">
+                                <button class="btn btn-link btn-sm btn-filter" type="button" data-filtername="CreatedDate"><i class="fa fa-filter"></i></button>
+                            </span>
+                        </div>
+                    </th>
+                    <th style="text-align:center;">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button class="btn btn-sm btn-clear-filters" type="button" data-filtername="CreatedDate"><i class="fa fa-repeat"></i> @TranslatorHelper.TranslateTextByIdentifier("Old_ClearFiltersAdmin")</button>
+                            </span>
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <td colspan="5" style="text-align:center;">
+                        @Html.NSPagination(Model.pageSettings)
+                    </td>
+                </tr>
+            </tfoot>
+            <tbody>
+                @foreach (var item in Model.landingCampaignPagination)
+                {
+                    <tr>
+                        <td>
+                            @item.Campaing
+                        </td>
+                        <td>
+                            @item.CountryName
+                        </td>
+                        <td>
+                            @item.CreatedBy.UserName
+                        </td>
+                        <td class="text-center">
+                            @item.CreatedDate.ToShortDateString()
+                        </td>
+                        <td class="text-center">
+                            <button class="btn btn-sm edit-landing" data-landingid="@item.Id" data-landingcampaign="@item.Campaing" data-toggle="tooltip" data-placement="top" data-landingcountry="@item.CountryId" title="@TranslatorHelper.TranslateTextByIdentifier("Old_EditAdmin")">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                            <button class="btn btn-sm remove-landing" data-landingid="@item.Id" data-landingcampaign="@item.Campaing" data-toggle="tooltip" data-placement="top" title="@TranslatorHelper.TranslateTextByIdentifier("Old_DeleteAdmin")">
+                                <i class="fa fa-remove"></i>
+                            </button>
+                            <button class="btn btn-sm use-landing" data-landingid="@item.Id" data-landingcampaign="@item.Campaing" data-toggle="tooltip" data-placement="top" title="@TranslatorHelper.TranslateTextByIdentifier("Old_UseTemplateAdmin")">
+                                <i class="fa fa-files-o"></i>
+                            </button>
+                            <button class="btn btn-sm use-landing-multiple" data-landingid="@item.Id" data-landingcampaign="@item.Campaing" data-toggle="tooltip" data-placement="top" title="@TranslatorHelper.TranslateTextByIdentifier("Old_AssignToMultipleCampaignsAdmin")">
+                                <i class="fa fa-list-ol"></i>
+                            </button>
+                        </td>
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    });
+</script>

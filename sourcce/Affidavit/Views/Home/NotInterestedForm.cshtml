@@ -1,0 +1,451 @@
+﻿@model Affidavit.Models.SurveyQuestionResponseVM
+@using Affidavit.Utils
+
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_LayoutSomSight.cshtml";
+}
+
+
+<script>
+
+    $(document).on("click", "#sendForm", function (e) {
+        e.preventDefault();
+        console.log("Send");
+        Validate();
+
+        if (Validate()) {
+            $('#FormSurveyQuestion').submit();
+        }
+    });
+
+
+    function ViewQuestion() {
+        $.ajax({
+            url: '@Url.Action("ViewQuestion")',
+            data: { pLeadID: $('#HiddenLeadID').val() },
+            type: 'GET',
+            cache: false,
+            success: function (result) {
+                $('#contentQuestion').html(result);
+                //$.validator.unobtrusive.parse('#FormSurveyQuestion');
+                $('#disagreeReasonModal').modal({ backdrop: "static" }, { keyboard: false });
+            },
+            error: function () {
+                Lobibox.alert('error', {
+                    msg: "An error occurred while processing your request."
+                });
+            }
+        });
+        return false;
+    }
+
+    function OnSuccess(data) {
+
+        console.log("OnSuccess");
+        var pSuccess = JSON.stringify(data.pSuccess);
+        var pMensaje = JSON.stringify(data.pMessage);
+        if (pSuccess == "true") {
+
+            $('.mensaje_confirmacion p').text(pMensaje);
+            $('.mensaje_confirmacion').show('slow');
+            //toastMessage.show(pMensaje, "alert-success");
+            //$('#disagreeReasonModal').modal('hide');
+            loadingDiv.hide();
+            setTimeout(RedirectToLogin, 4000);
+        } else {
+            loadingDiv.hide();
+            $('.mensaje_alerta p').text(pMensaje);
+            $('.mensaje_alerta').show('slow');
+        }
+
+    }
+
+    function RedirectToLogin() {
+        window.location.href = "Login/?pLeadID=" + '@Model.LeadId';
+    }
+
+    function OnFailure(data) {
+        var pMensaje = JSON.stringify(data.pMensaje);
+        alert('Error de insercion');
+    }
+
+    //$(document).on("click", "#sendDesagreeReason",
+    function Validate() {
+        console.log("validate");
+        console.log($("input[name=SurveyQuestion5Response]")[0].value);
+        var isValid = false;
+        $('.mensaje_alerta').hide();
+
+        if (!$("input[name=SurveyQuestion1Response]")[0].checked && !$("input[name=SurveyQuestion1Response]")[1].checked && !$("input[name=SurveyQuestion1Response]")[2].checked &&
+            !$("input[name=SurveyQuestion1Response]")[3].checked && !$("input[name=SurveyQuestion1Response]")[4].checked && !$("input[name=SurveyQuestion1Response]")[5].checked) {
+
+            $('.mensaje_alerta p').text('@TranslatorHelper.TranslateTextByIdentifier("Old_SurveyQuestion1Empty")');
+            $('.mensaje_alerta').show('slow');
+            //toastMessage.show('@TranslatorHelper.TranslateTextByIdentifier("Old_SurveyQuestion1Empty")', "alert-danger");
+
+        }
+
+        else if (!$("input[name=SurveyQuestion2Response]")[0].checked && !$("input[name=SurveyQuestion2Response]")[1].checked && !$("input[name=SurveyQuestion2Response]")[2].checked &&
+            !$("input[name=SurveyQuestion2Response]")[3].checked && !$("input[name=SurveyQuestion2Response]")[4].checked && !$("input[name=SurveyQuestion2Response]")[5].checked &&
+            !$("input[name=SurveyQuestion2Response]")[6].checked && !$("input[name=SurveyQuestion2Response]")[7].checked) {
+
+            $('.mensaje_alerta p').text('@TranslatorHelper.TranslateTextByIdentifier("Old_SurveyQuestion2Empty")');
+            $('.mensaje_alerta').show('slow');
+            //toastMessage.show('@TranslatorHelper.TranslateTextByIdentifier("Old_SurveyQuestion2Empty")', "alert-danger");
+
+        }
+
+        @*else if (!$("input[name=SurveyQuestion3Response]")[0].checked && !$("input[name=SurveyQuestion3Response]")[1].checked && !$("input[name=SurveyQuestion3Response]")[2].checked &&
+            !$("input[name=SurveyQuestion3Response]")[3].checked && !$("input[name=SurveyQuestion3Response]")[4].checked && !$("input[name=SurveyQuestion3Response]")[5].checked &&
+            !$("input[name=SurveyQuestion3Response]")[6].checked && !$("input[name=SurveyQuestion3Response]")[7].checked && !$("input[name=SurveyQuestion3Response]")[8].checked) {
+
+            $('.mensaje_alerta p').text('@TranslatorHelper.TranslateTextByIdentifier("Old_SurveyQuestion3Empty")');
+            $('.mensaje_alerta').show('slow');
+            //toastMessage.show('@TranslatorHelper.TranslateTextByIdentifier("Old_SurveyQuestion3Empty")', "alert-danger");
+
+        }*@
+
+        @*else if ((!$("input[name=SurveyQuestion4Option1Value]")[0].checked && !$("input[name=SurveyQuestion4Option1Value]")[1].checked && !$("input[name=SurveyQuestion4Option1Value]")[2].checked &&
+            !$("input[name=SurveyQuestion4Option1Value]")[3].checked && !$("input[name=SurveyQuestion4Option1Value]")[4].checked) || (!$("input[name=SurveyQuestion4Option2Value]")[0].checked &&
+            !$("input[name=SurveyQuestion4Option2Value]")[1].checked && !$("input[name=SurveyQuestion4Option2Value]")[2].checked && !$("input[name=SurveyQuestion4Option2Value]")[3].checked &&
+            !$("input[name=SurveyQuestion4Option2Value]")[4].checked) || (!$("input[name=SurveyQuestion4Option3Value]")[0].checked && !$("input[name=SurveyQuestion4Option3Value]")[1].checked &&
+            !$("input[name=SurveyQuestion4Option3Value]")[2].checked && !$("input[name=SurveyQuestion4Option3Value]")[3].checked && !$("input[name=SurveyQuestion4Option3Value]")[4].checked)
+            || (!$("input[name=SurveyQuestion4Option4Value]")[0].checked &&
+            !$("input[name=SurveyQuestion4Option4Value]")[1].checked && !$("input[name=SurveyQuestion4Option4Value]")[2].checked && !$("input[name=SurveyQuestion4Option4Value]")[3].checked &&
+            !$("input[name=SurveyQuestion4Option4Value]")[4].checked)) {
+
+
+            $('.mensaje_alerta p').text('@TranslatorHelper.TranslateTextByIdentifier("Old_SurveyQuestion4Empty")');
+            $('.mensaje_alerta').show('slow');
+            //toastMessage.show('@TranslatorHelper.TranslateTextByIdentifier("Old_SurveyQuestion4Empty")', "alert-danger");
+
+        }*@
+
+        else if ($("input[name=SurveyQuestion1Response]")[5].checked && $("input[name=SurveyQuestion1OtherResponse]")[0].value == "") {
+
+            $('.mensaje_alerta p').text('@TranslatorHelper.TranslateTextByIdentifier("Old_SurveyQuestion1OptionOtherEmpty")');
+            $('.mensaje_alerta').show('slow');
+            //toastMessage.show('@TranslatorHelper.TranslateTextByIdentifier("Old_SurveyQuestion1OptionOtherEmpty")', "alert-danger");
+        }
+
+        else if ($("input[name=SurveyQuestion2Response]")[7].checked && $("input[name=SurveyQuestion2OtherResponse]")[0].value == "") {
+
+            $('.mensaje_alerta p').text('@TranslatorHelper.TranslateTextByIdentifier("Old_SurveyQuestion2OptionOtherEmpty")');
+            $('.mensaje_alerta').show('slow');
+            //toastMessage.show('@TranslatorHelper.TranslateTextByIdentifier("Old_SurveyQuestion2OptionOtherEmpty")', "alert-danger");
+
+        }
+
+        else if ($("input[name=SurveyQuestion3Response]")[8].checked && $("input[name=SurveyQuestion3OtherResponse]")[0].value == "") {
+
+            $('.mensaje_alerta p').text('@TranslatorHelper.TranslateTextByIdentifier("Old_SurveyQuestion3OptionOtherEmpty")');
+            $('.mensaje_alerta').show('slow');
+            //toastMessage.show('@TranslatorHelper.TranslateTextByIdentifier("Old_SurveyQuestion3OptionOtherEmpty")', "alert-danger");
+
+        } else {
+            //$('#FormSurveyQuestion').submit();
+            loadingDiv.show();
+            isValid = true;
+        }
+
+        if (isValid) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+
+    $(document).on("change", "#SurveyQuestion1Response", function (e) {
+
+        if ($("input[name=SurveyQuestion1Response]")[5].checked && $("input[name=SurveyQuestion1OtherResponse]")[0].value == "") {
+
+            //toastMessage.show("Por favor indique la otra razón", "alert-danger");
+            $("input[name=SurveyQuestion1OtherResponse]").addClass("textboxEmpty");
+
+        } else {
+            $("input[name=SurveyQuestion1OtherResponse]").removeClass("textboxEmpty");
+        }
+    });
+
+    $(document).on("change", "#SurveyQuestion2Response", function (e) {
+
+        if ($("input[name=SurveyQuestion2Response]")[7].checked && $("input[name=SurveyQuestion2OtherResponse]")[0].value == "") {
+
+            //toastMessage.show("Por favor indique la otra razón", "alert-danger");
+            $("input[name=SurveyQuestion2OtherResponse]").addClass("textboxEmpty");
+
+        } else {
+            $("input[name=SurveyQuestion2OtherResponse]").removeClass("textboxEmpty");
+        }
+    });
+
+    $(document).on("change", "#SurveyQuestion3Response", function (e) {
+
+        if ($("input[name=SurveyQuestion3Response]")[8].checked && $("input[name=SurveyQuestion3OtherResponse]")[0].value == "") {
+
+            //toastMessage.show("Por favor indique la otra razón", "alert-danger");
+            $("input[name=SurveyQuestion3OtherResponse]").addClass("textboxEmpty");
+
+        } else {
+            $("input[name=SurveyQuestion3OtherResponse]").removeClass("textboxEmpty");
+        }
+    });
+
+
+
+    //$(ducument).on("click", "#redirectToAffidavit", function(){
+    //    console.log($('#IDLetterInfoText1').is("checked"));
+    //});
+
+</script>
+
+
+
+
+
+
+<!--================================= VALLA ======================================-->
+<div id="valla" style="background-image:url(../Content/images/valla_encuesta.jpg)">
+    <h1>@TranslatorHelper.TranslateTextByIdentifier("Old_TittleImageSurveyPage")</h1>
+</div>
+@Html.HiddenFor(x => x.LeadId, new { id = "HiddenLeadID" })
+
+@*@using (Html.BeginForm("SaveSurveyQuestionResponse", "Home", FormMethod.Post, new { @id = "FormSurveyQuestion" }))*@
+@using (Ajax.BeginForm("SaveSurveyQuestionResponse", null,
+                                                    new AjaxOptions
+                                                    {
+                                                        OnBegin = "return Validate()",
+                                                        HttpMethod = "POST",
+                                                        OnSuccess = "OnSuccess",
+                                                        OnFailure = "OnFailure"
+                                                    },
+                                                    new
+                                                    {
+                                                        @id = "FormSurveyQuestion"
+                                                    }
+                                                ))
+{
+    @Html.HiddenFor(m => m.LeadId)
+    <div id="pagina" class="formulario">
+
+        <div class="seccion">
+
+            <div class="centro">
+                <p>@TranslatorHelper.TranslateTextByIdentifier("Old_SurveyIntro")</p>
+            </div>
+
+            <div class="gris">
+                <div class="centro">
+                    <h1>@TranslatorHelper.TranslateTextByIdentifier("Old_SurveyQuestion1")</h1>
+                    <hr />
+                    <div class="set radios_horizontales">
+                        <div class="item_lista">
+                            @Html.RadioButtonFor(m => m.SurveyQuestion1Response, "1")
+                            <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option1ForSurverQuestion1")</label>
+                        </div>
+                        <div class="item_lista">
+                            @Html.RadioButtonFor(m => m.SurveyQuestion1Response, "2")
+                            <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option2ForSurverQuestion1")</label>
+                        </div>
+                        <div class="item_lista">
+                            @Html.RadioButtonFor(m => m.SurveyQuestion1Response, "3")
+                            <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option3ForSurverQuestion1")</label>
+                        </div>
+                        <div class="item_lista">
+                            @Html.RadioButtonFor(m => m.SurveyQuestion1Response, "4")
+                            <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option4ForSurverQuestion1")</label>
+                        </div>
+                        <div class="item_lista">
+                            @Html.RadioButtonFor(m => m.SurveyQuestion1Response, "5")
+                            <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option5ForSurverQuestion1")</label>
+                        </div>
+                        <div class="item_lista">
+                            @Html.RadioButtonFor(m => m.SurveyQuestion1Response, "6")
+                            <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option6ForSurverQuestion1")</label>
+                        </div>
+                        <div class="col_12">
+                            @*<p>Which One?</p>*@
+                            @Html.TextBoxFor(m => m.SurveyQuestion1OtherResponse, new { @class = "form-control input-sm" })>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="centro">
+                <h1>@TranslatorHelper.TranslateTextByIdentifier("Old_SurveyQuestion2")</h1>
+                <hr />
+                <div class="set radios_horizontales">
+                    <div class="item_lista">
+                        @Html.RadioButtonFor(m => m.SurveyQuestion2Response, "1")
+                        <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option1ForSurverQuestion2")</label>
+                    </div>
+                    <div class="item_lista">
+                        @Html.RadioButtonFor(m => m.SurveyQuestion2Response, "2")
+                        <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option2ForSurverQuestion2")</label>
+                    </div>
+                    <div class="item_lista">
+                        @Html.RadioButtonFor(m => m.SurveyQuestion2Response, "3")
+                        <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option3ForSurverQuestion2")</label>
+                    </div>
+                    <div class="item_lista">
+                        @Html.RadioButtonFor(m => m.SurveyQuestion2Response, "4")
+                        <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option4ForSurverQuestion2")</label>
+                    </div>
+                    <div class="item_lista">
+                        @Html.RadioButtonFor(m => m.SurveyQuestion2Response, "5")
+                        <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option5ForSurverQuestion2")</label>
+                    </div>
+                    <div class="item_lista">
+                        @Html.RadioButtonFor(m => m.SurveyQuestion2Response, "6")
+                        <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option6ForSurverQuestion2")</label>
+                    </div>
+                    <div class="item_lista">
+                        @Html.RadioButtonFor(m => m.SurveyQuestion2Response, "7")
+                        <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option7ForSurverQuestion2")</label>
+                    </div>
+                    <div class="item_lista">
+                        @Html.RadioButtonFor(m => m.SurveyQuestion2Response, "8")
+                        <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option8ForSurverQuestion2")</label>
+                    </div>
+                    <div class="col_12">
+                        @*<p>Which One?</p>*@
+                        @Html.TextBoxFor(m => m.SurveyQuestion2OtherResponse, new { @class = "form-control input-sm" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="gris">
+                <div class="centro">
+                    <h1>@TranslatorHelper.TranslateTextByIdentifier("Old_SurveyQuestion3")</h1>
+                    <hr />
+                    <div class="set radios_horizontales">
+                        <div class="item_lista">
+                            @Html.RadioButtonFor(m => m.SurveyQuestion3Response, "1")
+                            <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option1ForSurverQuestion3")</label>
+                        </div>
+                        <div class="item_lista">
+                            @Html.RadioButtonFor(m => m.SurveyQuestion3Response, "2")
+                            <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option2ForSurverQuestion3")</label>
+                        </div>
+                        <div class="item_lista">
+                            @Html.RadioButtonFor(m => m.SurveyQuestion3Response, "3")
+                            <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option3ForSurverQuestion3")</label>
+                        </div>
+                        <div class="item_lista">
+                            @Html.RadioButtonFor(m => m.SurveyQuestion3Response, "4")
+                            <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option4ForSurverQuestion3")</label>
+                        </div>
+                        <div class="item_lista">
+                            @Html.RadioButtonFor(m => m.SurveyQuestion3Response, "5")
+                            <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option5ForSurverQuestion3")</label>
+                        </div>
+                        <div class="item_lista">
+                            @Html.RadioButtonFor(m => m.SurveyQuestion3Response, "6")
+                            <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option6ForSurverQuestion3")</label>
+                        </div>
+                        <div class="item_lista">
+                            @Html.RadioButtonFor(m => m.SurveyQuestion3Response, "7")
+                            <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option7ForSurverQuestion3")</label>
+                        </div>
+                        <div class="item_lista">
+                            @Html.RadioButtonFor(m => m.SurveyQuestion3Response, "8")
+                            <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option8ForSurverQuestion3")</label>
+                        </div>
+                        <div class="item_lista">
+                            @Html.RadioButtonFor(m => m.SurveyQuestion3Response, "9")
+                            <label class="largo">@TranslatorHelper.TranslateTextByIdentifier("Old_Option9ForSurverQuestion3")</label>
+                        </div>
+                        <div class="col_12">
+                            @*<p>Which One?</p>*@
+                            @Html.TextBoxFor(m => m.SurveyQuestion3OtherResponse, new { @class = "form-control input-sm" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="centro">
+                <h1>@TranslatorHelper.TranslateTextByIdentifier("Old_SurveyQuestion4")</h1>
+                <div class="col_12">
+                    <table border="0" cellspacing="0" cellpadding="0" class="especial_01 encuesta">
+                        <tr class="cabezote">
+                            <td>&nbsp;</td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td>@TranslatorHelper.TranslateTextByIdentifier("Old_Option1ForSurverQuestion4")</td>
+                            <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option1Value, "1")</td>
+                            <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option1Value, "2")</td>
+                            <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option1Value, "3")</td>
+                            <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option1Value, "4")</td>
+                            <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option1Value, "5")</td>
+                        </tr>
+                        <tr>
+                            <td>@TranslatorHelper.TranslateTextByIdentifier("Old_Option2ForSurverQuestion4")</td>
+                            <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option2Value, "1")</td>
+                            <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option2Value, "2")</td>
+                            <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option2Value, "3")</td>
+                            <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option2Value, "4")</td>
+                            <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option2Value, "5")</td>
+                        </tr>
+                        <tr>
+                            <td>@TranslatorHelper.TranslateTextByIdentifier("Old_Option3ForSurverQuestion4")</td>
+                            <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option3Value, "1")</td>
+                            <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option3Value, "2")</td>
+                            <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option3Value, "3")</td>
+                            <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option3Value, "4")</td>
+                            <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option3Value, "5")</td>
+                        </tr>
+                        <tr>
+                            <td>@TranslatorHelper.TranslateTextByIdentifier("Old_Option4ForSurverQuestion4")</td>
+                            <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option4Value, "1")</td>
+                            <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option4Value, "2")</td>
+                            <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option4Value, "3")</td>
+                            <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option4Value, "4")</td>
+                            <td>@Html.RadioButtonFor(m => m.SurveyQuestion4Option4Value, "5")</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="gris sin_margen_abajo padding_ancho_abajo">
+                <div class="centro">
+                    <h1>@TranslatorHelper.TranslateTextByIdentifier("Old_SurveyQuestion5")</h1>
+                    <div class="col_12">
+                        @Html.TextBoxFor(m => m.SurveyQuestion5Response, new { @class = "form-control input-sm" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="centro">
+                <div class="mensaje_alerta" style="display:none">
+                    <p>Acá va el texto de mensaje de alerta</p>
+                </div>
+            </div>
+
+            <div class="centro">
+                <div class="mensaje_confirmacion" style="display:none">
+                    <p>Acá va el texto de mensaje de alerta</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="controles sin_margen_arriba">
+            <div class="centro">
+                <ul class="bloques derecha">
+                    <li class="gris"><a href="Letter?pLeadID={@Model.LeadId}&pSurveyResponse=false" target="_self"><span>@TranslatorHelper.TranslateTextByIdentifier("Old_Cancel").ToUpper()</span></a></li>
+                    @*<li class="azul"><a href="#" target="_self" id="sendForm"><span>@TranslatorHelper.TranslateTextByIdentifier("Old_Send").ToUpper()</span></a></li>*@
+                    <li><button type="submit" class="btnAzul" style="font-size: 14px !important;">@TranslatorHelper.TranslateTextByIdentifier("Old_Send").ToUpper()</button></li>
+                </ul>
+            </div>
+        </div>
+
+
+    </div>
+    <div> &nbsp;</div>
+}

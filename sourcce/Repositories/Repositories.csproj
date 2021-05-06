@@ -1,0 +1,427 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{90E908A8-DFB0-43E7-8388-4D6D695E6EE7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Repositories</RootNamespace>
+    <AssemblyName>Repositories</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Crm.Sdk.Proxy, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CrmSdk.CoreAssemblies.8.2.0.2\lib\net452\Microsoft.Crm.Sdk.Proxy.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.6.1.7600.16394\lib\net35\Microsoft.IdentityModel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory, Version=2.28.3.860, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Clients.ActiveDirectory.2.28.3\lib\net45\Microsoft.IdentityModel.Clients.ActiveDirectory.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms, Version=2.28.3.860, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Clients.ActiveDirectory.2.28.3\lib\net45\Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Xrm.Sdk, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CrmSdk.CoreAssemblies.8.2.0.2\lib\net452\Microsoft.Xrm.Sdk.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Xrm.Sdk.Deployment, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CrmSdk.Deployment.8.2.0.2\lib\net452\Microsoft.Xrm.Sdk.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Xrm.Sdk.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CrmSdk.Workflow.8.2.0.2\lib\net452\Microsoft.Xrm.Sdk.Workflow.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Xrm.Tooling.Connector, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CrmSdk.XrmTooling.CoreAssembly.8.2.0.5\lib\net452\Microsoft.Xrm.Tooling.Connector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Activities" />
+    <Reference Include="System.Activities.Presentation" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Workflow.Activities" />
+    <Reference Include="System.Workflow.ComponentModel" />
+    <Reference Include="System.Workflow.Runtime" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AffidavitContext.cs" />
+    <Compile Include="AnswerCompanyRepository.cs" />
+    <Compile Include="Assessments\AssessmentQuestionRepository.cs" />
+    <Compile Include="Assessments\AssessmentSummaryRepository.cs" />
+    <Compile Include="CampaignRepository.cs" />
+    <Compile Include="CompanyContactsRepository.cs" />
+    <Compile Include="CompanyInfoRepository.cs" />
+    <Compile Include="CompanyRepository.cs" />
+    <Compile Include="CountryRepository.cs" />
+    <Compile Include="CRMRepository.cs" />
+    <Compile Include="EmailQueue\EmailQueueRepository.cs" />
+    <Compile Include="IndustryInsights\ActivityRepository.cs" />
+    <Compile Include="IndustryInsights\DigitalTransformationPreLoadedRepository.cs" />
+    <Compile Include="IndustryInsights\DigitalTransformationRepository.cs" />
+    <Compile Include="IndustryInsights\IndustryInsightsRepository.cs" />
+    <Compile Include="IndustryInsights\ProblemPreLoadedRepository.cs" />
+    <Compile Include="IndustryInsights\ProblemRepository.cs" />
+    <Compile Include="IndustryInsights\ProcessPreLoadedRepository.cs" />
+    <Compile Include="IndustryInsights\ProcessRepository.cs" />
+    <Compile Include="IndustryRepository.cs" />
+    <Compile Include="Landing\LandingCampaignRepository.cs" />
+    <Compile Include="LanguageRepository.cs" />
+    <Compile Include="LeadRepository.cs" />
+    <Compile Include="Migrations\201709041629443_NEW_CHANGES.cs" />
+    <Compile Include="Migrations\201708301603369_ADD_ANSWERxASSESSMENT_TBL.cs" />
+    <Compile Include="Migrations\201708301603369_ADD_ANSWERxASSESSMENT_TBL.designer.cs">
+      <DependentUpon>201708301603369_ADD_ANSWERxASSESSMENT_TBL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709271352450_RECOMMENDATIONS_MODELS.cs" />
+    <Compile Include="Migrations\201709271352450_RECOMMENDATIONS_MODELS.Designer.cs">
+      <DependentUpon>201709271352450_RECOMMENDATIONS_MODELS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708301605394_ADD_ASSESSMENT_SUMMARY_TBL.cs" />
+    <Compile Include="Migrations\201708301605394_ADD_ASSESSMENT_SUMMARY_TBL.designer.cs">
+      <DependentUpon>201708301605394_ADD_ASSESSMENT_SUMMARY_TBL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710061308150_ADD_VARIABLE_DESCRIPTION_TO_NS_TBLVARIABLE.cs" />
+    <Compile Include="Migrations\201710061308150_ADD_VARIABLE_DESCRIPTION_TO_NS_TBLVARIABLE.Designer.cs">
+      <DependentUpon>201710061308150_ADD_VARIABLE_DESCRIPTION_TO_NS_TBLVARIABLE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708301726384_REMOVE_SAMLIVE_COLUMN.cs" />
+    <Compile Include="Migrations\201708301726384_REMOVE_SAMLIVE_COLUMN.designer.cs">
+      <DependentUpon>201708301726384_REMOVE_SAMLIVE_COLUMN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712061600281_ADD_UPDATE_AND_DELETE_ROW_SP.cs" />
+    <Compile Include="Migrations\201712061600281_ADD_UPDATE_AND_DELETE_ROW_SP.Designer.cs">
+      <DependentUpon>201712061600281_ADD_UPDATE_AND_DELETE_ROW_SP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708301728256_ADD_SAMLIVEUSER_COLUMN.cs" />
+    <Compile Include="Migrations\201708301728256_ADD_SAMLIVEUSER_COLUMN.designer.cs">
+      <DependentUpon>201708301728256_ADD_SAMLIVEUSER_COLUMN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709041629443_NEW_CHANGES.designer.cs">
+      <DependentUpon>201709041629443_NEW_CHANGES.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709010236248_ADD_ASSESSMENT_SCORING_MODEL_SP.cs" />
+    <Compile Include="Migrations\201709010236248_ADD_ASSESSMENT_SCORING_MODEL_SP.Designer.cs">
+      <DependentUpon>201709010236248_ADD_ASSESSMENT_SCORING_MODEL_SP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709131942546_ADD_ASSESSMENT_GLOBAL_MATURITY_CALCULATION_SP.cs" />
+    <Compile Include="Migrations\201709131942546_ADD_ASSESSMENT_GLOBAL_MATURITY_CALCULATION_SP.Designer.cs">
+      <DependentUpon>201709131942546_ADD_ASSESSMENT_GLOBAL_MATURITY_CALCULATION_SP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709271626201_ALTER_ASSESSMENT_GLOBAL_MATURITY_CALCULATION_SP.cs" />
+    <Compile Include="Migrations\201709271626201_ALTER_ASSESSMENT_GLOBAL_MATURITY_CALCULATION_SP.Designer.cs">
+      <DependentUpon>201709271626201_ALTER_ASSESSMENT_GLOBAL_MATURITY_CALCULATION_SP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709290411163_ADD_ASSESSMENT_TYPE_ID_COLUMN_TO_ANSWERxASSESSMENT_TBL.cs" />
+    <Compile Include="Migrations\201709290411163_ADD_ASSESSMENT_TYPE_ID_COLUMN_TO_ANSWERxASSESSMENT_TBL.Designer.cs">
+      <DependentUpon>201709290411163_ADD_ASSESSMENT_TYPE_ID_COLUMN_TO_ANSWERxASSESSMENT_TBL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711271938135_MERGE_CHANGES.cs" />
+    <Compile Include="Migrations\201711271938135_MERGE_CHANGES.Designer.cs">
+      <DependentUpon>201711271938135_MERGE_CHANGES.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801181541500_ADD_COMPOUND_TABLE.cs" />
+    <Compile Include="Migrations\201801181541500_ADD_COMPOUND_TABLE.Designer.cs">
+      <DependentUpon>201801181541500_ADD_COMPOUND_TABLE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802141500293_MERGE-MIGRATION.cs" />
+    <Compile Include="Migrations\201802141500293_MERGE-MIGRATION.Designer.cs">
+      <DependentUpon>201802141500293_MERGE-MIGRATION.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805032212542_ADD_TABLE_INDUSTRYINDINS.cs" />
+    <Compile Include="Migrations\201805032212542_ADD_TABLE_INDUSTRYINDINS.Designer.cs">
+      <DependentUpon>201805032212542_ADD_TABLE_INDUSTRYINDINS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805032219567_LEADINFORMATIONS_ADDFIELD_INDUSTRYINDIDSID.cs" />
+    <Compile Include="Migrations\201805032219567_LEADINFORMATIONS_ADDFIELD_INDUSTRYINDIDSID.Designer.cs">
+      <DependentUpon>201805032219567_LEADINFORMATIONS_ADDFIELD_INDUSTRYINDIDSID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805071518364_ADD_TABLE_TYPEACTIVITY.cs" />
+    <Compile Include="Migrations\201805071518364_ADD_TABLE_TYPEACTIVITY.Designer.cs">
+      <DependentUpon>201805071518364_ADD_TABLE_TYPEACTIVITY.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805071521502_ADD_TABLE_ACTIVITY.cs" />
+    <Compile Include="Migrations\201805071521502_ADD_TABLE_ACTIVITY.Designer.cs">
+      <DependentUpon>201805071521502_ADD_TABLE_ACTIVITY.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805071648586_ADD_TABLE_PROCESSPRELOADED.cs" />
+    <Compile Include="Migrations\201805071648586_ADD_TABLE_PROCESSPRELOADED.Designer.cs">
+      <DependentUpon>201805071648586_ADD_TABLE_PROCESSPRELOADED.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805071717520_ADD_TABLE_PROBLEMPRELOADED.cs" />
+    <Compile Include="Migrations\201805071717520_ADD_TABLE_PROBLEMPRELOADED.Designer.cs">
+      <DependentUpon>201805071717520_ADD_TABLE_PROBLEMPRELOADED.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805071730460_ADD_TABLE_DIGITALTRANSFORMATIONPRELOADED.cs" />
+    <Compile Include="Migrations\201805071730460_ADD_TABLE_DIGITALTRANSFORMATIONPRELOADED.Designer.cs">
+      <DependentUpon>201805071730460_ADD_TABLE_DIGITALTRANSFORMATIONPRELOADED.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805071952077_ADD_TABLE_PROCESS.cs" />
+    <Compile Include="Migrations\201805071952077_ADD_TABLE_PROCESS.Designer.cs">
+      <DependentUpon>201805071952077_ADD_TABLE_PROCESS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805072001314_ADD_TABLE_PROCESSVERSIONS.cs" />
+    <Compile Include="Migrations\201805072001314_ADD_TABLE_PROCESSVERSIONS.Designer.cs">
+      <DependentUpon>201805072001314_ADD_TABLE_PROCESSVERSIONS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805072023473_ADD_TABLE_PROBLEM.cs" />
+    <Compile Include="Migrations\201805072023473_ADD_TABLE_PROBLEM.Designer.cs">
+      <DependentUpon>201805072023473_ADD_TABLE_PROBLEM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805072040356_ADD_TABLE_PROBLEMVERSIONS.cs" />
+    <Compile Include="Migrations\201805072040356_ADD_TABLE_PROBLEMVERSIONS.Designer.cs">
+      <DependentUpon>201805072040356_ADD_TABLE_PROBLEMVERSIONS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805072058238_ADD_TABLE_DIGITALTRANSFORMATION.cs" />
+    <Compile Include="Migrations\201805072058238_ADD_TABLE_DIGITALTRANSFORMATION.Designer.cs">
+      <DependentUpon>201805072058238_ADD_TABLE_DIGITALTRANSFORMATION.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805072101365_ADD_TABLE_DIGITALTRANSFORMATIONVERSIONS.cs" />
+    <Compile Include="Migrations\201805072101365_ADD_TABLE_DIGITALTRANSFORMATIONVERSIONS.Designer.cs">
+      <DependentUpon>201805072101365_ADD_TABLE_DIGITALTRANSFORMATIONVERSIONS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805080344557_ADD_ASSESSMENTSUMMARY_ADD_NEXTSTEPS.cs" />
+    <Compile Include="Migrations\201805080344557_ADD_ASSESSMENTSUMMARY_ADD_NEXTSTEPS.Designer.cs">
+      <DependentUpon>201805080344557_ADD_ASSESSMENTSUMMARY_ADD_NEXTSTEPS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805091712421_ADD_SOLVED_COLUMN_TO_PROBLEM_TABLE.cs" />
+    <Compile Include="Migrations\201805091712421_ADD_SOLVED_COLUMN_TO_PROBLEM_TABLE.Designer.cs">
+      <DependentUpon>201805091712421_ADD_SOLVED_COLUMN_TO_PROBLEM_TABLE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805091716456_ADD_SOLVED_COLUMN_TO_PROBLEMVERSION_TABLE.cs" />
+    <Compile Include="Migrations\201805091716456_ADD_SOLVED_COLUMN_TO_PROBLEMVERSION_TABLE.Designer.cs">
+      <DependentUpon>201805091716456_ADD_SOLVED_COLUMN_TO_PROBLEMVERSION_TABLE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805091718163_ADD_SOLVED_COLUMN_TO_DIGITALTRANSF_TABLE.cs" />
+    <Compile Include="Migrations\201805091718163_ADD_SOLVED_COLUMN_TO_DIGITALTRANSF_TABLE.Designer.cs">
+      <DependentUpon>201805091718163_ADD_SOLVED_COLUMN_TO_DIGITALTRANSF_TABLE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805091719093_ADD_SOLVED_COLUMN_TO_DIGITALTRANSFVERSION_TABLE.cs" />
+    <Compile Include="Migrations\201805091719093_ADD_SOLVED_COLUMN_TO_DIGITALTRANSFVERSION_TABLE.Designer.cs">
+      <DependentUpon>201805091719093_ADD_SOLVED_COLUMN_TO_DIGITALTRANSFVERSION_TABLE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805161525041_SAM360_FIELDS.cs" />
+    <Compile Include="Migrations\201805161525041_SAM360_FIELDS.Designer.cs">
+      <DependentUpon>201805161525041_SAM360_FIELDS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="PartnerCapabilityCompanyRepository.cs" />
+    <Compile Include="PartnerCapabilityRepository.cs" />
+    <Compile Include="PartnerProgramCompanyRepository.cs" />
+    <Compile Include="PartnerProgramRepository.cs" />
+    <Compile Include="ProductCompanyFileRepository.cs" />
+    <Compile Include="ProductCompanyRepository.cs" />
+    <Compile Include="ProductFamilyCompanyRepository.cs" />
+    <Compile Include="ProductFamilyRepository.cs" />
+    <Compile Include="ProductRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuestionRepository.cs" />
+    <Compile Include="QuestionxLanguageRepository.cs" />
+    <Compile Include="QuestionxProductFamilyRepository.cs" />
+    <Compile Include="Recommendations\VariableProductFamilyRepository.cs" />
+    <Compile Include="Recommendations\VariableProductRepository.cs" />
+    <Compile Include="Recommendations\CompoundVariableRepository.cs" />
+    <Compile Include="Recommendations\VariableRepository.cs" />
+    <Compile Include="Repository.cs" />
+    <Compile Include="ResponseDataTypeRepository.cs" />
+    <Compile Include="SMTPRepository.cs" />
+    <Compile Include="SurveyQuestionResponse\SurveyQuestionResponseRepository.cs" />
+    <Compile Include="Translation\TranslationXLanguageRepository.cs" />
+    <Compile Include="Users\UserRepository.cs" />
+    <Compile Include="Utils\CodeGenerator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DTOs\DTOs.csproj">
+      <Project>{f8533077-4c35-41ef-9cb0-d49b2a380e6a}</Project>
+      <Name>DTOs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{f86d3c10-c4c1-49e1-b329-003742f94c98}</Project>
+      <Name>Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IRepositories\IRepositories.csproj">
+      <Project>{b6fa4e25-10d7-4215-9c1d-8ccf1ba1aac0}</Project>
+      <Name>IRepositories</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201709041629443_NEW_CHANGES.resx">
+      <DependentUpon>201709041629443_NEW_CHANGES.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708301603369_ADD_ANSWERxASSESSMENT_TBL.resx">
+      <DependentUpon>201708301603369_ADD_ANSWERxASSESSMENT_TBL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709271352450_RECOMMENDATIONS_MODELS.resx">
+      <DependentUpon>201709271352450_RECOMMENDATIONS_MODELS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708301605394_ADD_ASSESSMENT_SUMMARY_TBL.resx">
+      <DependentUpon>201708301605394_ADD_ASSESSMENT_SUMMARY_TBL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710061308150_ADD_VARIABLE_DESCRIPTION_TO_NS_TBLVARIABLE.resx">
+      <DependentUpon>201710061308150_ADD_VARIABLE_DESCRIPTION_TO_NS_TBLVARIABLE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708301726384_REMOVE_SAMLIVE_COLUMN.resx">
+      <DependentUpon>201708301726384_REMOVE_SAMLIVE_COLUMN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712061600281_ADD_UPDATE_AND_DELETE_ROW_SP.resx">
+      <DependentUpon>201712061600281_ADD_UPDATE_AND_DELETE_ROW_SP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708301728256_ADD_SAMLIVEUSER_COLUMN.resx">
+      <DependentUpon>201708301728256_ADD_SAMLIVEUSER_COLUMN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709010236248_ADD_ASSESSMENT_SCORING_MODEL_SP.resx">
+      <DependentUpon>201709010236248_ADD_ASSESSMENT_SCORING_MODEL_SP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709131942546_ADD_ASSESSMENT_GLOBAL_MATURITY_CALCULATION_SP.resx">
+      <DependentUpon>201709131942546_ADD_ASSESSMENT_GLOBAL_MATURITY_CALCULATION_SP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709271626201_ALTER_ASSESSMENT_GLOBAL_MATURITY_CALCULATION_SP.resx">
+      <DependentUpon>201709271626201_ALTER_ASSESSMENT_GLOBAL_MATURITY_CALCULATION_SP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709290411163_ADD_ASSESSMENT_TYPE_ID_COLUMN_TO_ANSWERxASSESSMENT_TBL.resx">
+      <DependentUpon>201709290411163_ADD_ASSESSMENT_TYPE_ID_COLUMN_TO_ANSWERxASSESSMENT_TBL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711271938135_MERGE_CHANGES.resx">
+      <DependentUpon>201711271938135_MERGE_CHANGES.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801181541500_ADD_COMPOUND_TABLE.resx">
+      <DependentUpon>201801181541500_ADD_COMPOUND_TABLE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802141500293_MERGE-MIGRATION.resx">
+      <DependentUpon>201802141500293_MERGE-MIGRATION.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805032212542_ADD_TABLE_INDUSTRYINDINS.resx">
+      <DependentUpon>201805032212542_ADD_TABLE_INDUSTRYINDINS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805032219567_LEADINFORMATIONS_ADDFIELD_INDUSTRYINDIDSID.resx">
+      <DependentUpon>201805032219567_LEADINFORMATIONS_ADDFIELD_INDUSTRYINDIDSID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805071518364_ADD_TABLE_TYPEACTIVITY.resx">
+      <DependentUpon>201805071518364_ADD_TABLE_TYPEACTIVITY.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805071521502_ADD_TABLE_ACTIVITY.resx">
+      <DependentUpon>201805071521502_ADD_TABLE_ACTIVITY.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805071648586_ADD_TABLE_PROCESSPRELOADED.resx">
+      <DependentUpon>201805071648586_ADD_TABLE_PROCESSPRELOADED.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805071717520_ADD_TABLE_PROBLEMPRELOADED.resx">
+      <DependentUpon>201805071717520_ADD_TABLE_PROBLEMPRELOADED.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805071730460_ADD_TABLE_DIGITALTRANSFORMATIONPRELOADED.resx">
+      <DependentUpon>201805071730460_ADD_TABLE_DIGITALTRANSFORMATIONPRELOADED.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805071952077_ADD_TABLE_PROCESS.resx">
+      <DependentUpon>201805071952077_ADD_TABLE_PROCESS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805072001314_ADD_TABLE_PROCESSVERSIONS.resx">
+      <DependentUpon>201805072001314_ADD_TABLE_PROCESSVERSIONS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805072023473_ADD_TABLE_PROBLEM.resx">
+      <DependentUpon>201805072023473_ADD_TABLE_PROBLEM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805072040356_ADD_TABLE_PROBLEMVERSIONS.resx">
+      <DependentUpon>201805072040356_ADD_TABLE_PROBLEMVERSIONS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805072058238_ADD_TABLE_DIGITALTRANSFORMATION.resx">
+      <DependentUpon>201805072058238_ADD_TABLE_DIGITALTRANSFORMATION.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805072101365_ADD_TABLE_DIGITALTRANSFORMATIONVERSIONS.resx">
+      <DependentUpon>201805072101365_ADD_TABLE_DIGITALTRANSFORMATIONVERSIONS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805080344557_ADD_ASSESSMENTSUMMARY_ADD_NEXTSTEPS.resx">
+      <DependentUpon>201805080344557_ADD_ASSESSMENTSUMMARY_ADD_NEXTSTEPS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805091712421_ADD_SOLVED_COLUMN_TO_PROBLEM_TABLE.resx">
+      <DependentUpon>201805091712421_ADD_SOLVED_COLUMN_TO_PROBLEM_TABLE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805091716456_ADD_SOLVED_COLUMN_TO_PROBLEMVERSION_TABLE.resx">
+      <DependentUpon>201805091716456_ADD_SOLVED_COLUMN_TO_PROBLEMVERSION_TABLE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805091718163_ADD_SOLVED_COLUMN_TO_DIGITALTRANSF_TABLE.resx">
+      <DependentUpon>201805091718163_ADD_SOLVED_COLUMN_TO_DIGITALTRANSF_TABLE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805091719093_ADD_SOLVED_COLUMN_TO_DIGITALTRANSFVERSION_TABLE.resx">
+      <DependentUpon>201805091719093_ADD_SOLVED_COLUMN_TO_DIGITALTRANSFVERSION_TABLE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805161525041_SAM360_FIELDS.resx">
+      <DependentUpon>201805161525041_SAM360_FIELDS.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

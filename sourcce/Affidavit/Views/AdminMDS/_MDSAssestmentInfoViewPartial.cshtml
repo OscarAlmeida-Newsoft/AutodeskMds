@@ -1,0 +1,216 @@
+﻿@using Affidavit.Models
+@using Affidavit.Utils
+@model Affidavit.Models.AssessmentAdminViewModel
+
+
+<script>
+    $('.assessment-tab-izq').click(function () {
+
+        if ($(this).parent().parent().find(".contenido-assesment").css("display") == "inline-block") {
+            $('html, body').animate({
+                scrollTop: $(".btn-mostrar-assestment").offset().top
+            }, 500);
+            $('.contenido-assesment').css("display", "none");
+        } else {
+            $('.contenido-assesment').css("display", "none");
+
+            $(this).parent().parent().find(".contenido-assesment").css("display", "inline-block");
+
+            $('html, body').animate({
+                scrollTop: $(this).parent().parent().offset().top
+            }, 500);
+        }
+
+    });
+</script>
+@{
+    var i = 0;
+    string clase = "";
+}
+<style>
+    .assestment-claro {
+        background-color: #7fb843;
+    }
+
+    .assestment-oscuro {
+        background-color: #29abe0;
+    }
+
+    .no-answer {
+        background: #b30909;
+        color: white !important;
+        width: fit-content;
+    }
+
+    .btn-mostrar-assestment {
+        cursor: pointer;
+        text-align: left;
+    }
+
+        .btn-mostrar-assestment span {
+            font-size: 14px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .btn-mostrar-assestment .logo {
+            height: 35px;
+        }
+
+    .gris {
+        background-color: #eaeaea;
+        float: left;
+        padding: 25px 0 5px 0;
+        width: 100% !important;
+        text-align: center;
+        margin: 20px 0 20px 0;
+    }
+
+    label {
+        font-weight: normal;
+    }
+
+    h2.assestment-question {
+        font-weight: bold;
+    }
+
+    .btn-mostrar-assestment .assessment-tab-izq {
+        display: inline-block;
+        width: 70%;
+        padding: 10px;
+    }
+
+    .btn-mostrar-assestment:hover{
+        background-color: #b3b3b3;
+    }
+    .btn-mostrar-assestment .assessment-tab-der:hover {
+        background-color: #e8532b;
+    }
+
+    .btn-mostrar-assestment .assessment-tab-der {
+        display: inline-block;
+        width: 14%;
+        padding: 10px;
+    }
+        .btn-mostrar-assestment .assessment-tab-der a{
+            text-decoration: none;
+        }
+        .btn-mostrar-assestment .assessment-tab-der .download-img {
+            width: 25px;
+            filter: brightness(0) invert(1);
+            margin-right: 10px;
+        }
+</style>
+
+@if (Model.AssessmentList.Count() > 0)
+{
+    <div class="contenedor-assestment">
+        @foreach (var aux in Model.AssessmentList)
+        {
+            if (i % 2 == 0)
+            {
+                clase = "assestment-claro";
+            }
+            else
+            {
+                clase = "assestment-oscuro";
+            }
+
+            <div id="assestment" data-assestmentid="@aux.AssessmentSummaryId">
+                <div class="btn-mostrar-assestment @clase">
+                    <div class="assessment-tab-izq">
+                        <img class="logo" src="@Url.Content("~/Content/Images/" + aux.IconName)">
+                        <span>
+                            @if (aux.AssessmentMaturityLevelTranslatorId.HasValue)
+                            {
+                                @TranslatorHelper.TranslateTextById(aux.AssessmentTypeTranslatorId, Model.LanguageID)
+
+                                if (!aux.IsIndustryInsights)
+                                {
+                                    ViewContext.Writer.Write(" - "); @TranslatorHelper.TranslateTextById(aux.AssessmentMaturityLevelTranslatorId.Value, Model.LanguageID) <b>
+                                        (@aux.AnsweredQuestions of @aux.TotalQuestion)
+                                    </b>
+                                }
+
+
+                            }
+                            else
+                            {
+                                @TranslatorHelper.TranslateTextById(aux.AssessmentTypeTranslatorId, Model.LanguageID)
+
+                                if (!aux.IsIndustryInsights)
+                                {
+                                    <b>
+                                        (@aux.AnsweredQuestions of @aux.TotalQuestion)
+                                    </b>
+                                }
+
+
+
+                            }
+
+                        </span>
+                    </div>
+                                      
+                         
+                        
+                        @if (aux.IsFinal)
+                        {
+                            <div class="assessment-tab-der">
+                                
+                                <a href="@Url.Action("UnlockUserAssessment", "AdminMDS",new { @pAssessmentSummaryId = aux.AssessmentSummaryId})"
+                                   data-companyid="@Model.IdCompany" data-campaign="@Model.IdCampaign"  id="unlockAssessment">
+                                
+                                    <span>Unlock Assessent</span>
+                                </a>
+                            </div>
+
+                        }
+                                
+
+                        @if (aux.IsIndustryInsights)
+                        {
+                            <div class="assessment-tab-der">
+                                <a href="@Url.Action("ViewDetail","AdminIndustryInsights",new { Id = aux.AssessmentSummaryId})" target="_blank">
+                                    @*<a href="~/AdminMDS/GenerateWord?pCompanyID=@Model.CompanyID&pCampaignID=@Model.CampaignID&pAssessmentSummaryId=@aux.AssessmentSummaryId">*@
+                                    <img class="download-img" src="@Url.Content("~/Content/Images/accion_ver.png")">
+                                    <span>View Detail</span>
+                                </a>
+                            </div>
+
+
+                        }
+                        else
+                        {
+                            if (@aux.IsFinal)
+                            {
+                                <div class="assessment-tab-der">
+                                    <a href="@Url.Action("GenerateWordNewTemplate","AdminMDS", new { pCompanyID = Model.CompanyID, pCampaignID = Model.CampaignID, pAssessmentSummaryId = aux.AssessmentSummaryId, pLanguageId = Model.LanguageID })">
+                                        @*<a href="~/AdminMDS/GenerateWord?pCompanyID=@Model.CompanyID&pCampaignID=@Model.CampaignID&pAssessmentSummaryId=@aux.AssessmentSummaryId">*@
+                                        <img class="download-img" src="@Url.Content("~/Content/Images/icono_download.png")">
+                                        <span>Download</span>
+                                    </a>
+                                </div>
+                            }
+                        }
+
+
+
+                                </div>
+                <div class="contenido-assesment" style="display:none;width: 100%;border: 1px solid #f3f1f1;">
+                    @{
+                        Html.RenderPartial("_AssessmentQuestionsDetail", new AssessmentQuestionsHeaderViewModel { LanguageId = Model.LanguageID, AssessmentQuestions = aux.AssessmentQuestions });
+                    }
+
+                </div>
+            </div>
+                            {
+                                i++;
+                            }
+                        }
+    </div>
+                        }
+                        else
+                        {
+                            <h1>There are not filled assessments for this company</h1>
+                        }

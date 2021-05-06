@@ -1,0 +1,172 @@
+﻿@using Affidavit.Utils
+@using Affidavit.Models
+@model AssessmentGridViewModel
+
+
+@{
+    int comienzo = 0;
+    int pages = (int)Math.Ceiling((double)Model.AvailableAssessments / (double)3);
+}
+
+
+@if (!Model.IsFinishedMDS)
+{
+    <!--Empieza Capa opacidad que impide el acceso a los Assesments-->
+    <div class="capa">
+        <h4>
+            @Html.Raw(@TranslatorHelper.TranslateTextByIdentifier("Assessments_Text_Into"))
+        </h4>
+    </div>
+    <!--Termina Capa opacidad que impide el acceso a los Assesments-->
+}
+
+
+<h2>
+    @TranslatorHelper.TranslateTextByIdentifier("Assessments_Valor_Agregado")
+</h2>
+<div class="contiene_indicador">
+    <p>
+        @TranslatorHelper.TranslateTextByIdentifier("Assessments_Progreso")
+    </p>
+    <div class="indicador">
+        <span style="width: @Model.AssessmentsProgress%;"></span>
+    </div>
+    <p>
+        @Model.FinishedAssessments/@Model.AvailableAssessments @TranslatorHelper.TranslateTextByIdentifier("Assessments_Translate")
+    </p>
+</div>
+
+@for (int i = 0; i < Model.AvailableAssessments; i++)
+{
+    if (comienzo == 0)
+    {
+        ViewContext.Writer.Write("<ul class='assignments'>");
+    }
+    <li>
+        <div class="icono"><img src="@Url.Content("~/Content/Images/"+Model.AssessmentDetails[i].IconName)"></div>
+        @*<div class="icono"><img src="@Url.Content("~/Content/Images/"+Model.AssessmentDetails[i].IconName)" width="56" height="57"></div>*@
+        <h3>@TranslatorHelper.TranslateTextById(Model.AssessmentDetails[i].AssessmentTypeTraslatorId)</h3>
+        <div class="process">
+            @if (Model.AssessmentDetails[i].DownloadPDF)
+            {
+                <span class="icon"><img src="@Url.Content("~/Content/Images/process_3.png")" width="19" height="14"></span>
+            }
+            else if (Model.AssessmentDetails[i].IsInProgress)
+            {
+                <span class="icon"><img src="@Url.Content("~/Content/Images/process_2.png")" width="19" height="14"></span>
+            }
+            else
+            {
+                <span class="icon"><img src="@Url.Content("~/Content/Images/process_1.png")" width="19" height="14"></span>
+            }
+
+
+            <h4>
+                <span>
+                    @Model.AssessmentDetails[i].AssessmentStatus
+                </span>
+
+                @if (!Model.AssessmentDetails[i].IsIndustryInsights)
+                {
+                    @: - @TranslatorHelper.TranslateTextByIdentifier("Assessments_Nivel"): @TranslatorHelper.TranslateTextById(Model.AssessmentDetails[i].GlobalMaturityLevelTranslatorId ?? 0)
+                }
+
+            </h4>
+        </div>
+        @if (Model.AssessmentDetails[i].IsIndustryInsights)
+        {
+            
+           if (Model.AssessmentDetails[i].DownloadPDF)
+            {
+                <a href="@Url.Action("Index","IndustryInsights", new { Id = Model.AssessmentDetails[i].AssessmentSummaryId })" target="_self" class="btn_assignments finished">
+                    View your answers
+                </a>
+            }
+            else if (Model.AssessmentDetails[i].IsInProgress)
+            {
+                <a onclick="gAnalytics.throwRedirectEvent('Click Continue','Assestments','@TranslatorHelper.TranslateTextById(@Model.AssessmentDetails[i].AssessmentTypeTraslatorId, 2)','@Url.Action("Index","IndustryInsights", new { Id = Model.AssessmentDetails[i].AssessmentSummaryId })')" href="#" target="_self" class="btn_assignments go">
+                    @TranslatorHelper.TranslateTextByIdentifier("Assessments_Continuar")
+                </a>
+            }
+            else
+            {
+                <a href="#" target="_self" class="btn_assignments go industry_insights">
+                    @TranslatorHelper.TranslateTextByIdentifier("Assessments_Empezar")
+                </a>
+            }
+
+        }
+        else if (Model.AssessmentDetails[i].DownloadPDF)
+        {
+            @*<a onclick="gAnalytics.throwRedirectEvent('Click Download','Assestments','@TranslatorHelper.TranslateTextById(@Model.AssessmentDetails[i].AssessmentTypeTraslatorId,2)','@Url.Action("GetAssessmentRecommendations","Assessment", new { pAssessmentSummaryId  = Model.AssessmentDetails[i].AssessmentSummaryId})')" href="#" target="_self" class="btn_assignments download">Download</a>*@
+            @*<a href="#" target="_self" class="btn_assignments finished">
+                @TranslatorHelper.TranslateTextByIdentifier("Assessments_Completado")
+            </a>*@
+
+            <a href="@Url.Action("Index", "AssessmentQuestions", new { pAssessmentSummaryId = Model.AssessmentDetails[i].AssessmentSummaryId})" 
+               target="_self" class="btn_assignments finished">View your Answers</a>
+        }
+        else if (Model.AssessmentDetails[i].IsInProgress)
+        {
+            <a onclick="gAnalytics.throwRedirectEvent('Click Continue','Assestments','@TranslatorHelper.TranslateTextById(@Model.AssessmentDetails[i].AssessmentTypeTraslatorId, 2)','@Url.Action("Index", "AssessmentQuestions", new { pAssessmentSummaryId = Model.AssessmentDetails[i].AssessmentSummaryId })')" href="#" target="_self" class="btn_assignments go">
+                @TranslatorHelper.TranslateTextByIdentifier("Assessments_Continuar")
+            </a>
+        }
+        else
+        {
+            if (Model.IsFinishedMDS)
+            {
+                <a onclick="﻿gAnalytics.throwRedirectEvent('Click Start','Assestments','@TranslatorHelper.TranslateTextById(@Model.AssessmentDetails[i].AssessmentTypeTraslatorId, 2)','@Url.Action("Index", "AssessmentQuestions", new { pAssessmentSummaryId = Model.AssessmentDetails[i].AssessmentSummaryId })')" href="#" target="_self" class="btn_assignments go">
+                    @TranslatorHelper.TranslateTextByIdentifier("Assessments_Empezar")
+                </a>
+            }
+            else
+            {
+                <a href="#" target="_self" class="btn_assignments go">
+                    @TranslatorHelper.TranslateTextByIdentifier("Assessments_Empezar")
+                </a>
+            }
+
+        }
+
+        <p class="assessmentdescr">@TranslatorHelper.TranslateTextById(Model.AssessmentDetails[i].AssessmentDescriptionTranslatorId) </p>
+    </li>
+    if (comienzo == 2 || i == Model.AssessmentDetails.Count - 1)
+    {
+        comienzo = 0;
+        ViewContext.Writer.Write("</ul>");
+    }
+    else
+    {
+        comienzo++;
+    }
+
+
+}
+<ul class="paginacion_mds">
+    @if (pages > 1)
+    {
+        for (int i = 0; i < pages; i++)
+        {
+            <li><a href="#" target="_self">@(i + 1)</a></li>
+        }
+    }
+</ul>
+
+<script>
+    $(document).ready(function () {
+        /*Nuevos cambios pantalla MDS ChooseAnAction 20171129*/
+        /*---Paginación assignments---*/
+        $(".assignments").hide();
+        $(".assignments:first").show();
+        $(".paginacion_mds li:first").addClass("activo");
+        $(".paginacion_mds li").bind('click', function () {
+            var linkIndex = $(".paginacion_mds li").index(this);
+            $(".paginacion_mds li").removeClass("activo");
+            $(".assignments:visible").hide();
+            $(".assignments:eq(" + linkIndex + ")").show();
+            $(this).addClass("activo");
+            return false;
+        });
+    });
+</script>

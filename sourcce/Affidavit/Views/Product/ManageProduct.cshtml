@@ -1,0 +1,309 @@
+﻿@model Affidavit.Models.Product.ManageProductViewModel
+
+@{
+    ViewBag.Title = "Manage Product";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    //var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+}
+
+@*<script type="text/javascript" src="~/Scripts/Plugins/toastMessage.js"></script>*@
+@*<script src="~/Scripts/sobrescrituas.js"></script>*@
+<script type="text/javascript" src="~/Scripts/Custom/bootbox.js"></script>
+@Styles.Render("~/Content/cssadmin")
+
+
+<script type="text/javascript">
+
+    var pageNumber;
+    var pageSize = 10;
+    //filters
+    pFilter = {};
+
+    //New landing button click event
+    $(document).on('click', '#CreateProductButton', function (ev) {
+        //Modal Title
+        //$('#modalTitle').text($('#NS_NewLandingModalTitleAdmin').text());
+
+        $('#addModal').val('');
+        $('#addModal').modal('show');
+
+        $.ajax({
+            url: ("CreateNewProduct"),
+            //data: JSON.stringify(AnswerQuestionsWindows),
+            type: 'GET',
+            //contentType: 'application/json; charset=utf-8'
+        })
+            .done(function (data) {
+                
+                $('#CreateProductPartial').html(data);
+                $('#NewProductsModal').modal({ backdrop: "static" }, { keyboard: false });
+                loadingDiv.hide();
+                return false;
+            })
+            .fail(function (err) {
+                //$('#progressbargrid').addClass('hide');
+                console.log(err);
+
+            });
+
+    });
+
+    //$(document).on("click", "#CreateProductButton", function (e) {
+
+    //    $.ajax({
+    //        url: ("CreateNewProduct"),
+    //        //data: JSON.stringify(AnswerQuestionsWindows),
+    //        type: 'GET',
+    //        //contentType: 'application/json; charset=utf-8'
+    //    })
+    //        .done(function (data) {
+    //            //$('#progressbargrid').addClass('hide');
+    //            $('#popupCreateProduct').fadeIn('slow');
+    //            $('#popupCreateProduct').show();
+    //            $('.popup-overlay').fadeIn('slow');
+    //            $('.popup-overlay').height($(window).height());
+    //            $('#CreateProductPartial').html(data);
+    //            $('#NewProductsModal').modal({ backdrop: "static" }, { keyboard: false });
+    //            loadingDiv.hide();
+    //            return false;
+    //        })
+    //        .fail(function (err) {
+    //            //$('#progressbargrid').addClass('hide');
+    //            console.log(err);
+
+    //        });
+
+    //});
+
+    $(document).on("click", ".EditProductButton", function (e) {
+
+        $('#editModal').val('');
+        //$('#Content').summernote('code', '');
+        $('#editModal').modal('show');
+
+        var _currentIdProduct = $(this).data("idproduct");
+
+        $.ajax({
+            @*url: '@Url.Action("EditProduct")' + '?pProductID=' + _currentIdProduct,*@
+            url: ("EditProduct"),
+            data: { pProductID: _currentIdProduct },
+            type: 'GET',
+            //contentType: 'application/json; charset=utf-8'
+        })
+            .done(function (data) {
+                
+                $('#EditProductPartial').html(data);
+                $('#EditProductsModal').modal({ backdrop: "static" }, { keyboard: false });
+                loadingDiv.hide();
+                return false;
+            })
+            .fail(function (err) {
+                //$('#progressbargrid').addClass('hide');
+                console.log(err);
+
+            });
+    });
+
+    $(document).on("click", ".DeleteProductButton", function (e) {
+
+        var _currentIdProduct = $(this).data("idproductdelete");
+
+        bootbox.confirm("Are you sure you want to delete this product?", function (result) {
+            if (result == true) {
+                loadingDiv.show();
+                $.ajax({
+                    url: ("DeleteProduct"),
+                    data: { pProductID: _currentIdProduct },
+                    //data: JSON.stringify(AnswerQuestionsWindows),
+                    type: 'GET',
+                    contentType: 'application/json; charset=utf-8'
+                })
+                .done(function (data) {
+                    var res = data.notDelete;
+                    if (res) {
+                        //toastMessage.show("This product cannot be eliminated", "alert-danger");
+                        $('.mensaje_alerta p').text("This product cannot be eliminated");
+                        $('.mensaje_alerta').show('slow').delay(3000).hide('slow');
+                        console.log(data);
+                    } else {
+                        pFilter = {};
+                        GridCallback();
+                        $('.mensaje_confirmacion p').text("Product correctly eliminated");
+                        $('.mensaje_confirmacion').show('slow').delay(3000).hide('slow');
+                    }
+                    loadingDiv.hide();
+                })
+                .fail(function (err) {
+                    //$('#progressbargrid').addClass('hide');
+                    console.log(err);
+
+                });
+            }
+        });
+    });
+
+    $(document).on("click", "#cancelEditProduct", function (e) {
+        $('#popupEditProduct').hide();
+    });
+
+    $(document).on("click", "#cancelCreateProduct", function (e) {
+        $('#popupCreateProduct').hide();
+    });
+
+    $('#NewProductsModal').on('hidden.bs.modal', function (e) {
+        $('#CreateProductPartial').empty();
+    });
+
+    $('#EditProductPartial').on('hidden.bs.modal', function (e) {
+        $('#CreateProductPartial').empty();
+    });
+
+    //Filter button event
+    $(document).on('click', '.filter-table .btn-filter', function () {
+        var value = $(this).closest('span').prev('.filter-text').val().trim();
+        pFilter[$(this).data('filtername')] = value;
+        pageNumber = 1;
+
+        GridCallback();
+    });
+
+    //Pagination
+    $(document).on('click', '.NS-paginator li', function () {
+        var clickedPage = $(this).data('page');
+        if (clickedPage !== undefined) {
+            pageNumber = clickedPage
+
+            GridCallback();
+        }
+    });
+
+    //Perform the callback to reload all data in the datagrid
+    function GridCallback() {
+        loadingDiv.show();
+        $.ajax({
+            url: '@Url.Action("CallBackFilter")' + "?pPage=" + pageNumber + "&pPageSize=" + pageSize,
+            //data: JSON.stringify(selectedValuesToFilter),
+            type: 'POST',
+            data: JSON.stringify(pFilter),
+            contentType: 'application/json; charset=utf-8'
+        })
+            .done(function (data) {
+                loadingDiv.hide();
+                $('#ManageProduct-div').html(data);
+            })
+            .fail(function (err) {
+                loadingDiv.hide();
+                console.log(err);
+
+            });
+    }
+
+    //Filter enter event
+    $(document).on('keypress', '.filter-text', function (e) {
+        if (e.which == 13) {
+            var filterColumn = $(this).next().find('button').data('filtername');
+            pFilter[filterColumn] = $(this).val().trim();
+            pageNumber = 1;
+
+            GridCallback();
+        }
+    });
+
+    //Clear Filters button
+    $(document).on('click', '.btn-clear-filters', function () {
+        pFilter = {};
+        pageNumber = 1;
+
+        GridCallback();
+    })
+
+    //Función para aceptar solo números enteros positivos en un campo de texto
+    $(document).on("keydown", ".integerOnly", function (e) {
+
+        if (!((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105) ||
+       (e.keyCode == 8 || e.keyCode == 46 || e.keyCode == 37 || e.keyCode == 9 ||
+        e.keyCode == 39)))
+            e.preventDefault();
+    });
+
+</script>
+
+<style type="text/css">
+    body{
+        padding-top: 0px !important;
+    }
+</style>
+
+<div id="">
+    <div class="centro">
+        <div class="set" style="position: relative;z-index: 100000;">
+            @Html.Partial("_MenuNavegacion")
+        </div>
+
+        <div class="centro">
+            <div class="mensaje_alerta" style="display:none">
+                <p>Acá va el texto de mensaje de alerta</p>
+            </div>
+        </div>
+        <div class="centro">
+            <div class="mensaje_confirmacion" style="display:none">
+                <p>Acá va el texto de mensaje de alerta</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 ">
+                <ul style="padding: 3px;">
+                    <li style="float:left; width:50%;"><h3 class="titulo" style="font-size: xx-large;">Manage Products</h3></li>
+                    <li style="float:left; width:90px;">
+                        @*<button type="button" id="CreateProductButton" class="btn btn_search" style="width: 160px; float:initial;">Create New Product </button>*@
+                        <button class="btn btn-primary btn-sm new-landing" id="CreateProductButton" style="margin-top:27px;" data-toggle="tooltip" data-placement="top" title="Create New"><i class="fa fa-plus-circle fa-2x"></i></button>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-12"> &nbsp;</div>
+            <div class="col-md-12">
+                <div id="progressbargrid" class="progress hide">
+                    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                        <span class="sr-only">45% Complete</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+
+        <div id="ManageProduct-div">
+            @{ Html.RenderAction("ManageProductList", Model);}
+        </div>
+
+    </div>
+</div>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+    //$('#closeCreateProduct').click(function (e) {
+    //    e.preventDefault();
+    //    $('#popupCreateProduct').fadeOut('slow');
+    //    $('.popup-overlay').fadeOut('slow');
+    //    loadingDiv.hide();
+    //    return false;
+    //});
+
+    $('#closeEditProduct').click(function (e) {
+        e.preventDefault();
+        $('#popupEditProduct').fadeOut('slow');
+        $('.popup-overlay').fadeOut('slow');
+        loadingDiv.hide();
+        return false;
+    });
+
+    //$('#closeCreate').click(function () {
+    //    $('#popupCreate').fadeOut('slow');
+    //    $('.popup-overlay').fadeOut('slow');
+    //    loadingDiv.hide();
+    //    return false;
+    //});
+});
+</script>
